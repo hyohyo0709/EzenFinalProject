@@ -13,6 +13,10 @@ import Paper from '@mui/material/Paper';
 import {
   Button,
   Container,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
   Stack,
   Table,
   TableContainer,
@@ -27,7 +31,8 @@ import { Link } from 'react-router-dom';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Collapse from '@mui/material/Collapse';
-import MemberDataDelete from './MemberDataDelete';
+import OrderStatusChange from './OrderStatusChange';
+import OrderDataDelete from './OrderDataDelete';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -70,8 +75,8 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     },
   },
 }));
-const MemberTool = () => {
-  const [memberlists, setMemberlists] = useState([]);
+const OrderTool = () => {
+  const [orderlists, setOrderlists] = useState([]);
   const [searchKeyWord, setSearchKeyWord] = useState('');
 
   useEffect(() => {
@@ -81,10 +86,10 @@ const MemberTool = () => {
 
   const loadData = async () => {
     await axios
-      .get('http://localhost:8090/members/list')
+      .get('http://localhost:8090/orders/list')
       .then((response) => {
         // console.log('response:', response.data);
-        setMemberlists(response.data.alist);
+        setOrderlists(response.data.alist);
       })
       .catch((err) => console.error(err.message));
   };
@@ -93,22 +98,44 @@ const MemberTool = () => {
     setSearchKeyWord(e.target.value);
   };
 
-  const handleStatusChange = async (num) => {
-    axios
-      .put(`http://localhost:8090/members/statuschange/${num}`)
-      .then((response) => {
-        loadData();
-      })
-      .catch((err) => console.error(err.message));
-  };
-
-  const handleTypeChange = async (num) => {
-    axios
-      .put(`http://localhost:8090/members/typechange/${num}`)
-      .then((response) => {
-        loadData();
-      })
-      .catch((err) => console.error(err.message));
+  const statusCheck = (order_status) => {
+    if (order_status === 1) {
+      return (
+        <Button variant='contained' color='info'>
+          주문 접수 됨
+        </Button>
+      );
+    } else if (order_status === 0) {
+      return (
+        <Button variant='contained' color='error'>
+          주문 취소 됨
+        </Button>
+      );
+    } else if (order_status === 2) {
+      return (
+        <Button variant='contained' color='secondary'>
+          상품 준비 중
+        </Button>
+      );
+    } else if (order_status === 3) {
+      return (
+        <Button variant='contained' color='warning'>
+          배송 준비 중
+        </Button>
+      );
+    } else if (order_status === 4) {
+      return (
+        <Button variant='contained' color='warning'>
+          배송 중
+        </Button>
+      );
+    } else if (order_status === 5) {
+      return (
+        <Button variant='contained' color='success'>
+          배송 완료
+        </Button>
+      );
+    }
   };
 
   const filteredComponents = (data) => {
@@ -117,7 +144,7 @@ const MemberTool = () => {
       // console.log(c.book_title);
       // console.log(data.num);
 
-      return c.member_id.indexOf(searchKeyWord) > -1;
+      return c.order_number.indexOf(searchKeyWord) > -1;
     });
 
     return data;
@@ -139,6 +166,8 @@ const MemberTool = () => {
     const { row } = props;
     const [open, setOpen] = React.useState(false);
 
+    var qty = row.order_qty;
+    var price = row.ezenbooks.book_price;
     return (
       <React.Fragment>
         <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -152,72 +181,34 @@ const MemberTool = () => {
             </IconButton>
           </TableCell>
           <TableCell component='th' scope='row'>
-            {row.member_number}
+            {row.order_number}
           </TableCell>
-          <TableCell align='right'>{row.member_id}</TableCell>
-          <TableCell align='right'>{row.member_pass}</TableCell>
-          <TableCell align='right'>{row.member_address}</TableCell>
-          <TableCell align='right'>{row.member_phone}</TableCell>
-
-          <TableCell align='right'>{row.member_email}</TableCell>
+          <TableCell align='right'>{row.member_number}</TableCell>
+          <TableCell align='right'>{row.ezenmembers.member_id}</TableCell>
+          <TableCell align='right'>{row.book_id}</TableCell>
+          <TableCell align='right'>{row.ezenbooks.book_title}</TableCell>
+          <TableCell align='right'>{row.order_qty}</TableCell>
           <TableCell align='right'>
-            {row.member_type === 1 ? (
-              <Button variant='contained' color='secondary'>
-                관리자 계정
-              </Button>
-            ) : (
-              <Button variant='contained' color='success'>
-                일반 회원
-              </Button>
-            )}
+            {row.order_qty}X{row.ezenbooks.book_price}= {qty * price} 원
           </TableCell>
 
-          <TableCell align='right'>
-            {row.member_status === 1 ? (
-              <Button variant='contained' color='success'>
-                활동 중
-              </Button>
-            ) : (
-              <Button variant='contained' color='warning'>
-                탈퇴 처리 됨
-              </Button>
-            )}
-          </TableCell>
+          <TableCell align='right'>{statusCheck(row.order_status)}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={15}>
             <Collapse in={open} timeout='auto' unmountOnExit>
               <Box sx={{ border: 0 }}>
                 <Typography variant='h6' gutterBottom component='div'>
-                  회원 설정
+                  주문 설정
                 </Typography>
                 <Stack direction='row' spacing={2}>
-                  {/* <div>
-                    <BookUpdate num={row.num} />
-                  </div> */}
-                  <Button
-                    variant='outlined'
-                    onClick={() => {
-                      handleTypeChange(row.num);
-                    }}
-                  >
-                    회원 유형 바꾸기
-                  </Button>
-                  <Button
-                    variant='outlined'
-                    onClick={() => {
-                      handleStatusChange(row.num);
-                    }}
-                  >
-                    계정 상태 바꾸기
-                  </Button>
                   <div>
-                    <MemberDataDelete num={row.num} />
+                    <OrderStatusChange num={row.num} />
+                  </div>
+                  <div>
+                    <OrderDataDelete num={row.num} />
                   </div>
                 </Stack>
-                {/* <Card sx={{ minWidth: 275 }}>
-                  <CardContent></CardContent>
-                </Card> */}
               </Box>
             </Collapse>
           </TableCell>
@@ -237,7 +228,7 @@ const MemberTool = () => {
               component='div'
               sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
             >
-              회원 관리 시스템
+              주문 관리 시스템
             </Typography>
 
             <Link to='/'>
@@ -266,21 +257,20 @@ const MemberTool = () => {
             <TableHead>
               <TableRow>
                 <TableCell />
-                <TableCell>회원 번호</TableCell>
-                <TableCell align='center'>ID</TableCell>
-                <TableCell align='center'>비밀 번호</TableCell>
-                <TableCell align='center'>주소</TableCell>
-                <TableCell align='center'>전화 번호</TableCell>
+                <TableCell>주문 번호</TableCell>
+                <TableCell align='center'>회원 번호</TableCell>
+                <TableCell align='center'>회원 ID</TableCell>
+                <TableCell align='center'>도서 ID</TableCell>
+                <TableCell align='center'>도서 제목</TableCell>
+                <TableCell align='center'>수량</TableCell>
+                <TableCell align='center'>총 금액</TableCell>
 
-                <TableCell align='center'>이메일</TableCell>
-                <TableCell align='center'>회원 유형</TableCell>
-
-                <TableCell align='center'>계정 상태</TableCell>
+                <TableCell align='center'>주문 상태</TableCell>
               </TableRow>
             </TableHead>
 
             <TableBody>
-              {filteredComponents(memberlists)
+              {filteredComponents(orderlists)
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row) => (
                   <Row key={row.num} row={row} />
@@ -292,7 +282,7 @@ const MemberTool = () => {
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
           component='div'
-          count={memberlists.length}
+          count={orderlists.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
@@ -303,4 +293,4 @@ const MemberTool = () => {
   );
 };
 
-export default MemberTool;
+export default OrderTool;

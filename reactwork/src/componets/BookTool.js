@@ -5,7 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
+
 import SearchIcon from '@mui/icons-material/Search';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
@@ -13,7 +13,6 @@ import Paper from '@mui/material/Paper';
 import {
   Button,
   Card,
-  CardActions,
   CardContent,
   Container,
   Stack,
@@ -27,7 +26,7 @@ import TableCell from '@mui/material/TableCell';
 import TableBody from '@mui/material/TableBody';
 
 import BookAdd from './BookAdd';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Collapse from '@mui/material/Collapse';
@@ -183,7 +182,7 @@ const BookTool = () => {
                 재고 있음
               </Button>
             ) : (
-              <Button variant='contained' color='warning'>
+              <Button variant='contained' color='error'>
                 재고 없음
               </Button>
             )}
@@ -194,7 +193,7 @@ const BookTool = () => {
                 판매 중
               </Button>
             ) : (
-              <Button variant='contained' color='warning'>
+              <Button variant='contained' color='error'>
                 판매 중지
               </Button>
             )}
@@ -209,20 +208,7 @@ const BookTool = () => {
                 </Typography>
                 <Stack direction='row' spacing={2}>
                   <div>
-                    <BookUpdate
-                      num={row.num}
-                      // book_id={row.book_id}
-                      // book_title={row.book_title}
-                      // book_author={row.book_author}
-                      // book_publisher={row.book_publisher}
-                      // book_price={row.book_price}
-                      // book_content={row.book_content}
-                      // book_category={row.book_category}
-                      // book_isbn={row.book_isbn}
-                      // book_img={row.book_img}
-                      // book_stock={row.book_stock}
-                      // book_status={row.book_status}
-                    />
+                    <BookUpdate num={row.num} />
                   </div>
                   <Button
                     variant='outlined'

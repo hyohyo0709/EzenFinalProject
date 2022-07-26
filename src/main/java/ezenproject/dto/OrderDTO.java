@@ -12,6 +12,27 @@ public class OrderDTO {
 	private String member_number;
 	private String book_id;
 	private int order_status;
+	
+	private MemberDTO ezenmembers;
+	private BookDTO ezenbooks;
+	
+	
+	
+	public MemberDTO getEzenmembers() {
+		return ezenmembers;
+	}
+	public void setEzenmembers(MemberDTO ezenmembers) {
+		this.ezenmembers = ezenmembers;
+	}
+	public BookDTO getEzenbooks() {
+		return ezenbooks;
+	}
+	public void setEzenbooks(BookDTO ezenbooks) {
+		this.ezenbooks = ezenbooks;
+	}
+	
+	
+	
 	public int getNum() {
 		return num;
 	}

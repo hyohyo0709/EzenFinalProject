@@ -38,7 +38,11 @@ public class MainController {
 
 	@Autowired
 	private BookService bservice;
+	
+	@Autowired
 	private MemberService mservice;
+	
+	@Autowired
 	private OrderService oservice;
 	private BookDTO bdto;
 	private MemberDTO mdto;
@@ -56,7 +60,7 @@ public class MainController {
 //	관리자 페이지 제품 리스트 출력
 	@ResponseBody
 	@RequestMapping(value = "/books/list")
-	public Map<String, Object> listMethod(HttpServletRequest request){
+	public Map<String, Object> listBookMethod(HttpServletRequest request){
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		List<BookDTO> alist = bservice.listProcess();
@@ -71,7 +75,7 @@ public class MainController {
 //	판매 유무 변경
 	@ResponseBody
 	@RequestMapping(value = "/books/statuschange/{num}", method = RequestMethod.PUT)
-	public void statusChangeMethod(@PathVariable("num") int num) {
+	public void statusBookChangeMethod(@PathVariable("num") int num) {
 		
 		bservice.statusCheckProcess(num);
 		
@@ -80,7 +84,7 @@ public class MainController {
 //	재고 유무 변경
 	@ResponseBody
 	@RequestMapping(value = "/books/stockchange/{num}", method = RequestMethod.PUT)
-	public void stockChangeMethod(@PathVariable("num") int num) {
+	public void stockBookChangeMethod(@PathVariable("num") int num) {
 		
 		bservice.stockCheckProcess(num);
 		
@@ -131,7 +135,7 @@ public class MainController {
 //	도서 제품 데이터 영구 삭제
 	@ResponseBody
 	@RequestMapping(value = "/books/deletdata/{num}", method = RequestMethod.DELETE)
-	public void deleteDataMethod(@PathVariable("num") int num) {
+	public void deleteBookDataMethod(@PathVariable("num") int num) {
 		bservice.deleteDataProcess(num, filepath);
 	}
 	
@@ -153,9 +157,87 @@ public class MainController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/books/selectone/{num}", method = RequestMethod.GET)
-	public BookDTO selectOneMethod(@PathVariable("num") int num) {
+	public BookDTO selectOneBookMethod(@PathVariable("num") int num) {
 		
 		return bservice.selectOneProcess(num);
+	}
+	
+	
+//	관리자 페이지 회원 리스트 출력
+	@ResponseBody
+	@RequestMapping(value = "/members/list")
+	public Map<String, Object> listMemberMethod(HttpServletRequest request){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		
+		List<MemberDTO> alist = mservice.listProcess();
+			
+		
+//		System.out.println(alist.get(0).getMember_id());
+		map.put("alist", alist);
+		
+		return map;
+	}
+	
+	
+//	계정 상태 변경
+	@ResponseBody
+	@RequestMapping(value = "/members/statuschange/{num}", method = RequestMethod.PUT)
+	public void statusMemberChangeMethod(@PathVariable("num") int num) {
+		
+		mservice.statusCheckProcess(num);
+		
+	}
+	
+	
+//	계정 유형 변경
+	@ResponseBody
+	@RequestMapping(value = "/members/typechange/{num}", method = RequestMethod.PUT)
+	public void typeMemberChangeMethod(@PathVariable("num") int num) {
+		
+		mservice.typeCheckProcess(num);
+		
+	}
+	
+	
+//	회원 데이터 영구 삭제
+	@ResponseBody
+	@RequestMapping(value = "/members/deletdata/{num}", method = RequestMethod.DELETE)
+	public void deleteMemberDataMethod(@PathVariable("num") int num) {
+		mservice.deleteDataProcess(num);
+	}
+	
+	
+	
+//	관리자 페이지 주문 리스트 출력
+	@ResponseBody
+	@RequestMapping(value = "/orders/list")
+	public Map<String, Object> listOrderMethod(HttpServletRequest request){
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		List<OrderDTO> alist = oservice.listProcess();
+
+		map.put("alist", alist);
+		
+		return map;
+	}
+	
+	
+//	주문 상태 변경
+	@ResponseBody
+	@RequestMapping(value = "/orders/statuschange", method = RequestMethod.PUT)
+	public void changeOrderStatusMethod(OrderDTO dto) {
+		
+		
+		oservice.statusChangeProcess(dto);
+		
+	}
+	
+//	주문 데이터 영구 삭제
+	@ResponseBody
+	@RequestMapping(value = "/orders/deletdata/{num}", method = RequestMethod.DELETE)
+	public void deleteOrderDataMethod(@PathVariable("num") int num) {
+		oservice.deleteDataProcess(num);
 	}
 	
 	

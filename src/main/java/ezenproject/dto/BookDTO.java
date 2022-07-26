@@ -31,6 +31,31 @@ public class BookDTO {
 
 	
 	
+	
+	public BookDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	
+	
+	
+	
+
+	public BookDTO(String book_id, String book_title, int book_price) {
+		
+		this.book_id = book_id;
+		this.book_title = book_title;
+		this.book_price = book_price;
+	}
+
+
+
+
+
+
+
 
 	public String getBook_author() {
 		return book_author;

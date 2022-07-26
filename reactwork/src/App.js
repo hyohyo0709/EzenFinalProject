@@ -25,6 +25,9 @@ import MemberTool from './componets/MemberTool';
 import BookAdd from './componets/BookAdd';
 import BookDataDelete from './componets/BookDataDelete';
 import BookUpdate from './componets/BookUpdate';
+import OrderTool from './componets/OrderTool';
+import OrderStatusChange from './componets/OrderStatusChange';
+import OrderDataDelete from './componets/OrderDataDelete';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -39,7 +42,12 @@ const App = () => {
     <div className='Container'>
       <Routes>
         <Route path='/' element={<Layout />} />
-        <Route path='members' element={<MemberTool />} />
+        <Route path='members' element={<MemberTool />}>
+          <Route path='list' element={<MemberTool />} />
+          <Route path='statuschange/:num' element={<MemberTool />} />
+          <Route path='typechange/:num' element={<MemberTool />} />
+        </Route>
+
         <Route path='books' element={<BookTool />}>
           <Route path='list' element={<BookTool />} />
           <Route path='statuschange/:num' element={<BookTool />} />
@@ -48,6 +56,12 @@ const App = () => {
           <Route path='deletdata/:num' element={<BookDataDelete />} />
           <Route path='updatebook' element={<BookUpdate />} />
           <Route path='selectone/:num' element={<BookUpdate />} />
+        </Route>
+
+        <Route path='orders' element={<OrderTool />}>
+          <Route path='list' element={<OrderTool />} />
+          <Route path='statuschange' element={<OrderStatusChange />} />
+          <Route path='deletdata/:num' element={<OrderDataDelete />} />
         </Route>
       </Routes>
     </div>
@@ -94,7 +108,13 @@ function Layout() {
                 </Button>
               </Link>
             </Item>
-
+            <Item>
+              <Link to='/orders'>
+                <Button variant='contained' size='large'>
+                  주문 관리
+                </Button>
+              </Link>
+            </Item>
             <Item>
               <Button
                 variant='contained'

@@ -8,6 +8,51 @@
     
     <mapper namespace="ezenproject.dao.MemberDAO">
     
+    <!-- 여기서부터 관리자 페이지 매퍼입니다.  -->
+    
+    <select id="list" resultType="MemberDTO">
+     <![CDATA[
+    select * from ezenmembers order by num
+     ]]>
+    
+    </select>
+    
+     <select id="selectOne" resultType="MemberDTO">
+    select*from ezenmembers where num=#{num}
+    </select>
+    
+    
+     <update id="statusChangeOn" parameterType="MemberDTO">
+    update ezenmembers set
+    member_status=1
+    where num=#{num}
+    </update>
+    
+    <update id="statusChangeOff" parameterType="MemberDTO">
+    update ezenmembers set
+    member_status=0
+    where num=#{num}
+    </update>
+    
+    <update id="typeChangeOn" parameterType="MemberDTO">
+    update ezenmembers set
+    member_type=1
+    where num=#{num}
+    </update>
+    
+    <update id="typeChangeOff" parameterType="MemberDTO">
+    update ezenmembers set
+    member_type=0
+    where num=#{num}
+    </update>
+    
+    
+    <delete id="deleteData" parameterType="int">
+    delete from ezenmembers
+    where num=#{num}
+    </delete>
+    
+    <!-- 여기까지 관리자 페이지 매퍼입니다.  -->
     
     
     
