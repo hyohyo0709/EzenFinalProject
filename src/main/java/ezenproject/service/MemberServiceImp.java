@@ -23,6 +23,14 @@ public class MemberServiceImp implements MemberService{
 	}
 	
 	
+	@Override
+	public MemberDTO memberLogin(MemberDTO dto) throws Exception {
+		
+		return dao.loginCheck(dto);
+	}
+	
+	
+	
 	
 	/////////////////////////여기서부터 관리자 페이지 서비스입니다.//////
 	

@@ -22,7 +22,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
       crossorigin="anonymous"
     ></script>
 
-    <link href="./assets/css/style.css" rel="stylesheet" />
+    <link href="../assets/css/style.css" rel="stylesheet" />
 
     <title>로그인</title>
     <link
@@ -46,14 +46,14 @@ pageEncoding="UTF-8" isELIgnored="false"%>
   <body>
    <!-- Nabar start -->
 
-    <%@ include file = "./common/header.jsp"%>
+    <%@ include file = "../common/header.jsp"%>
     <!-- Header end -->
 
   <!-- breadclumb end -->
   <!-- head end -->
 
   <!-- detail start -->
-<form name="login" method="post"  action="/login.jsp">
+<form name="login" method="post"  action="/member/login.do">
   
    <table border="1"  width="80%" align="center" >
       <tr align="center">
@@ -81,6 +81,6 @@ pageEncoding="UTF-8" isELIgnored="false"%>
   <!-- detail end -->
 
   <!-- Footer Start -->
- <%@ include file = "./common/footer.jsp"%>
+ <%@ include file = "../common/footer.jsp"%>
   <!-- Footer end -->
 </html>

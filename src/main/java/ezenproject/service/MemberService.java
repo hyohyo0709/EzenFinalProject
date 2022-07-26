@@ -22,7 +22,7 @@ public interface MemberService {
 	public void deleteDataProcess(int num);
 	
 	public MemberDTO selectOneProcess(int num);
-	
+	public MemberDTO memberLogin(MemberDTO dto) throws Exception;
 	
 	///////////////여기까지 관리자 페이지 서비스입니다.////////////////
 }

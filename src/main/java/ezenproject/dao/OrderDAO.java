@@ -3,6 +3,7 @@ package ezenproject.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 
@@ -18,5 +19,7 @@ public interface OrderDAO {
 	public List<OrderDTO> list();
 	public void statusChange (OrderDTO dto);
 	public void deleteData(int num);
+	
+	
 	
 }

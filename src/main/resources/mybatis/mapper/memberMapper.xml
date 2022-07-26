@@ -55,5 +55,15 @@
     <!-- 여기까지 관리자 페이지 매퍼입니다.  -->
     
     
+    <!--로그인 하는 행위  -->
+    <select id="loginCheck" resultType="MemberDTO" parameterType="MemberDTO">
+    <![CDATA[
+		select * from ezenmembers	
+		where member_id=#{member_id} and member_pass=#{member_pass}
+	]]>
+    </select>
+    
+    
+    
     
     </mapper>

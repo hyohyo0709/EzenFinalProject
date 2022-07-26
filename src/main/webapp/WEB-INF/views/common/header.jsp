@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
   <div class="container">
-    <a class="navbar-brand" href="index.jsp">배너 들어 갈 자리</a>
+    <a class="navbar-brand" href="/">배너 들어 갈 자리</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -53,7 +56,18 @@ pageEncoding="UTF-8"%>
             회원 메뉴
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="login.jsp">로그인</a></li>
+            <!-- <li><a class="dropdown-item" href="member/loginForm.do">로그인</a></li> -->
+         
+         
+            <c:choose>
+          <c:when test="${isLogOn == true  && member!= null}">
+            <li><a class="dropdown-item" href="${contextPath}/member/logout.do">로그아웃</a></li>
+          </c:when>
+          <c:otherwise>
+	       <li><a class="dropdown-item" href="${contextPath}/member/loginForm.do">로그인</a></li>
+	      </c:otherwise>
+	   </c:choose>  
+	   
             <li><a class="dropdown-item" href="member_join.jsp">회원 가입</a></li>
             <li><a class="dropdown-item" href="mypage.jsp">My Page</a></li>
             <li><hr class="dropdown-divider" /></li>
