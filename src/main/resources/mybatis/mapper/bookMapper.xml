@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    
+    
+    <mapper namespace="ezenproject.dao.BookDAO">
+    
+   <!--////////////사용자 페이지 매퍼입니다.//////////////////////////  -->
+    
+   <select id="count" resultType="int">
+    SELECT count(*) FROM ezenbooks 
+    </select>
+    
+     <select id="content" parameterType="int" resultType="BookDTO">
+    select*from ezenbooks where num=#{num}
+    </select>
+    
+    
+     <select id="booklist" parameterType="PageDTO" 
+    resultType="BookDTO">
+   <![CDATA[
+    SELECT b.*
+ FROM(SELECT a.*, rownum as rm
+ FROM(SELECT * from ezenbooks ORDER BY num DESC)a)b
+ WHERE b.rm>=#{startRow} AND b.rm<=#{endRow}
+   ]]>
+    </select>
+    
+    <!-- 카테고리 페이지용 -->
+     <select id="category" parameterType="PageDTO" 
+    resultType="BookDTO">
+   <![CDATA[
+    SELECT b.*
+ FROM(SELECT a.*, rownum as rm
+ FROM(SELECT * from ezenbooks WHERE book_category=#{book_category} ORDER BY num DESC)a)b
+ WHERE b.rm>=#{startRow} AND b.rm<=#{endRow}
+   ]]>
+      </select>
+	<select id="select_category">
+	SELECT * FROM ezenbooks WHERE book_category=#{book_category}
+	</select>
+
+
+    
+    <!-- //////////////////여기서부터 관리자 페이지 매퍼입니다.////////////////////////  -->
+    
+    <select id="list" resultType="BookDTO">
+    <![CDATA[
+    select * from ezenbooks order by num
+     ]]>
+    </select> 
+    
+    
+    <select id="selectOne" parameterType="int" resultType="BookDTO">
+    select*from ezenbooks where num=#{num}
+    </select>
+    
+    
+    <update id="statusChangeOn" parameterType="BookDTO">
+    update ezenbooks set
+    book_status=1
+    where num=#{num}
+    </update>
+    
+    <update id="statusChangeOff" parameterType="BookDTO">
+    update ezenbooks set
+    book_status=0
+    where num=#{num}
+    </update>
+    
+    
+    
+    <update id="stockChangeOn" parameterType="BookDTO">
+    update ezenbooks set
+    book_stock=1
+    where num=#{num}
+    </update>
+    
+    <update id="stockChangeOff" parameterType="BookDTO">
+    update ezenbooks set
+    book_stock=0
+    where num=#{num}
+    </update>
+    
+    
+    <insert id="saveNewBook" parameterType="BookDTO">
+    insert into ezenbooks
+    (num,book_id, book_title, book_author, book_publisher, book_price, book_content,
+    book_category, book_isbn, book_img, book_stock, book_status )
+    values(ezenbooks_num_seq.nextval, #{book_id}, #{book_title}, #{book_author},
+    #{book_publisher}, #{book_price}, #{book_content}, #{book_category}, #{book_isbn},
+    #{book_img,jdbcType=VARCHAR}, 1,1
+    )
+    </insert>
+    
+    <select id="getFile" parameterType="int" resultType="String">
+   select book_img from ezenbooks where num=#{num}
+   </select>
+    
+    
+    <delete id="deleteData" parameterType="int">
+    delete from ezenbooks
+    where num=#{num}
+    </delete>
+    
+    
+    
+    
+    <!--////////////////////여기까지 관리자 페이지 매퍼입니다.///////////////////////////  -->
+    
+    </mapper>
