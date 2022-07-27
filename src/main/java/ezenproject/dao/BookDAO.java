@@ -16,8 +16,8 @@ public interface BookDAO {
 	public int count();
 	public List<BookDTO> booklist(PageDTO pv);
 	public BookDTO content(int num);
-	public List<BookDTO> category(PageDTO pv);
-	public BookDTO select_category(int book_category);
+	public List<BookDTO> img_list();
+	
 	
 	public List<BookDTO> list();
 	public BookDTO selectOne(int num);
@@ -28,5 +28,5 @@ public interface BookDAO {
 	public void saveNewBook(BookDTO dto);
 	public void deleteData(int num);
 	public String getFile(int num);
-	
+	public void updateBook(BookDTO dto);
 }

@@ -53,21 +53,38 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-3">
-				<div class="card" id="card_img">
-					<img src="../assets/img/${dto.book_img}"
-						class="card-img-top" alt="${dto.book_img }">
+				<div id="card_img">
+					<img src="/assets/img/${dto.book_img}" height="530px" width="100%" class="card_img"
+						 alt="${dto.book_img }">
 				</div>
 			</div>
 			<div class="col-md-6" id="detail_main">
 				<p class="book_title">${dto.book_title} </p>
-				<p class="book_sub" style="border-bottom: 1px solid black;">저자 :
+				<p class="book_sub"style="border-bottom: 1px solid black;">저자 :
 					${dto.book_author } | ${dto.book_publisher} |
-				<c:if test="${dto.book_category == 1}">경영</c:if>
-				<c:if test="${dto.book_category == 2}">동화</c:if>
-				<c:if test="${dto.book_category == 3}">소설</c:if>
-				<c:if test="${dto.book_category == 4}">참고서</c:if>
-				<c:if test="${dto.book_category == 5}">역사</c:if>
+				<c:if test="${dto.book_category == 1}">소설/시/희곡</c:if>
+				<c:if test="${dto.book_category == 2}">에세이</c:if>
+				<c:if test="${dto.book_category == 3}">인문</c:if>
+				<c:if test="${dto.book_category == 4}">역사</c:if>
+				<c:if test="${dto.book_category == 5}">예술</c:if>
+				<c:if test="${dto.book_category == 6}">종교</c:if>
+				<c:if test="${dto.book_category == 7}">사회.정치</c:if>
+				<c:if test="${dto.book_category == 8}">자연과학</c:if>
+				<c:if test="${dto.book_category == 9}">경제 경영</c:if>
+				<c:if test="${dto.book_category == 10}">자기계발</c:if>
+				<c:if test="${dto.book_category == 11}">인물</c:if>
+				<c:if test="${dto.book_category == 12}">유아</c:if>
+				<c:if test="${dto.book_category == 13}">어린이</c:if>
+				<c:if test="${dto.book_category == 14}">청소년</c:if>
+				<c:if test="${dto.book_category == 15}">전집</c:if>
+				<c:if test="${dto.book_category == 16}">만화</c:if>
+				<c:if test="${dto.book_category == 17}">여행</c:if>
+				<c:if test="${dto.book_category == 18}">참고서</c:if>
+				<c:if test="${dto.book_category == 19}">잡지</c:if>
+				<c:if test="${dto.book_category == 20}">외국도서</c:if>
+				 | ISBN코드 : ${dto.book_isbn }
 					</p>
+					
 				<table style="border-bottom: 1px solid black;" >
 					<colgroup>
 						<col width="150">
@@ -90,7 +107,7 @@
 						<th><p style="margin-top: 10px">줄거리</p></th>
 						</tr>
 						<tr>
-							<td width="100%" colspan="2" class="book_story">${dto.book_content }</td>
+							<td width="100%" colspan="2" class="book_story">${dto.book_content}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -103,10 +120,8 @@
 				<div class="buy_box" >
 					<p style="margin-top: 10px; color: gray; 
 					font-size: 13px; text-align: center;">
-					<c:choose>
-					<c:when test="${dto.book_stock}==1">구매가능</c:when>
-					<c:otherwise>재고없음</c:otherwise>
-					</c:choose>
+					<c:if test="${dto.book_stock == 1}">구매가능</c:if>
+					<c:if test="${dto.book_stock == 0}">재고없음</c:if>
 					</p>
 					<div class="buy_area1">
 					<div style=" border-bottom : 1px solid gray; margin-bottom: 5px">
@@ -154,13 +169,19 @@
 					
 					
 					<!-- ////// 구매 버튼 목록 시작 /////// -->
+					<!-- //구매 버튼 링크들// -->
+					<c:url var="buy_link" value="/order/order_page_sample.do">
+					<c:param name="num" value="${dto.num }"/>
+					</c:url>
+					<!-- //구매 버튼 링크// -->
+					
 					<!-- 재고 유무에 따라 재고가 없을시에 알림창 -->
 					<div style="margin-top: 15px;">
-					<c:choose><c:when test="${dto.book_stock}==1">
+					<c:choose><c:when test="${dto.book_stock==1}">
 					<input class="buy_button1" type="button" value="장바구니">
 					<input class="buy_button1" type="button" value="선물하기">
 					<input class="buy_button2" type="button" value="매장구매">
-					<input class="buy_button2" type="button" value="바로구매">
+					<input class="buy_button2" type="button" value="바로구매" onClick="window.open('${buy_link}')">
 					</c:when>
 					<c:otherwise>
 					<input class="buy_button1" type="button" value="장바구니" onclick="noStock()">
@@ -194,31 +215,9 @@
 	<div class="slider">
 <div class="image-box">
 <div id="random_book_img">
-      <img src="https://placeimg.com/140/210/any" />
-  	</div>
-<div id="random_book_img">
-      <img src="https://placeimg.com/140/210/any" />
-  	</div>
-<div id="random_book_img">
-      <img src="https://placeimg.com/140/210/any" />
-  	</div>
-<div id="random_book_img">
-      <img src="https://placeimg.com/140/210/any" />
-  	</div>
-  	<div id="random_book_img">
-      <img src="https://placeimg.com/140/210/any" />
-  	</div>
-  	<div id="random_book_img">
-      <img src="https://placeimg.com/140/210/any" />
-  	</div>
-  	<div id="random_book_img">
-      <img src="https://placeimg.com/140/210/any" />
-  	</div>
-  	<div id="random_book_img">
-      <img src="https://placeimg.com/140/210/any" />
-  	</div>
-  	<div id="random_book_img">
-      <img src="https://placeimg.com/140/210/any" />
+<c:forEach items="${alist}" var="list">
+	<img src="../assets/img/${list.book_img }" width="140" height="210" >
+</c:forEach>
   	</div>
   	</div>	
    </div>

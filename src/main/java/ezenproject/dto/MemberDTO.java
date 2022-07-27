@@ -12,8 +12,23 @@ public class MemberDTO {
 	private String member_address;
 	private String member_phone;
 	private String member_email;
-	private int memeber_type;
+	private int member_type;
 	private int member_status;
+	
+	
+	
+	public MemberDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	public MemberDTO(String member_number, String member_id) {
+		
+		this.member_number = member_number;
+		this.member_id = member_id;
+	}
+	
 	public int getNum() {
 		return num;
 	}
@@ -56,11 +71,11 @@ public class MemberDTO {
 	public void setMember_email(String member_email) {
 		this.member_email = member_email;
 	}
-	public int getMemeber_type() {
-		return memeber_type;
+	public int getMember_type() {
+		return member_type;
 	}
-	public void setMemeber_type(int memeber_type) {
-		this.memeber_type = memeber_type;
+	public void setMember_type(int member_type) {
+		this.member_type = member_type;
 	}
 	public int getMember_status() {
 		return member_status;

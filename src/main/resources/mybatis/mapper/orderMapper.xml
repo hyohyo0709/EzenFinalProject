@@ -7,8 +7,58 @@
     
     
     <mapper namespace="ezenproject.dao.OrderDAO">
+  
+  <!--여기서부터 관리자 페이지 매퍼입니다.  -->
+  
+  <resultMap type="MemberDTO" id="MemberDTO">
+  <id property="member_id" column="member_id"/>
+  </resultMap>
+  <resultMap type="BookDTO" id="BookDTO">
+  <id property="book_title" column="book_title"/>
+  <id property="book_price" column="book_price"/>
+  </resultMap>
+  
+  <resultMap type="OrderDTO" id="OrderResult">
+  <id property="num" column="num"/>
+  <id property="order_number" column="order_number"/>
+  <id property="order_qty" column="order_qty"/>
+  <id property="member_number" column="member_number"/>
+  <id property="book_id" column="book_id"/>
+  <id property="order_status" column="order_status"/>
+  
+  
+  <collection property="ezenmembers" resultMap="MemberDTO"/>
+  <collection property="ezenbooks" resultMap="BookDTO"/>
+  </resultMap>
+  
+    
+    <select id="list" resultMap="OrderResult">
+    <![CDATA[
+    select o.num, o.order_number, o.order_qty, o.member_number, o.book_id, o.order_status, 
+    m.member_id, b.book_title, b.book_price
+    from ezenbooks b, ezenmembers m, ezenorders o
+    where o.member_number = m.member_number
+    and o.book_id=b.book_id
+    order by o.num
+    ]]>
+    </select>
+    
+    
+ <update id="statusChange" parameterType="OrderDTO">
+ update ezenorders set
+ order_status = #{order_status}
+ where num=#{num}
+ </update>
+    
+    
+    <delete id="deleteData" parameterType="int">
+    delete from ezenorders
+    where num=#{num}
+    </delete>
     
     
     
+    
+    <!--여기까지 관리자 페이지 매퍼입니다.  -->
     
     </mapper>

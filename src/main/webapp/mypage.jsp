@@ -20,12 +20,12 @@ pageEncoding="UTF-8"%>
       crossorigin="anonymous"
     ></script>
 
-    <link href="./assets/css/style.css" rel="stylesheet" />
+    <link href="../assets/css/style.css" rel="stylesheet" />
 
     <title>마이페이지</title>
     <link
       rel="short icon"
-      href="./assets/img/favicon.png"
+      href="../assets/img/favicon.png"
       type="image/x-icon"
     />
   </head>
@@ -33,7 +33,7 @@ pageEncoding="UTF-8"%>
   
    <!-- Nabar start -->
 
-    <%@ include file = "./common/header.jsp"%>
+    <%@ include file = "../common/header.jsp"%>
     <!-- Header end -->
 
   <!-- breadclumb end -->
@@ -45,6 +45,6 @@ pageEncoding="UTF-8"%>
   <!-- detail end -->
 
   <!-- Footer Start -->
- <%@ include file = "./common/footer.jsp"%>
+ <%@ include file = "../common/footer.jsp"%>
   <!-- Footer end -->
 </html>

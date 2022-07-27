@@ -45,14 +45,11 @@ public class BookServiceImp implements BookService{
 	}
 	
 	@Override
-	public List<BookDTO> category(PageDTO pv) {
-		return dao.category(pv);
+	public List<BookDTO> img_listProcess() {
+		return dao.img_list();
 	}
 	
-	@Override
-	public BookDTO select_categoryProcess(int book_category) {
-		return dao.select_category(book_category);
-	}
+	
 	
 	/////////////////////여기까지 board관련 페이지 서비스 입니다//////////////////////////////////
 	
@@ -166,6 +163,23 @@ public class BookServiceImp implements BookService{
 		
 		dao.deleteData(num);
 		
+	}
+	@Override
+	public void updateBookProcess(BookDTO dto, String urlpath) {
+		String fileName = dto.getBook_img();
+		if(fileName!=null) { //수정한 파일이 있으면
+			String path = dao.getFile(dto.getNum());
+			if(!path.isEmpty()) {
+				File fe = new File(urlpath, path);
+				fe.delete();
+			}
+		}
+		System.out.println(dto.getBook_title()+"서비스 단계");
+		
+//		System.out.println(dto.toString());
+		
+		
+		dao.updateBook(dto);
 	}
 
 	

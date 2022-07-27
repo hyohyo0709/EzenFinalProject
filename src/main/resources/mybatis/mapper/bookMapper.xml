@@ -28,33 +28,23 @@
  WHERE b.rm>=#{startRow} AND b.rm<=#{endRow}
    ]]>
     </select>
+   <!-- 도서 이미지 랜덤 출력용 -->
+    <select id="img_list" resultType="BookDTO">
+    SELECT book_img FROM ezenbooks
+    </select>
     
-    <!-- 카테고리 페이지용 -->
-     <select id="category" parameterType="PageDTO" 
-    resultType="BookDTO">
-   <![CDATA[
-    SELECT b.*
- FROM(SELECT a.*, rownum as rm
- FROM(SELECT * from ezenbooks WHERE book_category=#{book_category} ORDER BY num DESC)a)b
- WHERE b.rm>=#{startRow} AND b.rm<=#{endRow}
-   ]]>
-      </select>
-	<select id="select_category">
-	SELECT * FROM ezenbooks WHERE book_category=#{book_category}
-	</select>
-
 
     
     <!-- //////////////////여기서부터 관리자 페이지 매퍼입니다.////////////////////////  -->
     
-    <select id="list" resultType="BookDTO">
+  <select id="list" resultType="BookDTO">
     <![CDATA[
     select * from ezenbooks order by num
      ]]>
-    </select> 
+    </select>
     
     
-    <select id="selectOne" parameterType="int" resultType="BookDTO">
+    <select id="selectOne" resultType="BookDTO">
     select*from ezenbooks where num=#{num}
     </select>
     
@@ -107,6 +97,23 @@
     </delete>
     
     
+    <update id="updateBook" parameterType="BookDTO">
+    update ezenbooks set
+    book_title=#{book_title},
+    book_author=#{book_author},
+    book_publisher=#{book_publisher},
+    book_price=#{book_price},
+    book_content=#{book_content},
+    book_category=#{book_category},
+    book_isbn=#{book_isbn}
+    
+    <if test="book_img!=null">
+    ,book_img=#{book_img,jdbcType=VARCHAR}
+    </if>
+    
+    where num=#{num}
+    
+    </update>
     
     
     <!--////////////////////여기까지 관리자 페이지 매퍼입니다.///////////////////////////  -->

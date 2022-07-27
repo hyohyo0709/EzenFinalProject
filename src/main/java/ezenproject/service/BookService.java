@@ -12,8 +12,7 @@ public interface BookService {
 	public int countProcess(); 
 	public List<BookDTO> booklistProcess(PageDTO pv);
 	public BookDTO contentProcess(int num);
-	public List<BookDTO> category(PageDTO pv);
-	public BookDTO select_categoryProcess(int book_category);
+	public List<BookDTO> img_listProcess();
 	
 ///////////////////여기부터 관리자 페이지 서비스입니다.//////////////////
 	public List<BookDTO> listProcess();
@@ -28,6 +27,7 @@ public interface BookService {
 	public void newBookProcess(BookDTO dto);
 	public void newBookIDProcess(BookDTO dto);
 	public void deleteDataProcess(int num, String urlpath);
+	public void updateBookProcess(BookDTO dto, String urlpath);
 ////////////////////여기까지 관리자 페이지 서비스입니다/////////////////////
 	
 	
