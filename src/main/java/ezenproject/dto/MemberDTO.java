@@ -28,7 +28,7 @@ public class MemberDTO {
 		this.member_number = member_number;
 		this.member_id = member_id;
 	}
-	
+
 	public int getNum() {
 		return num;
 	}

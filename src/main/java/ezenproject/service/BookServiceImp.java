@@ -12,6 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ezenproject.dao.BookDAO;
 import ezenproject.dto.BookDTO;
+import ezenproject.dto.OrderDTO;
+import ezenproject.dto.PageDTO;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
@@ -23,10 +25,17 @@ public class BookServiceImp implements BookService{
 	private BookDAO dao;
 	
 	public BookServiceImp() {
-		// TODO Auto-generated constructor stub
+		
 	}
-	
-	
+	@Override
+	public int countProcess() {
+		// TODO Auto-generated method stub
+		return dao.count();
+	}
+	@Override
+	public List<BookDTO> booklistProcess(PageDTO pv) {
+		return dao.booklist(pv);
+	}
 	
 /////////////////////////////	여기서부터 관리자 페이지 서비스입니다//////////
 	

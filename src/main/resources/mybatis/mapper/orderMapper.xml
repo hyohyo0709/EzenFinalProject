@@ -8,6 +8,10 @@
     
     <mapper namespace="ezenproject.dao.OrderDAO">
   
+   <select id="selectOne" parameterType="int" resultType="BookDTO">
+    select*from ezenbooks where num=#{num}
+    </select>
+    
   <!--여기서부터 관리자 페이지 매퍼입니다.  -->
   
   <resultMap type="MemberDTO" id="MemberDTO">

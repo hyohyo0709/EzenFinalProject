@@ -6,12 +6,16 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import ezenproject.dto.BookDTO;
+import ezenproject.dto.PageDTO;
 
 
 @Mapper
 @Repository
 public interface BookDAO {
-
+	public List<BookDTO> booklist(PageDTO pv);
+	public int count();
+	
+	
 	public List<BookDTO> list();
 	public BookDTO selectOne(int num);
 	public void statusChangeOn(int num);

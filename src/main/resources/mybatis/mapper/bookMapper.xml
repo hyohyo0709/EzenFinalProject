@@ -8,6 +8,21 @@
     
     <mapper namespace="ezenproject.dao.BookDAO">
     
+    <select id="count" resultType="int">
+    SELECT count(*) FROM ezenbooks 
+    </select>
+    
+    
+        
+     <select id="booklist" parameterType="PageDTO" 
+    resultType="BookDTO">
+   <![CDATA[
+    SELECT b.*
+ FROM(SELECT a.*, rownum as rm
+ FROM(SELECT * from ezenbooks ORDER BY num DESC)a)b
+ WHERE b.rm>=#{startRow} AND b.rm<=#{endRow}
+   ]]>
+    </select>
     
     <!-- //////////////////여기서부터 관리자 페이지 매퍼입니다.////////////////////////  -->
     

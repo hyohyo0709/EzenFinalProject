@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import ezenproject.dao.OrderDAO;
+import ezenproject.dto.BookDTO;
 import ezenproject.dto.OrderDTO;
 
 @Service
@@ -23,7 +24,12 @@ public class OrderServiceImp implements OrderService{
 		// TODO Auto-generated constructor stub
 	}
 	
-	
+	@Override
+	public OrderDTO selectOneProcess(int num) {
+		
+		
+		return dao.selectOne(num);
+	}
 	
 	//////////////여기서부터 관리자 페이지 서비스입니다.////////////
 	

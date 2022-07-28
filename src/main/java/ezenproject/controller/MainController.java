@@ -1,6 +1,8 @@
 package ezenproject.controller;
 
 import java.io.File;
+
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
@@ -33,7 +35,7 @@ import ezenproject.dto.OrderDTO;
 import ezenproject.service.BookService;
 import ezenproject.service.MemberService;
 import ezenproject.service.OrderService;
-
+import ezenproject.dto.PageDTO;
 
 // http://localhost:8090/
 
@@ -52,7 +54,9 @@ public class MainController {
 	private BookDTO bdto;
 	private MemberDTO mdto;
 	private OrderDTO odto;
-
+	public PageDTO pdto;
+	private int currentPage;
+	
 	public MainController() {
 		// TODO Auto-generated constructor stub
 	}
@@ -127,12 +131,25 @@ public class MainController {
 		
 		return "redirect:/";
 	}
+
+//////////////////주문페이지 ////////////////////////////////////////////////////////////
 	
+//	http://localhost:8090/order_detail.do?currentPage=1&num=1
 	
-	
-	
-	
-	
+	@RequestMapping("/order_detail.do")
+	public ModelAndView viewMethod(HttpServletRequest request,int currentPage,int num,ModelAndView mav) {
+		//BoardDTO dto= service.contentProcess(num);
+		String viewName= (String)request.getAttribute("viewName");
+		mav.addObject("mdto",mservice.selectOneProcess(num));
+		mav.addObject("bdto",bservice.selectOneProcess(num));
+		mav.addObject("currentPage",currentPage);
+		//mav.setViewName("/board/view");
+		mav.setViewName(viewName);
+		return mav;
+		
+	}
+
+
 ////////////////////////////////////////////////////여기부터 관리자 페이지 메소드입니다.////////////////////
 
 //	관리자 페이지 제품 리스트 출력
