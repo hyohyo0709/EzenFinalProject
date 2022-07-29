@@ -8,6 +8,7 @@ import ezenproject.dto.OrderDTO;
 public interface OrderService {
 
 public OrderDTO selectOneProcess(int num);
+public void addOrderProcess(OrderDTO dto);
 	
 	////////////여기서부터 관리자 페이지 서비스입니다.///////////
 	

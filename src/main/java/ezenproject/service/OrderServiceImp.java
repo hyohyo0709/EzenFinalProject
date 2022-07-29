@@ -1,11 +1,14 @@
 package ezenproject.service;
 
+import java.io.File;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
 
 import ezenproject.dao.OrderDAO;
 import ezenproject.dto.BookDTO;
@@ -27,8 +30,14 @@ public class OrderServiceImp implements OrderService{
 	@Override
 	public OrderDTO selectOneProcess(int num) {
 		
-		
 		return dao.selectOne(num);
+	}
+	
+	
+	@Override
+	public void addOrderProcess(OrderDTO dto) {
+	
+		dao.addOrder(dto);
 	}
 	
 	//////////////여기서부터 관리자 페이지 서비스입니다.////////////

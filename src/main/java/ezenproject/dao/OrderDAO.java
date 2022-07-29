@@ -20,6 +20,6 @@ public interface OrderDAO {
 	public void statusChange (OrderDTO dto);
 	public void deleteData(int num);
 	public OrderDTO selectOne(int num);
-	
+	public void addOrder(OrderDTO dto);
 	
 }

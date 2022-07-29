@@ -70,21 +70,22 @@ pageEncoding="UTF-8"%>
           font-size: 3.5rem;
         }
       }
-/*      .card_img{
-      margin-left:45%; 
-      padding-top:4%;
-      padding-bottom:4%;
-      } */
 
     </style>
 
     <!-- Custom styles for this template -->
     <link href="form-validation.css" rel="stylesheet">
-    
-
     <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
       <script src="form-validation.js"></script>
+ 
+<!--   결제버튼 누르면 페이지 이동  -->
+  <script>
+  $("#orderButton").click(function(){
+		 $("#frm").attr("action","/orderList.do?currentPage=1&num={dto.num}").submit();
+		 
+	 });
+  </script>
   
   </head>
   <body>
@@ -96,12 +97,14 @@ pageEncoding="UTF-8"%>
 
     <!-- card start -->
 
-    
     <!-- card end -->
 
     <!-- body start -->
-     <body class="bg-light">
     
+    
+     <body class="bg-light">
+   <form name="frm" id="frm" method="post" enctype="multipart/form-data">
+
 <div class="container">
   <main>
     <div class="py-5 text-center">
@@ -115,7 +118,7 @@ pageEncoding="UTF-8"%>
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
           <span class="text-primary">Your cart</span>
-          <span class="badge bg-primary rounded-pill">1</span>
+          <span class="badge bg-primary rounded-pill" name="order_qty">1</span>
         </h4>
         <ul class="list-group mb-3">
           <li class="list-group-item d-flex justify-content-between lh-sm">
@@ -187,7 +190,7 @@ pageEncoding="UTF-8"%>
             </div>
 
             <div class="col-12">
-              <label for="email" class="form-label">이메일 <span class="text-muted"></span></label>
+              <label for="email" class="form-label" >이메일 <span class="text-muted"></span></label>
               <input type="email" class="form-control" id="email" placeholder="you@example.com">
               <div class="invalid-feedback">
                 배송정보를 위해 이메일을 입력해주세요 
@@ -230,7 +233,7 @@ pageEncoding="UTF-8"%>
             </div>
 
             <div class="col-12">
-              <label for="address" class="form-label">상세주소</label>
+              <label for="address" class="form-label" >상세주소</label>
               <input type="text" class="form-control" id="address" placeholder="1234-1 행복하우스 101호 " required>
               <div class="invalid-feedback">
                상세주소를 입력해주세요 
@@ -304,7 +307,8 @@ pageEncoding="UTF-8"%>
 
           <hr class="my-4">
 
-          <button class="w-100 btn btn-primary btn-lg" type="submit">주문하기</button>
+          <button class="w-100 btn btn-primary btn-lg" id = "orderButton">
+          주문하기</button>
         </form>
       </div>
     </div>
@@ -318,5 +322,6 @@ pageEncoding="UTF-8"%>
     <!-- Footer Start -->
     <%@ include file = "./common/footer.jsp"%>
     <!-- Footer end -->
+    </form>
   </body>
 </html>

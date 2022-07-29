@@ -12,6 +12,25 @@
     select*from ezenbooks where num=#{num}
     </select>
     
+    <insert id ="addOrder" parameterType = "OrderDTO">
+   <![CDATA[
+    INSERT INTO ezenorders 
+    (num,order_number,order_qty,member_number,book_id ,order_status)
+	SELECT
+    ezenorders_num_seq,
+    #{order_number},
+    #{order_qty},
+	A.member_number,
+    B.book_id,
+    #{order_status},
+	FROM ezenmembers A
+
+	INNER JOIN ezenbooks B 
+	ON a.num = b.num 
+    ]]>
+ 
+    </insert>
+    
   <!--여기서부터 관리자 페이지 매퍼입니다.  -->
   
   <resultMap type="MemberDTO" id="MemberDTO">

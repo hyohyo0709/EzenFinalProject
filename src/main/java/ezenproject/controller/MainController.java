@@ -135,7 +135,7 @@ public class MainController {
 //////////////////주문페이지 ////////////////////////////////////////////////////////////
 	
 //	http://localhost:8090/order_detail.do?currentPage=1&num=1
-	
+// 주문 페이지로 이동 
 	@RequestMapping("/order_detail.do")
 	public ModelAndView viewMethod(HttpServletRequest request,int currentPage,int num,ModelAndView mav) {
 		//BoardDTO dto= service.contentProcess(num);
@@ -148,7 +148,14 @@ public class MainController {
 		return mav;
 		
 	}
-
+// 주문 테이블에 넣기 
+		@ResponseBody
+		@RequestMapping(value="orderList.do", method = RequestMethod.POST)
+		public void insertOrderMethod(OrderDTO odto,int currentPage,HttpServletRequest request) {
+		
+			oservice.addOrderProcess(odto);
+			
+		}
 
 ////////////////////////////////////////////////////여기부터 관리자 페이지 메소드입니다.////////////////////
 
