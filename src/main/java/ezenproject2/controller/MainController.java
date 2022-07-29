@@ -30,7 +30,7 @@ import ezenproject2.service.MemberServiceImp;
 import ezenproject2.service.OrderService;
 
 
-// http://localhost:8090/index.jsp
+// http://localhost:8090/views/index.jsp
 
 @Controller
 public class MainController {
@@ -58,10 +58,10 @@ private ModelAndView form(@RequestParam(value= "result", required=false) String 
 							  @RequestParam(value= "action", required=false) String action,
 							  HttpServletRequest request, 
 							  HttpServletResponse response) throws Exception {
-	System.out.println("확인");
+	//System.out.println("확인");
 
 	String viewName = (String)request.getAttribute("viewName");
-	System.out.println("memberForm viewName : "+ viewName);
+//	System.out.println("memberForm viewName : "+ viewName);
 	HttpSession session = request.getSession();
 	session.setAttribute("action", action); 
 	
@@ -79,41 +79,16 @@ public ModelAndView addMember(@ModelAttribute("member")MemberDTO member,
 	
 	int result=0;
 	result= mservice.addMember(member); 	
-	ModelAndView mav= new ModelAndView("redirect:/index.jsp");
+	ModelAndView mav= new ModelAndView("redirect:/views/index.jsp");
 	return mav;
 }
 
-//public static String getCurrentDateTime() {
-//	Date today = new Date();
-//	Locale currentLocale = new Locale("KOREAN", "KOREA");
-//	String pattern = "yyyyMMddHHmmss"; //hhmmss로 시간,분,초만 뽑기도 가능
-//	SimpleDateFormat formatter = new SimpleDateFormat(pattern,
-//			currentLocale);
-//	return formatter.format(today);
-//}
-//
-//public static long getCurrentTimeMils() {
-//	return Calendar.getInstance(Locale.KOREA).getTimeInMillis();
-//}
-//
-//public static String memNum(@Param("member_number")String member_number) {
-//	getCurrentDateTime();
-//	getCurrentTimeMils();
-//	
-//	String memNum= "mem"+getCurrentDateTime()+getCurrentTimeMils();
-//	
-//	return memNum.toString();
-//}
+@RequestMapping("/order/order_detail.do")
+public String order_detail() {
+    return "/order_detail";
+}
 
-//public String getUuid() {
-//	//UUID 생성
-//	String uuid= UUID.randomUUID().toString();
-//	
-//	//하이픈 제외
-//	uuid = uuid.replace("-", "");
-//	
-//	return uuid;
-//	
-//}
+
+
 
 }//end class

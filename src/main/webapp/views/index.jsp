@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,30 +21,35 @@ pageEncoding="UTF-8"%>
       crossorigin="anonymous"
     ></script>
 
-    <link href="./assets/css/style.css" rel="stylesheet" />
+    <link href="../assets/css/style.css" rel="stylesheet" />
+    <title>Document</title>
 
-    <title>로그인</title>
+    <!-- 파비콘 -->
     <link
       rel="short icon"
-      href="./assets/img/favicon.png"
+      href="../assets/img/favicon.png"
       type="image/x-icon"
     />
+        
   </head>
   <body>
-   <!-- Nabar start -->
-
+    <!-- Header Start -->
+    <!-- Nabar start -->
     <%@ include file = "./common/header.jsp"%>
-    <!-- Header end -->
+    <!-- Navbar End-->
+    <!-- Header End -->
+    
 
-  <!-- breadclumb end -->
-  <!-- head end -->
-
-  <!-- detail start -->
-
+    <!-- body start -->
+    <%@ include file = "./common/main.jsp"%>  
+    <!-- body end -->
+    
+    <!-- Footer Start -->
+    <%@ include file = "./common/footer.jsp"%>
+    <!-- Footer end -->
+    
   
-  <!-- detail end -->
 
-  <!-- Footer Start -->
- <%@ include file = "./common/footer.jsp"%>
-  <!-- Footer end -->
+
+  </body>
 </html>

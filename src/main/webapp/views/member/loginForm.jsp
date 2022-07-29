@@ -20,38 +20,31 @@ pageEncoding="UTF-8"%>
       crossorigin="anonymous"
     ></script>
 
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
     <link href="./assets/css/style.css" rel="stylesheet" />
-    <title>회원가입</title>
+
+    <title>로그인</title>
     <link
       rel="short icon"
       href="./assets/img/favicon.png"
       type="image/x-icon"
     />
-    
-   
- 
   </head>
-  
   <body>
-  
-  <!-- Nabar start -->
+   <!-- Nabar start -->
+
     <%@ include file = "./common/header.jsp"%>
-  <!-- Header end -->
+    <!-- Header end -->
+
   <!-- breadclumb end -->
   <!-- head end -->
 
   <!-- detail start -->
+ <%@ include file = "./common/joinpage.jsp"%>
 
-	<%@include file = "./common/joinpage.jsp" %>
- 
+  
   <!-- detail end -->
 
   <!-- Footer Start -->
  <%@ include file = "./common/footer.jsp"%>
   <!-- Footer end -->
-  
-  
 </html>
