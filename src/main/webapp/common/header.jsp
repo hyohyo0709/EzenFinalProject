@@ -57,6 +57,7 @@ pageEncoding="UTF-8"%>
             <li><a class="dropdown-item" href="/login.jsp">로그인</a></li>
             <li><a class="dropdown-item" href="/member_join.jsp">회원 가입</a></li>
             <li><a class="dropdown-item" href="/mypage.jsp">My Page</a></li>
+            <li><a class="dropdown-item" href="/board/list.do">게시판</a></li>
             <li><hr class="dropdown-divider" /></li>
             <li>
               <a class="dropdown-item" href="#">Something else here</a>

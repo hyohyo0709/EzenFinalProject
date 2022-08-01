@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+ <mapper namespace="ezenproject.dao.BoardDAO">
+ 	<!-- 총게시물 수량 -->
+	<select id="count" resultType="int">
+		SELECT count(*) FROM ezenboards
+	</select>
+	
+	<!-- 게시물 리스트 -->
+	<select id="list" parameterType="ezenproject.dto.BoardDTO" resultType="ezenproject.dto.BoardDTO">
+		<![CDATA[
+		SELECT b.* FROM
+		(SELECT a.*, rownum as rm FROM
+		(SELECT * FROM ezenboards ORDER BY ref DESC, re_step ASC)a)b
+		WHERE b.rm>=#{startRow} AND b.rm<= #{endRow}
+		]]>
+	</select>
+	
+	
+	<!-- 게시글 작성 -->
+	<insert id="save" parameterType="ezenproject.dto.BoardDTO">
+		INSERT INTO ezenboards(num,member_id,member_email,subject,reg_date,readcount,ref,re_step,re_level,content,upload) 
+		VALUES (ezenboards_num_seq.nextval,#{member_id},#{member_email},#{subject},sysdate,0,
+		<choose>
+		<when test="ref==0">
+		ezenboards_num_seq.nextval
+		</when>
+		<otherwise>
+		#{ref}
+		</otherwise>
+		</choose>
+		,#{re_step},#{re_level},#{content},#{upload, jdbcType=VARCHAR})
+	</insert>
+	
+	<!-- 조회수 -->
+	<update id="readCount" parameterType="int">
+		UPDATE ezenboards SET readcount = readcount + 1 WHERE num = #{num}
+	</update>
+	
+	<!-- 뷰페이지 -->
+	<select id="content" parameterType="int" resultType="ezenproject.dto.BoardDTO">
+		SELECT * FROM ezenboards WHERE num=#{num}
+	</select>
+	
+	<!-- 답변글 체크 -->
+	<update id="reStepCount" parameterType="ezenproject.dto.BoardDTO">
+		UPDATE ezenboards SET re_step = re_step+1
+		WHERE ref=#{ref} AND re_step > #{re_step}
+	</update>
+	
+	<!-- 업로드 파일 확인 -->
+	<select id="uploadFile" parameterType="int" resultType="String">
+		SELECT upload FROM ezenboards WHERE num=#{num}
+	</select>
+	
+	<!-- 게시글 수정 -->
+	<update id="update" parameterType="ezenproject.dto.BoardDTO">
+		UPDATE ezenboards SET subject=#{subject}, email=#{email}, content=#{content}
+		<if test="upload!=null">
+		, upload=#{upload}
+		</if>
+		WHERE num=#{num}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="delete" parameterType="int">
+	DELETE FROM ezenboards
+	WHERE num=#{num}
+	</delete>
+	
+
+ </mapper>

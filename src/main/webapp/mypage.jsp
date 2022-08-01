@@ -42,7 +42,11 @@ pageEncoding="UTF-8"%>
     
 
     <title>마이페이지</title>
- 
+ 	<style>
+ 	#mypagemenu{
+ 	padding-bottom: 50px;
+ 	}
+ 	</style>
     <link
       rel="short icon"
       href="./assets/img/favicon.png"
@@ -62,7 +66,9 @@ pageEncoding="UTF-8"%>
   
   
   <!-- mypage menu start -->
+  <div id="mypagemenu">
 	<%@ include file = "./common/mypagemenu.jsp"%>
+  </div>
   <!-- mypage menu end -->
   
 
