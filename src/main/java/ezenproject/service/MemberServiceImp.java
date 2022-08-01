@@ -1,5 +1,7 @@
 package ezenproject.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,29 @@ public class MemberServiceImp implements MemberService{
 		return dao.loginCheck(dto);
 	}
 	
+	
+	
+	@Override
+	public void addMemberNumberProcess(MemberDTO dto) {
+		
+//		간단하게 MEM + 시간
+		String memcode = null;
+		Date now = new Date();
+		SimpleDateFormat date = new SimpleDateFormat("yyMMddHHmmss");
+		
+		memcode = "MEM"+date.format(now);
+		
+		dto.setMember_number(memcode);
+		
+		
+	}
+	
+	
+	@Override
+	public int addMemberProcess(MemberDTO dto) throws Exception {
+		
+		return dao.insertMember(dto);
+	}
 	
 	
 	

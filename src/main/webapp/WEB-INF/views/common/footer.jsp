@@ -5,10 +5,7 @@ pageEncoding="UTF-8"%>
   <div class="card-body">
     <h5 class="card-title">Copyright</h5>
     <p class="card-text">
-      Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta alias
-      aspernatur libero at! Hic praesentium doloribus amet necessitatibus
-      expedita autem ipsum quo iusto exercitationem consequuntur. Voluptatem in
-      accusantium molestiae quia!
+      이 사이트는 교육 실습용으로 제작된 사이트입니다.
     </p>
 
     <div class="card-text">Copyright &copy; 2022 All rights reserved</div>

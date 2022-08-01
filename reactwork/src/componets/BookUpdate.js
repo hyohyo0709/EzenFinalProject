@@ -1,21 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Button from '@mui/material/Button';
-import Stack from '@mui/material/Stack';
+
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
+
 import DialogTitle from '@mui/material/DialogTitle';
-import { Container } from '@mui/system';
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  OutlinedInput,
-  Select,
-} from '@mui/material';
+
+import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
@@ -23,7 +16,7 @@ const styles = { hidden: { display: 'none' } };
 
 const BookUpdate = (props) => {
   const [open, setOpen] = React.useState(false);
-  // const [booklists, setBooklists] = useState({});
+  const [booklists, setBooklists] = useState({});
   const [input, setInput] = useState({
     filename: null,
     book_title: '',
@@ -63,7 +56,7 @@ const BookUpdate = (props) => {
       .get(`http://localhost:8090/books/selectone/${num}`)
       .then((response) => {
         console.log('response:', response.data);
-        // setBooklists(response.data);
+        setBooklists(response.data);
         // console.log(booklists);
         setInput(response.data);
         console.log(input);
@@ -149,7 +142,7 @@ const BookUpdate = (props) => {
             accept='image/*'
             type='file'
             name='filename'
-            file={input.filename}
+            defaultValue={booklists.book_img}
             onChange={handleFileChange}
           />
           <label htmlFor='raised-button-file'>
@@ -235,6 +228,7 @@ const BookUpdate = (props) => {
                 onChange={handleCategoryChange}
               >
                 <MenuItem value={1}>소설</MenuItem>
+                <MenuItem value={2}>인문/사회</MenuItem>
               </Select>
             </FormControl>
           </Box>

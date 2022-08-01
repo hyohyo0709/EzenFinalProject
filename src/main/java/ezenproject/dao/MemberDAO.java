@@ -23,5 +23,6 @@ public interface MemberDAO {
 	public void deleteData(int num);
 	
 	public MemberDTO loginCheck(MemberDTO dto) throws DataAccessException;
+	public int insertMember (MemberDTO dto) throws DataAccessException;
 	
 }

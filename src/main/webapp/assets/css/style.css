@@ -1,9 +1,43 @@
 section {
   margin-top: 30px;
   margin-bottom: 20px;
+   margin-left: 10px; 
+   margin-right: 10px;
+  
 }
 
 a {
   text-decoration: none;
   color: black;
 }
+
+.card-footer{
+	 overflow     : hidden;  
+	 text-overflow: ellipsis;
+	 height : 80px;
+	 white-space: nowrap; 
+	 
+	 
+}
+
+ 
+.page-link {
+  color: #fff; 
+  background-color: #000;
+  border-color: #fff;
+}
+
+.page-item.active .page-link {
+ z-index: 1;
+ color: #000;
+ font-weight:bold;
+ background-color: #fff;
+  border-color: #444;
+ 
+}
+
+.page-link:focus, .page-link:hover {
+  color: #ccc;
+  background-color: #222; 
+  border-color: #444;
+} 

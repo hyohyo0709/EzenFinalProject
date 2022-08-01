@@ -120,7 +120,7 @@ function Layout() {
                 variant='contained'
                 size='large'
                 color='success'
-                href='http://localhost:8090/index.jsp'
+                href='http://localhost:8090/'
               >
                 메인 홈페이지로 이동
               </Button>

@@ -20,5 +20,8 @@ public void deleteDataProcess(int num);
 	
 	////////////여기까지 관리자 페이지 서비스입니다.////////////
 	
-	
+public void newOrderNumberProcess(OrderDTO dto);
+public void newOrderSaveProcess(OrderDTO dto);
+
+
 }

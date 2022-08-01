@@ -8,6 +8,87 @@
     
     <mapper namespace="ezenproject.dao.BookDAO">
     
+    <!-- 고객에게 보여지는 모든 책 갯수  -->
+    <select id="count" resultType="int">
+    select count(*) from ezenbooks
+    where book_status=1
+    </select>
+    
+    
+    <!-- 고객에게 보여지는 장르별 책 갯수  -->
+    <select id="countCategory" parameterType="int" resultType="int">
+    select count(*) from ezenbooks
+    where book_status=1
+    and book_category=#{book_category}
+    </select>
+    
+    <!-- 고객에게 보여지는 검색된 책 갯수  -->
+    <select id="countSearch" parameterType="String" resultType="int">
+    select count(*) from ezenbooks
+    where book_title like '%' || #{searchWord}||'%' or book_author like '%' || #{searchWord}||'%'
+    or book_publisher like '%' || #{searchWord}||'%'
+    
+    </select>
+    
+    
+    
+    <!-- 고객에게 보여지는 모든 책 리스트 -->
+     <select id="allBookList" parameterType="PageDTO" 
+    resultType="BookDTO">
+   
+   <![CDATA[
+    select b.*
+ from(select a.*, rownum as rm
+ from(select * from ezenbooks 
+ where book_status=1 order by num)a)b
+ where b.rm>=#{startRow} and b.rm<=#{endRow}
+   
+   ]]>
+    
+    </select>
+    
+    
+     <!-- 고객에게 보여지는 장르 별 책 리스트 -->
+ 
+     <select id="categoryList"  parameterType="HashMap"
+    resultType="BookDTO">
+   
+   <![CDATA[
+    select b.*
+ from(select a.*, rownum as rm
+ from(select * from ezenbooks 
+ where book_status=1 
+ and book_category=#{book_category}
+ order by num)a)b
+ where b.rm>=#{startRow} and b.rm<=#{endRow}
+   
+   ]]>
+    
+    </select>
+    
+    
+     <!-- 고객에게 보여지는 검색된 책 리스트 -->
+ 
+     <select id="searchList"  parameterType="PageDTO"
+    resultType="BookDTO">
+   
+   <![CDATA[
+    select b.*
+ from(select a.*, rownum as rm
+ from(select * from ezenbooks 
+ where book_status=1 
+ and book_title like '%' || #{searchWord}||'%' or book_author like '%' || #{searchWord}||'%'
+    or book_publisher like '%' || #{searchWord}||'%'
+ )a)b
+ where b.rm>=#{startRow} and b.rm<=#{endRow}
+   
+   ]]>
+    
+    </select>
+    
+    
+ 
+     
     
     <!-- //////////////////여기서부터 관리자 페이지 매퍼입니다.////////////////////////  -->
     
@@ -61,7 +142,7 @@
     </insert>
     
     <select id="getFile" parameterType="int" resultType="String">
-   select book_img from ezenbooks where num=#{num}
+   select NVL(book_img, 0) from ezenbooks where num=#{num}
    </select>
     
     
@@ -81,9 +162,9 @@
     book_category=#{book_category},
     book_isbn=#{book_isbn}
     
-    <if test="book_img!=null">
+   <if test="book_img!=null">
     ,book_img=#{book_img,jdbcType=VARCHAR}
-    </if>
+     </if> 
     
     where num=#{num}
     

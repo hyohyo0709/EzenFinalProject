@@ -21,7 +21,7 @@
   <resultMap type="OrderDTO" id="OrderResult">
   <id property="num" column="num"/>
   <id property="order_number" column="order_number"/>
-  <id property="order_qty" column="order_qty"/>
+  <id property="order_cost" column="order_cost"/>
   <id property="member_number" column="member_number"/>
   <id property="book_id" column="book_id"/>
   <id property="order_status" column="order_status"/>
@@ -34,8 +34,8 @@
     
     <select id="list" resultMap="OrderResult">
     <![CDATA[
-    select o.num, o.order_number, o.order_qty, o.member_number, o.book_id, o.order_status, 
-    m.member_id, b.book_title, b.book_price
+    select o.num, o.order_number, o.order_cost, o.member_number, o.book_id, o.order_status, 
+    m.member_id, b.book_title, b.book_price, o.order_phone, o.order_name, o.order_address, m.member_name
     from ezenbooks b, ezenmembers m, ezenorders o
     where o.member_number = m.member_number
     and o.book_id=b.book_id
@@ -60,5 +60,18 @@
     
     
     <!--여기까지 관리자 페이지 매퍼입니다.  -->
+    
+    
+    <insert id="orderSave" parameterType="OrderDTO">
+    insert into ezenorders (num, order_number, order_cost, member_number, book_id, order_status,
+    order_phone, order_name, order_address)
+    values(ezenorders_num_seq.nextval, #{order_number}, #{order_cost}, #{member_number}, #{book_id}, 1,
+    #{order_phone}, #{order_name}, #{order_address})
+    
+    </insert>
+    
+    
+    
+    
     
     </mapper>

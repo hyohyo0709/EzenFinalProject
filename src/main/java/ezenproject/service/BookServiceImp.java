@@ -3,6 +3,7 @@ package ezenproject.service;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ezenproject.dao.BookDAO;
 import ezenproject.dto.BookDTO;
+import ezenproject.dto.PageDTO;
 
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
@@ -24,6 +26,49 @@ public class BookServiceImp implements BookService{
 	
 	public BookServiceImp() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	@Override
+	public int countProcess() {
+		
+		return dao.count();
+	}
+	
+
+	@Override
+	public List<BookDTO> allBookListProcess(PageDTO pv) {
+		
+		return dao.allBookList(pv);
+	}
+	
+	@Override
+	public int countCategoryProcess(int book_category) {
+		
+		return dao.countCategory(book_category);
+	}
+	
+	@Override
+	public List<BookDTO> categoryBookListProcess(PageDTO pv, int book_category) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("startRow", pv.getStartRow());
+		map.put("endRow", pv.getEndRow());
+		map.put("book_category", book_category);
+		return dao.categoryList(map);
+		
+	}
+	
+	
+	@Override
+	public int countSearchProcess(String searchWord) {
+		
+		return dao.countSearch(searchWord);
+	}
+		
+	@Override
+	public List<BookDTO> searchListProcess(PageDTO pv) {
+		
+		return dao.searchList(pv);
 	}
 	
 	
@@ -101,13 +146,19 @@ public class BookServiceImp implements BookService{
 		/*
 		 * type은 책의 종류에 따라 코드를 부여해주는것
 		 * book_category = 1 = 소설 =booktype=AA
+		 * 				 = 2 = 인문/사회 
 		 * */
 		
 		
 		if(dto.getBook_category()==1) {
 			type="AA";
 			bookcode= type+date.format(now);
+		}else if(dto.getBook_category()==2) {
+			type="BB";
+			bookcode= type+date.format(now);
 		}
+		
+		
 		
 		dto.setBook_id(bookcode);
 		
@@ -136,17 +187,18 @@ public class BookServiceImp implements BookService{
 	
 	@Override
 	public void updateBookProcess(BookDTO dto, String urlpath) {
+//		System.out.println(dto.toString());
 		String fileName = dto.getBook_img();
 		if(fileName!=null) { //수정한 파일이 있으면
 			String path = dao.getFile(dto.getNum());
-			if(!path.isEmpty()) {
+			if(!path.isEmpty()) { //기존 첨부파일이 있으면 삭제
 				File fe = new File(urlpath, path);
 				fe.delete();
 			}
 		}
-		System.out.println(dto.getBook_title()+"서비스 단계");
+//		System.out.println(dto.getBook_title()+"서비스 단계");
 		
-//		System.out.println(dto.toString());
+		
 		
 		
 		dao.updateBook(dto);

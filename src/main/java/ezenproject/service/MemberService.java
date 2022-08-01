@@ -25,4 +25,8 @@ public interface MemberService {
 	public MemberDTO memberLogin(MemberDTO dto) throws Exception;
 	
 	///////////////여기까지 관리자 페이지 서비스입니다.////////////////
+	
+	
+	public int addMemberProcess(MemberDTO dto) throws Exception;
+	public void addMemberNumberProcess(MemberDTO dto);
 }

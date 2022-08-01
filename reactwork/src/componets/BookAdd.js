@@ -222,6 +222,7 @@ const BookAdd = () => {
                 onChange={handleCategoryChange}
               >
                 <MenuItem value={1}>소설</MenuItem>
+                <MenuItem value={2}>인문/사회</MenuItem>
               </Select>
             </FormControl>
           </Box>

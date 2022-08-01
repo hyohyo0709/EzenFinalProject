@@ -60,7 +60,14 @@ num, order_number, order_qty, member_number, book_id, order_status
 )values(ezenorders_num_seq.nextval, '임의 주문번호', 1, '임의 번호', 'AA220721163806', 1);
 
 
-select*from EZENORDERS;
+alter table ezenorders add order_phone VARCHAR2(30);
+alter table ezenorders add order_name VARCHAR2(30);
+alter table ezenorders add order_address VARCHAR2(4000);
+alter table ezenorders rename column order_qty to order_cost;
+
+alter table ezenmembers add member_name VARCHAR2(30);
+
+select*from EZENORDERS; 
 
 
 

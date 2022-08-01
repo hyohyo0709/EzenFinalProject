@@ -14,6 +14,7 @@ public class MemberDTO {
 	private String member_email;
 	private int member_type;
 	private int member_status;
+	private String member_name;
 	
 	
 	
@@ -23,11 +24,7 @@ public class MemberDTO {
 	
 	
 	
-	public MemberDTO(String member_number, String member_id) {
-		
-		this.member_number = member_number;
-		this.member_id = member_id;
-	}
+	
 	
 	public int getNum() {
 		return num;
@@ -82,6 +79,18 @@ public class MemberDTO {
 	}
 	public void setMember_status(int member_status) {
 		this.member_status = member_status;
+	}
+
+
+
+	public String getMember_name() {
+		return member_name;
+	}
+
+
+
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
 	}
 	
 	
