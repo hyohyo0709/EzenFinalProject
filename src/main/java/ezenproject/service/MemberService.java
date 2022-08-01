@@ -2,27 +2,17 @@ package ezenproject.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import ezenproject.dto.MemberDTO;
 
-public interface MemberService {
 
-	
-	
-	
-	///////////////여기서부터 관리자 페이지 서비스입니다.///////////////
-	public List<MemberDTO> listProcess();
-	public void statusCheckProcess(int num);
-	public void statusChangeOnProcess(int num);
-	public void statusChangeOffProcess(int num);
-	
-	public void typeCheckProcess(int num);
-	public void typeChangeOnProcess(int num);
-	public void typeChangeOffProcess(int num);
-	
-	public void deleteDataProcess(int num);
-	
-	public MemberDTO selectOneProcess(int num);
-	
-	
-	///////////////여기까지 관리자 페이지 서비스입니다.////////////////
+
+public interface MemberService {
+	//회원정보 검색
+	public MemberDTO memberInformation(int num) throws Exception;
+	//회원정보 수정
+	public void updateInformation(MemberDTO dto) throws Exception;
+	//회원 탈퇴
+	public void deleteMemberInformation(int num) throws Exception;
 }

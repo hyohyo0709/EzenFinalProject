@@ -1,26 +1,16 @@
 package ezenproject.controller;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
 
-import javax.servlet.http.HttpServletRequest;
+
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
 
 import ezenproject.dto.BookDTO;
 import ezenproject.dto.MemberDTO;
@@ -32,216 +22,100 @@ import ezenproject.service.OrderService;
 
 // http://localhost:8090/index.jsp
 
-@CrossOrigin("*")
 @Controller
 public class MainController {
+	
 
 	@Autowired
 	private BookService bservice;
-	
 	@Autowired
 	private MemberService mservice;
-	
 	@Autowired
 	private OrderService oservice;
+	
+	@Autowired
 	private BookDTO bdto;
+	@Autowired
 	private MemberDTO mdto;
+	@Autowired
 	private OrderDTO odto;
+	
+	private int num = 1;
 
 	public MainController() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
-	@Value("${spring.servlet.multipart.location}")
-	private String filepath;
+	//회원정보 출력
+	@RequestMapping(value = "/mypage/memberdetail.do", method = RequestMethod.GET)
+	public ModelAndView memberInformationMethod(ModelAndView mav)
+			throws Exception {
+		mdto = mservice.memberInformation(num);
+		mav.addObject("memberInfo", mdto);
+		mav.setViewName("/mypage/memberdetail");
+		System.out.println(mdto);
+		return mav;
+	}
 	
-////////////////////////////////////////////////////여기부터 관리자 페이지 메소드입니다.////////////////////
+	//회원탈퇴
+	@RequestMapping(value = "/mypage/memberdelete.do", method = RequestMethod.POST)
+	public String memberInformationMethod(int num)	throws Exception {
+		mservice.deleteMemberInformation(num);
+		return "redirect:/index.jsp";
+	}
+	
+	//회원정보 수정
+	@RequestMapping(value = "/mypage/update.do", method = RequestMethod.POST)
+	public String updateMethod(MemberDTO mdto) throws Exception {
+		mservice.updateInformation(mdto);
+		return "redirect:/mypage.jsp";
+	}
+	
+	//주문 목록
+	@RequestMapping(value = "/mypage/orderlist.do", method = RequestMethod.GET)
+	public ModelAndView orderListMethod(ModelAndView mav) {	 
+		 String mnum = "223";
+		 List<OrderDTO> aList = oservice.listOrder(mnum);
+		 System.out.println(aList.get(0).getOrder_cost());
+		 mav.addObject("aList", aList); 
+		mav.setViewName("/mypage/orderlist");
+		return mav;
+	} 
+	
+	//주문 뷰페이지
+	@RequestMapping(value = "/mypage/orderdetail.do", method = RequestMethod.GET)
+	public ModelAndView orderInformationMethod(ModelAndView mav, String mnum)
+			throws Exception {
+		odto = oservice.orderInformation(mnum);
+		mav.addObject("orderInfo", odto);
+		mav.setViewName("/mypage/orderdetail");
+		//System.out.println(obdto.getBdto().getBook_content());
+		return mav;
+	}
+	
+	//주문 수정
+	@RequestMapping(value = "/mypage/orderupdate.do", method = RequestMethod.POST)
+	public String orderupdateMethod(String mnum) throws Exception {
+		System.out.println(mnum);
+		oservice.updateOrder(mnum);
 
-//	관리자 페이지 제품 리스트 출력
-	@ResponseBody
-	@RequestMapping(value = "/books/list")
-	public Map<String, Object> listBookMethod(HttpServletRequest request){
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		List<BookDTO> alist = bservice.listProcess();
-		
-//		System.out.println(alist.get(0).getBook_title());
-		map.put("alist", alist);
-		
-		return map;
+		return "redirect:/mypage/orderlist.do";
 	}
 	
-	
-//	판매 유무 변경
-	@ResponseBody
-	@RequestMapping(value = "/books/statuschange/{num}", method = RequestMethod.PUT)
-	public void statusBookChangeMethod(@PathVariable("num") int num) {
-		
-		bservice.statusCheckProcess(num);
-		
+	//주문 취소
+	@RequestMapping(value = "/mypage/orderdelete.do", method = RequestMethod.DELETE)
+	public String orderdeleteMethod() throws Exception {
+		oservice.deleteOrder(num);
+		return "redirect:/mypage/orderlist.do";
 	}
 	
-//	재고 유무 변경
-	@ResponseBody
-	@RequestMapping(value = "/books/stockchange/{num}", method = RequestMethod.PUT)
-	public void stockBookChangeMethod(@PathVariable("num") int num) {
-		
-		bservice.stockCheckProcess(num);
-		
+	//배송 확인
+	@RequestMapping(value="/mypage/orderstatus.do", method = RequestMethod.GET)
+	public ModelAndView orderStatusMethod(String onum, ModelAndView mav) throws Exception {
+		odto = oservice.orderStatus(onum);
+		mav.addObject("orderstatus", odto);
+		mav.setViewName("/mypage/orderstatus");
+		System.out.println(odto.getOrder_address());
+		return mav;
 	}
-	
-//	새로운 제품 등록
-	@ResponseBody
-	@RequestMapping(value = "/books/newbooksave", method = RequestMethod.POST)
-	public void newBookMethod(BookDTO dto ) {
-		MultipartFile file = dto.getFilename();
-		if(file!=null && !file.isEmpty()) {
-			UUID ran = saveCopyFile(file);
-			dto.setBook_img(ran+"_"+file.getOriginalFilename());
-		}
-		
-		bservice.newBookIDProcess(dto);
-		bservice.newBookProcess(dto);
-		
-	}
-	
-	
-//	책 표지 등록
-	private UUID saveCopyFile(MultipartFile file) {
-		String filename = file.getOriginalFilename();
-		
-		//중복 파일명을 처리하기 위해 난수 발생
-				UUID ran = UUID.randomUUID();
-				
-				File fe= new File(filepath); // 경로가 없으면 만들어라
-				if(!fe.exists()) {
-					fe.mkdirs();
-				}
-				
-				File ff = new File(filepath, ran + "_" + filename);
-				
-				try {
-					FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(ff));
-					
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-//				System.out.println("파일 경로:  "+filepath);
-				return ran;
-				
-	}
-	
-//	도서 제품 데이터 영구 삭제
-	@ResponseBody
-	@RequestMapping(value = "/books/deletdata/{num}", method = RequestMethod.DELETE)
-	public void deleteBookDataMethod(@PathVariable("num") int num) {
-		bservice.deleteDataProcess(num, filepath);
-	}
-	
-	
-//	도서 정보 수정 행위
-	@ResponseBody
-	@RequestMapping(value = "/books/updatebook", method = RequestMethod.PUT)
-	public void updateBookMethod(BookDTO dto) {
-		MultipartFile file = dto.getFilename();
-		System.out.println(dto.getBook_title());
-		if(file!=null && !file.isEmpty()) {
-			UUID ran = saveCopyFile(file);
-			dto.setBook_img(ran+"_"+file.getOriginalFilename());
-		}
-		
-		bservice.updateBookProcess(dto, filepath);
-		
-	}
-	
-	@ResponseBody
-	@RequestMapping(value = "/books/selectone/{num}", method = RequestMethod.GET)
-	public BookDTO selectOneBookMethod(@PathVariable("num") int num) {
-		
-		return bservice.selectOneProcess(num);
-	}
-	
-	
-//	관리자 페이지 회원 리스트 출력
-	@ResponseBody
-	@RequestMapping(value = "/members/list")
-	public Map<String, Object> listMemberMethod(HttpServletRequest request){
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		
-		List<MemberDTO> alist = mservice.listProcess();
-			
-		
-//		System.out.println(alist.get(0).getMember_id());
-		map.put("alist", alist);
-		
-		return map;
-	}
-	
-	
-//	계정 상태 변경
-	@ResponseBody
-	@RequestMapping(value = "/members/statuschange/{num}", method = RequestMethod.PUT)
-	public void statusMemberChangeMethod(@PathVariable("num") int num) {
-		
-		mservice.statusCheckProcess(num);
-		
-	}
-	
-	
-//	계정 유형 변경
-	@ResponseBody
-	@RequestMapping(value = "/members/typechange/{num}", method = RequestMethod.PUT)
-	public void typeMemberChangeMethod(@PathVariable("num") int num) {
-		
-		mservice.typeCheckProcess(num);
-		
-	}
-	
-	
-//	회원 데이터 영구 삭제
-	@ResponseBody
-	@RequestMapping(value = "/members/deletdata/{num}", method = RequestMethod.DELETE)
-	public void deleteMemberDataMethod(@PathVariable("num") int num) {
-		mservice.deleteDataProcess(num);
-	}
-	
-	
-	
-//	관리자 페이지 주문 리스트 출력
-	@ResponseBody
-	@RequestMapping(value = "/orders/list")
-	public Map<String, Object> listOrderMethod(HttpServletRequest request){
-		Map<String, Object> map = new HashMap<String, Object>();
-		
-		List<OrderDTO> alist = oservice.listProcess();
-
-		map.put("alist", alist);
-		
-		return map;
-	}
-	
-	
-//	주문 상태 변경
-	@ResponseBody
-	@RequestMapping(value = "/orders/statuschange", method = RequestMethod.PUT)
-	public void changeOrderStatusMethod(OrderDTO dto) {
-		
-		
-		oservice.statusChangeProcess(dto);
-		
-	}
-	
-//	주문 데이터 영구 삭제
-	@ResponseBody
-	@RequestMapping(value = "/orders/deletdata/{num}", method = RequestMethod.DELETE)
-	public void deleteOrderDataMethod(@PathVariable("num") int num) {
-		oservice.deleteDataProcess(num);
-	}
-	
-	
-//////////////////////////////////////////////////////여기까지 관리자 페이지 메소드입니다.///////////////	
-	
-	
 }

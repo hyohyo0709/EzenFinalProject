@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 
-<div class="card text-center">
+<div class="card text-center" id="footer">
   <div class="card-body">
     <h5 class="card-title">Copyright</h5>
     <p class="card-text">

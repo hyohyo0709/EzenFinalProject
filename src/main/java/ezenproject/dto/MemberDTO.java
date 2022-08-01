@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 public class MemberDTO {
 
 	private int num;
+	private String member_name;
 	private String member_number;
 	private String member_id;
 	private String member_pass;
@@ -14,21 +15,6 @@ public class MemberDTO {
 	private String member_email;
 	private int member_type;
 	private int member_status;
-	
-	
-	
-	public MemberDTO() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	
-	
-	public MemberDTO(String member_number, String member_id) {
-		
-		this.member_number = member_number;
-		this.member_id = member_id;
-	}
-	
 	public int getNum() {
 		return num;
 	}
@@ -74,14 +60,20 @@ public class MemberDTO {
 	public int getMember_type() {
 		return member_type;
 	}
-	public void setMember_type(int member_type) {
-		this.member_type = member_type;
+	public void setMember_type(int memeber_type) {
+		this.member_type = memeber_type;
 	}
 	public int getMember_status() {
 		return member_status;
 	}
 	public void setMember_status(int member_status) {
 		this.member_status = member_status;
+	}
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
 	}
 	
 	

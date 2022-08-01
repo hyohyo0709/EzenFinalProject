@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -30,18 +28,6 @@ pageEncoding="UTF-8" isELIgnored="false"%>
       href="./assets/img/favicon.png"
       type="image/x-icon"
     />
-    
-    
-    <!-- 경고창띄우기 -->
-    <c:choose>
-	<c:when test="${result=='loginFailed' }">
-	  <script type="text/javascript">
-	    window.onload=function(){
-	      alert("아이디나 비밀번호가 틀립니다.다시 로그인 하세요!");
-	    }
-	  </script>
-	</c:when>
-</c:choose>  
   </head>
   <body>
    <!-- Nabar start -->
@@ -53,30 +39,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
   <!-- head end -->
 
   <!-- detail start -->
-<form name="login" method="post"  action="/login.jsp">
-  
-   <table border="1"  width="80%" align="center" >
-      <tr align="center">
-         <td>아이디</td>
-         <td>비밀번호</td>
-      </tr>
-      <tr align="center">
-         <td>
-	    <input type="text" name="member_id" value="" size="20">
-	 </td>
-         <td>
-	    <input type="password" name="member_pass" value="" size="20">
-	 </td>
-      </tr>
-      <tr align="center">
-         <td colspan="2">
-            <input type="submit" value="로그인" > 
-            
-            <input type="reset"  value="다시입력" > 
-         </td>
-      </tr>
-   </table>
-</form>
+
   
   <!-- detail end -->
 

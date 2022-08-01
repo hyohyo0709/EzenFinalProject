@@ -1,24 +1,20 @@
 package ezenproject.service;
 
+
 import java.util.List;
 
 import ezenproject.dto.OrderDTO;
 
-public interface OrderService {
 
-	
-	
-	////////////여기서부터 관리자 페이지 서비스입니다.///////////
-	
-	public List<OrderDTO> listProcess();
-	
-	
-public void statusChangeProcess(OrderDTO dto);
-	
-public void deleteDataProcess(int num);
-	
-	
-	////////////여기까지 관리자 페이지 서비스입니다.////////////
-	
-	
+public interface OrderService {
+	//주문 리스트
+	public List<OrderDTO>listOrder(String mnum);
+	//주문 뷰페이지
+	public OrderDTO orderInformation(String mnum) throws Exception;
+	//주문 취소
+	public void updateOrder(String mnum) throws Exception;
+	//주문 삭제
+	public void deleteOrder(int num) throws Exception;
+	//주문 배송상태 확인
+	public OrderDTO orderStatus(String onum) throws Exception;
 }

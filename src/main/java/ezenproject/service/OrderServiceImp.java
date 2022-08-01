@@ -1,6 +1,7 @@
 package ezenproject.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,50 +19,37 @@ public class OrderServiceImp implements OrderService{
 	@Autowired
 	private OrderDAO dao;
 	
-	
 	public OrderServiceImp() {
-		// TODO Auto-generated constructor stub
+	
 	}
-	
-	
-	
-	//////////////여기서부터 관리자 페이지 서비스입니다.////////////
 	
 	@Override
-	public List<OrderDTO> listProcess() {
-		
-		return dao.list();
+	public List<OrderDTO> listOrder(String mnum) {
+		return dao.orderList(mnum);
 	}
-	
-	
-	 @Override
-	public void statusChangeProcess(OrderDTO dto) {
-		 /*
-			 * 주문 상태 0 : 주문 취소 / 배송 불가
-			 * 주문 상태 1 : 주문 접수 
-			 * 주문 상태 2 : 상품 준비
-			 * 주문 상태 3 : 배송 준비
-			 * 주문 상태 4 : 배송 중
-			 * 주문 상태 5 : 배송 완료
-			 * 
-			 * 
-			 * 
-			 * */	 
-		 		 
-		dao.statusChange(dto);
+
+	@Override
+	public OrderDTO orderInformation(String mnum) throws Exception {
+		return dao.selectOrderInformation(mnum);
+	}
+
+	@Override
+	public void updateOrder(String mnum) throws Exception {
+		dao.updateOrderInformation(mnum);
+	}
+
+	@Override
+	public void deleteOrder(int num) throws Exception {
+		dao.deleteOrder(num);
 		
 	}
-	
-	 
-	 
-	 @Override
-	public void deleteDataProcess(int num) {
-		dao.deleteData(num);
-		
+
+	@Override
+	public OrderDTO orderStatus(String onum) throws Exception {
+		return dao.orderStatus(onum);
 	}
-	
-	
-	
-	
-	/////////////여기까지 관리자 페이지 서비스입니다.////////////////
+
+
+
+
 }

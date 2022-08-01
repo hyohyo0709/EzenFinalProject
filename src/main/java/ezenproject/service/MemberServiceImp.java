@@ -15,91 +15,27 @@ import ezenproject.dto.MemberDTO;
 public class MemberServiceImp implements MemberService{
 
 	
+	
 	@Autowired
 	private MemberDAO dao;
 	
 	public MemberServiceImp() {
-		// TODO Auto-generated constructor stub
+	
 	}
-	
-	
-	
-	/////////////////////////여기서부터 관리자 페이지 서비스입니다.//////
-	
+
 	@Override
-	public List<MemberDTO> listProcess() {
-		
-		return dao.list();
+	public MemberDTO memberInformation(int num) throws Exception {
+		return dao.selectMemberInformation(num);
 	}
-	
-	
+
 	@Override
-	public void statusCheckProcess(int num) {
-		MemberDTO dto = new MemberDTO();
-		dto=dao.selectOne(num);
-		
-		if(dto.getMember_status()==1) {
-			statusChangeOffProcess(num);
-		}else if(dto.getMember_status()==0) {
-			statusChangeOnProcess(num);
-		}
-		
-		
+	public void updateInformation(MemberDTO dto) throws Exception {
+		dao.updateMemberInformation(dto);
 	}
 	
 	@Override
-	public void statusChangeOffProcess(int num) {
-		dao.statusChangeOff(num);
+	public void deleteMemberInformation(int num) throws Exception {
+		dao.deleteMemberInformation(num);
 		
 	}
-	
-	@Override
-	public void statusChangeOnProcess(int num) {
-		dao.statusChangeOn(num);
-		
-	}
-	
-	
-	@Override
-	public void typeCheckProcess(int num) {
-		MemberDTO dto = new MemberDTO();
-		dto=dao.selectOne(num);
-		
-		if(dto.getMember_type()==1) {
-			typeChangeOffProcess(num);
-		}else if(dto.getMember_type()==0) {
-			typeChangeOnProcess(num);
-		}
-		
-	}
-	
-	@Override
-	public void typeChangeOnProcess(int num) {
-		dao.typeChangeOn(num);
-		
-	}
-	
-	@Override
-	public void typeChangeOffProcess(int num) {
-		dao.typeChangeOff(num);
-		
-	}
-	
-	
-	
-	
-	@Override
-	public MemberDTO selectOneProcess(int num) {
-		
-		return dao.selectOne(num);
-	}
-	
-	
-	@Override
-	public void deleteDataProcess(int num) {
-		dao.deleteData(num);
-		
-	}
-	
-	///////////////////여기까지 관리자 페이지 서비스입니다.////////////////
 }

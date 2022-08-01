@@ -20,12 +20,6 @@ CREATE TABLE ezenbooks (
     book_status     NUMBER(1)
 );
 
-insert into ezenbooks(
-num, book_id, book_title, book_author, book_publisher, book_price, book_content, book_category, book_isbn, book_img, book_stock,book_status)
-values(ezenbooks_num_seq.nextval,'제품 번호', '방황하는 칼날', '히가시노 게이고', '모름', '10000', '아버지는 딸의 복수를 위해 괴물이 되었다', 1, 'bbbb', '이미지 링크', 1, 0);
-
-
-
 select * from EZENBOOKS;
 CREATE TABLE ezenmembers (
     num              NUMBER(20) NOT NULL,
@@ -39,12 +33,6 @@ CREATE TABLE ezenmembers (
     member_status    NUMBER(1)
 );
 
-
-insert into ezenmembers(
-num, member_number, member_id, member_pass, member_address, member_phone, member_email, member_type, member_status
-)values(ezenmembers_num_seq.nextval, '임의 번호', 'hyhy', 'a1234', '대한민국', '010-****-****', 'ezen@ezen.com', 0, 1); 
-
-
 select*from EZENMEMBERS;
 CREATE TABLE ezenorders (
     num             NUMBER(38) NOT NULL,
@@ -54,25 +42,8 @@ CREATE TABLE ezenorders (
     book_id         VARCHAR2(20),
     order_status    NUMBER(1)
 );
-
-insert into ezenorders(
-num, order_number, order_qty, member_number, book_id, order_status
-)values(ezenorders_num_seq.nextval, '임의 주문번호', 1, '임의 번호', 'AA220721163806', 1);
-
-
 select*from EZENORDERS;
 
-
-
- select o.num, o.order_number, o.order_qty, o.member_number, o.book_id, o.order_status, 
-    m.member_id, b.book_title, b.book_price
-    from ezenbooks b, ezenmembers m, ezenorders o
-    where o.member_number = m.member_number
-    and o.book_id=b.book_id
-    order by o.num;
-    
-    
-    
 create sequence ezenbooks_num_seq
 start with 1 
 increment by 1
