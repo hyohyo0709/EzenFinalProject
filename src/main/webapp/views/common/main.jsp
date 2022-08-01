@@ -49,82 +49,100 @@
   <!-- Banner End     -->
 
 
-    <!-- ======= Post Grid Section ======= -->
+ <!-- ======= Post Grid Section ======= -->
+ <!-- 이달의 추천 편집장의 선택  -->
     <section id="posts" class="posts">
       <div class="container" data-aos="fade-up">
-      
-      <!-- 편집장의 추천 or 이 주의 책 -->
         <div class="row g-5">
           <div class="col-lg-4">
             <div class="post-entry-1 lg">
-              <a href="single-post.html"><img src="../assets/img/post-landscape-1.jpg" alt="" class="img-fluid"></a>
-              <div class="post-meta"><span class="date">편집장의 추천</span> <span class="mx-1">&bullet;</span> <span>이 달의 픽</span></div>
-              <h2><a href="single-post.html">벌거벗은 세계사:전쟁편</a></h2>
-              
-               <div class="d-flex align-items-center author">
-                <div class="name">
-                  <h3 class="m-1 p-2 d-block">이토록 재미있는 세계사라니!tvN 〈벌거벗은 세계사〉가 들려준 프레임 밖의 전쟁 이야기</h3>
-                </div>
-              </div>
-              
-              <p class="mb-4 d-block">tvn<벌거벗은세계사>제작팀 지음</p>
+              <a href="single-post.html"><img src="../../assets/img/post-landscape-1.jpg" alt="" class="img-fluid"></a>
+              <div class="post-meta"><span class="date">이 달의 MD 추천</span> <span class="mx-1">&bullet;</span> <span>2022.08</span></div>
+              <h4><a href="single-post.html">매일을 헤엄치는 법 </a></h4>
+              <p class="mb-4 d-block">
+              80여만 구독자에게 주체적인 삶의 태도와 자세를 전해온 독보적인 미술 크리에이터 이연의 그림 에세이 《매일을 헤엄치는 법》이 도서출판 푸른숲에서 출간되었다. 
+              2018년, 제 삶을 되찾기 위해 퇴사를 감행한 스물일곱 살 이연의 자전적인 이야기로, 이연의 오리지널 캐릭터로 그려낸 첫 번째 책이다. 
+              지금의 이연을 만들어준 인생에서 가장 어둡고 찬란했던 1년을 담아낸, 그 어디서도 공개된 적 없는 이야기가 두 버전의 만화와 에세이로 펼쳐진다. 
+              흑백 만화에서는 퇴사 이후 가난과 외로움 속에서 진정 자신을 위한 삶을 찾아가는 과정이 사계절 흐름에 따라 전개되며, 
+              블루 만화에서는 건강을 되찾으려 찾은 수영장에서 발견한 빛나는 삶의 태도와 성찰이 서서히 드러난다. 그리고 못 다한 이야기를 보다 긴 에세이들로 자세히 풀어냈다.
+              </p>
 
             </div>
+ 		<div class="post-entry-1 lg">
+              <a href="single-post.html"><img src="../../assets/img/post-landscape-1.jpg" alt="" class="img-fluid"></a>
+              <div class="post-meta"><span class="date">이 달의 출판사 추천</span> <span class="mx-1">&bullet;</span> <span>2022.08</span></div>
+              <h4><a href="single-post.html">세상의 마지막 기차역</a></h4>
+              <p class="mb-4 d-block">봄이 시작되는 3월, 급행열차 한 대가 탈선해 절벽 아래로 떨어졌다. 
+              수많은 중상자를 낸 이 대형 사고 때문에 유가족은 순식간에 사랑하는 가족, 연인을 잃었다. 그렇게 두 달이 흘렀을까. 사람들 사이에서 이상한 소문이 돌기 시작하는데…. 
+              역에서 가장 가까운 역인 ‘니시유이가하마 역’에 가면 유령이 나타나 사고가 일어난 그날의 열차에 오르도록 도와준다는 것. 
+              단 유령이 제시한 네 가지 규칙을 반드시 지켜야만 한다. 그렇지 않으면 자신도 죽게 된다. 이를 알고도 유가족은 한 치의 망설임도 없이 역으로 향한다. 
+              과연 유령 열차가 완전히 하늘로 올라가 사라지기 전, 사람들은 무사히 열차에 올라 사랑하는 이의 마지막을 함께할 수 있을까</p>
+		</div>
 
           </div>
 
-
+<!-- 분야별 신간 -->
           <div class="col-lg-8">
             <div class="row g-5">
               <div class="col-lg-4 border-start custom-border">
-                
- 			<!--분야별 인기 책 or 신간 책, 광고 책 안내 or  -->          
                 <div class="post-entry-1">
                   <a href="single-post.html"><img src="../assets/img/post-landscape-2.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Sport</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2><a href="single-post.html">Let’s Get Back to Work, New York</a></h2>
+                  <div class="post-meta"><span class="date">소설</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h4><a href="single-post.html">하쿠다 사진관</a></h4>
                 </div>
-               
-			<!--분야별 인기 책 or 신간 책, 광고 책 안내 or  -->        
+                 <div class="post-entry-1">
+                  <a href="single-post.html"><img src="../assets/img/post-landscape-2.jpg" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">인문</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h4><a href="single-post.html">혼자 시작하는 사주명리 공부</a></h4>
+                </div>
                 <div class="post-entry-1">
                   <a href="single-post.html"><img src="../assets/img/post-landscape-5.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Food</span> <span class="mx-1">&bullet;</span> <span>Jul 17th '22</span></div>
-                  <h2><a href="single-post.html">How to Avoid Distraction and Stay Focused During Video Calls?</a></h2>
+                  <div class="post-meta"><span class="date">경제</span> <span class="mx-1">&bullet;</span> <span>Jul 17th '22</span></div>
+                  <h4><a href="single-post.html">세 번째 위기, 세 번째 기회</a></h4>
                 </div>
-                
-                <!--  -->
                 <div class="post-entry-1">
                   <a href="single-post.html"><img src="../assets/img/post-landscape-7.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Design</span> <span class="mx-1">&bullet;</span> <span>Mar 15th '22</span></div>
-                  <h2><a href="single-post.html">Why Craigslist Tampa Is One of The Most Interesting Places On the Web?</a></h2>
+                  <div class="post-meta"><span class="date">역사/문화</span> <span class="mx-1">&bullet;</span> <span>Mar 15th '22</span></div>
+                  <h4><a href="single-post.html">벌거벗은 세계사: 전쟁편</a></h4>
+                </div>
+             <div class="post-entry-1">
+                  <a href="single-post.html"><img src="../assets/img/post-landscape-8.jpg" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">교육</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h4><a href="single-post.html">EBS 수능완성 영어영역 영어(2022)(2023 수능대비)</a></h4>
                 </div>
               </div>
-             
-             <!--  -->
+              
+              
               <div class="col-lg-4 border-start custom-border">
                 <div class="post-entry-1">
                   <a href="single-post.html"><img src="../assets/img/post-landscape-3.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2><a href="single-post.html">6 Easy Steps To Create Your Own Cute Merch For Instagram</a></h2>
+                  <div class="post-meta"><span class="date">예술</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h4><a href="single-post.html">방구석 미술관</a></h4>
                 </div>
-               
-               <!--  -->
                 <div class="post-entry-1">
                   <a href="single-post.html"><img src="../assets/img/post-landscape-6.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Tech</span> <span class="mx-1">&bullet;</span> <span>Mar 1st '22</span></div>
-                  <h2><a href="single-post.html">10 Life-Changing Hacks Every Working Mom Should Know</a></h2>
+                  <div class="post-meta"><span class="date">과학/기술</span> <span class="mx-1">&bullet;</span> <span>Mar 1st '22</span></div>
+                  <h4><a href="single-post.html">피, 땀, 리셋 : 게임 개발 속 숨은 영웅들의 이야기</a></h4>
                 </div>
-                
-                <!--  -->
+                 <div class="post-entry-1">
+                  <a href="single-post.html"><img src="../assets/img/post-landscape-2.jpg" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">만화</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h4><a href="single-post.html">원펀맨(One Punch Man) 25</a></h4>
+                </div>                
                 <div class="post-entry-1">
                   <a href="single-post.html"><img src="../assets/img/post-landscape-8.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">Travel</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h2><a href="single-post.html">5 Great Startup Tips for Female Founders</a></h2>
+                  <div class="post-meta"><span class="date">여행</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                  <h4><a href="single-post.html">오늘 한 끼 어떠셨나요?</a></h4>
                 </div>
+                     
+                <div class="post-entry-1">
+                  <a href="single-post.html"><img src="../assets/img/post-landscape-7.jpg" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">건강</span> <span class="mx-1">&bullet;</span> <span>Mar 15th '22</span></div>
+                  <h4><a href="single-post.html">척추측만 비대칭을 위한 재활 필라테스</a></h4>
+                </div>                                          
               </div>
 
               <!-- Trending Section -->
-              <!-- 베스트 셀러 순위 -->
               <div class="col-lg-4">
 
                 <div class="trending">
@@ -133,7 +151,7 @@
                     <li>
                       <a href="single-post.html">
                         <span class="number">1</span>
-                       <h3>The Best Homemade Masks for Face (keep the Pimples Away)</h3>
+                        <h3>The Best Homemade Masks for Face (keep the Pimples Away)</h3>
                         <span class="author">Jane Cooper</span>
                       </a>
                     </li>
@@ -153,6 +171,7 @@
                     </li>
                     <li>
                       <a href="single-post.html">
+                        <span class="number">4</span>
                         <h3>9 Half-up/half-down Hairstyles for Long and Medium Hair</h3>
                         <span class="author">Cameron Williamson</span>
                       </a>
@@ -170,6 +189,10 @@
               </div> <!-- End Trending Section -->
             </div>
           </div>
+
+        </div> <!-- End .row -->
+      </div>
+    </section> <!-- End Post Grid Section -->
 </main>
     
 </body>
