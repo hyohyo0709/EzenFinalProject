@@ -56,7 +56,7 @@
         <div class="row g-5">
           <div class="col-lg-4">
             <div class="post-entry-1 lg">
-              <a href="single-post.html"><img src="../../assets/img/post-landscape-1.jpg" alt="" class="img-fluid"></a>
+              <a href="single-post.html"><img src="../../assets/img/recommended-book1.jpg" alt="" class="img-fluid"></a>
               <div class="post-meta"><span class="date">이 달의 MD 추천</span> <span class="mx-1">&bullet;</span> <span>2022.08</span></div>
               <h4><a href="single-post.html">매일을 헤엄치는 법 </a></h4>
               <p class="mb-4 d-block">
@@ -69,7 +69,7 @@
 
             </div>
  		<div class="post-entry-1 lg">
-              <a href="single-post.html"><img src="../../assets/img/post-landscape-1.jpg" alt="" class="img-fluid"></a>
+              <a href="single-post.html"><img src="../../assets/img/recommended-book2.jpg" alt="" class="img-fluid"></a>
               <div class="post-meta"><span class="date">이 달의 출판사 추천</span> <span class="mx-1">&bullet;</span> <span>2022.08</span></div>
               <h4><a href="single-post.html">세상의 마지막 기차역</a></h4>
               <p class="mb-4 d-block">봄이 시작되는 3월, 급행열차 한 대가 탈선해 절벽 아래로 떨어졌다. 
@@ -86,59 +86,59 @@
             <div class="row g-5">
               <div class="col-lg-4 border-start custom-border">
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="../assets/img/post-landscape-2.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">소설</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h4><a href="single-post.html">하쿠다 사진관</a></h4>
+                  <a href="single-post.html"><img src="../assets/img/novel.jpg" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">소설</span> <span class="mx-1">&bullet;</span> <span>2022.08.10</span></div>
+                  <h4><a href="single-post.html">불편한 편의점 2</a></h4>
                 </div>
                  <div class="post-entry-1">
-                  <a href="single-post.html"><img src="../assets/img/post-landscape-2.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">인문</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h4><a href="single-post.html">혼자 시작하는 사주명리 공부</a></h4>
+                  <a href="single-post.html"><img src="../assets/img/liberal-arts.jpg" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">인문</span> <span class="mx-1">&bullet;</span> <span>20220.07.26</span></div>
+                  <h4><a href="single-post.html">중국사상의 지혜</a></h4>
                 </div>
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="../assets/img/post-landscape-5.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">경제</span> <span class="mx-1">&bullet;</span> <span>Jul 17th '22</span></div>
+                  <a href="single-post.html"><img src="../assets/img/economy.jpg" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">경제</span> <span class="mx-1">&bullet;</span> <span>2022.07.22</span></div>
                   <h4><a href="single-post.html">세 번째 위기, 세 번째 기회</a></h4>
                 </div>
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="../assets/img/post-landscape-7.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">역사/문화</span> <span class="mx-1">&bullet;</span> <span>Mar 15th '22</span></div>
-                  <h4><a href="single-post.html">벌거벗은 세계사: 전쟁편</a></h4>
+                  <a href="single-post.html"><img src="../assets/img/history.jpg" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">역사/문화</span> <span class="mx-1">&bullet;</span> <span>2022.07.29</span></div>
+                  <h4><a href="single-post.html">수메르 문명과 히브리 신화</a></h4>
                 </div>
              <div class="post-entry-1">
-                  <a href="single-post.html"><img src="../assets/img/post-landscape-8.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">교육</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h4><a href="single-post.html">EBS 수능완성 영어영역 영어(2022)(2023 수능대비)</a></h4>
+                  <a href="single-post.html"><img src="../assets/img/education.jpg" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">교육</span> <span class="mx-1">&bullet;</span> <span>2022.07.29</span></div>
+                  <h4><a href="single-post.html">합격 SKY 심층면접(2023)</a></h4>
                 </div>
               </div>
               
               
               <div class="col-lg-4 border-start custom-border">
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="../assets/img/post-landscape-3.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">예술</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h4><a href="single-post.html">방구석 미술관</a></h4>
+                  <a href="single-post.html"><img src="../assets/img/arts.jpg" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">예술</span> <span class="mx-1">&bullet;</span> <span>2022.07.27</span></div>
+                  <h4><a href="single-post.html">여름의 피부</a></h4>
                 </div>
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="../assets/img/post-landscape-6.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">과학/기술</span> <span class="mx-1">&bullet;</span> <span>Mar 1st '22</span></div>
-                  <h4><a href="single-post.html">피, 땀, 리셋 : 게임 개발 속 숨은 영웅들의 이야기</a></h4>
+                  <a href="single-post.html"><img src="../assets/img/tech.jpg" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">과학/기술</span> <span class="mx-1">&bullet;</span> <span>2022.08.03</span></div>
+                  <h4><a href="single-post.html">그래서 우리는 달에 간다</a></h4>
                 </div>
                  <div class="post-entry-1">
-                  <a href="single-post.html"><img src="../assets/img/post-landscape-2.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">만화</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h4><a href="single-post.html">원펀맨(One Punch Man) 25</a></h4>
+                  <a href="single-post.html"><img src="../assets/img/comics.jpg" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">만화</span> <span class="mx-1">&bullet;</span> <span>2022.07.31</span></div>
+                  <h4><a href="single-post.html">중쇄를 찍자! 15</a></h4>
                 </div>                
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="../assets/img/post-landscape-8.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">여행</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
-                  <h4><a href="single-post.html">오늘 한 끼 어떠셨나요?</a></h4>
+                  <a href="single-post.html"><img src="../assets/img/travel.jpg" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">여행</span> <span class="mx-1">&bullet;</span> <span>2022.08.10</span></div>
+                  <h4><a href="single-post.html">디스 이즈 스페인(2022-2023)</a></h4>
                 </div>
                      
                 <div class="post-entry-1">
-                  <a href="single-post.html"><img src="../assets/img/post-landscape-7.jpg" alt="" class="img-fluid"></a>
-                  <div class="post-meta"><span class="date">건강</span> <span class="mx-1">&bullet;</span> <span>Mar 15th '22</span></div>
-                  <h4><a href="single-post.html">척추측만 비대칭을 위한 재활 필라테스</a></h4>
+                  <a href="single-post.html"><img src="../assets/img/health.jpg" alt="" class="img-fluid"></a>
+                  <div class="post-meta"><span class="date">건강</span> <span class="mx-1">&bullet;</span> <span>2022.08.22</span></div>
+                  <h4><a href="single-post.html">근육의 신비 당신도 자연치유될 수 있다</a></h4>
                 </div>                                          
               </div>
 
