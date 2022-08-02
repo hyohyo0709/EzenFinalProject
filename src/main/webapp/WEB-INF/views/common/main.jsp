@@ -13,98 +13,11 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" >
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-
-<style>
-/* 베스트셀러 랭크 스타일 */
-.rank {
-	display: block;
-	position: absolute;
-	top: 0;
-	min-width: 25px;
-	width: 35px;
-	height: 35px;
-	background: #f04653;
-	text-align: center;
-/* 	font-family: 'Tahoma', 'Malgun Gothic', 'Apple SD Gothic Neo', 'Dotum',
-		'Sans-Serif'; */
-	font-size: 15px;
-	color: #fff;
-	line-height: 25px;
-	transition: all .2s;
-}
-/* 베스트셀러 책 제목 */
-.title {
-	color: #212529;
-	font-size: 15px;
-	text-align: center;
-}
-/* 베스트셀러 이미지 */
-.card-img-top {
-	width: 100%;
-	height: 20vw;
-	object-fit: cover;
-}
-
-/* 첫번째배너 */
-.event_banner {
-width:100%;
-height:400px;
-background-color:rgb(230, 233, 246);
-overflow:hidden;
-}
-
-/* 요즘 이 책 이미지 margin-left: 3rem까지가 반응형에 적합  */
-.first_img{
-width:150px;
-float:left;
-margin-left: 3rem;
-margin-right: 2rem;
-
-}
-
-/* 이미지 링크  */
-.event_banner a.link_book {
-	width: 200px;
-	height:auto;
-	float: left;
-    margin: 50px 0px 0px 20px;
-    text-align: center;
-}
-/* 책 이미지 */
-.event_banner a.link_book img {
-
-	width: 140px;
-    height: auto;
-    border: 1px solid #999;
-    
-}
-/* 책 제목 */
-.event_banner a.link_book .title {
-	display: block;
-    font-size: 17px;
-    color: #333;
-    line-height:30px;
-    height: 37px; 
-    margin-top: 10px;
-  
-}
-/* 책 설명 */
-.event_banner a.link_book .info {
-
-    display: block;
-    font-size: 13px;
-    color: #777;
-    margin-top: 5px;
-
-}
-
-
-</style>
-
 </head>
+
 <body>
 	<main id="main">
 		<!-- 책 추천과 같은 이미지 사진 넣기 -->
@@ -171,12 +84,12 @@ margin-right: 2rem;
 
 			
 				<div class="carousel-item">
-					<img src="/assets/img/배너2.jpg" class="d-block w-100" alt="..." >
+					<img src="/assets/img/배너2.jpg" class="d-block"  alt="..." >
 				</div>
 				
 			
 				<div class="carousel-item">
-					<img src="/assets/img/배너3.jpg" class="d-block w-100 "
+					<img src="/assets/img/배너3.jpg" class="d-block "
 						alt="...">
 				</div>
 			</div>
@@ -266,7 +179,7 @@ margin-right: 2rem;
 											src="../assets/img/liberal-arts.jpg" alt="" class="img-fluid"></a>
 										<div class="post-meta">
 											<span class="date">인문</span> <span class="mx-1">&bullet;</span>
-											<span>20220.07.26</span>
+											<span>2022.07.26</span>
 										</div>
 										<h4>
 											<a href="single-post.html">중국사상의 지혜</a>
