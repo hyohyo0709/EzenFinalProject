@@ -33,15 +33,25 @@ table {
 		});
 		
 		$("#reply").click(function(){
+			
 			$("#frm").attr('action', 'write.do').submit();
+
 		});
 		
 		$("#update").click(function(){
+			if(${mdto.member_id==dto.member_id}){
 			$("#frm").attr('action', 'update.do').submit();
+		}else{
+			alert("일반회원은 자신이 작성한 게시물만 수정할 수 있습니다.")
+		}
 		});
 		
 		$("#delete").click(function(){
+			if(${mdto.member_id==dto.member_id}){
 			$("#frm").attr('action', 'delete.do').submit();
+			}else{
+				alert("일반회원은 자신이 작성한 게시물만 삭제할 수 있습니다.")
+			}
 		});
 	});
 </script>

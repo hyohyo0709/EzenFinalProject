@@ -51,14 +51,15 @@
 		WHERE ref=#{ref} AND re_step > #{re_step}
 	</update>
 	
-	<!-- 업로드 파일 확인 -->
-	<select id="uploadFile" parameterType="int" resultType="String">
-		SELECT upload FROM ezenboards WHERE num=#{num}
+	<!-- 업로드 파일 다운로드 -->
+	<select id="getFile" parameterType="int" resultType="String">
+		SELECT
+		upload FROM ezenboards WHERE num=#{num}
 	</select>
 	
 	<!-- 게시글 수정 -->
 	<update id="update" parameterType="ezenproject.dto.BoardDTO">
-		UPDATE ezenboards SET subject=#{subject}, email=#{email}, content=#{content}
+		UPDATE ezenboards SET subject=#{subject}, content=#{content}
 		<if test="upload!=null">
 		, upload=#{upload}
 		</if>

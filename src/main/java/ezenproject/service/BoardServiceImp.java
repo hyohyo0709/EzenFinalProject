@@ -56,10 +56,6 @@ public class BoardServiceImp implements BoardService{
 
 	}
 
-	@Override
-	public BoardDTO updateSelectProcess(int num) {
-		return dao.updateNum(num);
-	}
 
 	@Override
 	public void updateProcess(BoardDTO dto, String urlpath) {

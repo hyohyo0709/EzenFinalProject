@@ -37,7 +37,7 @@ function btnWrite() {
 </script>      
 <style type="text/css">
 #bodywrap{
-  width:80%;
+  width:70%;
   margin:10px auto;
 }
 
@@ -56,7 +56,7 @@ table,tr,th,td{
 	color:red;
 }
 #frm{
-	padding-left: 1000px;
+	padding-left: 920px;
 }
 
 a {
@@ -73,28 +73,28 @@ a {
     
 <div id="bodywrap">
 	<table class='table table-dark table-striped'>
-	<tr>
-	<th width="5%">번호</th>
-	<th width="45%">제목</th>
+	<tr  style="text-align: center;">
+	<th width="5%" >번호</th>
+	<th width="25%">제목</th>
 	<th width="20%">아이디</th>
-	<th width="5%">조회수</th>
+	<th width="15%">조회수</th>
 	</tr>
 	<c:forEach items="${aList}" var="dto">
 	<tr>
-	<td>${dto.num}</td>
-	<td>
+	<td  style="text-align: center;">${dto.num}</td>
+	<td >
 	<c:url var="path" value="view.do">
 		<c:param name="currentPage" value="${pv.currentPage}" />
 		<c:param name="num" value="${dto.num}" />
 	</c:url>
-	<c:if test="${dto.re_level > 0 }">
+	<c:if test="${dto.re_level > 0 }" >
 	<img src="../assets/img/level.gif" width="${20*dto.re_level }" height="15" style="opacity: 0"/>
 	<img src="../assets/img/answer.png" height="15" />
 	</c:if>
-	<a href="/board/${path}">${dto.subject}</a>
+	<a href="/board/${path}" >${dto.subject}</a>
 	</td>
-	<td>${dto.member_id}</td>
-	<td>${dto.readcount}</td>
+	<td  style="text-align: center;">${dto.member_id}</td>
+	<td  style="text-align: center;">${dto.readcount}</td>
 	</tr>
 	</c:forEach>
 	</table>

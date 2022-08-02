@@ -164,7 +164,7 @@ public class MainController {
 	//게시판 글쓰기
 	@RequestMapping(value = "/board/write.do", method = RequestMethod.GET)
 	public ModelAndView writeMethod(BoardDTO dto,PageDTO pv, ModelAndView mav) throws Exception {
-		mdto = mservice.memberInformation(num);
+		mdto = mservice.memberInformation(2);
 		if(dto.getRef()!=0) { //답변글이면
 		mav.addObject("currentPage", pv.getCurrentPage());
 		mav.addObject("mdto", mdto);
@@ -223,7 +223,9 @@ public class MainController {
 	
 	//뷰페이지
 	@RequestMapping("/board/view.do")
-	public ModelAndView viewMethod(int currentPage, int num, ModelAndView mav) {
+	public ModelAndView viewMethod(int currentPage, int num, ModelAndView mav) throws Exception {
+		int mnum = 2;
+		mav.addObject("mdto", mservice.memberInformation(mnum));
 		mav.addObject("dto",service.contentProcess(num));
 		mav.addObject("currentPage", currentPage);
 		mav.setViewName("board/view");
@@ -236,6 +238,36 @@ public class MainController {
 		mav.addObject("num", num);
 		mav.setViewName("download");
 		return mav;
+	}
+	
+	//게시글 수정
+	@RequestMapping(value = "/board/update.do", method = RequestMethod.GET)
+	public ModelAndView updateMethod(HttpServletRequest request, int num, int currentPage, ModelAndView mav) {
+		String viewName = (String) request.getAttribute("viewName");
+		mav.addObject("dto", service.contentProcess(num));
+		mav.addObject("currentPage", currentPage);
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
+	//첨부파일 수정
+	@RequestMapping(value = "/board/update.do", method = RequestMethod.POST)
+	public String updateProMethod(BoardDTO dto, int currentPage, HttpServletRequest request) {
+		MultipartFile file = dto.getFilename();
+		if(!file.isEmpty()) {
+			UUID random = saveCopyFile(file, request);
+			dto.setUpload(random + "_" + file.getOriginalFilename());
+		}
+		
+		service.updateProcess(dto, urlPath(request));
+		return "redirect:/board/list.do?currentPage=" + currentPage;
+	}
+	
+	//게시글 삭제
+	@RequestMapping(value = "/board/delete.do", method = RequestMethod.GET)
+	public String deleteMethod(int num, int currentPage, HttpServletRequest request) {
+		service.deleteProcess(num, urlPath(request));
+		return "redirect:/board/list.do?currentPage=" + currentPage;
 	}
 	
 }
