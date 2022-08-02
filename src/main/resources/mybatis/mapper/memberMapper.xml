@@ -9,6 +9,9 @@
     <mapper namespace="ezenproject.dao.MemberDAO">
     
     <!-- 여기서부터 관리자 페이지 매퍼입니다.  -->
+    <select id="loginUser" resultType="MemberDTO">
+    SELECT * FROM ezenmembers WHERE member_number=#{member_number}
+    </select>
     
     <select id="list" resultType="MemberDTO">
      <![CDATA[
@@ -60,10 +63,25 @@
     <![CDATA[
 		select * from ezenmembers	
 		where member_id=#{member_id} and member_pass=#{member_pass}
+		and member_status=1
 	]]>
     </select>
     
     
+    <!--회원 가입하는 행위  -->
+    <insert id="insertMember"  parameterType="MemberDTO">
+	    <![CDATA[
+		 insert into ezenmembers(num, member_number, member_id,member_pass, member_email,
+		 						 member_phone,member_address, member_type, member_status, member_name 
+		 						 )
+		 values(ezenmembers_num_seq.nextval, #{member_number}, #{member_id}, #{member_pass},
+		 		#{member_email},#{member_phone},#{member_address},0, 1, #{member_name}
+		 		 )
+		]]>     
+		
+	
+ </insert>    
     
     
-    </mapper>
+    
+    </mapper>	

@@ -13,7 +13,8 @@ import ezenproject.dto.MemberDTO;
 @Mapper
 @Repository
 public interface MemberDAO {
-	
+
+	public MemberDTO loginUser(String member_number);//로그인 되었는지 여부
 	public List<MemberDTO> list();
 	public void statusChangeOn(int num);
 	public void statusChangeOff(int num);
@@ -21,5 +22,8 @@ public interface MemberDAO {
 	public void typeChangeOn(int num);
 	public void typeChangeOff(int num);
 	public void deleteData(int num);
+	
 	public MemberDTO loginCheck(MemberDTO dto) throws DataAccessException;
+	public int insertMember (MemberDTO dto) throws DataAccessException;
+	
 }

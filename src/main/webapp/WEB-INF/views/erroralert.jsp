@@ -11,7 +11,7 @@
 
 $(document).ready(function(){
 	alert("잘못된 요청입니다.");
-	document.location.href="/board/list.do";
+	document.location.href="/book/board.do";
 })
 
 </script>

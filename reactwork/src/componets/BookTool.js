@@ -1,15 +1,15 @@
-import { styled, alpha } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import InputBase from "@mui/material/InputBase";
+import { styled, alpha } from '@mui/material/styles';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import InputBase from '@mui/material/InputBase';
 
-import SearchIcon from "@mui/icons-material/Search";
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Paper from "@mui/material/Paper";
+import SearchIcon from '@mui/icons-material/Search';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+import Paper from '@mui/material/Paper';
 import {
   Button,
   Card,
@@ -19,57 +19,57 @@ import {
   Table,
   TableContainer,
   TablePagination,
-} from "@mui/material";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
-import TableBody from "@mui/material/TableBody";
+} from '@mui/material';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import TableCell from '@mui/material/TableCell';
+import TableBody from '@mui/material/TableBody';
 
-import BookAdd from "./BookAdd";
-import { Link } from "react-router-dom";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import Collapse from "@mui/material/Collapse";
-import BookDataDelete from "./BookDataDelete";
-import BookUpdate from "./BookUpdate";
+import BookAdd from './BookAdd';
+import { Link } from 'react-router-dom';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Collapse from '@mui/material/Collapse';
+import BookDataDelete from './BookDataDelete';
+import BookUpdate from './BookUpdate';
 
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
+const Search = styled('div')(({ theme }) => ({
+  position: 'relative',
   borderRadius: theme.shape.borderRadius,
   backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
+  '&:hover': {
     backgroundColor: alpha(theme.palette.common.white, 0.25),
   },
   marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
+  width: '100%',
+  [theme.breakpoints.up('sm')]: {
     marginLeft: theme.spacing(1),
-    width: "auto",
+    width: 'auto',
   },
 }));
 
-const SearchIconWrapper = styled("div")(({ theme }) => ({
+const SearchIconWrapper = styled('div')(({ theme }) => ({
   padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
+  height: '100%',
+  position: 'absolute',
+  pointerEvents: 'none',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 }));
 
 const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
+  color: 'inherit',
+  '& .MuiInputBase-input': {
     padding: theme.spacing(1, 1, 1, 0),
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
+    transition: theme.transitions.create('width'),
+    width: '100%',
+    [theme.breakpoints.up('sm')]: {
+      width: '12ch',
+      '&:focus': {
+        width: '20ch',
       },
     },
   },
@@ -77,7 +77,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const BookTool = () => {
   const [booklists, setBooklists] = useState([]);
-  const [searchKeyWord, setSearchKeyWord] = useState("");
+  const [searchKeyWord, setSearchKeyWord] = useState('');
 
   useEffect(() => {
     // db 연동
@@ -86,7 +86,7 @@ const BookTool = () => {
 
   const loadData = async () => {
     await axios
-      .get("http://localhost:8090/books/list")
+      .get('http://localhost:8090/books/list')
       .then((response) => {
         // console.log('response:', response.data);
         setBooklists(response.data.alist);
@@ -143,64 +143,9 @@ const BookTool = () => {
   const categoryCheck = (book_category) => {
     // 장르는 계속 추가될 예정
     if (book_category === 1) {
-      return "소설/시/희곡";
-    }
-    if (book_category === 2) {
-      return "애세이";
-    }
-    if (book_category === 3) {
-      return "인문";
-    }
-    if (book_category === 4) {
-      return "역사";
-    }
-    if (book_category === 5) {
-      return "예술";
-    }
-    if (book_category === 6) {
-      return "종교";
-    }
-    if (book_category === 7) {
-      return "사회.정치";
-    }
-    if (book_category === 8) {
-      return "자연과학";
-    }
-    if (book_category === 9) {
-      return "경제 경영";
-    }
-    if (book_category === 10) {
-      return "자기계발";
-    }
-    if (book_category === 11) {
-      return "인물";
-    }
-    if (book_category === 12) {
-      return "유아";
-    }
-    if (book_category === 13) {
-      return "어린이";
-    }
-    if (book_category === 14) {
-      return "청소년";
-    }
-    if (book_category === 15) {
-      return "전집";
-    }
-    if (book_category === 16) {
-      return "만화";
-    }
-    if (book_category === 17) {
-      return "여행";
-    }
-    if (book_category === 18) {
-      return "참고서";
-    }
-    if (book_category === 19) {
-      return "잡지";
-    }
-    if (book_category === 20) {
-      return "외국도서";
+      return '소설';
+    } else if (book_category === 2) {
+      return '인문/사회';
     }
   };
 
@@ -210,47 +155,47 @@ const BookTool = () => {
 
     return (
       <React.Fragment>
-        <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+        <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
           <TableCell>
             <IconButton
-              aria-label="expand row"
-              size="small"
+              aria-label='expand row'
+              size='small'
               onClick={() => setOpen(!open)}
             >
               {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
             </IconButton>
           </TableCell>
-          <TableCell component="th" scope="row">
+          <TableCell component='th' scope='row'>
             {row.book_id}
           </TableCell>
-          <TableCell align="right">{row.book_title}</TableCell>
-          <TableCell align="right">{row.book_author}</TableCell>
-          <TableCell align="right">{row.book_publisher}</TableCell>
-          <TableCell align="right">{row.book_price}원</TableCell>
+          <TableCell align='right'>{row.book_title}</TableCell>
+          <TableCell align='right'>{row.book_author}</TableCell>
+          <TableCell align='right'>{row.book_publisher}</TableCell>
+          <TableCell align='right'>{row.book_price}원</TableCell>
 
-          <TableCell align="right">
+          <TableCell align='right'>
             {categoryCheck(row.book_category)}
           </TableCell>
-          <TableCell align="right">{row.book_isbn}</TableCell>
+          <TableCell align='right'>{row.book_isbn}</TableCell>
 
-          <TableCell align="right">
+          <TableCell align='right'>
             {row.book_stock === 1 ? (
-              <Button variant="contained" color="success">
+              <Button variant='contained' color='success'>
                 재고 있음
               </Button>
             ) : (
-              <Button variant="contained" color="error">
+              <Button variant='contained' color='error'>
                 재고 없음
               </Button>
             )}
           </TableCell>
-          <TableCell align="right">
+          <TableCell align='right'>
             {row.book_status === 1 ? (
-              <Button variant="contained" color="success">
+              <Button variant='contained' color='success'>
                 판매 중
               </Button>
             ) : (
-              <Button variant="contained" color="error">
+              <Button variant='contained' color='error'>
                 판매 중지
               </Button>
             )}
@@ -258,17 +203,17 @@ const BookTool = () => {
         </TableRow>
         <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={15}>
-            <Collapse in={open} timeout="auto" unmountOnExit>
+            <Collapse in={open} timeout='auto' unmountOnExit>
               <Box sx={{ border: 0 }}>
-                <Typography variant="h6" gutterBottom component="div">
+                <Typography variant='h6' gutterBottom component='div'>
                   제품 설정
                 </Typography>
-                <Stack direction="row" spacing={2}>
+                <Stack direction='row' spacing={2}>
                   <div>
                     <BookUpdate num={row.num} />
                   </div>
                   <Button
-                    variant="outlined"
+                    variant='outlined'
                     onClick={() => {
                       handleStockChange(row.num);
                     }}
@@ -276,7 +221,7 @@ const BookTool = () => {
                     품절 여부 상태 바꾸기
                   </Button>
                   <Button
-                    variant="outlined"
+                    variant='outlined'
                     onClick={() => {
                       handleStatusChange(row.num);
                     }}
@@ -289,10 +234,10 @@ const BookTool = () => {
                 </Stack>
                 <Card sx={{ minWidth: 275 }}>
                   <CardContent>
-                    <Typography variant="body2">책 소개</Typography>
+                    <Typography variant='body2'>책 소개</Typography>
                     <Typography
                       sx={{ fontSize: 14 }}
-                      color="text.secondary"
+                      color='text.secondary'
                       gutterBottom
                     >
                       {row.book_content}
@@ -301,13 +246,13 @@ const BookTool = () => {
                 </Card>
                 <Card sx={{ minWidth: 275 }}>
                   <CardContent>
-                    <Typography variant="body2">책 표지 파일</Typography>
+                    <Typography variant='body2'>책 표지 파일</Typography>
                     <Typography
                       sx={{ fontSize: 14 }}
-                      color="text.secondary"
+                      color='text.secondary'
                       gutterBottom
                     >
-                      {row.book_img === null ? "표지 파일 없음" : row.book_img}
+                      {row.book_img === null ? '표지 파일 없음' : row.book_img}
                     </Typography>
                   </CardContent>
                 </Card>
@@ -320,21 +265,21 @@ const BookTool = () => {
   }
 
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth='xl'>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position="static">
+        <AppBar position='static'>
           <Toolbar>
             <Typography
-              variant="h6"
+              variant='h6'
               noWrap
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+              component='div'
+              sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
             >
               제품 관리 시스템
             </Typography>
 
-            <Link to="/">
-              <Button variant="contained" size="large" color="success">
+            <Link to='/'>
+              <Button variant='contained' size='large' color='success'>
                 관리 홈으로
               </Button>
             </Link>
@@ -343,8 +288,8 @@ const BookTool = () => {
                 <SearchIcon />
               </SearchIconWrapper>
               <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ "aria-label": "search" }}
+                placeholder='Search…'
+                inputProps={{ 'aria-label': 'search' }}
                 value={searchKeyWord}
                 onChange={handleValueChange}
               />
@@ -354,34 +299,34 @@ const BookTool = () => {
       </Box>
       <div
         style={{
-          width: "100%",
-          height: "30px",
-          justifyContent: "center",
-          display: "flex",
-          marginTop: "10px",
-          marginBottom: "10px",
+          width: '100%',
+          height: '30px',
+          justifyContent: 'center',
+          display: 'flex',
+          marginTop: '10px',
+          marginBottom: '10px',
         }}
       >
         <BookAdd />
       </div>
 
-      <Paper sx={{ width: "100%" }}>
+      <Paper sx={{ width: '100%' }}>
         <TableContainer sx={{ maxHeight: 800 }}>
-          <Table stickyHeader aria-label="sticky table">
+          <Table stickyHeader aria-label='sticky table'>
             <TableHead>
               <TableRow>
                 <TableCell />
                 <TableCell>도서 ID</TableCell>
-                <TableCell align="center">제목</TableCell>
-                <TableCell align="center">저자</TableCell>
-                <TableCell align="center">출판사</TableCell>
-                <TableCell align="center">가격</TableCell>
+                <TableCell align='center'>제목</TableCell>
+                <TableCell align='center'>저자</TableCell>
+                <TableCell align='center'>출판사</TableCell>
+                <TableCell align='center'>가격</TableCell>
 
-                <TableCell align="center">장르</TableCell>
-                <TableCell align="center">도서 ISBN</TableCell>
+                <TableCell align='center'>장르</TableCell>
+                <TableCell align='center'>도서 ISBN</TableCell>
 
-                <TableCell align="center">재고</TableCell>
-                <TableCell align="center">판매 유무</TableCell>
+                <TableCell align='center'>재고</TableCell>
+                <TableCell align='center'>판매 유무</TableCell>
               </TableRow>
             </TableHead>
 
@@ -397,7 +342,7 @@ const BookTool = () => {
 
         <TablePagination
           rowsPerPageOptions={[10, 25, 100]}
-          component="div"
+          component='div'
           count={booklists.length}
           rowsPerPage={rowsPerPage}
           page={page}

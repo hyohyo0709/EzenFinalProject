@@ -12,6 +12,8 @@ import axios from 'axios';
 import Paper from '@mui/material/Paper';
 import {
   Button,
+  Card,
+  CardContent,
   Container,
   FormControl,
   InputLabel,
@@ -166,8 +168,6 @@ const OrderTool = () => {
     const { row } = props;
     const [open, setOpen] = React.useState(false);
 
-    var qty = row.order_qty;
-    var price = row.ezenbooks.book_price;
     return (
       <React.Fragment>
         <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -183,16 +183,14 @@ const OrderTool = () => {
           <TableCell component='th' scope='row'>
             {row.order_number}
           </TableCell>
-          <TableCell align='right'>{row.member_number}</TableCell>
-          <TableCell align='right'>{row.ezenmembers.member_id}</TableCell>
-          <TableCell align='right'>{row.book_id}</TableCell>
-          <TableCell align='right'>{row.ezenbooks.book_title}</TableCell>
-          <TableCell align='right'>{row.order_qty}</TableCell>
-          <TableCell align='right'>
-            {row.order_qty}X{row.ezenbooks.book_price}= {qty * price} 원
-          </TableCell>
+          <TableCell align='center'>{row.member_number}</TableCell>
+          <TableCell align='center'>{row.ezenmembers.member_id}</TableCell>
+          <TableCell align='center'>{row.book_id}</TableCell>
+          <TableCell align='center'>{row.ezenbooks.book_title}</TableCell>
 
-          <TableCell align='right'>{statusCheck(row.order_status)}</TableCell>
+          <TableCell align='center'>{row.order_cost} 원</TableCell>
+
+          <TableCell align='center'>{statusCheck(row.order_status)}</TableCell>
         </TableRow>
         <TableRow>
           <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={15}>
@@ -209,6 +207,46 @@ const OrderTool = () => {
                     <OrderDataDelete num={row.num} />
                   </div>
                 </Stack>
+                <Card sx={{ minWidth: 275 }}>
+                  <CardContent>
+                    <Typography variant='body2'>배송 정보</Typography>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color='text.secondary'
+                      gutterBottom
+                    >
+                      배송지 :{row.order_address}
+                    </Typography>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color='text.secondary'
+                      gutterBottom
+                    >
+                      받는 분 :{row.order_name}
+                    </Typography>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color='text.secondary'
+                      gutterBottom
+                    >
+                      받는 분 연락처 :{row.order_phone}
+                    </Typography>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color='text.secondary'
+                      gutterBottom
+                    >
+                      주문자 이름 :{row.ezenmembers.member_name}
+                    </Typography>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color='text.secondary'
+                      gutterBottom
+                    >
+                      주문자 연락처 :{row.ezenmembers.member_phone}
+                    </Typography>
+                  </CardContent>
+                </Card>
               </Box>
             </Collapse>
           </TableCell>
@@ -258,11 +296,11 @@ const OrderTool = () => {
               <TableRow>
                 <TableCell />
                 <TableCell>주문 번호</TableCell>
-                <TableCell align='center'>회원 번호</TableCell>
-                <TableCell align='center'>회원 ID</TableCell>
+                <TableCell align='center'>주문 회원 번호</TableCell>
+                <TableCell align='center'>주문 회원 ID</TableCell>
                 <TableCell align='center'>도서 ID</TableCell>
                 <TableCell align='center'>도서 제목</TableCell>
-                <TableCell align='center'>수량</TableCell>
+
                 <TableCell align='center'>총 금액</TableCell>
 
                 <TableCell align='center'>주문 상태</TableCell>

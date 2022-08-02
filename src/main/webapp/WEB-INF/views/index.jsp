@@ -22,7 +22,7 @@ pageEncoding="UTF-8"%>
     ></script>
 
     <link href="./assets/css/style.css" rel="stylesheet" />
-    <title>Document</title>
+    <title>메인 페이지</title>
 
     <!-- 파비콘 -->
     <link

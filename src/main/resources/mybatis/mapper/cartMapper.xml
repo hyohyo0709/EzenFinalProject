@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    
+    
+    <mapper namespace="ezenproject.dao.CartDAO">
+    <!-- 장바구니 데이터 구현 매퍼 -->
+    <!-- 장바구니 생성 매퍼 -->
+    
+    <!-- 카트 체크  -->
+    <select id="checkCart" resultType="CartDTO">
+	
+		SELECT * FROM ezencarts 
+		WHERE member_number = #{member_number} and book_id = #{book_id}
+	
+	</select>
+    
+    <insert id="addCart" >
+	
+		INSERT INTO ezencarts (num, member_number, book_id, cart_amount)
+        VALUES 
+          (seq_cart.nextval, #{member_number}, #{book_id}, #{cart_amount} )
+	
+	</insert>
+	
+	
+	<!-- 카트 삭제 -->
+	<delete id="deleteCart" parameterType="int">
+	
+		DELETE FROM ezencarts WHERE num = #{num}
+	
+	</delete>
+	
+	<!-- 카트 수량 수정 -->
+	<update id="modifyCount" parameterType="CartDTO">
+	
+		UPDATE ezencarts SET cart_amount=#{cart_amount} WHERE num = #{num}
+	
+	</update>
+	
+	
+	<!-- 카트 목록 -->
+	<select id="getCart" resultType="CartDTO">
+	
+		SELECT a.num, a.member_number, a.book_id, a.cart_amount, b.book_title, b.book_price
+		FROM ezencarts a left outer join ezenbooks b on a.book_id = b.book_id
+		WHERE member_number = #{member_number}	
+	
+	</select>
+	
+
+
+    
+    </mapper>

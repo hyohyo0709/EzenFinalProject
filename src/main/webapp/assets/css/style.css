@@ -37,21 +37,19 @@ a {
 /*///////////////// board에 삽입된 css 목록 끝 //////////////// */
 
 /*///////////////// book_detail에 삽입된 css 목록 시작 //////////////// */
-
+/* col-md-3 */
 .card-img-top{
-	border-radius: 15px;
+	border-radius: 15px 0px 0px 15px;
 	box-sizing: border-box;	  
 }
 .card_img{
-	border: 2px solid #f5f5f5; 
-	border-radius: 15px;
-		border: #f5f5f5 5px solid;
+	border-radius: 30px 0px 0px 30px;
 }
+
+/* col-md-6 */
 #detail_main{
-	background-color: #f5f5f5;
-	border-radius: 25px;
+	border-radius: 0px 0px 25px 25px;
 	padding: 10px;
-	border: #f5f5f5 10px solid;
 	box-sizing: border-box;	 
 }
 .book_title {
@@ -60,7 +58,9 @@ a {
 	font-weight: bold;
 }	
 .book_story{
-	text-align: left;
+	text-align:justify;
+	color: rgb(60,10,10);
+	border-bottom: 2px solid;
 }
 
 .book_sub {
@@ -83,15 +83,17 @@ text-align:right;
 text-align:right;
 	font-size: 23px; color: blue;
 }
+
+/* col-md-3 */
 .buy_box{
-	border: #f5f5f5 10px solid;
+	border: rgb(210,202,186,0.01) 10px solid;
 	box-sizing: border-box;	 
 	position: sticky;
 	float: right;
 	width: 100%;
 	height: 530px;
-	background: #f5f5f5 ;
-	border-radius: 30px ;
+	background:rgb(210,202,186,0.1);
+	border-radius: 0px 30px 30px 0px ;
 }
 .vCenter {  display: flex;
     justify-content: center;
@@ -109,37 +111,51 @@ text-align:right;
 	margin-right: -1px;
 	width: 30px;
 	border-right: 0px; 
-	border: 2px solid #efaf60;
-	background-color: #ffffdd;
+	border: 2px solid #bcbdbf;
+	background-color: #f5f5f5;
 }
 .count_btn2{
+	border-radius: 0px 5px 5px 0px;
 	margin-left: -1px;
 	width: 30px;
 	border-left: 0px; 
-	border: 2px solid #efaf60;
-	background-color: #ffffdd;
+	border: 2px solid #bcbdbf;
+	background-color: #f5f5f5;
 }
 .count_total{
 	background-color: white; 
-	width: 100px; 
+	width: 100px;
+	height: 30px; 
 	margin: 0px -3px 0px -3px ;
-	border: 2px solid #efaf60;
+	border: 2px solid #bcbdbf;
 	text-align: center;
 }
 .count_total_price{
+	border-radius: 0px 5px 5px 0px;
 	font-weight:bold;
 	background-color: white; 
 	width: auto; 
-	border: 2px solid #efaf60;
+	border: 2px solid #bcbdbf;
 	text-align: center;
 	margin-top: 15px;
 }
 .buy_button1{
 	font-weight:bold;
-	background-color:#d3d3d3;
+	background-color:rgb(145,145,145,0.2);
 	color:black;
 	border: solid 0px;
-	border-radius: 18px;
+	border-radius: 8px;
+	margin:0px 0px 10px 15px;
+	width: 90%;
+	height: 40px;
+	
+}
+.cart_btn{
+	font-weight:bold;
+	background-color:rgb(145,145,145,0.2);
+	color:black;
+	border: solid 0px;
+	border-radius: 8px;
 	margin:0px 0px 10px 15px;
 	width: 90%;
 	height: 40px;
@@ -148,9 +164,9 @@ text-align:right;
 .buy_button2{
 	font-weight:bold;
 	background-color:white;
-	color:#efaf60;
+	color:#796e62;
 	border: solid 0px;
-	border-radius: 18px;
+	border-radius: 8px;
 	margin:0px 0px 10px 15px;
 	width: 90%;
 	height: 40px;

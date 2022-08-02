@@ -11,8 +11,13 @@ public interface BookService {
 	public BookDTO selectOneProcess(int num);
 	public int countProcess(); 
 	public List<BookDTO> booklistProcess(PageDTO pv);
+	
+	public List<BookDTO> allBookListProcess(PageDTO pv);
 	public BookDTO contentProcess(int num);
-	public List<BookDTO> img_listProcess();
+	public int countCategoryProcess(int book_category);
+	public List<BookDTO> categoryBookListProcess(PageDTO pv, int book_category);
+	public List<BookDTO> searchListProcess(PageDTO pv);
+	public int countSearchProcess(String searchWord);
 	
 ///////////////////여기부터 관리자 페이지 서비스입니다.//////////////////
 	public List<BookDTO> listProcess();

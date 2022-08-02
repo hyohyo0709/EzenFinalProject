@@ -3,6 +3,7 @@ package ezenproject.service;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,15 +44,44 @@ public class BookServiceImp implements BookService{
 	public List<BookDTO> booklistProcess(PageDTO pv) {
 		return dao.booklist(pv);
 	}
-	
+	//카테고리 서비스
 	@Override
-	public List<BookDTO> img_listProcess() {
-		return dao.img_list();
+	public List<BookDTO> categoryBookListProcess(PageDTO pv, int book_category) {
+		
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("startRow", pv.getStartRow());
+		map.put("endRow", pv.getEndRow());
+		map.put("book_category", book_category);
+		return dao.categoryList(map);
+		
+	}
+
+	@Override
+	public List<BookDTO> allBookListProcess(PageDTO pv) {
+		
+		return dao.allBookList(pv);
 	}
 	
+	@Override
+	public int countCategoryProcess(int book_category) {
+		
+		return dao.countCategory(book_category);
+	}
 	
+	@Override
+	public int countSearchProcess(String searchWord) {
+		
+		return dao.countSearch(searchWord);
+	}
+		
+	@Override
+	public List<BookDTO> searchListProcess(PageDTO pv) {
+		
+		return dao.searchList(pv);
+	}
 	
 	/////////////////////여기까지 board관련 페이지 서비스 입니다//////////////////////////////////
+	
 	
 	
 /////////////////////////////	여기서부터 관리자 페이지 서비스입니다//////////
@@ -174,6 +204,7 @@ public class BookServiceImp implements BookService{
 				fe.delete();
 			}
 		}
+		
 		System.out.println(dto.getBook_title()+"서비스 단계");
 		
 //		System.out.println(dto.toString());

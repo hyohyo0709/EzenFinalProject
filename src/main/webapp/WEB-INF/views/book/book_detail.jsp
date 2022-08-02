@@ -5,30 +5,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />0
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous" />
-<script type="text/javascript">
-	function noStock(){
-		alert('재고가 없습니다.')
-	};
-</script>
 <script defer
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-	crossorigin="anonymous"></script>
+	crossorigin="anonymous"></script>		
+	
+	
 <link href="../assets/css/style.css" rel="stylesheet" />
 <title>${dto.book_title }</title>
 <link rel="short icon" href="../assets/img/favicon.png"
 	type="image/x-icon" />
 </head>
 <body>
+
 	<%@ include file="../common/header.jsp"%>
 	<!-- navbar end -->
 
@@ -59,9 +57,9 @@
 				</div>
 			</div>
 			<div class="col-md-6" id="detail_main">
-				<p class="book_title">${dto.book_title} </p>
+				<p class="book_title">${dto.book_title } </p>
 				<p class="book_sub"style="border-bottom: 1px solid black;">저자 :
-					${dto.book_author } | ${dto.book_publisher} |
+					${dto.book_author } | ${dto.book_publisher} | 
 				<c:if test="${dto.book_category == 1}">소설/시/희곡</c:if>
 				<c:if test="${dto.book_category == 2}">에세이</c:if>
 				<c:if test="${dto.book_category == 3}">인문</c:if>
@@ -85,7 +83,7 @@
 				 | ISBN코드 : ${dto.book_isbn }
 					</p>
 					
-				<table style="border-bottom: 1px solid black;" >
+				<table>
 					<colgroup>
 						<col width="150">
 						<col width="*">
@@ -125,14 +123,14 @@
 					</p>
 					<div class="buy_area1">
 					<div style=" border-bottom : 1px solid gray; margin-bottom: 5px">
-					<span style="color: gray;">배송비 :</span>
-						  <span style= "color: blue">무료</span></br></br>
-					<span>배송일정 : 서울시 서초구 서초동 기준</span></bar>
+					<span style="color: gray;">● 배송비 :</span>
+						  <span style= "color: gary;">무료</span></br></br>
+					<span>● 배송일정 : 서울시 서초구 서초동 기준</span></bar>
 					<p style="color: red;">
-					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 					다음날 출고 예정</p>
-					<span>매장에서 받기 원하신다면 </span></br>
-					<span style="color: blue;">서울시 서초구 서초동에서 수령하세요</span>
+					<span>● 매장에서 받기 원하신다면 </span></br>
+					<span style="color: blue;">&nbsp&nbsp&nbsp&nbsp서울시 서초구 서초동에서 수령하세요</span>
 					<p></p>
 					 </div>
 					</div>
@@ -144,53 +142,77 @@
 						<tbody>
 							<tr>
 								<th>수량 선택&nbsp&nbsp</th>
+								
 								<td>
-									<input class="count_btn1" type="button" value="-" onclick=''>
+									<input class="count_btn1" type="button" value="-" id="minus_btn">
 								</td>
 								<td>
-									<input class="count_total" type="text" value="1" maxlength="4"> 							
+									<input type="text" name="cart_amount" id="quantity_input" class="count_total" value="1">					
 								</td>
 								<td>
-									<input class="count_btn2" type="button" value="+" onclick=''>
+									<input class="count_btn2" type="button" value="+" id="plus_btn">
 								</td>
+								
 								</tr>
 								<tr>
 								<th>
 								구매 가격
 								</th>
-								<td colspan="3">
-									<p class="count_total_price">${sellprice }원</p>
+								<td colspan="3">	
+									<input type="hidden" value="-" id="minus_btn">
+									<p class="count_total_price">${sellprice}원</p>
+									<input type="hidden" value="+" id="plus_btn">
 								</td>
-								
 							</tr>
 						</tbody>
 					</table>
+								
+				
 					<!-- //////// 수량 끝 //////// -->
 					
 					
 					<!-- ////// 구매 버튼 목록 시작 /////// -->
 					<!-- //구매 버튼 링크들// -->
-					<c:url var="buy_link" value="/order/order_page_sample.do">
+					<c:url var="order_link" value="/order/order_page_sample.do">
+					<c:param name="num" value="${dto.num }"/>
+					</c:url>
+					<c:url var="pickup_link" value="/order/pickup.do">
+					<c:param name="num" value="${dto.num }"/>
+					</c:url>
+					<c:url var="cart_link" value="/cart/list.do">
 					<c:param name="num" value="${dto.num }"/>
 					</c:url>
 					<!-- //구매 버튼 링크// -->
 					
+				
+				
+					
+					
 					<!-- 재고 유무에 따라 재고가 없을시에 알림창 -->
 					<div style="margin-top: 15px;">
-					<c:choose><c:when test="${dto.book_stock==1}">
-					<input class="buy_button1" type="button" value="장바구니">
-					<input class="buy_button1" type="button" value="선물하기">
-					<input class="buy_button2" type="button" value="매장구매">
-					<input class="buy_button2" type="button" value="바로구매" onClick="window.open('${buy_link}')">
+					<!-- 로그인이 되어있고 재고가 있을때 -->
+					<c:choose>
+					<c:when test="${dto.book_stock==1 && isLogOn == true && member!= null}">
+					<input class="cart_btn" id="cart_btn" type="button" value="장바구니">
+					<input class="buy_button1" type="button" value="선물하기" id="cart_btn">
+					<input class="buy_button2" type="button" value="매장구매" onclick="window.open('${pickup_link}')">
+					<input class="buy_button2" type="button" value="바로구매" onclick="window.open('${order_link}')">
 					</c:when>
-					<c:otherwise>
+					<c:when test="${dto.book_stock==0 && isLogOn == true && member!= null}">
 					<input class="buy_button1" type="button" value="장바구니" onclick="noStock()">
 					<input class="buy_button1" type="button" value="선물하기" onclick="noStock()" >
 					<input class="buy_button2" type="button" value="매장구매" onclick="noStock()">
 					<input class="buy_button2" type="button" value="바로구매" onclick="noStock()">
+					</c:when>
+					<c:otherwise>
+					<input class="buy_button1" type="button" value="장바구니" onclick="nologin()">
+					<input class="buy_button1" type="button" value="선물하기" onclick="nologin()" >
+					<input class="buy_button2" type="button" value="매장구매" onclick="nologin()">
+					<input class="buy_button2" type="button" value="바로구매" onclick="nologin()">
 					</c:otherwise>
 					</c:choose>
 					</div>
+					
 					<!-- ////// 구매 버튼 목록 끝 /////// -->
 				</div>
 			</div>
@@ -203,7 +225,7 @@
 	<div class="col-md-3">
 	</div>
 	<div class="col-md-6" id="new_books">
-	<span style="font-size: 35px">다른 매력적인 책들을 만나보세요</span>	
+	<span style="font-size: 35px">다른 매력적인 책들을 만나보세요 </span>	
 	</div>
 	<div class="col-md-3">
 	</div>
@@ -230,4 +252,65 @@
 	
 	<%@ include file="../common/footer.jsp"%>
 	<!-- Footer end -->
+	
+	
+
+	</body>
+	
+	
+	<script>
+		//장바구니 스크립트//
+	let quantity = $("#quantity_input").val();
+	
+	$("#plus_btn").on("click", function(){
+		$("#quantity_input").val(++quantity);
+	});
+	$("#minus_btn").on("click", function(){
+		if(quantity > 1){
+			$("#quantity_input").val(--quantity);	
+		}
+	})
+	
+	//서버 전송용 데이터
+	const form = {
+		member_number : '${member.member_number}',
+		book_id : '${dto.book_id}',
+		cart_amount : ''
+}
+	
+	$(".cart_btn").on("click", function(e){
+			form.cart_amount = $(".quantity_input").val();
+			$.ajax({
+				url: '/cart/list/add',
+				type: 'POST',
+				processData: false,
+				data: form,
+				success: function(result){
+					cartAlert(result);
+				}
+			})
+		});
+		
+	function cartAlert(result){
+		if(result == '0'){
+			alert("장바구니에 추가를 하지 못하였습니다.");
+		} else if(result == '1'){
+			alert("장바구니에 추가되었습니다.");
+		} else if(result == '2'){
+				alert("장바구니에 이미 추가되어져 있습니다.");
+		} 
+		}
+	
+	
+	
+	</script>
+		<script type="text/javascript">
+	function noStock(){
+		alert('재고가 없습니다.')
+	};
+	function nologin(){
+		alert('로그인이 필요한 서비스입니다.')
+	};
+	</script>
+	
 </html>

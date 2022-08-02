@@ -10,9 +10,87 @@
     
    <!--////////////사용자 페이지 매퍼입니다.//////////////////////////  -->
     
-   <select id="count" resultType="int">
-    SELECT count(*) FROM ezenbooks 
+ <!-- 고객에게 보여지는 모든 책 갯수  -->
+    <select id="count" resultType="int">
+    select count(*) from ezenbooks
+    where book_status=1
     </select>
+    
+    
+    <!-- 고객에게 보여지는 장르별 책 갯수  -->
+    <select id="countCategory" parameterType="int" resultType="int">
+    select count(*) from ezenbooks
+    where book_status=1
+    and book_category=#{book_category}
+    </select>
+    
+    <!-- 고객에게 보여지는 검색된 책 갯수  -->
+    <select id="countSearch" parameterType="String" resultType="int">
+    select count(*) from ezenbooks
+    where book_title like '%' || #{searchWord}||'%' or book_author like '%' || #{searchWord}||'%'
+    or book_publisher like '%' || #{searchWord}||'%'
+    
+    </select>
+    
+    
+    
+    <!-- 고객에게 보여지는 모든 책 리스트 -->
+     <select id="allBookList" parameterType="PageDTO" 
+    resultType="BookDTO">
+   
+   <![CDATA[
+    select b.*
+ from(select a.*, rownum as rm
+ from(select * from ezenbooks 
+ where book_status=1 order by num)a)b
+ where b.rm>=#{startRow} and b.rm<=#{endRow}
+   
+   ]]>
+    
+    </select>
+    
+    
+     <!-- 고객에게 보여지는 장르 별 책 리스트 -->
+ 
+     <select id="categoryList"  parameterType="HashMap"
+    resultType="BookDTO">
+   
+   <![CDATA[
+    select b.*
+ from(select a.*, rownum as rm
+ from(select * from ezenbooks 
+ where book_status=1 
+ and book_category=#{book_category}
+ order by num)a)b
+ where b.rm>=#{startRow} and b.rm<=#{endRow}
+   
+   ]]>
+    
+    </select>
+    
+    
+     <!-- 고객에게 보여지는 검색된 책 리스트 -->
+ 
+     <select id="searchList"  parameterType="PageDTO"
+    resultType="BookDTO">
+   
+   <![CDATA[
+    select b.*
+ from(select a.*, rownum as rm
+ from(select * from ezenbooks 
+ where book_status=1 
+ and book_title like '%' || #{searchWord}||'%' or book_author like '%' || #{searchWord}||'%'
+    or book_publisher like '%' || #{searchWord}||'%'
+ )a)b
+ where b.rm>=#{startRow} and b.rm<=#{endRow}
+   
+   ]]>
+    
+    </select>
+    
+    
+ 
+     
     
      <select id="content" parameterType="int" resultType="BookDTO">
     select*from ezenbooks where num=#{num}
@@ -28,11 +106,6 @@
  WHERE b.rm>=#{startRow} AND b.rm<=#{endRow}
    ]]>
     </select>
-   <!-- 도서 이미지 랜덤 출력용 -->
-    <select id="img_list" resultType="BookDTO">
-    SELECT book_img FROM ezenbooks
-    </select>
-    
 
     
     <!-- //////////////////여기서부터 관리자 페이지 매퍼입니다.////////////////////////  -->

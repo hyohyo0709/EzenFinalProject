@@ -1,5 +1,7 @@
 package ezenproject.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,7 @@ public class MemberServiceImp implements MemberService{
 
 	
 	@Autowired
-private MemberDAO dao;
+	private MemberDAO dao;
 	
 	public MemberServiceImp() {
 		// TODO Auto-generated constructor stub
@@ -31,6 +33,32 @@ private MemberDAO dao;
 	
 	
 	
+	@Override
+	public void addMemberNumberProcess(MemberDTO dto) {
+		
+//		간단하게 MEM + 시간
+		String memcode = null;
+		Date now = new Date();
+		SimpleDateFormat date = new SimpleDateFormat("yyMMddHHmmss");
+		
+		memcode = "MEM"+date.format(now);
+		
+		dto.setMember_number(memcode);
+		
+		
+	}
+	
+	
+	@Override
+	public int addMemberProcess(MemberDTO dto) throws Exception {
+		
+		return dao.insertMember(dto);
+	}
+	
+	@Override
+	public MemberDTO loginUserProcess(String member_number) {
+		return dao.loginUser(member_number);
+	}
 	
 	/////////////////////////여기서부터 관리자 페이지 서비스입니다.//////
 	
@@ -108,7 +136,9 @@ private MemberDAO dao;
 		dao.deleteData(num);
 		
 	}
+
+
+	
 	
 	///////////////////여기까지 관리자 페이지 서비스입니다.////////////////
-	
 }

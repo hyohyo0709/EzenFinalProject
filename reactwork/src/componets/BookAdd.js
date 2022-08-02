@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import TextField from "@mui/material/TextField";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogTitle from "@mui/material/DialogTitle";
-import { Container } from "@mui/system";
+import React, { useEffect, useState } from 'react';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { Container } from '@mui/system';
 import {
   Box,
   FormControl,
@@ -15,24 +15,24 @@ import {
   MenuItem,
   OutlinedInput,
   Select,
-} from "@mui/material";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
+} from '@mui/material';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-const styles = { hidden: { display: "none" } };
+const styles = { hidden: { display: 'none' } };
 
 const BookAdd = () => {
   const [open, setOpen] = React.useState(false);
 
   const [input, setInput] = useState({
     filename: null,
-    book_title: "",
-    book_author: "",
-    book_publisher: "",
-    book_price: "",
-    book_content: "",
-    book_category: "",
-    book_isbn: "",
+    book_title: '',
+    book_author: '',
+    book_publisher: '',
+    book_price: '',
+    book_content: '',
+    book_category: '',
+    book_isbn: '',
   });
 
   const {
@@ -47,10 +47,10 @@ const BookAdd = () => {
   } = input;
 
   const [inputImg, setInputImg] = useState({
-    imgname: "",
+    imgname: '',
   });
 
-  const [selectCategory, setSelectCategory] = React.useState("");
+  const [selectCategory, setSelectCategory] = React.useState('');
 
   const handleCategoryChange = (event) => {
     setSelectCategory(event.target.value);
@@ -83,43 +83,43 @@ const BookAdd = () => {
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("book_title", book_title);
-    formData.append("book_author", book_author);
-    formData.append("book_publisher", book_publisher);
-    formData.append("book_price", book_price);
-    formData.append("book_content", book_content);
-    formData.append("book_category", book_category);
-    formData.append("book_isbn", book_isbn);
+    formData.append('book_title', book_title);
+    formData.append('book_author', book_author);
+    formData.append('book_publisher', book_publisher);
+    formData.append('book_price', book_price);
+    formData.append('book_content', book_content);
+    formData.append('book_category', book_category);
+    formData.append('book_isbn', book_isbn);
     if (filename !== null) {
-      formData.append("filename", filename);
+      formData.append('filename', filename);
     }
-    const config = { headers: { "Content-Type": "multipart/form-data" } };
+    const config = { headers: { 'Content-Type': 'multipart/form-data' } };
 
     await axios
-      .post("http://localhost:8090/books/newbooksave", formData, config)
+      .post('http://localhost:8090/books/newbooksave', formData, config)
       .then((response) => {
         setInput({
-          filename: "",
-          book_title: "",
-          book_author: "",
-          book_publisher: "",
-          book_price: "",
-          book_content: "",
-          book_category: "",
-          book_isbn: "",
+          filename: '',
+          book_title: '',
+          book_author: '',
+          book_publisher: '',
+          book_price: '',
+          book_content: '',
+          book_category: '',
+          book_isbn: '',
         });
       })
       .catch((err) => console.error(err.message));
 
     setOpen(false);
-    window.location.replace("/books");
+    window.location.replace('/books');
   };
 
   return (
     <div>
       <Button
-        variant="contained"
-        color="primary"
+        variant='contained'
+        color='primary'
         onClick={handleClickOpen}
         fullWidth
       >
@@ -131,70 +131,70 @@ const BookAdd = () => {
         <DialogContent>
           <input
             style={styles.hidden}
-            id="raised-button-file"
-            accept="image/*"
-            type="file"
-            name="filename"
+            id='raised-button-file'
+            accept='image/*'
+            type='file'
+            name='filename'
             file={input.filename}
             // value={inputImg.imgname}
             onChange={handleFileChange}
           />
-          <label htmlFor="raised-button-file">
+          <label htmlFor='raised-button-file'>
             <Button
-              variant="contained"
-              color="primary"
-              component="span"
-              name="filename"
+              variant='contained'
+              color='primary'
+              component='span'
+              name='filename'
             >
-              {inputImg.imgname === "" ? "책 표지 등록" : inputImg.imgname}
+              {inputImg.imgname === '' ? '책 표지 등록' : inputImg.imgname}
               {/* 책 표지 등록 */}
             </Button>
           </label>
           <br />
           <TextField
-            label="제목"
-            variant="standard"
-            type="text"
-            name="book_title"
+            label='제목'
+            variant='standard'
+            type='text'
+            name='book_title'
             value={input.book_title}
             onChange={handleValueChange}
           />
           <br />
 
           <TextField
-            label="저자"
-            variant="standard"
-            type="text"
-            name="book_author"
+            label='저자'
+            variant='standard'
+            type='text'
+            name='book_author'
             value={input.book_author}
             onChange={handleValueChange}
           />
           <br />
           <TextField
-            label="출판사"
-            variant="standard"
-            type="text"
-            name="book_publisher"
+            label='출판사'
+            variant='standard'
+            type='text'
+            name='book_publisher'
             value={input.book_publisher}
             onChange={handleValueChange}
           />
           <br />
           <TextField
-            label="가격"
-            variant="standard"
-            type="number"
-            name="book_price"
+            label='가격'
+            variant='standard'
+            type='number'
+            name='book_price'
             value={input.book_price}
             onChange={handleValueChange}
-            placeholder="원"
+            placeholder='원'
           />
 
           <br />
           <TextField
-            label="도서 ISBN"
-            variant="standard"
-            type="text"
-            name="book_isbn"
+            label='도서 ISBN'
+            variant='standard'
+            type='text'
+            name='book_isbn'
             value={input.book_isbn}
             onChange={handleValueChange}
           />
@@ -202,58 +202,40 @@ const BookAdd = () => {
 
         <DialogContent>
           <TextField
-            id="outlined-multiline-static"
-            label="책 소개"
+            id='outlined-multiline-static'
+            label='책 소개'
             multiline
             rows={10}
-            name="book_content"
+            name='book_content'
             value={input.book_content}
             onChange={handleValueChange}
           />
           <br />
           <Box sx={{ minWidth: 120 }}>
-            <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
-              <InputLabel id="demo-simple-select-label">장르</InputLabel>
+            <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
+              <InputLabel id='demo-simple-select-label'>장르</InputLabel>
               <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
+                labelId='demo-simple-select-label'
+                id='demo-simple-select'
                 value={selectCategory}
-                label="장르"
+                label='장르'
                 onChange={handleCategoryChange}
               >
-                <MenuItem value={1}>소설/시/희곡</MenuItem>
-                <MenuItem value={2}>에세이</MenuItem>
-                <MenuItem value={3}>인문</MenuItem>
-                <MenuItem value={4}>역사</MenuItem>
-                <MenuItem value={5}>예술</MenuItem>
-                <MenuItem value={6}>종교</MenuItem>
-                <MenuItem value={7}>사회.정치</MenuItem>
-                <MenuItem value={8}>자연과학</MenuItem>
-                <MenuItem value={9}>경제 경영</MenuItem>
-                <MenuItem value={10}>자기계발</MenuItem>
-                <MenuItem value={11}>인물</MenuItem>
-                <MenuItem value={12}>유아</MenuItem>
-                <MenuItem value={13}>어린이</MenuItem>
-                <MenuItem value={14}>청소년</MenuItem>
-                <MenuItem value={15}>전집</MenuItem>
-                <MenuItem value={16}>만화</MenuItem>
-                <MenuItem value={17}>여행</MenuItem>
-                <MenuItem value={18}>참고서</MenuItem>
-                <MenuItem value={19}>잡지</MenuItem>
-                <MenuItem value={20}>외국도서</MenuItem>
+                <MenuItem value={1}>소설</MenuItem>
+                <MenuItem value={2}>인문/사회</MenuItem>
               </Select>
             </FormControl>
           </Box>
         </DialogContent>
         <DialogActions>
           <Button
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
             onClick={handleFormSubmit}
           >
             추가
           </Button>
-          <Button variant="contained" color="primary" onClick={handleClose}>
+          <Button variant='contained' color='primary' onClick={handleClose}>
             닫기
           </Button>
         </DialogActions>

@@ -1,5 +1,6 @@
 package ezenproject.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
@@ -16,8 +17,12 @@ public interface BookDAO {
 	public int count();
 	public List<BookDTO> booklist(PageDTO pv);
 	public BookDTO content(int num);
-	public List<BookDTO> img_list();
 	
+	public List<BookDTO> allBookList(PageDTO pv);
+	public int countCategory(int book_category);
+	public List<BookDTO> categoryList(HashMap<String, Object> map);
+	public List<BookDTO> searchList(PageDTO pv);
+	public int countSearch(String searchWord);
 	
 	public List<BookDTO> list();
 	public BookDTO selectOne(int num);
