@@ -11,21 +11,16 @@ import ezenproject.dto.CartDTO;
 @Service
 @Transactional(propagation = Propagation.REQUIRED)
 public class CartServiceImp implements CartService{
+	@Autowired
 	private CartDAO dao;
+	public CartServiceImp() {
+		
+	}
 	
 	@Override
-	public int addCart(CartDTO dto) {
-	CartDTO checkCart = dao.checkCart(dto); 
-	if(checkCart != null) {
-		return 2;
-		}
-		// 장바구니 등록 & 에러 시 0반환
-	try {
-		return dao.addCart(dto);
-	} catch (Exception e) {
-		return 0;
+	public void addCartProcess(CartDTO dto) {
+		 dao.addCart(dto);		
 	}
-}
 
 	
 	

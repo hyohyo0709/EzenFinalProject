@@ -23,7 +23,7 @@ public interface CartDAO {
 //    
     
     /* 카트 추가 */
-	public int addCart(CartDTO dto);
+	public void addCart(CartDTO dto);
 	
 	/* 카트 삭제 */
 	public int deleteCart(int num);

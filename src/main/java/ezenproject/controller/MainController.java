@@ -234,18 +234,11 @@ public class MainController {
 	 * 1: 등록 성공
 	 * 2: 등록된 데이터 존재
 	 */
-	
+	@ResponseBody
 	@RequestMapping(value = "/cart/list/add")
-	public String addCartPOST(CartDTO dto, HttpServletRequest request) {
-////		 로그인 체크
-		HttpSession session = request.getSession();
-		MemberDTO mvo = (MemberDTO)session.getAttribute("member");
-		if(mvo == null) {
-			return "5";
-		}
+	public void addCartPOST(CartDTO dto, HttpServletRequest request) {
 //		// 카트 등록
-		int result = cservice.addCart(dto);
-		return result + "";
+		cservice.addCartProcess(dto);
 	}
 	
 	
