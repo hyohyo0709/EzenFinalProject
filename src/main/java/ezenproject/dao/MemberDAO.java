@@ -16,6 +16,7 @@ public interface MemberDAO {
 
 	public List<MemberDTO> list();
 	public void statusChangeOn(int num);
+	
 	public void statusChangeOff(int num);
 	public MemberDTO selectOne(int num);
 	public void typeChangeOn(int num);
@@ -24,5 +25,7 @@ public interface MemberDAO {
 	
 	public MemberDTO loginCheck(MemberDTO dto) throws DataAccessException;
 	public int insertMember (MemberDTO dto) throws DataAccessException;
+	
+	public void updateMemberInformation(MemberDTO dto) throws DataAccessException;
 	
 }

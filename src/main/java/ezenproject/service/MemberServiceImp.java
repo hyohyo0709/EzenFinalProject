@@ -55,6 +55,11 @@ public class MemberServiceImp implements MemberService{
 		return dao.insertMember(dto);
 	}
 	
+	@Override
+	public void updateInformation(MemberDTO dto) throws Exception {
+		dao.updateMemberInformation(dto);
+		
+	}
 	
 	
 	/////////////////////////여기서부터 관리자 페이지 서비스입니다.//////
@@ -80,6 +85,7 @@ public class MemberServiceImp implements MemberService{
 		
 	}
 	
+//	마이페이지 공용
 	@Override
 	public void statusChangeOffProcess(int num) {
 		dao.statusChangeOff(num);
@@ -120,7 +126,7 @@ public class MemberServiceImp implements MemberService{
 	
 	
 	
-	
+// 마이페이지 공용	
 	@Override
 	public MemberDTO selectOneProcess(int num) {
 		

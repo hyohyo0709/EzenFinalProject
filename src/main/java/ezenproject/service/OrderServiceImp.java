@@ -87,4 +87,31 @@ public class OrderServiceImp implements OrderService{
 		
 	}
 	 
+	 
+	 
+	 @Override
+	public List<OrderDTO> myOrderListProcess(String ordernum) {
+		
+		return dao.myOrderList(ordernum);
+	}
+	 
+	 @Override
+	public OrderDTO orderInformationProcess(int num) {
+		
+		return dao.selectOrderInformation(num);
+	}
+	 
+	 @Override
+	public OrderDTO orderStatusProcess(String order_number) {
+		
+		return dao.checkOrderStatus(order_number);
+	}
+	 
+	 
+	 @Override
+	public void updateOrderProcess(OrderDTO dto) {
+		dao.updateOrderInformation(dto);
+		
+	}
+	 
 }

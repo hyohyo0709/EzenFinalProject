@@ -78,7 +78,7 @@ public class MainController {
 	}
 
 //	Form으로 끝나는 친구들 연결 시키는거(result = false)
-	@RequestMapping(value = "/member/*Form.do", method = RequestMethod.GET)
+	@RequestMapping(value = "/*/*Form.do", method = RequestMethod.GET)
 	private ModelAndView form(@RequestParam(value = "result", required = false) String result,
 			@RequestParam(value = "action", required = false) String action, HttpServletRequest request,
 			HttpServletResponse response) {
@@ -141,6 +141,91 @@ public class MainController {
 		return mav;
 	}
 
+//	///////////////////////////여기서부터 마이 페이지////////////////////////////////////////
+
+	//회원정보 출력
+		@RequestMapping(value = "/mypage/memberdetail.do", method = RequestMethod.GET)
+		public ModelAndView memberInformationMethod(ModelAndView mav, int num)
+				throws Exception {
+			mdto = mservice.selectOneProcess(num);
+			mav.addObject("memberInfo", mdto);
+			mav.setViewName("/mypage/memberdetail");
+//			System.out.println(mdto);
+			return mav;
+		}
+	
+	
+		//회원탈퇴
+		@RequestMapping(value = "/mypage/memberdelete.do", method = RequestMethod.POST)
+		public String memberLeaveMethod(int num, HttpServletRequest request)	throws Exception {
+			mservice.statusChangeOffProcess(num);
+			logout(request);
+			return "redirect:/";
+		}
+		
+		
+		//회원정보 수정
+		@RequestMapping(value = "/mypage/update.do", method = RequestMethod.POST)
+		public String updateMethod(MemberDTO mdto) throws Exception {
+			mservice.updateInformation(mdto);
+			return "redirect:/mypage/mypageForm.do";
+		}
+		
+		
+		//주문 목록
+		@RequestMapping(value = "/mypage/myorderlist.do", method = RequestMethod.GET)
+		public ModelAndView orderListMethod(ModelAndView mav, String member_number) {	 
+			 
+			 List<OrderDTO> aList = oservice.myOrderListProcess(member_number);
+			
+			 mav.addObject("aList", aList); 
+			mav.setViewName("/mypage/myorderlist");
+			return mav;
+		} 
+		
+		
+		//주문 뷰페이지
+		@RequestMapping(value = "/mypage/myorderdetail.do", method = RequestMethod.GET)
+		public ModelAndView orderInformationMethod(ModelAndView mav, int num)
+				throws Exception {
+			odto = oservice.orderInformationProcess(num);
+			mav.addObject("orderInfo", odto);
+			mav.setViewName("/mypage/myorderdetail");
+			//System.out.println(obdto.getBdto().getBook_content());
+			return mav;
+		}
+		
+		
+		
+		//배송 확인
+		@RequestMapping(value="/mypage/myorderstatus.do", method = RequestMethod.GET)
+		public ModelAndView orderStatusMethod(String order_number, ModelAndView mav) throws Exception {
+			odto = oservice.orderStatusProcess(order_number);
+			mav.addObject("orderstatus", odto);
+			mav.setViewName("/mypage/myorderstatus");
+			
+			return mav;
+		}
+		
+		
+		//주문 취소(시스템상 내용은 주문 수정)
+		@RequestMapping(value = "/mypage/myorderupdate.do", method = RequestMethod.POST)
+		public String orderupdateMethod(OrderDTO dto, String member_number) throws Exception {
+			
+			oservice.updateOrderProcess(dto);
+
+			return "redirect:/mypage/myorderlist.do?member_number="+member_number;
+		}
+	
+//	///////////////////////////여기까지 마이페이지//////////////////////////////////////////////
+	
+	
+	
+	
+	
+	
+	
+	
 //	모든 종류 도서 리스트
 	@RequestMapping(value = "/book/allBooklist.do")
 	public ModelAndView listAllBookMethod(HttpServletRequest request, PageDTO pv, ModelAndView mav) {
@@ -236,7 +321,7 @@ public class MainController {
 		oservice.newOrderNumberProcess(dto);
 		oservice.newOrderSaveProcess(dto);
 		
-		return "redirect : /";
+		return "redirect:/";
 	}
 
 ////////////////////////////////////////////////////여기부터 관리자 페이지 메소드입니다.////////////////////

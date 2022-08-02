@@ -95,7 +95,7 @@ $(document).ready(function(){
 		if(this.checked){
 			$("#order_name").val("${member.member_name}");
 			$("#order_phone").val("${member.member_phone}");
-			$("#address_main").val("${member.member_address}");
+			$("#order_address").val("${member.member_address}");
 		}
 	})
 	
@@ -150,7 +150,7 @@ $(document).ready(function(){
             <div>
               <h6 class="my-0">상품명 </h6>
               <small class="text-muted" name="book_title">${bdto.book_title}</small>
-              <small class="text-muted"  hidden="true"><input name="book_id" type="hidden"> ${bdto.book_id}</input></small>
+              <small class="text-muted"  hidden="true"><input name="book_id" type="text" value="${bdto.book_id}"/></small>
             </div>
             <span class="text-muted" name="book_price">${bdto.book_price}원</span>
           </li>
@@ -181,7 +181,7 @@ $(document).ready(function(){
           </li>
           <li class="list-group-item d-flex justify-content-between" >
             <span>결제금액</span>
-            <strong ><input type="number" name="order_cost" value="${bdto.book_price}" readonly="readonly"/> 원</strong>
+            <strong ><input type="number" name="order_cost" value="${bdto.book_price}" hidden="true"/>${bdto.book_price} 원</strong>
            
           </li>
         </ul>
@@ -283,7 +283,7 @@ $(document).ready(function(){
 
             <div class="col-12">
               <label for="address" class="form-label">상세주소</label>
-              <input type="text" class="form-control" id="address_main" name="o_address_main" value="" placeholder="1234-1 행복하우스 101호 " required>
+              <input type="text" class="form-control" id="order_address" name="order_address" value="" placeholder="1234-1 행복하우스 101호 " required>
               <div class="invalid-feedback">
                상세주소를 입력해주세요 
               </div>

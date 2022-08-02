@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,31 +22,51 @@ pageEncoding="UTF-8"%>
       crossorigin="anonymous"
     ></script>
 
-    <link href="./assets/css/style.css" rel="stylesheet" />
+    <link href="../assets/css/style.css" rel="stylesheet" />
 
     <title>마이페이지</title>
     <link
       rel="short icon"
-      href="./assets/img/favicon.png"
+      href="../assets/img/favicon.png"
       type="image/x-icon"
     />
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	var currentPosition = parseInt($("#quickmenu").css("top"));
+    	$(window).scroll(function()
+    	{       var position = $(window).scrollTop();
+    	       $("#quickmenu").stop().animate({"top":position+currentPosition+"px"},1000);
+    	 });
+    	
+    	$("#member").click(function(){
+    		var url = document.getElementsById("memurl")
+    		console.log(url);
+    	});
+    	
+    	  });
+    </script>
+    
+    
+    
+    
   </head>
   <body>
   
    <!-- Nabar start -->
 
-    <%@ include file = "./common/header.jsp"%>
+    <%@ include file = "../common/header.jsp"%>
     <!-- Header end -->
 
   <!-- breadclumb end -->
   <!-- head end -->
 
   <!-- detail start -->
-
+<%@ include file = "mypagemenu.jsp"%>
   
   <!-- detail end -->
 
   <!-- Footer Start -->
- <%@ include file = "./common/footer.jsp"%>
+ <%@ include file = "../common/footer.jsp"%>
   <!-- Footer end -->
 </html>

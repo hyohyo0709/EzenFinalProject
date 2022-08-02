@@ -63,7 +63,7 @@ pageEncoding="UTF-8"%>
             <c:choose>
           <c:when test="${isLogOn == true  && member!= null}">
             <li><a class="dropdown-item" href="${contextPath}/member/logout.do">로그아웃</a></li>
-             <li><a class="dropdown-item" href="mypage.jsp">My Page</a></li>
+             <li><a class="dropdown-item" href="${contextPath}/mypage/mypageForm.do">My Page</a></li>
           </c:when>
           <c:otherwise>
 	       <li><a class="dropdown-item" href="${contextPath}/member/loginForm.do">로그인</a></li>

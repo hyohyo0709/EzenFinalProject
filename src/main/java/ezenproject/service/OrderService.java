@@ -23,5 +23,9 @@ public void deleteDataProcess(int num);
 public void newOrderNumberProcess(OrderDTO dto);
 public void newOrderSaveProcess(OrderDTO dto);
 
+public List<OrderDTO> myOrderListProcess(String memnumber);
+public OrderDTO orderInformationProcess(int ordernum);
+public OrderDTO orderStatusProcess(String order_number);
 
+public void updateOrderProcess(OrderDTO dto);
 }
