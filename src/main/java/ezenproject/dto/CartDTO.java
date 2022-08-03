@@ -11,11 +11,45 @@ public class CartDTO {
 	//book
 	
 	private int money;
+	private String book_author;
+	private String book_publisher;
+	
+	public String getBook_publisher() {
+		return book_publisher;
+	}
+
+
+	public void setBook_publisher(String book_publisher) {
+		this.book_publisher = book_publisher;
+	}
+
+
+	public String getBook_author() {
+		return book_author;
+	}
+
+
+	public void setBook_author(String book_author) {
+		this.book_author = book_author;
+	}
+
+
 	private String book_title;
 	private int book_price;
+	private String book_img;
 	//추가
 	
 		
+	public String getBook_img() {
+		return book_img;
+	}
+
+
+	public void setBook_img(String book_img) {
+		this.book_img = book_img;
+	}
+
+
 	public String getBook_title() {
 		return book_title;
 	}

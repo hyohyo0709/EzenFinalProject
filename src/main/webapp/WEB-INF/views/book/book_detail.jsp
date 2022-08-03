@@ -81,7 +81,6 @@
 				<c:if test="${dto.book_category == 20}">외국도서</c:if>
 				 | ISBN코드 : ${dto.book_isbn }
 					</p>
-					
 				<table>
 					<colgroup>
 						<col width="150">
@@ -146,7 +145,7 @@
 									<input class="count_btn1" type="button" value="-" id="minus_btn">
 								</td>
 								<td>
-									<input type="text" name="cart_amount" id="quantity_input" class="count_total" value="1">					
+									<input type="text" id="quantity_input" class="count_total" value="1">					
 								</td>
 								<td>
 									<input class="count_btn2" type="button" value="+" id="plus_btn">
@@ -179,13 +178,11 @@
 					<c:param name="num" value="${dto.num }"/>
 					</c:url>
 					<c:url var="cart_link" value="/cart/list.do">
-					<c:param name="num" value="${dto.num }"/>
+					<c:param name="num" value="${dto.num}"/>
+					<c:param name="member_number" value="${member.member_number}"/>
 					</c:url>
+					
 					<!-- //구매 버튼 링크// -->
-					
-				
-				
-					
 					
 					<!-- 재고 유무에 따라 재고가 없을시에 알림창 -->
 					<div style="margin-top: 15px;">
@@ -193,19 +190,20 @@
 					<c:choose>
 					<c:when test="${dto.book_stock==1 && isLogOn == true && member!= null}">
 					<input class="cart_btn" id="cart_btn" type="button" value="장바구니">
-					<input class="buy_button1" type="button" value="선물하기" id="cart_btn">
+					<%-- <input class="buy_button1" type="button" value="카트확인" onclick="window.open('${cart_link}')"> --%>
+					<a class="buy_button1" href="/cart/list/${member.member_number}">장바구니</a>
 					<input class="buy_button2" type="button" value="매장구매" onclick="window.open('${pickup_link}')">
 					<input class="buy_button2" type="button" value="바로구매" onclick="window.open('${order_link}')">
 					</c:when>
-					<c:when test="${dto.book_stock==0 && isLogOn == true && member!= null}">
+					<c:when test="${dto.book_stock==0 && isLogOn == true && member!= null}">	
 					<input class="buy_button1" type="button" value="장바구니" onclick="noStock()">
-					<input class="buy_button1" type="button" value="선물하기" onclick="noStock()" >
+					<input class="buy_button1" type="button" value="카트확인" onclick="noStock()" >
 					<input class="buy_button2" type="button" value="매장구매" onclick="noStock()">
 					<input class="buy_button2" type="button" value="바로구매" onclick="noStock()">
 					</c:when>
 					<c:otherwise>
 					<input class="buy_button1" type="button" value="장바구니" onclick="nologin()">
-					<input class="buy_button1" type="button" value="선물하기" onclick="nologin()" >
+					<input class="buy_button1" type="button" value="카트확인" onclick="nologin()" >
 					<input class="buy_button2" type="button" value="매장구매" onclick="nologin()">
 					<input class="buy_button2" type="button" value="바로구매" onclick="nologin()">
 					</c:otherwise>
@@ -224,7 +222,7 @@
 	<div class="col-md-3">
 	</div>
 	<div class="col-md-6" id="new_books">
-	<span style="font-size: 35px">다른 매력적인 책들을 만나보세요 </span>	
+	<span style="font-size: 35px">다른 매력적인 책들을 만나보세요</span>	
 	</div>
 	<div class="col-md-3">
 	</div>
@@ -278,26 +276,26 @@
 }
 	
 	$(".cart_btn").on("click", function(e){
-			form.cart_amount = $(".quantity_input").val();
+			form.cart_amount =  $("#quantity_input").val();
 			$.ajax({
 				url: '/cart/list/add',
 				type: 'POST',
 				data: form,
-				success: function(){
-					cartSuccess();
-				},
-				error : function(){
-					cartFalse();
+				success: function(result){
+					cartAlert(result);
 				}
 			})
-		});
-		
-	function cartFalse(){
-			alert("장바구니에 추가를 하지 못하였습니다.")};
-			
-	function cartSuccess(){
+			});
+	function cartAlert(result){
+		if(result == '0'){
+			alert("장바구니에 추가를 하지 못하였습니다.");
+		} else if(result == '1'){
 			alert("장바구니에 추가되었습니다.");
-		} 
+		} else if(result == '2'){
+			alert("장바구니에 이미 추가되어져 있습니다.");
+		}
+	}
+		
 	
 	
 	

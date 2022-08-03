@@ -107,6 +107,9 @@
    ]]>
     </select>
 
+	<select id="book_id" parameterType="String" resultType="BookDTO">
+	SELECT*FROM ezenbooks WHERE book_id=#{book_id}
+	</select>
     
     <!-- //////////////////여기서부터 관리자 페이지 매퍼입니다.////////////////////////  -->
     

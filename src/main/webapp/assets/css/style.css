@@ -13,28 +13,6 @@ a {
 
 
 
-/*///////////////// board에 삽입된 css 목록 시작 //////////////// */
-#category_box{
-	background-color: #f5f5f5;
-}
-#accordion-btn{
-	background-color: black;
-	color:white;
-	text-align: center;
-}
-#accordion-btn:not(.collapsed){
-	color: white;
-	background-color: #A9A9A9;
-}
-.category_btn{
-	margin: auto;
-	text-align: left;
-	color: black;
-	
-}
-
-
-/*///////////////// board에 삽입된 css 목록 끝 //////////////// */
 
 /*///////////////// book_detail에 삽입된 css 목록 시작 //////////////// */
 /* col-md-3 */

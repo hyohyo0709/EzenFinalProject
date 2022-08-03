@@ -11,11 +11,11 @@
     <!-- 장바구니 생성 매퍼 -->
     
     <!-- 카트 체크  -->
-    <select id="checkCart" resultType="CartDTO">
-	
+    <select id="checkCart" resultType="CartDTO" >
+		 <![CDATA[
 		SELECT * FROM ezencarts 
 		WHERE member_number = #{member_number} and book_id = #{book_id}
-	
+	]]>
 	</select>
     
     <insert id="addCart" >
@@ -40,15 +40,18 @@
 		UPDATE ezencarts SET cart_amount=#{cart_amount} WHERE num = #{num}
 	
 	</update>
-	
+	<select id="cartlist" resultType="CartDTO">
+	SELECT * FROM ezencarts ORDER BY num	
+	</select>
 	
 	<!-- 카트 목록 -->
 	<select id="getCart" resultType="CartDTO">
+	 <![CDATA[
+	select a.num, a.member_number, a.book_id, a.cart_amount, b.book_title, b.book_price, b.book_img, b.book_author, b.book_publisher
+		from ezencarts a left outer join ezenbooks b on a.book_id = b.book_id
+		where member_number = #{member_number}	
 	
-		SELECT a.num, a.member_number, a.book_id, a.cart_amount, b.book_title, b.book_price
-		FROM ezencarts a left outer join ezenbooks b on a.book_id = b.book_id
-		WHERE member_number = #{member_number}	
-	
+	]]>
 	</select>
 	
 

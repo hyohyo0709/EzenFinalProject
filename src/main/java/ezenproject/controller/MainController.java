@@ -18,8 +18,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -73,7 +75,7 @@ public class MainController {
 	
 //	모든 종류 도서 리스트
 			@RequestMapping(value = "/book/allBooklist.do")
-			public ModelAndView listAllBookMethod(HttpServletRequest request, PageDTO pv, ModelAndView mav, String member_number,MemberDTO dto) {
+			public ModelAndView listAllBookMethod(HttpServletRequest request, PageDTO pv, ModelAndView mav) {
 				int totalRecord = bservice.countProcess();
 				String viewName = (String) request.getAttribute("viewName");
 				
@@ -147,11 +149,11 @@ public class MainController {
 	
 //	도서 상세 페이지 들어가기
 	@RequestMapping(value = "/book/book_detail.do")
-	public ModelAndView viewMethod(HttpServletRequest request, int currentPage, int num, ModelAndView mav) {
+	public ModelAndView viewMethod(HttpServletRequest request, int currentPage, int num, ModelAndView mav,String member_number) {
 		String viewName = (String)request.getAttribute("viewName");
 		List<BookDTO> alist = bservice.listProcess();
 		mav.addObject("alist", alist);
-		
+
 		try {
 			if(bservice.contentProcess(num).getNum()==num) {
 					mav.addObject("dto", bservice.contentProcess(num));
@@ -209,24 +211,22 @@ public class MainController {
 	
 	
 	////////////////////////////////장바구니 메소드 시작//////////////////////////////////////
-	@RequestMapping(value = "/cart/list.do")
-	public ModelAndView cartMethod(HttpServletRequest request, int num, ModelAndView mav, String member_number) {
-		String viewName = (String)request.getAttribute("viewName");
-		
-		try {
-			if(bservice.contentProcess(num).getNum()==num && mservice.loginUserProcess(member_number).getMember_number().equals(member_number)) {
-					mav.addObject("dto", bservice.contentProcess(num));
-					mav.setViewName(viewName);
-		}	
-		}catch (Exception e) {
-			viewName = "/erroralert";
-			mav.setViewName(viewName);
-		}
-		return mav;
-	}
-	
-	
-	
+	//카트확인 페이지
+//	@RequestMapping(value = "/cart/list.do")
+//	public ModelAndView cartMethod(HttpServletRequest request, int num, ModelAndView mav, String member_number) {
+//		String viewName = (String)request.getAttribute("viewName");
+////		try {
+//			if(bservice.contentProcess(num).getNum()==num) {
+//					mav.addObject("dto", bservice.contentProcess(num));
+//					mav.addObject("cdto",cservice.getCartProcess(member_number));
+//					mav.setViewName(viewName);
+////		}	
+////		}catch (Exception e) {
+////			viewName = "/erroralert";
+////			mav.setViewName(viewName);
+//		}
+//		return mav;
+//	}
 	
 	/* 장바구니 추가 */
 	/**
@@ -234,12 +234,24 @@ public class MainController {
 	 * 1: 등록 성공
 	 * 2: 등록된 데이터 존재
 	 */
+	
+	
 	@ResponseBody
 	@RequestMapping(value = "/cart/list/add")
-	public void addCartPOST(CartDTO dto, HttpServletRequest request) {
-//		// 카트 등록
-		cservice.addCartProcess(dto);
+	public String addCartPOST(CartDTO dto, HttpServletRequest request) {
+		
+	int result = cservice.addCartProcess(dto);
+	return result + "";	
 	}
+	
+	/* 장바구니 페이지 이동 */	
+	
+	@RequestMapping(value ="/cart/list/{member_number}" , method = RequestMethod.GET)
+	public String cartPageGET(@PathVariable("member_number") String member_number, Model model) {
+					model.addAttribute("clist", cservice.getCartProcess(member_number));
+		
+		return "/cart/list";
+	}	
 	
 	
 	
@@ -348,7 +360,7 @@ public class MainController {
 		@ResponseBody
 		@RequestMapping(value = "/books/statuschange/{num}", method = RequestMethod.PUT)
 		public void statusBookChangeMethod(@PathVariable("num") int num) {
-
+			
 			bservice.statusCheckProcess(num);
 
 		}
