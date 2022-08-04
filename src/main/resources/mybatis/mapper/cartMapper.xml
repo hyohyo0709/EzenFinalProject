@@ -47,7 +47,7 @@
 	<!-- 카트 목록 -->
 	<select id="getCart" resultType="CartDTO">
 	 <![CDATA[
-	select a.num, a.member_number, a.book_id, a.cart_amount, b.book_title, b.book_price, b.book_img, b.book_author, b.book_publisher
+	select a.num, a.member_number, a.book_id, a.cart_amount, b.book_title, b.book_price, b.book_img, b.book_author, b.book_publisher, b.book_category
 		from ezencarts a left outer join ezenbooks b on a.book_id = b.book_id
 		where member_number = #{member_number}	
 	

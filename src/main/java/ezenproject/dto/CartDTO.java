@@ -13,7 +13,17 @@ public class CartDTO {
 	private int money;
 	private String book_author;
 	private String book_publisher;
-	
+	private int book_category;
+	public int getBook_category() {
+		return book_category;
+	}
+
+
+	public void setBook_category(int book_category) {
+		this.book_category = book_category;
+	}
+
+
 	public String getBook_publisher() {
 		return book_publisher;
 	}

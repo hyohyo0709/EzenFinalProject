@@ -158,7 +158,7 @@
 								</th>
 								<td colspan="3">	
 									<input type="hidden" value="-" id="minus_btn">
-									<p class="count_total_price">${sellprice}원</p>
+									<p class="cart_count_total_price">${sellprice}원</p>
 									<input type="hidden" value="+" id="plus_btn">
 								</td>
 							</tr>
