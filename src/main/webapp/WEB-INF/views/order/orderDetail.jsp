@@ -91,6 +91,8 @@ pageEncoding="UTF-8"%>
   
 <script type="text/javascript">
 $(document).ready(function(){
+	
+	
 	$("#same-address").change(function(){
 		if(this.checked){
 			$("#order_name").val("${member.member_name}");
@@ -174,14 +176,16 @@ $(document).ready(function(){
           </li>
           <li class="list-group-item d-flex justify-content-between bg-light">
             <div class="text-success">
-              <h6 class="my-0">할인 쿠폰 </h6>
-              <small>첫구매할인 </small>
+              <h6 class="my-0">판매가 적용 </h6>
+              <small>사이트 오픈 할인 </small>
             </div>
-            <span class="text-success">−1000원</span>
+            <span class="text-success">10% 할인</span>
           </li>
           <li class="list-group-item d-flex justify-content-between" >
             <span>결제금액</span>
-            <strong ><input type="number" name="order_cost" value="${bdto.book_price}" hidden="true"/>${bdto.book_price} 원</strong>
+            <fmt:parseNumber var="total_cost" value="${bdto.sellprice}"/>
+            <input type="number" name="order_cost"  value="${total_cost}" hidden="true"/>
+            <strong >${total_cost } 원</strong>
            
           </li>
         </ul>

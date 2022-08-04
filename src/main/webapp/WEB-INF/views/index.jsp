@@ -38,14 +38,10 @@ pageEncoding="UTF-8"%>
     <%@ include file = "./common/header.jsp"%>
     <!-- Header end -->
 
-    <!-- card start -->
-
-    
-    <!-- card end -->
+   
 
     <!-- body start -->
-    
-    <%@ include file = "./common/main.jsp"%>
+    <%@ include file = "./common/main.jsp"%> 
 
     <!-- body end -->
 

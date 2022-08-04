@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"></link>
 
 <style>
-/*배송확인 */
 body{
 	color: #000;
 	overflow-x: hidden;

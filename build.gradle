@@ -61,5 +61,3 @@ implementation 'org.apache.tiles:tiles-el:3.0.8'
 tasks.named('test') {
 	useJUnitPlatform()
 }
-
-
