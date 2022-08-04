@@ -70,7 +70,7 @@ public class MainController {
 	private String filepath;
 
 //	메인 페이지 연결
-	// http://localhost:8090/
+	// http://localhost:8090/index.do
 	@RequestMapping(value = { "/", "/index.do" }, method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request, ModelAndView mav) {
 		String viewname = (String) request.getAttribute("viewName");
@@ -542,7 +542,8 @@ BookDTO dto= bservice.contentProcess(num);
 		oservice.deleteDataProcess(num);
 	}
 	
-	
+///////
+///////
 //	회원에게 할인권 부여
 	@ResponseBody
 	@RequestMapping(value = "/members/newcouponsave", method = RequestMethod.POST)

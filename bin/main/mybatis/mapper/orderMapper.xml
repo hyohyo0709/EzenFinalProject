@@ -4,7 +4,7 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  
+    
     
     <mapper namespace="ezenproject.dao.OrderDAO">
   
@@ -100,10 +100,11 @@
     
     
     
+    
     <insert id="orderSave" parameterType="OrderDTO">
     insert into ezenorders (num, order_number, order_cost, member_number, book_id, order_status,
     order_phone, order_name, order_address)
-    values(ezenorders_num_seq.nextval, #{order_number}, #{order_cost}, #{member_number}, #{book_id}, 1,
+    values(ezenorders_num_seq.nextval, #{order_number,jdbcType=VARCHAR}, #{order_cost}, #{member_number}, #{book_id}, 1,
     #{order_phone}, #{order_name}, #{order_address})
     
     </insert>
@@ -117,7 +118,8 @@
     FROM ezenorders o, ezenbooks b, ezenmembers m 
     WHERE  m.member_number = o.member_number 
     AND o.book_id = b.book_id
-    AND o.order_number = #{order_number} 
+    AND o.order_number = #{order_number,jdbcType=VARCHAR}      
+    
     </select>
     
     

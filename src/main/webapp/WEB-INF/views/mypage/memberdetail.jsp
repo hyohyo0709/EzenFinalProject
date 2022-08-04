@@ -86,9 +86,22 @@
    
 
   <!-- mypage menu start -->
+  <!--mypage menu를 왼쪽으로  -->
+  <div class="container">
+  <div class="row">
+  <div class="col-2">
+	<div class="list-group" id="quickmenu" align='left' > 
+	  <input type="text" id="mymenu" readonly="readonly"  class="list-group-item list-group-item-action active list-group-item-secondary"
+	    value="사용자 My Menu" />
+	  
+	  <button id="member" onclick="location.href='http://localhost:8090/mypage/memberdetail.do?num=${member.num}'" class="list-group-item list-group-item-action">회원정보 수정</button>
+	  <button id="order" onclick="location.href='http://localhost:8090/mypage/myorderlist.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action">주문확인 / 취소</button>
+	
+	</div> 
+	</div>
+	</div>
 
-	<%@ include file = "mypagemenu.jsp"%>
-  <!-- mypage menu end -->
+ <!-- mypage menu end -->
   
   
   <!-- member detail start -->
@@ -106,13 +119,13 @@
     <label for="inputEmail4" class="form-label">아이디</label>
     <input type="text" class="form-control" name="member_id" readonly="readonly" value="${memberInfo.member_id}">
   </div>
-  <div class="col-md-5">
+  <div class="col-md-4">
     <label for="inputPassword4" class="form-label">비밀번호</label>
     <input type="password" class="form-control" name="member_pass" id="member_pass" value="${memberInfo.member_pass }" readonly="readonly">
       <!-- 비밀번호 변경 버튼 -->
-<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#pass_change">
-  비밀번호 변경하기
-</button>
+	<button type="button" class="btn btn-white" data-bs-toggle="modal" data-bs-target="#pass_change">
+ 	 비밀번호 변경하기
+	</button>
 
 <!-- Modal -->
 <div class="modal fade" id="pass_change" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

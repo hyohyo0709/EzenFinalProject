@@ -54,15 +54,26 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
     <!-- Header end -->
     
   <!-- mypage menu start -->
-  <div id='test'>
-	<%@ include file = "mypagemenu.jsp"%>
+  <!--mypage menu를 왼쪽으로  -->
+  <div class="container">
+  <div class="row">
+  <div class="col-2">
+	<div class="list-group" id="quickmenu" align='left' > 
+	  <input type="text" id="mymenu" readonly="readonly"  class="list-group-item list-group-item-action active list-group-item-secondary"
+	    value="사용자 My Menu" />
+	  
+	  <button id="member" onclick="location.href='http://localhost:8090/mypage/memberdetail.do?num=${member.num}'" class="list-group-item list-group-item-action">회원정보 수정</button>
+	  <button id="order" onclick="location.href='http://localhost:8090/mypage/myorderlist.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action">주문확인 / 취소</button>
+	
+	</div> 
+	</div>
+	</div>
   <!-- mypage menu end -->
     
   <!-- order detail start -->
-
-  
-<table id='ordertable' class="table table-hover border border-secondary" >
-  <thead>
+ <table id='ordertable' class="table caption-top table-secondary">
+ 	<caption>주문확인/취소</caption>
+   <thead>
     <tr >
       <th scope="col">주문번호</th>
       <th scope="col">책 제목</th>
@@ -110,6 +121,7 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
 </tbody>
 </table>
   </div>
+  
   <!-- order detail end -->
   
     <!-- Footer Start -->

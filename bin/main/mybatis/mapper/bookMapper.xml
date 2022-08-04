@@ -5,8 +5,8 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
     
+    
     <mapper namespace="ezenproject.dao.BookDAO">
-
     
     <!-- 고객에게 보여지는 모든 책 갯수  -->
     <select id="count" resultType="int">

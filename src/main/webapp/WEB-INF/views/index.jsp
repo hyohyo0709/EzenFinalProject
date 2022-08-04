@@ -21,32 +21,35 @@ pageEncoding="UTF-8"%>
       crossorigin="anonymous"
     ></script>
 
-    <link href="./assets/css/style.css" rel="stylesheet" />
-    <title>메인 페이지</title>
+    <link href="../assets/css/style.css" rel="stylesheet" />
+    <title>Document</title>
 
     <!-- 파비콘 -->
     <link
       rel="short icon"
-      href="./assets/img/favicon.png"
+      href="../assets/img/favicon.png"
       type="image/x-icon"
     />
+        
   </head>
   <body>
     <!-- Header Start -->
     <!-- Nabar start -->
-
     <%@ include file = "./common/header.jsp"%>
-    <!-- Header end -->
-
-   
+    <!-- Navbar End-->
+    <!-- Header End -->
+    
 
     <!-- body start -->
-    <%@ include file = "./common/main.jsp"%> 
-
+    <%@ include file = "./common/main.jsp"%>  
     <!-- body end -->
-
+    
     <!-- Footer Start -->
     <%@ include file = "./common/footer.jsp"%>
     <!-- Footer end -->
+    
+  
+
+
   </body>
 </html>

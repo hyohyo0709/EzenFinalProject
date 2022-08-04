@@ -12,11 +12,12 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"></link>
 
 <style>
+/*배송확인 */
 body{
 	color: #000;
 	overflow-x: hidden;
 	height: 100%;
-	background-color: #2ecc71;
+	background-color: #b0c4de;
 	background-repeat: no-repeat
 }
 
@@ -150,11 +151,14 @@ if(progressnum > 1){
 </script>
 </head>
 <body>
+
+
+
 <div class="container px-1 px-md-4 py-5 mx-auto">
     <div class="card">
         <div class="row d-flex justify-content-between px-3 top">
             <div class="d-flex">
-                <h5>ORDER <span class="text-primary font-weight-bold"># ${orderstatus.order_number}</span></h5>
+                <h5>ORDER <span class="text-primary font-weight-bold"> ${orderstatus.order_number}</span></h5>
             </div>
             <div class="d-flex flex-column text-sm-right">
                 <p class="mb-0 font-weight-bold">주문고객 :<span> ${orderstatus.ezenmembers.member_name}</span></p>
@@ -222,4 +226,3 @@ if(progressnum > 1){
     </div>
 </div>
 </body>
-</html>

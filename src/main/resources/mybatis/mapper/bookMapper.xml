@@ -87,12 +87,6 @@
     </select>
     
     
-    
-    <!--도서 상세페이지에 도서 불러오기  -->
-     <select id="content" parameterType="int" resultType="BookDTO">
-    select*from ezenbooks where num=#{num}
-    and book_status=1
-    </select>
  
      
     
