@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import ezenproject.dto.BookDTO;
+
 import ezenproject.dto.OrderDTO;
 
 
@@ -19,7 +19,11 @@ public interface OrderDAO {
 	public List<OrderDTO> list();
 	public void statusChange (OrderDTO dto);
 	public void deleteData(int num);
-	public OrderDTO selectOne(int num);
-	public void addOrder(OrderDTO dto);
 	
+	public void orderSave(OrderDTO dto);
+	public List<OrderDTO> myOrderList(String memnumber);
+	public OrderDTO selectOrderInformation(int num);
+	public OrderDTO checkOrderStatus(String order_number);
+	
+	public void updateOrderInformation(OrderDTO dto);
 }

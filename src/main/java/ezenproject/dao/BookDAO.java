@@ -1,8 +1,10 @@
 package ezenproject.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import ezenproject.dto.BookDTO;
@@ -12,8 +14,14 @@ import ezenproject.dto.PageDTO;
 @Mapper
 @Repository
 public interface BookDAO {
-	public List<BookDTO> booklist(PageDTO pv);
+
+	
 	public int count();
+	public List<BookDTO> allBookList(PageDTO pv);
+	public int countCategory(int book_category);
+	public List<BookDTO> categoryList(HashMap<String, Object> map);
+	public List<BookDTO> searchList(PageDTO pv);
+	public int countSearch(String searchWord);
 	
 	
 	public List<BookDTO> list();

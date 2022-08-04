@@ -27,7 +27,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
     <title>로그인</title>
     <link
       rel="short icon"
-      href="./assets/img/favicon.png"
+      href="../assets/img/favicon.png"
       type="image/x-icon"
     />
     
@@ -128,14 +128,13 @@ body {
 	<c:when test="${result=='loginFailed' }">
 	  <script type="text/javascript">
 	    window.onload=function(){
-	      alert("아이디나 비밀번호가 틀립니다.다시 로그인 하세요!");
+	      alert("아이디나 비밀번호가 유효하지 않습니다.\n 다시 로그인하세요!");
 	    }
 	  </script>
 	</c:when>
 </c:choose>  
 
 <script>
-
 <!--로그인창 띄우자마자 모달 등장 -->
 $(document).ready(function() {
      $("#myModal").modal("show");
@@ -143,7 +142,6 @@ $(document).ready(function() {
          $("#myModal").modal("hide");
       });
 });
-
 </script>
   </head>
   <body>
@@ -162,7 +160,7 @@ $(document).ready(function() {
 		<div class="modal-content">
 			<div class="modal-header">
 				<div class="avatar">
-					<img src="/assets/img/avatar.png" alt="Avatar">
+					<img src="../assets/img/avatar.png" alt="Avatar">
 				</div>				
 				<h4 class="modal-title">Member Login</h4>	
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -176,12 +174,12 @@ $(document).ready(function() {
 						<input type="password" class="form-control" name="member_pass" placeholder="Password" required="required">	
 					</div>        
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary btn-lg btn-block login-btn">Login</button>
+						<button type="submit" class="btn btn-dark btn-lg btn-block login-btn" >Login</button>
 					</div>
 				</form>
 			</div>
 			<div class="modal-footer">
-				<a href="/member_join">회원가입</a>
+				<a href="/member/memberJoinForm.do">회원가입</a>
 			</div>
 		</div>
 	</div>

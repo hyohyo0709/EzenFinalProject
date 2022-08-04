@@ -8,10 +8,13 @@ public class OrderDTO {
 	
 	private int num;
 	private String order_number;
-	private int order_qty;
+	private int order_cost;
 	private String member_number;
 	private String book_id;
 	private int order_status;
+	private String order_phone;
+	private String order_name;
+	private String order_address;
 	
 	private MemberDTO ezenmembers;
 	private BookDTO ezenbooks;
@@ -46,11 +49,11 @@ public class OrderDTO {
 	public void setOrder_number(String order_number) {
 		this.order_number = order_number;
 	}
-	public int getOrder_qty() {
-		return order_qty;
+	public int getOrder_cost() {
+		return order_cost;
 	}
-	public void setOrder_qty(int order_qty) {
-		this.order_qty = order_qty;
+	public void setOrder_cost(int order_cost) {
+		this.order_cost = order_cost;
 	}
 	public String getMember_number() {
 		return member_number;
@@ -69,6 +72,24 @@ public class OrderDTO {
 	}
 	public void setOrder_status(int order_status) {
 		this.order_status = order_status;
+	}
+	public String getOrder_phone() {
+		return order_phone;
+	}
+	public void setOrder_phone(String order_phone) {
+		this.order_phone = order_phone;
+	}
+	public String getOrder_name() {
+		return order_name;
+	}
+	public void setOrder_name(String order_name) {
+		this.order_name = order_name;
+	}
+	public String getOrder_address() {
+		return order_address;
+	}
+	public void setOrder_address(String order_address) {
+		this.order_address = order_address;
 	}
 	
 	

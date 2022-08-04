@@ -3,6 +3,7 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
   <div class="container">
     <a class="navbar-brand" href="/">배너 들어 갈 자리</a>
@@ -28,10 +29,10 @@ pageEncoding="UTF-8"%>
             >분야별 도서</a
           >
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="board.jsp">모든 도서</a></li>
+            <li><a class="dropdown-item" href="/book/allBooklist.do">모든 도서</a></li>
             <li><hr class="dropdown-divider" /></li>
-            <li><a class="dropdown-item" href="#">소설</a></li>
-            <li><a class="dropdown-item" href="#">인문/역사</a></li>
+            <li><a class="dropdown-item" href="/book/novelCategorylist.do?book_category=1">소설</a></li>
+            <li><a class="dropdown-item" href="/book/humansocietyCategorylist.do?book_category=2">인문/사회</a></li>
             <li><hr class="dropdown-divider" /></li>
             <li>
               <a class="dropdown-item" href="#">Something else here</a>
@@ -62,14 +63,17 @@ pageEncoding="UTF-8"%>
             <c:choose>
           <c:when test="${isLogOn == true  && member!= null}">
             <li><a class="dropdown-item" href="${contextPath}/member/logout.do">로그아웃</a></li>
+             <li><a class="dropdown-item" href="${contextPath}/mypage/mypageForm.do">My Page</a></li>
           </c:when>
           <c:otherwise>
 	       <li><a class="dropdown-item" href="${contextPath}/member/loginForm.do">로그인</a></li>
+	        <li><a class="dropdown-item" href="${contextPath}/member/memberJoinForm.do">회원 가입</a></li>
+	       
 	      </c:otherwise>
 	   </c:choose>  
 	   
-            <li><a class="dropdown-item" href="member_join.jsp">회원 가입</a></li>
-            <li><a class="dropdown-item" href="mypage.jsp">My Page</a></li>
+           
+           
             <li><hr class="dropdown-divider" /></li>
             <li>
               <a class="dropdown-item" href="#">Something else here</a>
@@ -77,22 +81,71 @@ pageEncoding="UTF-8"%>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled">환영합니다</a>
+        <c:choose>
+        <c:when test="${isLogOn == true  && member!= null}">
+          <a class="nav-link disabled">${member.member_name }님 환영합니다</a>
+          </c:when>
+          <c:otherwise>
+          <a class="nav-link disabled"> 환영합니다</a>
+           </c:otherwise>
+          </c:choose>
         </li>
       </ul>
-      <form class="d-flex">
+      
+        <c:choose>
+          <c:when test="${isLogOn == true  && member!= null}">
+      <c:choose>
+      <c:when test="${member.member_type==1 }">
+      <a href="http://localhost:3000">
+      <button
+          class="btn btn-outline-success btn-lg me-2"
+          type="submit"
+          style="color: yellow; border-color: yellow;"
+        >관리자 페이지</button>
+      </a>
+      </c:when>
+      
+      </c:choose>
+      
+       </c:when>
+       </c:choose> 
+        
+        
+        
+        
+         <script type="text/javascript">
+      function checkForm(){
+    	  
+    	  var pattern=/\s/g;
+    	  
+    	  if(document.searchForm.searchWord.value.length==0 || document.searchForm.searchWord.value.match(pattern)){
+    		  alert("검색어를 입력하세요.")
+    		  return false;
+    	  }
+    	  return true;
+      }
+      
+      </script> 
+      <form class="d-flex" name="searchForm" action="/book/searchlist.do" onsubmit="return checkForm()" >
+      
         <input
           class="form-control me-2"
           type="search"
           placeholder="도서 검색"
           aria-label="Search"
+          name="searchWord"
         />
-        <button
+        <a >
+         <button
           class="btn btn-outline-success btn-lg"
           type="submit"
           style="color: white; border-color: white;"
         >search</button>
+        </a>
+       
+      
       </form>
+      
     </div>
   </div>
 </nav>

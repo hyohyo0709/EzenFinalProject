@@ -1,7 +1,7 @@
 package ezenproject.service;
 
-import java.io.File;
-
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import ezenproject.dao.OrderDAO;
-import ezenproject.dto.BookDTO;
 import ezenproject.dto.OrderDTO;
 
 @Service
@@ -27,18 +25,7 @@ public class OrderServiceImp implements OrderService{
 		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
-	public OrderDTO selectOneProcess(int num) {
-		
-		return dao.selectOne(num);
-	}
 	
-	
-	@Override
-	public void addOrderProcess(OrderDTO dto) {
-	
-		dao.addOrder(dto);
-	}
 	
 	//////////////여기서부터 관리자 페이지 서비스입니다.////////////
 	
@@ -79,4 +66,52 @@ public class OrderServiceImp implements OrderService{
 	
 	
 	/////////////여기까지 관리자 페이지 서비스입니다.////////////////
+	 
+	 
+	 @Override
+	public void newOrderNumberProcess(OrderDTO dto) {
+//		간단하게 ONUM+ 시간
+		 
+		 String ordercode = null;
+		 Date now = new Date();
+		 SimpleDateFormat date = new SimpleDateFormat("yyMMddHHmmss");
+		 
+		 ordercode = "ONUM"+date.format(now);
+		 dto.setOrder_number(ordercode);
+		
+	}
+	 
+	 @Override
+	public void newOrderSaveProcess(OrderDTO dto) {
+	 dao.orderSave(dto);
+		
+	}
+	 
+	 
+	 
+	 @Override
+	public List<OrderDTO> myOrderListProcess(String ordernum) {
+		
+		return dao.myOrderList(ordernum);
+	}
+	 
+	 @Override
+	public OrderDTO orderInformationProcess(int num) {
+		
+		return dao.selectOrderInformation(num);
+	}
+	 
+	 @Override
+	public OrderDTO orderStatusProcess(String order_number) {
+		
+		return dao.checkOrderStatus(order_number);
+	}
+	 
+	 
+	 @Override
+	public void updateOrderProcess(OrderDTO dto) {
+		dao.updateOrderInformation(dto);
+		
+	}
+	 
 }

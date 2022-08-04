@@ -1,5 +1,7 @@
 package ezenproject.service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,34 @@ public class MemberServiceImp implements MemberService{
 	
 	
 	
+	@Override
+	public void addMemberNumberProcess(MemberDTO dto) {
+		
+//		간단하게 MEM + 시간
+		String memcode = null;
+		Date now = new Date();
+		SimpleDateFormat date = new SimpleDateFormat("yyMMddHHmmss");
+		
+		memcode = "MEM"+date.format(now);
+		
+		dto.setMember_number(memcode);
+		
+		
+	}
+	
+	
+	@Override
+	public int addMemberProcess(MemberDTO dto) throws Exception {
+		
+		return dao.insertMember(dto);
+	}
+	
+	@Override
+	public void updateInformation(MemberDTO dto) throws Exception {
+		dao.updateMemberInformation(dto);
+		
+	}
+	
 	
 	/////////////////////////여기서부터 관리자 페이지 서비스입니다.//////
 	
@@ -55,6 +85,7 @@ public class MemberServiceImp implements MemberService{
 		
 	}
 	
+//	마이페이지 공용
 	@Override
 	public void statusChangeOffProcess(int num) {
 		dao.statusChangeOff(num);
@@ -95,7 +126,7 @@ public class MemberServiceImp implements MemberService{
 	
 	
 	
-	
+// 마이페이지 공용	
 	@Override
 	public MemberDTO selectOneProcess(int num) {
 		

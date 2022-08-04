@@ -39,21 +39,6 @@ public class BookDTO {
 	
 	
 	
-	
-	
-	
-
-	public BookDTO(String book_id, String book_title, int book_price) {
-		
-		this.book_id = book_id;
-		this.book_title = book_title;
-		this.book_price = book_price;
-	}
-
-
-
-
-
 
 
 
@@ -190,7 +175,7 @@ public class BookDTO {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return String.format("%d %s %s %s %s %s %d %d",num, book_title, book_author, book_publisher, book_content, book_isbn, book_price, book_category);
+		return String.format("%d %s %s %s %s %s %d %d 이미지 :%s",num, book_title, book_author, book_publisher, book_content, book_isbn, book_price, book_category,book_img);
 	}
 	
 	

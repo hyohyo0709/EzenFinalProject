@@ -144,6 +144,8 @@ const BookTool = () => {
     // 장르는 계속 추가될 예정
     if (book_category === 1) {
       return '소설';
+    } else if (book_category === 2) {
+      return '인문/사회';
     }
   };
 

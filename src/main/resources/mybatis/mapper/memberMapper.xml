@@ -17,6 +17,9 @@
     
     </select>
     
+    
+    <!--마이페이지 공용  -->
+    <!-- 회원 1명의 정보  -->
      <select id="selectOne" resultType="MemberDTO">
     select*from ezenmembers where num=#{num}
     </select>
@@ -28,6 +31,9 @@
     where num=#{num}
     </update>
     
+    
+    <!--마이 페이지 공용  -->
+    <!--회원 탈퇴 신청 /처리  -->
     <update id="statusChangeOff" parameterType="MemberDTO">
     update ezenmembers set
     member_status=0
@@ -60,8 +66,32 @@
     <![CDATA[
 		select * from ezenmembers	
 		where member_id=#{member_id} and member_pass=#{member_pass}
+		and member_status=1
 	]]>
     </select>
+    
+    
+    <!--회원 가입하는 행위  -->
+    <insert id="insertMember"  parameterType="MemberDTO">
+	    <![CDATA[
+		 insert into ezenmembers(num, member_number, member_id,member_pass, member_email,
+		 						 member_phone,member_address, member_type, member_status, member_name 
+		 						 )
+		 values(ezenmembers_num_seq.nextval, #{member_number}, #{member_id}, #{member_pass},
+		 		#{member_email},#{member_phone},#{member_address},0, 1, #{member_name}
+		 		 )
+		]]>     
+		
+	
+ </insert>    
+    
+    <!-- 회원 정보 수정하는 행위 -->
+     <update id="updateMemberInformation"
+    parameterType="MemberDTO">
+    	UPDATE EZENMEMBERS SET member_pass=#{member_pass}, member_address=#{member_address}, member_phone=#{member_phone},
+		member_email=#{member_email}
+		WHERE num=#{num}
+    </update>
     
     
     
