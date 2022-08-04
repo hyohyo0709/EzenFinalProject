@@ -257,7 +257,7 @@
 		
 		 
     <div class="col-lg-6 mx-auto" style="text-align:center">
-    <h1 class="display-5 fw-bold"> "검색 결과가 없습니다.</h1>
+    <h1 class="display-5 fw-bold"> 검색 결과가 없습니다.</h1>
     
       <p class="lead mb-4">검색어의 철자가 정확한지 확인바랍니다.</p>
        
