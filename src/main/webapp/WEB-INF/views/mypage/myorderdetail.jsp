@@ -166,6 +166,7 @@ small{
                 <c:url var="detail_path" value="/book/book_detail.do">
 										
 										<c:param name="num" value="${orderInfo.ezenbooks.num }" />
+										<c:param name="currentPage" value=1 />
 									</c:url>
                 <a href="detail_path"> 
                 <img class="align-self-center img-fluid" src="../assets/img/${orderInfo.ezenbooks.book_img}" width="180 " height="180">

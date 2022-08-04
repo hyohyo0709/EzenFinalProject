@@ -73,12 +73,12 @@
 								<div class="card mb-3 border-dark" style="max-width: 540px;">
 									<div class="row g-0">
 										<div class="col-md-3">
-											<c:url var="detail_path" value="/book/book_detail.do">
+											<c:url var="detail_path" value="book_detail.do">
 												<c:param name="currentPage" value="${pv.currentPage }" />
 												<c:param name="num" value="${book.num }" />
 											</c:url>
 
-											<a href="detail_path"><img
+											<a href="${detail_path}"><img
 												src="../assets/img/${book.book_img }"
 												class="img-fluid rounded-start" alt="..."></a>
 

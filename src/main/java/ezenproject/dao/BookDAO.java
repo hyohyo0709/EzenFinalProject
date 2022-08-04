@@ -22,7 +22,7 @@ public interface BookDAO {
 	public List<BookDTO> categoryList(HashMap<String, Object> map);
 	public List<BookDTO> searchList(PageDTO pv);
 	public int countSearch(String searchWord);
-	
+	public BookDTO content(int num);
 	
 	public List<BookDTO> list();
 	public BookDTO selectOne(int num);

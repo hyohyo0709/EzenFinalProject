@@ -30,6 +30,17 @@ public class BookDTO {
 	private MultipartFile filename;
 
 	
+//	판매가 변수
+	private int sellprice;
+	
+	
+	public void setSellprice(int sellprice) {
+		this.sellprice = sellprice;
+	}
+	
+	public int getSellprice() {
+		return sellprice;
+	}
 	
 	
 	public BookDTO() {
@@ -38,9 +49,6 @@ public class BookDTO {
 	
 	
 	
-	
-
-
 
 	public String getBook_author() {
 		return book_author;
