@@ -260,6 +260,48 @@ text-align:right;
 	border-radius: 0px 0px 15px 0px;
 	border-top:black solid 3px;
 }
+.sell_price{
+	font-size: 12px;
+}
+.list_price{
+	font-size: 14px;
+}
+.cart_info_amount{
+	margin-left: -5px;
+}
+.quantity_div{
+	float: left;
+}
+.quantity_input{
+	width: 30px;
+	text-align:center;
+	margin: 0px -8px 0px -8px;
+	border: 2px solid black;
+}
+#cart_minus_btn{
+	width: 30px;
+	background-color: gray;
+	border-radius: 3px 0px 0px 3px;
+}
+#cart_plus_btn{
+	width: 30px;
+	background-color: gray;
+	border-radius: 0px 3px 3px 0px;
+}
+.quantity_modify_btn{
+	float: right;
+	text-align: center;
+	width:50px;
+	background-color: gray;
+	border: 2px solid black;
+	border-radius: 0px 3px 3px 0px;
+}
+.delete_btn{
+	float: right;
+	border: 0px;
+	width: auto;
+	height: auto;
+}
 .cart_count_btn1{
 	width: 30px;
 	border-right: 0px; 
@@ -286,7 +328,7 @@ text-align:right;
 	border-radius: 0px 5px 5px 0px;
 	font-weight:bold;
 	background-color: white; 
-	width: 90%;
+	width: 100%;
 	border: 2px solid #bcbdbf;
 	text-align: center;
 	margin-top: 15px;
@@ -316,22 +358,21 @@ text-align:right;
 	
 }
 .cart_table2{
-	border-top: black solid 1px;
+	border: rgb(253,253,253) solid 7px;
 	min-height: 150px;
-	border-radius: 0px 0px 10px 10px;
 	background-color: rgb(253,253,253);
 	width: 100%;
-	
 }
+
 .cart_order{
 	font-weight:bold;
 	background-color:gray;
-	color:#796e62;
-	border: solid 0px;
+	color:white;
 	border-radius: 8px;
 	margin:20px 10px 20px 10px;
 	width: 90%;
 	height: 40px;
+	
 }
  .dead_area{
 	width: 2%;

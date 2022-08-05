@@ -34,7 +34,12 @@ public class CartServiceImp implements CartService{
 
 	@Override
 	public List<CartDTO> getCartProcess(String member_number) {
-		return dao.getCart(member_number);
+		List<CartDTO> clist = dao.getCart(member_number);
+		for(CartDTO dto : clist) {
+			//정보 초기화
+			dto.initSaleTotal();
+		}
+		return clist;
 		
 	}
 
@@ -42,6 +47,17 @@ public class CartServiceImp implements CartService{
 	public List<CartDTO> cartListProcess() {
 		return dao.cartlist();
 	}
+
+	@Override
+	public int modifyCountProcess(CartDTO dto) {
+		return dao.modifyCount(dto);
+	}
+
+	@Override
+	public int deleteCartProcess(int num) {
+		return dao.deleteCart(num);
+	}
+
 
 
 	

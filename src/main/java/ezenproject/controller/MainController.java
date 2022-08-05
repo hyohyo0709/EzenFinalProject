@@ -211,23 +211,7 @@ public class MainController {
 	
 	
 	////////////////////////////////장바구니 메소드 시작//////////////////////////////////////
-	//카트확인 페이지
-//	@RequestMapping(value = "/cart/list.do")
-//	public ModelAndView cartMethod(HttpServletRequest request, int num, ModelAndView mav, String member_number) {
-//		String viewName = (String)request.getAttribute("viewName");
-////		try {
-//			if(bservice.contentProcess(num).getNum()==num) {
-//					mav.addObject("dto", bservice.contentProcess(num));
-//					mav.addObject("cdto",cservice.getCartProcess(member_number));
-//					mav.setViewName(viewName);
-////		}	
-////		}catch (Exception e) {
-////			viewName = "/erroralert";
-////			mav.setViewName(viewName);
-//		}
-//		return mav;
-//	}
-	
+
 	/* 장바구니 추가 */
 	/**
 	 * 0: 등록 실패
@@ -252,10 +236,28 @@ public class MainController {
 		
 		return "/cart/list";
 	}	
+	/* 장바구니 수량 수정 */
+	@RequestMapping(value = "/cart/list/update" , method = RequestMethod.POST)
+	public String updateCartPOST(CartDTO dto) {
+		
+		cservice.modifyCountProcess(dto);
+		
+		return "redirect:/cart/list/" + dto.getMember_number();
+		
+	}	
+	/* 장바구니 제거 */
+	@RequestMapping(value = "/cart/list/delete" , method = RequestMethod.POST)
+	public String deleteCartDELETE(CartDTO dto) {
+		
+		cservice.deleteCartProcess(dto.getNum());
+		
+		return "redirect:/cart/list/" + dto.getMember_number();
+		
+	}		
 	
 	
 	
-	
+	////////////////////장바구니 페이지 끝////////////////////////////////
 	
 	
 	@RequestMapping(value = { "/", "/index.do" }, method = RequestMethod.GET)

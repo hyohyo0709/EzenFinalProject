@@ -190,8 +190,7 @@
 					<c:choose>
 					<c:when test="${dto.book_stock==1 && isLogOn == true && member!= null}">
 					<input class="cart_btn" id="cart_btn" type="button" value="장바구니">
-					<%-- <input class="buy_button1" type="button" value="카트확인" onclick="window.open('${cart_link}')"> --%>
-					<a class="buy_button1" href="/cart/list/${member.member_number}">장바구니</a>
+					<input class="buy_button1" type="button" value="카트확인" onclick="window.open('/cart/list/${member.member_number}')"/>
 					<input class="buy_button2" type="button" value="매장구매" onclick="window.open('${pickup_link}')">
 					<input class="buy_button2" type="button" value="바로구매" onclick="window.open('${order_link}')">
 					</c:when>

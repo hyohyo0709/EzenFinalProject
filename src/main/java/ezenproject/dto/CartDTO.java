@@ -14,6 +14,44 @@ public class CartDTO {
 	private String book_author;
 	private String book_publisher;
 	private int book_category;
+	private String book_title;
+	private int book_price;
+	private String book_img;
+	
+	//추가 기능
+	private int salePrice;
+    private int totalPrice;
+    private int point;
+    private int totalPoint;  
+    private double book_coupon;
+	
+	
+	
+	public int getSalePrice() {
+		return salePrice;
+	}
+
+
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+
+	public int getPoint() {
+		return point;
+	}
+
+
+	public int getTotalPoint() {
+		return totalPoint;
+	}
+
+
+	public double getBook_coupon() {
+		return book_coupon;
+	}
+
+
 	public int getBook_category() {
 		return book_category;
 	}
@@ -44,10 +82,7 @@ public class CartDTO {
 	}
 
 
-	private String book_title;
-	private int book_price;
-	private String book_img;
-	//추가
+
 	
 		
 	public String getBook_img() {
@@ -78,9 +113,6 @@ public class CartDTO {
 	public void setBook_price(int book_price) {
 		this.book_price = book_price;
 	}
-
-
-	private int totalMoney;
 
 	public CartDTO() {
 	}
@@ -141,17 +173,13 @@ public class CartDTO {
 		this.money = money;
 	}
 
-
-	public int getTotalMoney() {
-		return totalMoney;
+	
+	public void initSaleTotal() {
+		this.salePrice = (int) (this.book_price /10*9);
+		this.totalPrice = this.salePrice*this.cart_amount;
+		this.point = (int)(Math.floor(this.salePrice*0.05));
+		this.totalPoint = this.point * this.cart_amount;
 	}
-
-
-	public void TotalPrice() {
-		this.totalMoney = this.cart_amount*this.money;
-	}
-
-
 	
 
 
