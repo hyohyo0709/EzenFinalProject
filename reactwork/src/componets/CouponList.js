@@ -23,7 +23,7 @@ const CouponList = (props) => {
     await axios
       .get(`http://localhost:8090/members/couponlist/${member_number}`)
       .then((response) => {
-        console.log('response:', response.data);
+        // console.log('response:', response.data);
         setCouponlists(response.data.alist);
       })
       .catch((err) => console.error(err.message));

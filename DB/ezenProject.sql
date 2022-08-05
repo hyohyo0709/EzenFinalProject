@@ -94,7 +94,7 @@ select*from EZENORDERS;
     
     commit;
     
-    
+select*from ezencoupons;
     
     
     

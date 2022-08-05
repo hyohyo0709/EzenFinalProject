@@ -111,7 +111,8 @@
 													<c:choose>
 														<c:when test="${isLogOn == true  && member!= null}">
 															<a
-																href="${contextPath}/order/orderDetail.do?num=${book.num }"
+																href="${contextPath}/order/orderDetail.do?num=${book.num }
+																&member_number=${member.member_number}"
 																class="btn btn-warning"> 바로 구매 </a>
 														</c:when>
 														<c:otherwise>

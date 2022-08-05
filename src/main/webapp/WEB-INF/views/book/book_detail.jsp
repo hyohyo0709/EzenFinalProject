@@ -175,6 +175,7 @@
 					<!-- //구매 버튼 링크들// -->
 					<c:url var="order_link" value="/order/orderDetail.do">
 					<c:param name="num" value="${dto.num }"/>
+					<c:param name="member_number" value="${member.member_number }"/>
 					
 					</c:url>
 					<c:url var="pickup_link" value="/order/pickup.do">
@@ -197,19 +198,19 @@
 					<input class="cart_btn" id="cart_btn" type="button" value="장바구니">
 					<input class="buy_button1" type="button" value="선물하기" id="cart_btn">
 					<input class="buy_button2" type="button" value="매장구매" onclick="window.open('${pickup_link}')">
-					<input class="buy_button2" type="button" value="바로구매" onclick="window.open('${order_link}')">
+					<input class="buy_button3" type="button" value="바로구매" onclick="window.open('${order_link}')">
 					</c:when>
 					<c:when test="${dto.book_stock==0 && isLogOn == true && member!= null}">
 					<input class="buy_button1" type="button" value="장바구니" onclick="noStock()">
 					<input class="buy_button1" type="button" value="선물하기" onclick="noStock()" >
 					<input class="buy_button2" type="button" value="매장구매" onclick="noStock()">
-					<input class="buy_button2" type="button" value="바로구매" onclick="noStock()">
+					<input class="buy_button3" type="button" value="바로구매" onclick="noStock()">
 					</c:when>
 					<c:otherwise>
 					<input class="buy_button1" type="button" value="장바구니" onclick="nologin()">
 					<input class="buy_button1" type="button" value="선물하기" onclick="nologin()" >
 					<input class="buy_button2" type="button" value="매장구매" onclick="nologin()">
-					<input class="buy_button2" type="button" value="바로구매" onclick="nologin()">
+					<input class="buy_button3" type="button" value="바로구매" onclick="nologin()">
 					</c:otherwise>
 					</c:choose>
 					</div>

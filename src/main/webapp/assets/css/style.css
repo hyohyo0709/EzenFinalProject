@@ -332,6 +332,17 @@ text-align:right;
 	height: 40px;
 }
 
+.buy_button3{
+	font-weight:bold;
+	background-color:#dc3545;
+	
+	color:#fff;
+	border: solid 0px;
+	border-radius: 8px;
+	margin:0px 0px 10px 15px;
+	width: 90%;
+	height: 40px;
+}
 
 /* book_detail 하위 목록 */
 #row_area{

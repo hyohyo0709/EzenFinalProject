@@ -15,4 +15,5 @@ public interface CouponDAO {
 	public void saveNewCoupon(CouponDTO dto);
 	public List<CouponDTO> list (String member_number);
 	public void deleteCoupon (int num);
+	public void usedCoupon (String coupon_number);
 }

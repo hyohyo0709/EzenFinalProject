@@ -342,30 +342,38 @@ public class MainController {
 	
 //////////////////여기서부터 주문페이지 ////////////////////////////////////////////////////////////
 
-//http://localhost:8090/order/orderDetail.do?num=넘
+
 
 //	주문 페이지 들어가기
 	@RequestMapping("/order/orderDetail.do")
-	public ModelAndView viewMethod(HttpServletRequest request, int num, ModelAndView mav) {
-BookDTO dto= bservice.contentProcess(num);
+	public ModelAndView viewMethod(HttpServletRequest request, int num, ModelAndView mav, String member_number) {
+ bdto= bservice.contentProcess(num);
+List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 		String viewName = (String) request.getAttribute("viewName");
 
-		mav.addObject("bdto", dto);
-//		mav.addObject("currentPage", currentPage);
-//mav.setViewName("/board/view");
+		mav.addObject("bdto", bdto);
+		mav.addObject("couponlist", couponlist);
 		mav.setViewName(viewName);
+		
 		return mav;
 
 	}
+
+
+	
 	
 //	주문하는 행위
 	@RequestMapping(value = "/order/ordersave.do", method = RequestMethod.POST)
-	public String newOrderMethod(OrderDTO dto, HttpServletRequest request) {
+	public String newOrderMethod(OrderDTO dto, HttpServletRequest request, String coupon_number) {
 		oservice.newOrderNumberProcess(dto);
 		oservice.newOrderSaveProcess(dto);
+		couponservice.usedCouponProcess(coupon_number);
 		
 		return "redirect:/";
 	}
+	
+	
+
 	
 	
 //	////////////////////////////여기까지 주문 페이지///////////////////////////////////////
