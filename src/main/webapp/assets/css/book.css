@@ -63,6 +63,7 @@ body{
 	padding-bottom:13rem;
    	/* border-top: 1px solid #d7d7d7; */
    /* 	border-bottom: 1px solid #d7d7d7;  */
+   min-width:1000px;
     } 
     
 /* 이미지 */
@@ -125,7 +126,7 @@ body{
 .list_type01 .book_add {
  	float: right;
     width: 150px;
-  	margin-right:160px;
+  	margin-right:100px;
 }
 .list_type01 .book_add a {
     display: block;
