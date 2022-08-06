@@ -25,5 +25,5 @@ public interface MemberDAO {
 	
 	public MemberDTO loginCheck(MemberDTO dto) throws DataAccessException;
 	public int insertMember (MemberDTO dto) throws DataAccessException;
-	
+	public void updateMemberInformation(MemberDTO dto) throws DataAccessException;
 }

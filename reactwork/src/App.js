@@ -28,6 +28,9 @@ import BookUpdate from './componets/BookUpdate';
 import OrderTool from './componets/OrderTool';
 import OrderStatusChange from './componets/OrderStatusChange';
 import OrderDataDelete from './componets/OrderDataDelete';
+import CouponAdd from './componets/CouponAdd';
+import MemberDataDelete from './componets/MemberDataDelete';
+import CouponList from './componets/CouponList';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -46,6 +49,10 @@ const App = () => {
           <Route path='list' element={<MemberTool />} />
           <Route path='statuschange/:num' element={<MemberTool />} />
           <Route path='typechange/:num' element={<MemberTool />} />
+          <Route path='deletedata/:num' element={<MemberDataDelete />} />
+          <Route path='newcouponsave' element={<CouponAdd />} />
+          <Route path='couponlist/:member_number' element={<CouponAdd />} />
+          <Route path='deletecoupon/:num' element={<CouponList />} />
         </Route>
 
         <Route path='books' element={<BookTool />}>
@@ -53,7 +60,7 @@ const App = () => {
           <Route path='statuschange/:num' element={<BookTool />} />
           <Route path='stockchange/:num' element={<BookTool />} />
           <Route path='newbooksave' element={<BookAdd />} />
-          <Route path='deletdata/:num' element={<BookDataDelete />} />
+          <Route path='deletedata/:num' element={<BookDataDelete />} />
           <Route path='updatebook' element={<BookUpdate />} />
           <Route path='selectone/:num' element={<BookUpdate />} />
         </Route>
@@ -61,7 +68,7 @@ const App = () => {
         <Route path='orders' element={<OrderTool />}>
           <Route path='list' element={<OrderTool />} />
           <Route path='statuschange' element={<OrderStatusChange />} />
-          <Route path='deletdata/:num' element={<OrderDataDelete />} />
+          <Route path='deletedata/:num' element={<OrderDataDelete />} />
         </Route>
       </Routes>
     </div>
@@ -115,6 +122,7 @@ function Layout() {
                 </Button>
               </Link>
             </Item>
+
             <Item>
               <Button
                 variant='contained'

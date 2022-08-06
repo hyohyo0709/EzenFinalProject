@@ -22,7 +22,7 @@ public interface CartDAO {
 	public int modifyCount(CartDTO dto);
 	
 	/* 카트 목록 1*/
-	public List<CartDTO> cartlist();
+	public CartDTO cartlist(String member_number);
 	
 	/* 카트 목록 2*/
 	public List<CartDTO> getCart(String member_number);	

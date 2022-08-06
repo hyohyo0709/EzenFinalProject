@@ -29,4 +29,5 @@ public interface MemberService {
 	
 	public int addMemberProcess(MemberDTO dto) throws Exception;
 	public void addMemberNumberProcess(MemberDTO dto);
+	public void updateInformation(MemberDTO dto) throws Exception;
 }

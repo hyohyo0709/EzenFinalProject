@@ -7,6 +7,11 @@
     
     
     <mapper namespace="ezenproject.dao.MemberDAO">
+    <update id="addressChange">
+    
+    </update>
+    
+    
     
     <!-- 여기서부터 관리자 페이지 매퍼입니다.  -->
     <select id="loginUser" resultType="MemberDTO">

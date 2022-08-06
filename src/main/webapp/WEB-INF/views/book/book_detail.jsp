@@ -171,8 +171,9 @@
 					
 					<!-- ////// 구매 버튼 목록 시작 /////// -->
 					<!-- //구매 버튼 링크들// -->
-					<c:url var="order_link" value="/order/order_page_sample.do">
+					<c:url var="order_link" value="/order/orderDetail.do">
 					<c:param name="num" value="${dto.num }"/>
+					<c:param name="member_number" value="${member.member_number }"/>
 					</c:url>
 					<c:url var="pickup_link" value="/order/pickup.do">
 					<c:param name="num" value="${dto.num }"/>

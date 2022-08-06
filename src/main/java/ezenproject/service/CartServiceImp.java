@@ -43,10 +43,6 @@ public class CartServiceImp implements CartService{
 		
 	}
 
-	@Override
-	public List<CartDTO> cartListProcess() {
-		return dao.cartlist();
-	}
 
 	@Override
 	public int modifyCountProcess(CartDTO dto) {
@@ -56,6 +52,11 @@ public class CartServiceImp implements CartService{
 	@Override
 	public int deleteCartProcess(int num) {
 		return dao.deleteCart(num);
+	}
+
+	@Override
+	public CartDTO cartListProcess(String member_number) {
+		return dao.cartlist(member_number);
 	}
 
 

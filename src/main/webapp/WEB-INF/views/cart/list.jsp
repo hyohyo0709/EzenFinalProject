@@ -51,6 +51,9 @@
 		<c:param name="num" value="${dto.num }" />
 	</c:url>
 			<h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;장바구니</h4>
+			<div class="all_check_input_div" style="margin-left:110px " >
+			<input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
+			</div>	
 				<div class="whtie_space">
 				<div class="cart_div_container">
 				<div class="row" id="product_bezel">
@@ -96,32 +99,28 @@
 					</tbody>
 				</table>
 				</div>
-				<div class="cart_coupon">
-					<div class="accordion accordion-flush" id="accordionFlushExample">
- 					<div class="accordion-item">
-  					<h2 class="accordion-header" id="flush-headingOne">
-     				<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-       					 후에 쿠폰 기능
-     				</button>
-    			</h2>
-    			<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-      			<div class="accordion-body">개별 기능으로 뺄 예정</div>
-   			    </div>
- 				</div>
-				</div>
-				</div>
+				<div class="cart_quantity1">
+					<div class="quantity_div2">
+						<div class="quantity_div">
+						<button class="quantity_btn minus_btn" id="cart_minus_btn">-</button>
+						<button class="quantity_btn plus_btn" id="cart_plus_btn">+</button>
+						<input style="width: 88px;" type="text" value="${cdto.cart_amount}" class="quantity_input">
+						</div>
+						<a class="quantity_modify_btn" data-num="${cdto.num}">변경</a>
 				
-			<div class="cart_quantity">
+					</div>
+				</div>
+			<div class="cart_quantity2">
 					<table>
 						<tbody>
 							<tr>
 								<td class="cart_info_td" colspan="2">
 									<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
 									<input type="hidden" class="individual_book_price_input" value="${cdto.book_price}">
-									<input type="hidden" class="individual_salePrice_input" value="${cdto.salePrice}">
+									<input type="hidden" class="individual_saleprice_input" value="${cdto.saleprice}">
 									<!-- <input type="hidden" class="individual_coupon_input" value=""> -->
 									<input type="hidden" class="individual_cart_amount_input" value="${cdto.cart_amount}">
-									<input type="hidden" class="individual_totalPrice_input" value="${cdto.salePrice * cdto.cart_amount}">
+									<input type="hidden" class="individual_totalPrice_input" value="${cdto.saleprice * cdto.cart_amount}">
 									<input type="hidden" class="individual_point_input" value="${cdto.point}">
 									<input type="hidden" class="individual_totalPoint_input" value="${cdto.totalPoint}">
 									<input type="hidden" class="individual_book_id_input" value="${cdto.book_id}">								
@@ -136,7 +135,7 @@
 								</tr>
 								<tr>
 								<td class="sell_price" colspan="2">판매가 : </td>
-									<td class="sell_price" colspan="2" style="text-align: right;"><fmt:formatNumber value="${cdto.salePrice}" pattern="#,###원"/></td>
+									<td class="sell_price" colspan="2" style="text-align: right;"><fmt:formatNumber value="${cdto.saleprice}" pattern="#,###원"/></td>
 								</tr>
 									<tr>
 										<td colspan="100%" style="width: 200px">
@@ -144,22 +143,13 @@
 										</td>
 									</tr>
 								<tr>
-									<td colspan="100%">
-										<div class="quantity_div">
-										<button class="quantity_btn minus_btn" id="cart_minus_btn">-</button>
-										<input style="width: 50px;" type="text" value="${cdto.cart_amount}" class="quantity_input">
-										<button class="quantity_btn plus_btn" id="cart_plus_btn">+</button>
-										</div>
-										<a class="quantity_modify_btn" data-num="${cdto.num}">변경</a>
-									</td>
 								</tr>
 								<tr>
 									<td height="7px"></td>
 								</tr>
 								<tr>
-									<th colspan="2">총액 : </th>
-									<th  colspan="2" style="text-align: right;">
-										<fmt:formatNumber value="${cdto.salePrice * cdto.cart_amount}" pattern="#,### 원" />
+									<th  colspan="4" style="text-align: right;">
+										<fmt:formatNumber value="${cdto.saleprice * cdto.cart_amount}" pattern="#,###원" />
 									</th>
 								</tr>
 					</tbody>
@@ -192,10 +182,10 @@
 					<th style="font-size: 16px; color: black; vertical-align : top; ">배송지 확인</th>
 				</tr>
 				<tr>
-					<td style="font-size: 11px; font-weight:lighter; color: gray; word-break: break-all; height=auto; vertical-align : top;" >${member.member_address }</td>
+					<td style="font-size: 11px; font-weight:lighter; color: gray; word-break: break-all; vertical-align : top; height: 30%;" >기본 배송지 : ${member.member_address }</td>
 				</tr>
 				<tr>
-					<th><input class="cart_order" type="button" value="배송지 변경"></th>
+					<td style="height: 30%"></td>
 				</tr>
 			</tbody>
 			</table>
@@ -208,19 +198,15 @@
 				<tr style="vertical-align : top;"height="15px">
 					<td style="text-align: left; font-size: 12px; ">주문 금액 : </td>
 					<td style="text-align: right;font-size: 12px">
-					<span class="totalPrice_span">${totalPrice }</span> 원	
+					<span class="totalPrice_span">${totalPrice}</span> 원	
 					</td>
 				</tr>
-				<tr style="vertical-align : top;"height="15px">
-					<td style="text-align: left; font-size: 12px; ">쿠폰 할인 금액 : </td>
-					<td style="text-align: right;font-size: 12px"><!-- <span class="totalCoupon_span"> -->원</td>
+				<tr style="vertical-align: bottom; font-size: 14px; ">
+					<th style="text-align: left; height:50px" >결제 예상 금액 : </th>
+					<th style="text-align: right;"><span class="totalPrice_span">${totalPrice}</span>원</th>
 				</tr>
 				<tr>
-					<th style="text-align: left; font-size: 12px; height:50px" >결제 예상 금액 : </th>
-					<th style="text-align: right; font-size: 12px; vertical-align: middle;">40003원</th>
-				</tr>
-				<tr>
-					<th colspan="2"><input class="cart_order" type="button" value="주문하기"></th>
+					<th colspan="2"><input class="cart_order" type="button" value="주문하기" onclick="window.open('/order/orderCartDetail/${member.member_number}')"></th>
 				</tr>
 			</tbody>
 			</table>
@@ -316,7 +302,7 @@ $(".minus_btn").on("click", function(){
 	/* 수량 수정 버튼 */
 $(".quantity_modify_btn").on("click", function(){
 	let num = $(this).data("num");
-	let cart_amount = $(this).parent("td").find("input").val();
+	let cart_amount = $(this).parent("div").find("input").val();
 	$(".update_num").val(num);
 	$(".update_cart_amount").val(cart_amount);
 	$(".quantity_update_form").submit();

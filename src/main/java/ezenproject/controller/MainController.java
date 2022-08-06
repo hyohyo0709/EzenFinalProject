@@ -21,10 +21,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,11 +33,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ezenproject.dto.BookDTO;
 import ezenproject.dto.CartDTO;
+import ezenproject.dto.CouponDTO;
 import ezenproject.dto.MemberDTO;
 import ezenproject.dto.OrderDTO;
 import ezenproject.dto.PageDTO;
 import ezenproject.service.BookService;
 import ezenproject.service.CartService;
+import ezenproject.service.CouponService;
 import ezenproject.service.MemberService;
 import ezenproject.service.OrderService;
 
@@ -58,7 +58,10 @@ public class MainController {
 	private BookService bservice;
 	@Autowired
 	private CartService cservice;
+	@Autowired 
 	private OrderService oservice;
+	@Autowired
+	private CouponService couponservice;
 	private CartDTO cdto;
 	private BookDTO bdto;
 	private MemberDTO mdto;
@@ -239,27 +242,31 @@ public class MainController {
 	/* 장바구니 수량 수정 */
 	@RequestMapping(value = "/cart/list/update" , method = RequestMethod.POST)
 	public String updateCartPOST(CartDTO dto) {
-		
 		cservice.modifyCountProcess(dto);
-		
 		return "redirect:/cart/list/" + dto.getMember_number();
 		
 	}	
 	/* 장바구니 제거 */
 	@RequestMapping(value = "/cart/list/delete" , method = RequestMethod.POST)
 	public String deleteCartDELETE(CartDTO dto) {
-		
 		cservice.deleteCartProcess(dto.getNum());
-		
 		return "redirect:/cart/list/" + dto.getMember_number();
-		
 	}		
 	
+	/* 장바구니 주문 페이지 */
+	@RequestMapping(value ="/order/orderCartDetail/{member_number}" , method = RequestMethod.GET)
+	public String cartOrderGET(@PathVariable("member_number") String member_number, Model model) {
+		cdto= cservice.cartListProcess(member_number);		
+		model.addAttribute("cdto", cdto);
+		model.addAttribute("couponlist", couponservice.listProcess(member_number));
+		return "/order/orderCartDetail";
+	}	
+
 	
 	
 	////////////////////장바구니 페이지 끝////////////////////////////////
 	
-	
+	//메인페이지
 	@RequestMapping(value = { "/", "/index.do" }, method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request, ModelAndView mav) {
 		String viewname = (String) request.getAttribute("viewName");
@@ -341,6 +348,127 @@ public class MainController {
 		
 		//회원 로그인 및 로그아웃 끝//
 		
+		
+//		///////////////////////////여기서부터 마이 페이지////////////////////////////////////////
+
+		//회원정보 출력
+			@RequestMapping(value = "/mypage/memberdetail.do", method = RequestMethod.GET)
+			public ModelAndView memberInformationMethod(ModelAndView mav, int num)
+					throws Exception {
+				mdto = mservice.selectOneProcess(num);
+				mav.addObject("memberInfo", mdto);
+				mav.setViewName("/mypage/memberdetail");
+//				System.out.println(mdto);
+				return mav;
+			}
+		
+		
+			//회원탈퇴
+			@RequestMapping(value = "/mypage/memberdelete.do", method = RequestMethod.POST)
+			public String memberLeaveMethod(int num, HttpServletRequest request)	throws Exception {
+				mservice.statusChangeOffProcess(num);
+				logout(request);
+				return "redirect:/";
+			}
+			
+			
+			//회원정보 수정
+			@RequestMapping(value = "/mypage/update.do", method = RequestMethod.POST)
+			public String updateMethod(MemberDTO mdto) throws Exception {
+				mservice.updateInformation(mdto);
+				return "redirect:/mypage/mypageForm.do";
+			}
+			
+			
+			//주문 목록
+			@RequestMapping(value = "/mypage/myorderlist.do", method = RequestMethod.GET)
+			public ModelAndView orderListMethod(ModelAndView mav, String member_number) {	 
+				 
+				 List<OrderDTO> aList = oservice.myOrderListProcess(member_number);
+				
+				 mav.addObject("aList", aList); 
+				mav.setViewName("/mypage/myorderlist");
+				return mav;
+			} 
+			
+			
+			//주문 뷰페이지
+			@RequestMapping(value = "/mypage/myorderdetail.do", method = RequestMethod.GET)
+			public ModelAndView orderInformationMethod(ModelAndView mav, int num)
+					throws Exception {
+				odto = oservice.orderInformationProcess(num);
+				mav.addObject("orderInfo", odto);
+				mav.setViewName("/mypage/myorderdetail");
+				//System.out.println(obdto.getBdto().getBook_content());
+				return mav;
+			}
+			
+			
+			
+			//배송 확인
+			@RequestMapping(value="/mypage/myorderstatus.do", method = RequestMethod.GET)
+			public ModelAndView orderStatusMethod(String order_number, ModelAndView mav) throws Exception {
+				odto = oservice.orderStatusProcess(order_number);
+				mav.addObject("orderstatus", odto);
+				mav.setViewName("/mypage/myorderstatus");
+				
+				return mav;
+			}
+			
+			
+			//주문 취소(시스템상 내용은 주문 수정)
+			@RequestMapping(value = "/mypage/myorderupdate.do", method = RequestMethod.POST)
+			public String orderupdateMethod(OrderDTO dto, String member_number) throws Exception {
+				
+				oservice.updateOrderProcess(dto);
+
+				return "redirect:/mypage/myorderlist.do?member_number="+member_number;
+			}
+		
+//		///////////////////////////여기까지 마이페이지//////////////////////////////////////////////
+			
+			
+//////////////////여기서부터 주문페이지 ////////////////////////////////////////////////////////////
+
+
+
+//주문 페이지 들어가기
+			@RequestMapping("/order/orderDetail.do")
+			public ModelAndView viewMethod(HttpServletRequest request, int num, ModelAndView mav, String member_number) {
+				bdto= bservice.contentProcess(num);
+				List<CouponDTO> couponlist = couponservice.listProcess(member_number);
+				String viewName = (String) request.getAttribute("viewName");
+				
+				mav.addObject("bdto", bdto);
+				mav.addObject("couponlist", couponlist);
+				mav.setViewName(viewName);
+	
+				return mav;
+
+			}
+
+
+
+
+			//주문하는 행위
+			@RequestMapping(value = "/order/ordersave.do", method = RequestMethod.POST)
+			public String newOrderMethod(OrderDTO dto, HttpServletRequest request, String coupon_number) {
+				oservice.newOrderNumberProcess(dto);
+				oservice.newOrderSaveProcess(dto);
+				couponservice.usedCouponProcess(coupon_number);
+	
+				return "redirect:/";
+}
+
+
+
+
+
+//////////////////////////////여기까지 주문 페이지///////////////////////////////////////	
+			
+			
+			
+			
 		
 	////////////////////////////////////////////////////여기부터 관리자 페이지 메소드입니다.////////////////////
 

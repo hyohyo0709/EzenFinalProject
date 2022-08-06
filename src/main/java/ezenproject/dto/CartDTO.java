@@ -19,16 +19,28 @@ public class CartDTO {
 	private String book_img;
 	
 	//추가 기능
-	private int salePrice;
+	private int saleprice;
     private int totalPrice;
     private int point;
     private int totalPoint;  
     private double book_coupon;
 	
+    //판매가 변수
+	private int sellprice;
 	
 	
-	public int getSalePrice() {
-		return salePrice;
+	public int getSellprice() {
+		return sellprice;
+	}
+
+
+	public void setSellprice(int sellprice) {
+		this.sellprice = sellprice;
+	}
+
+
+	public int getSaleprice() {
+		return saleprice;
 	}
 
 
@@ -175,9 +187,9 @@ public class CartDTO {
 
 	
 	public void initSaleTotal() {
-		this.salePrice = (int) (this.book_price /10*9);
-		this.totalPrice = this.salePrice*this.cart_amount;
-		this.point = (int)(Math.floor(this.salePrice*0.05));
+		this.saleprice = (int) (this.book_price /10*9);
+		this.totalPrice = this.saleprice*this.cart_amount;
+		this.point = (int)(Math.floor(this.saleprice*0.05));
 		this.totalPoint = this.point * this.cart_amount;
 	}
 	
