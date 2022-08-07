@@ -235,7 +235,7 @@ public class MainController {
 	
 	@RequestMapping(value ="/cart/list/{member_number}" , method = RequestMethod.GET)
 	public String cartPageGET(@PathVariable("member_number") String member_number, Model model) {
-					model.addAttribute("clist", cservice.getCartProcess(member_number));
+		model.addAttribute("clist", cservice.getCartProcess(member_number));
 		
 		return "/cart/list";
 	}	
@@ -256,10 +256,24 @@ public class MainController {
 	/* 장바구니 주문 페이지 */
 	@RequestMapping(value ="/order/orderCartDetail/{member_number}" , method = RequestMethod.GET)
 	public String cartOrderGET(@PathVariable("member_number") String member_number, Model model) {
-		cdto= cservice.cartListProcess(member_number);		
-		model.addAttribute("cdto", cdto);
+		model.addAttribute("clist", cservice.getCartProcess(member_number));
 		model.addAttribute("couponlist", couponservice.listProcess(member_number));
+		
 		return "/order/orderCartDetail";
+	}	
+	
+	/* 주문페이지 장바구니 수량 수정 */
+	@RequestMapping(value = "/order/orderCartDetail/update" , method = RequestMethod.POST)
+	public String updateOrderCartPOST(CartDTO dto) {
+		cservice.modifyCountProcess(dto);
+		return "redirect:/order/orderCartDetail/" + dto.getMember_number();
+		
+	}	
+	/* 주문페이지 장바구니 제거 */
+	@RequestMapping(value = "/order/orderCartDetail/delete" , method = RequestMethod.POST)
+	public String deleteOrderCartDELETE(CartDTO dto) {
+		cservice.deleteCartProcess(dto.getNum());
+		return "redirect:/order/orderCartDetail/" + dto.getMember_number();
 	}	
 
 	

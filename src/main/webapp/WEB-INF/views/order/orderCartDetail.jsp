@@ -4,7 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
-<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -97,7 +96,7 @@
 <script src="form-validation.js"></script>
 
 <script type="text/javascript">
-	$(document).ready(function() {
+ 	$(document).ready(function() {
 		$('#couponpricedirfrm').hide();
 		 $('#couponpriceperfrm').hide();
 		 
@@ -116,7 +115,7 @@
 
 		})
 		
-		$("#btnCoupon").click(function(){			
+	 	$("#btnCoupon").click(function(){			
 				
 			
 			 var nn=$("#couponSelect").val(); // 
@@ -145,10 +144,12 @@
 			 
 			 
 				
-		})
+		}) 
 		
+	 
+	});
 		
-	})
+	
 	
 	
 </script>
@@ -168,10 +169,11 @@
 	<!-- card end -->
 
 	<!-- body start -->
-<body class="bg-light">
+	<body class="bg-light">
+	
 	<form class="needs-validation" novalidate name="order_frm"
 		id="order_frm" method="post">
-
+</form>
 		<div class="container">
 			<main>
 				<div class="py-5 text-center">
@@ -188,22 +190,68 @@
 								class="badge bg-primary rounded-pill">1</span>
 						</h4>
 						<div class="cart_order_area">
-							<img alt="${cdto.book_img}" src="/assets/img/${cdto.book_img}" height="100px" width="70px">
-					
+							<c:forEach items="${clist}" var="cdto">
+							<div class="cart_list">
+							<img alt="${cdto.book_img}" src="/assets/img/${cdto.book_img}" height="130px" width="85px">
 							<table class="table_cart_order">
 									<tbody>
+										<tr >
+											<td class="cart_info_td" align="left" height="25px;" colspan="2">
+											<input style="max-height: 25px;" type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
+											<input type="hidden" class="individual_book_price_input" value="${cdto.book_price}">
+											<input type="hidden" class="individual_saleprice_input" value="${cdto.saleprice}">
+											<input type="hidden" class="individual_cart_amount_input" value="${cdto.cart_amount}">
+											<input type="hidden" class="individual_totalPrice_input" value="${cdto.saleprice * cdto.cart_amount}">
+											<input type="hidden" class="individual_point_input" value="${cdto.point}">
+											<input type="hidden" class="individual_totalPoint_input" value="${cdto.totalPoint}">
+											<input type="hidden" class="individual_book_id_input" value="${cdto.book_id}">								
+											</td>
+											<td class="td_width_4 table_text_align_center" height="25px;">
+											<button class="delete_btn" data-num="${cdto.num}"><img alt="delete_btn" src="/assets/img/delete_btn.png" width="12px" height="12px" align="middle"></button>
+											</td>
+										</tr>
+										<tr  >
+											<th colspan="3" style="height: 23px; padding: 0px">${cdto.book_title}</th>
+										</tr>
+										<tr><td>&nbsp;</td></tr>
 										<tr>
-											<td class="text-muted" name="book_title">${cdto.book_title}</td>
+											<td colspan="3" style="max-height: 28px padding: 0px;  ">
+												<div>
+												<div class="quantity_div2">
+												<div class="quantity_div3">
+												<button class="quantity_btn minus_btn" id="order_minus_btn">-</button>
+												<input id="quantity_order_input" type="text" value="${cdto.cart_amount}" class="quantity_input">
+												<button class="quantity_btn plus_btn" id="order_plus_btn">+</button>
+												</div>
+												<a class="quantity_modify_btn" id="quantity_order_cart_btn" data-num="${cdto.num}">수량 변경</a>
+												</div>
+												</div>
+												</td>
 										</tr>
 										<tr>
-											<td>${cdto.book_price}원</td>
+											<td align="left" class="list_price">판매가 : </td>
+											<td class="list_price"><del><fmt:formatNumber value="${cdto.book_price}" pattern="#,###"/></del></td>
+											<td class="list_price"> => <fmt:formatNumber value="${cdto.saleprice}" pattern="#,###"/>원</td>
 										</tr>
+										
 									</tbody>
 								</table>
+								<!-- 수량조절 form -->
+								<form action="/order/orderCartDetail/update" method="post" class="quantity_update_form">
+								<input type="hidden" name="num" class="update_num">
+								<input type="hidden" name="cart_amount" class="update_cart_amount">
+								<input type="hidden" name="member_number" value="${member.member_number}">
+								</form>	
+								<!-- 삭제 form -->
+								<form action="/order/orderCartDetail/delete" method="post" class="quantity_delete_form">
+								<input type="hidden" name="num" class="delete_num">
+								<input type="hidden" name="member_number" value="${member.member_number}">
+								</form>		
+								</div>
+								</c:forEach>
 									</div>
 							<ul class="list-group mb-3">
 							<li class="list-group-item d-flex justify-content-between lh-sm">
-								<div>
 							</li>
 							<li class="list-group-item d-flex justify-content-between lh-sm">
 								<div>
@@ -239,42 +287,34 @@
 								 
 								 <input name="coupon_number" id="coupon_number" value="" type="hidden" />
 							</li>
-						
-							
-							
 							<li class="list-group-item d-flex justify-content-between">
 								<span>결제금액</span> 
-								
-								
-								<input type="number" name="order_cost" id="order_cost" " 
+								<!-- <input type="number" name="order_cost" id="order_cost" 
 								style="font-weight:bold; border:none; background: transparent;text-align:right;" /> 
-								<strong>원</strong>
-
+								<strong>원</strong> -->
 							</li>
 						</ul>
-	
+						
 						<!--         <form class="card p-2">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Promo code">
             <button type="submit" class="btn btn-secondary">Redeem</button>
           </div>
         </form> -->
-
+			
 					</div>
-
 					<div class="col-md-7 col-lg-8">
 						<h4 class="mb-3">배송 정보 입력</h4>
 
 						<div class="col-5">
 							<label for="id" class="form-label">주문자 아이디 <span
-								class="text-muted"></span></label> <input type="id" class="form-control"
+								class="text-muted"></span></label> <input class="form-control"
 								id="member_id" name="member_id" value="${member.member_id}"
-								readonly="readonly"> <input type="id"
+								readonly="readonly"> <input
 								class="form-control" id="member_number" name="member_number"
 								value="${member.member_number}" readonly="readonly"
 								hidden="true">
-
-						</div>
+							</div>
 
 
 						<div class="row g-3">
@@ -465,7 +505,6 @@
 			</main>
 
 		</div>
-	</form>
 
 	<!-- body end -->
 
@@ -473,4 +512,97 @@
 	<%@ include file="../common/footer.jsp"%>
 	<!-- Footer end -->
 </body>
+	<script>
+$(document).ready(function(){
+		//장바구니 스크립트//
+	
+	setTotalInfo();	
+		
+$(".individual_cart_checkbox").on("change", function(){
+	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
+	setTotalInfo($(".cart_info_td"));
+});
+
+/* 체크박스 전체 선택 */
+$(".all_check_input").on("click", function(){
+
+	/* 체크박스 체크/해제 */
+	if($(".all_check_input").prop("checked")){
+		$(".individual_cart_checkbox").attr("checked", true);
+	} else{
+		$(".individual_cart_checkbox").attr("checked", false);
+	}
+	
+	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
+	setTotalInfo($(".cart_info_td"));	
+	
+});
+
+
+/* 총 주문 정보 세팅(배송비, 총 가격, 물품 수, 종류) */
+function setTotalInfo(){
+	
+	let totalPrice = 0;				// 총 가격
+	let totalCount = 0;				// 총 갯수
+	let totalKind = 0;				// 총 종류
+	let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
+$(".cart_info_td").each(function(index, element){
+		
+		if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
+			// 총 가격
+			totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
+			// 총 갯수
+			totalCount += parseInt($(element).find(".individual_cart_amount_input").val());
+			// 총 종류
+			totalKind += 1;
+		}
+
+	});
+	
+		finalTotalPrice = totalPrice /* - totalCoupon */;
+	
+	/* ※ 세자리 컴마 Javscript Number 객체의 toLocaleString() */
+	
+	// 총 가격
+	$(".totalPrice_span").text(totalPrice.toLocaleString());
+	// 총 갯수
+	$(".totalCount_span").text(totalCount);
+	// 총 종류
+	$(".totalKind_span").text(totalKind);
+}});
+	
+	/* 수량 버튼 */	
+$(".plus_btn").on("click", function(){
+	let quantity = $(this).parent("div").find("input").val();
+	$(this).parent("div").find("input").val(++quantity);
+});
+$(".minus_btn").on("click", function(){
+	let quantity = $(this).parent("div").find("input").val();
+	if(quantity > 1){
+		$(this).parent("div").find("input").val(--quantity);		
+	}
+});
+
+	/* 수량 수정 버튼 */
+$(".quantity_modify_btn").on("click", function(){
+	let num = $(this).data("num");
+	let cart_amount = $(this).parent("div").find("input").val();
+	$(".update_num").val(num);
+	$(".update_cart_amount").val(cart_amount);
+	$(".quantity_update_form").submit();
+	
+});
+
+/* 장바구니 삭제 버튼 */
+$(".delete_btn").on("click", function(e){
+	e.preventDefault();
+	const num = $(this).data("num");
+	$(".delete_num").val(num);
+	$(".quantity_delete_form").submit();
+});
+	
+	
+	
+	
+	</script>
 </html>

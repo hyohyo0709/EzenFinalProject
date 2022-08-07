@@ -106,7 +106,7 @@
 						<button class="quantity_btn plus_btn" id="cart_plus_btn">+</button>
 						<input style="width: 88px;" type="text" value="${cdto.cart_amount}" class="quantity_input">
 						</div>
-						<a class="quantity_modify_btn" data-num="${cdto.num}">변경</a>
+						<a class="quantity_modify_btn" id="quantity_modify_btn" data-num="${cdto.num}">변경</a>
 				
 					</div>
 				</div>
@@ -118,7 +118,6 @@
 									<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
 									<input type="hidden" class="individual_book_price_input" value="${cdto.book_price}">
 									<input type="hidden" class="individual_saleprice_input" value="${cdto.saleprice}">
-									<!-- <input type="hidden" class="individual_coupon_input" value=""> -->
 									<input type="hidden" class="individual_cart_amount_input" value="${cdto.cart_amount}">
 									<input type="hidden" class="individual_totalPrice_input" value="${cdto.saleprice * cdto.cart_amount}">
 									<input type="hidden" class="individual_point_input" value="${cdto.point}">
@@ -250,13 +249,12 @@ $(".all_check_input").on("click", function(){
 });
 
 
-/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
+/* 총 주문 정보 세팅(배송비, 총 가격, 물품 수, 종류) */
 function setTotalInfo(){
 	
 	let totalPrice = 0;				// 총 가격
 	let totalCount = 0;				// 총 갯수
 	let totalKind = 0;				// 총 종류
-	/* let	totalCoupon = 0;			// 총 쿠폰할인 금액 */
 	let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
 $(".cart_info_td").each(function(index, element){
 		
@@ -267,8 +265,6 @@ $(".cart_info_td").each(function(index, element){
 			totalCount += parseInt($(element).find(".individual_cart_amount_input").val());
 			// 총 종류
 			totalKind += 1;
-			// 총 쿠폰 가격
-			/* totalCoupon += paserInt($(element).find(".individual_totalCoupon_input").val()); */
 		}
 
 	});
@@ -283,8 +279,6 @@ $(".cart_info_td").each(function(index, element){
 	$(".totalCount_span").text(totalCount);
 	// 총 종류
 	$(".totalKind_span").text(totalKind);
-	// 총 쿠폰
-	/* $(".totalCoupon_span").text(totalCoupon); */
 }});
 	
 	/* 수량 버튼 */	
