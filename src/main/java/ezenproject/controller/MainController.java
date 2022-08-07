@@ -59,6 +59,7 @@ public class MainController {
 	private MemberDTO mdto;
 	private OrderDTO odto;
 	private PageDTO pdto;
+	private CouponDTO cdto;
 
 	private int currentPage;
 
@@ -225,6 +226,19 @@ public class MainController {
 
 			return "redirect:/mypage/myorderlist.do?member_number="+member_number;
 		}
+		
+		
+		//할인권 출력
+		@RequestMapping(value = "/mypage/mycoupon.do", method = RequestMethod.GET)
+		public ModelAndView myCouponListMethod(ModelAndView mav, String member_number) {	 
+			 
+			 List<CouponDTO> aList = couponservice.listProcess(member_number);
+			
+			 mav.addObject("aList", aList); 
+			mav.setViewName("/mypage/mycoupon");
+			return mav;
+		} 
+				
 	
 //	///////////////////////////여기까지 마이페이지//////////////////////////////////////////////
 	

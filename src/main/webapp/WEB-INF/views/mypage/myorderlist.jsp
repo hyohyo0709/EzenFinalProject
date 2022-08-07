@@ -62,10 +62,11 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
 	  <input type="text" id="mymenu" readonly="readonly"  class="list-group-item list-group-item-action active list-group-item-secondary"
 	    value="사용자 My Menu" />
 	  
-	  <button id="member" onclick="location.href='http://localhost:8090/mypage/memberdetail.do?num=${member.num}'" class="list-group-item list-group-item-action">회원정보 수정</button>
-	  <button id="order" onclick="location.href='http://localhost:8090/mypage/myorderlist.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action">주문확인 / 취소</button>
-	
-	</div> 
+  		<button id="member" onclick="location.href='http://localhost:8090/mypage/memberdetail.do?num=${member.num}'" class="list-group-item list-group-item-action">회원정보 수정</button>
+ 		 <button id="order" onclick="location.href='http://localhost:8090/mypage/myorderlist.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action">주문확인 / 취소</button>
+  		<button id="coupon" onclick="location.href='http://localhost:8090/mypage/mycoupon.do?member_number=${coupon.member_number}'" class="list-group-item list-group-item-action">쿠폰조회</button>
+
+	</div>
 	</div>
 	</div>
   <!-- mypage menu end -->

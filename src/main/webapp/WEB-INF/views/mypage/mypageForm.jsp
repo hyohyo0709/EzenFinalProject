@@ -53,13 +53,9 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
   
-   <!-- Nabar start -->
-
+     <!-- Header start -->
     <%@ include file = "../common/header.jsp"%>
-    <!-- Header end -->
-
-  <!-- breadclumb end -->
-  <!-- head end -->
+    <!-- Header end --
 
   <!-- detail start -->
 <%@ include file = "mypagemenu.jsp"%>

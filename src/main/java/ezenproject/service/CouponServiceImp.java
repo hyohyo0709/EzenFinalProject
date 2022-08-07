@@ -56,6 +56,7 @@ public class CouponServiceImp implements CouponService{
 		
 	}
 	
+	
 	@Override
 	public List<CouponDTO> listProcess(String member_number) {
 		

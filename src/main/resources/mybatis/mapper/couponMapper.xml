@@ -38,6 +38,18 @@
     
     <!-- /////////////여기까지 관리자 페이지 매퍼 ////////////////  -->
     
+   <!-- /////////////여기부터 마이 페이지 매퍼 ////////////////  -->
+    
+    <select id="myCouponlist" parameterType="String" resultType="CouponDTO">
+    <![CDATA[
+    select coupon_number, coupon_value
+   	from ezencoupons 
+    where member_number=#{member_number}
+    order by num
+    ]]>
+    </select> 
+     
+    
     
     
     
