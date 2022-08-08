@@ -15,12 +15,19 @@ public class OrderDTO {
 	private String order_phone;
 	private String order_name;
 	private String order_address;
+	private String cart_order_number;
 	
 	private MemberDTO ezenmembers;
 	private BookDTO ezenbooks;
 	
 	
 	
+	public String getCart_order_number() {
+		return cart_order_number;
+	}
+	public void setCart_order_number(String cart_order_number) {
+		this.cart_order_number = cart_order_number;
+	}
 	public MemberDTO getEzenmembers() {
 		return ezenmembers;
 	}

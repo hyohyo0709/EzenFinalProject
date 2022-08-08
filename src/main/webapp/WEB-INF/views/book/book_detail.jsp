@@ -103,7 +103,7 @@
 						<th><p style="margin-top: 10px">줄거리</p></th>
 						</tr>
 						<tr>
-							<td width="100%" colspan="2" class="book_story">${dto.book_content}</td>
+							<td width="100%" colspan="2" class="book_story" >${dto.book_content}</td>
 						</tr>
 					</tbody>
 				</table>
@@ -154,11 +154,12 @@
 								</tr>
 								<tr>
 								<th>
-								구매 가격
+								구매 가격 
 								</th>
 								<td colspan="3">	
 									<input type="hidden" value="-" id="minus_btn">
-									<p class="cart_count_total_price">${sellprice}원</p>
+									<input type="hidden" name="total_price" value="${sellprice}">
+									<p class="cart_count_total_price"><span class="totalPrice_span"><fmt:formatNumber value="5000" pattern="#,###원" /></span> 원</p>
 									<input type="hidden" value="+" id="plus_btn">
 								</td>
 							</tr>
@@ -255,18 +256,35 @@
 	</body>
 	
 	
-	<script>
+	<script type="text/javascript">
 		//장바구니 스크립트//
+	$(document).ready(function(){
+	let count = 1;
 	let quantity = $("#quantity_input").val();
+	Price = 0;
+	totalPrice= ${dto.book_price / 10 *9};
+	Price +=  ${dto.book_price / 10 *9};
 	
 	$("#plus_btn").on("click", function(){
 		$("#quantity_input").val(++quantity);
+		count += 1;
+		totalPrice = count * Price ;
+		$(".totalPrice_span").text(totalPrice.toLocaleString());
 	});
 	$("#minus_btn").on("click", function(){
 		if(quantity > 1){
-			$("#quantity_input").val(--quantity);	
+			$("#quantity_input").val(--quantity);
+			count -= 1;
+			totalPrice = count * Price ;
+			$(".totalPrice_span").text(totalPrice.toLocaleString());
 		}
 	})
+	
+	totalPrice = parseInt(totalPrice);
+	$(".totalPrice_span").text(totalPrice.toLocaleString());
+	
+	
+	});
 	
 	//서버 전송용 데이터
 	const form = {

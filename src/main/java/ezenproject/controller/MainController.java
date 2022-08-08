@@ -173,24 +173,7 @@ public class MainController {
 		
 	}
 	
-//	주문 페이지 들어가기(sample)
-	@RequestMapping(value = "/order/order_page_sample.do")
-	public ModelAndView orderMethod(HttpServletRequest request, int num, ModelAndView mav) {
-		String viewName = (String)request.getAttribute("viewName");
-		
-		try {
-			if(bservice.contentProcess(num).getNum()==num) {
-					mav.addObject("dto", bservice.contentProcess(num));
-					mav.setViewName(viewName);
-		}	
-		}catch (Exception e) {
-			viewName = "/erroralert";
-			mav.setViewName(viewName);
-		}
 
-		return mav;
-		
-	}
 	
 //	매장 방문 구매 페이지 들어가기(sample)
 	@RequestMapping(value = "/order/pickup.do")

@@ -107,6 +107,9 @@
     
     </insert>
     
+  
+    
+    
     
      <select id="checkOrderStatus"
     parameterType="OrderDTO"

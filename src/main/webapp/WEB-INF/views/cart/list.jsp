@@ -54,7 +54,7 @@
 			<div class="all_check_input_div" style="margin-left:110px " >
 			<input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
 			</div>	
-				<div class="whtie_space">
+				<div class="white_space">
 				<div class="cart_div_container">
 				<div class="row" id="product_bezel">
 				<c:forEach items="${clist}" var="cdto">
@@ -172,7 +172,7 @@
 		</div>
 		
 		<!-- 오른쪽 구매 영역 -->
-		<div class="row">
+		<div class="row" style="height:; ;">
 		<div class="cart_buy_area">
 		<div class="cart_buy">
 			<table class="cart_table">
@@ -218,6 +218,7 @@
 	
 	<!-- ///////////장바구니 리스트 페이지 끝////////////////////////////// -->
 	<!-- Footer Start -->
+	
 	<%@ include file="../common/footer.jsp"%>
 	<!-- Footer end -->
 	
@@ -246,8 +247,9 @@ $(".all_check_input").on("click", function(){
 	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 	setTotalInfo($(".cart_info_td"));	
 	
+	
+	
 });
-
 
 /* 총 주문 정보 세팅(배송비, 총 가격, 물품 수, 종류) */
 function setTotalInfo(){
@@ -310,9 +312,7 @@ $(".delete_btn").on("click", function(e){
 	$(".delete_num").val(num);
 	$(".quantity_delete_form").submit();
 });
-	
-	
-	
-	
+
+
 	</script>
 </html>

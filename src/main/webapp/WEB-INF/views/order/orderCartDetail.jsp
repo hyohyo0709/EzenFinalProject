@@ -23,7 +23,7 @@
 <title>주문 상세</title>
 
 <!-- 파비콘 -->
-<link rel="short icon" href="../assets/img/favicon.png"
+<link rel="short icon" href="/assets/img/favicon.png"
 	type="image/x-icon" />
 <head>
 <meta charset="utf-8">
@@ -171,9 +171,7 @@
 	<!-- body start -->
 	<body class="bg-light">
 	
-	<form class="needs-validation" novalidate name="order_frm"
-		id="order_frm" method="post">
-</form>
+	
 		<div class="container">
 			<main>
 				<div class="py-5 text-center">
@@ -187,12 +185,12 @@
 					<div class="col-md-5 col-lg-4 order-md-last">
 						<h4 class="d-flex justify-content-between align-items-center mb-3">
 							<span class="text-primary">Your cart</span> <span
-								class="badge bg-primary rounded-pill">1</span>
+								class="badge bg-primary rounded-pill totalKind_span" >1</span>
 						</h4>
 						<div class="cart_order_area">
 							<c:forEach items="${clist}" var="cdto">
 							<div class="cart_list">
-							<img alt="${cdto.book_img}" src="/assets/img/${cdto.book_img}" height="130px" width="85px">
+							<img alt="${cdto.book_img}" src="/assets/img/${cdto.book_img}" height="130px" width="85px" st>
 							<table class="table_cart_order">
 									<tbody>
 										<tr >
@@ -230,8 +228,8 @@
 										</tr>
 										<tr>
 											<td align="left" class="list_price">판매가 : </td>
-											<td class="list_price"><del><fmt:formatNumber value="${cdto.book_price}" pattern="#,###"/></del></td>
-											<td class="list_price"> => <fmt:formatNumber value="${cdto.saleprice}" pattern="#,###"/>원</td>
+											<td class="list_price"><del><fmt:formatNumber value="${cdto.book_price *cdto.cart_amount}" pattern="#,###"/></del></td>
+											<td class="list_price"> => <fmt:formatNumber value="${cdto.saleprice * cdto.cart_amount}" pattern="#,###원" /></td>
 										</tr>
 										
 									</tbody>
@@ -287,8 +285,9 @@
 								 
 								 <input name="coupon_number" id="coupon_number" value="" type="hidden" />
 							</li>
-							<li class="list-group-item d-flex justify-content-between">
-								<span>결제금액</span> 
+							<li class="list-group-item justify-content-between">
+								<span>결제금액</span>
+								<span style="float: right;"><span class="totalPrice_span">${totalPrice}</span>원 </span>
 								<!-- <input type="number" name="order_cost" id="order_cost" 
 								style="font-weight:bold; border:none; background: transparent;text-align:right;" /> 
 								<strong>원</strong> -->
@@ -342,7 +341,7 @@
 							<div class="col-sm-6">
 								<label for="firstName" class="form-label">받으시는 분 연락처</label> <input
 									type="text" class="form-control" id="order_phone"
-									name="order_phone" placeholder="전화번호를 입력해주세요." value=""
+									 placeholder="전화번호를 입력해주세요." value=""
 									required>
 								<div class="invalid-feedback">받으시는 분 연락처를 입력해주세요</div>
 							</div>
@@ -395,7 +394,7 @@
 							<div class="col-12">
 								<label for="address" class="form-label">상세주소</label> <input
 									type="text" class="form-control" id="order_address"
-									name="order_address" value="" placeholder="1234-1 행복하우스 101호 "
+									 value="" placeholder="1234-1 행복하우스 101호 "
 									required>
 								<div class="invalid-feedback">상세주소를 입력해주세요</div>
 							</div>
@@ -503,9 +502,20 @@
 						</div>
 					</div>
 			</main>
-
+	
 		</div>
-
+<div></div>
+<form class="needs-validation" novalidate name="order_frm"
+		id="order_frm" method="post">
+	<c:forEach items="${clist}" var="cdto">
+	<input type="hidden" name="order_cost" value="${cdto.book_price * 10 / 9}">
+	<input type="hidden" name="member_number" value="${member.member_number }">
+	<input type="hidden" name="book_id" value="${cdto.book_id}">
+	<input type="hidden" name="order_phone" value="('#order_phone').val()}">
+	<input type="hidden" name="member_email" value="('#member_email').val()}">
+	<input type="hidden" name="order_address" value="('#order_address').val()">
+	</c:forEach>
+</form>
 	<!-- body end -->
 
 	<!-- Footer Start -->
@@ -600,9 +610,6 @@ $(".delete_btn").on("click", function(e){
 	$(".delete_num").val(num);
 	$(".quantity_delete_form").submit();
 });
-	
-	
-	
 	
 	</script>
 </html>
