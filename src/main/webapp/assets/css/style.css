@@ -35,6 +35,7 @@ body{
 	color: #212529;
 	font-size: 18px;
 	text-align: center;
+
 }
 /* 베스트셀러 이미지 */
 .card-img-top {
@@ -43,29 +44,20 @@ body{
 	object-fit: cover;
 }
 
-/* ////////////////////////////////////////// */
-/* /* 첫번째 슬라이드 */
-.first_slide{
+
+/* 첫번째 슬라이드 */
+.event_banner {
 width:100%;
 height:400px;
 background-color:rgb(230, 233, 246);
 overflow:hidden;
-
 }
 
-.event_banner {
- padding-left:4rem;
- position:absolute;
- min-width:1000px;
-}  
-
-
-/* 요즘 이 책 이미지 margin-left: 3rem까지가 반응형에 적합  */
-.first_img {
+/* 요즘 이 책 이미지*/
+.first_img{
 width:150px;
-height:auto;
 float:left;
-margin-left: 3.2rem;
+margin-left: 3rem;
 margin-right: 2rem;
 
 }
@@ -75,17 +67,16 @@ margin-right: 2rem;
 	width: 200px;
 	height:auto;
 	float: left;
-    margin: 45px 0px 0px 10px;
+    margin: 50px 0px 0px 20px;
     text-align: center;
-  
 }
 /* 책 이미지 */
 .event_banner a.link_book img {
-	width: 150px;
+
+	width: 140px;
     height: auto;
     border: 1px solid #999;
-  
-
+    
 }
 /* 책 제목 */
 .event_banner a.link_book .title {
@@ -111,8 +102,49 @@ margin-right: 2rem;
 	width:100%;
 	}
 
+/* //////////////////////////footer/////////////// */
+
+.foot{
+	background-color:#f5f8f9;
 	
-/* 퀵메뉴  */
+}
+.copy_line{
+	padding:0px 3px;
+	color:#d7d7d7;
+}
+.copy_btn{
+	color:#444444;
+	}
+.foot-title{
+	padding-top:20px;
+}
+.footmenu{
+	padding-top:10px;
+	padding-bottom:10px;
+}	
+.foot-text{
+	padding-bottom:20px;
+}
+
+/* 화면 위로 올리기	 */
+.footertoTop{
+display:scroll;
+position:fixed;
+bottom:10px;
+right:5px;
+color:#444444;
+}
+
+
+
+/*/////마이페이지////////  */
+#mymenu{
+  cursor:default;
+
+}
+
+	
+/*//////////////// 퀵메뉴  ////////////*/
 .quickmenu div, ul, li {
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
@@ -167,14 +199,213 @@ margin-right: 2rem;
 	position:relative;
 	min-height:1000px;
 	}
-	
 
-/* 화면 위로 올리기	 */
-.footertoTop{
-display:scroll;
-position:fixed;
-bottom:10px;
-right:5px;
-color:#444444;
+.page-link:focus, .page-link:hover {
+  color: #ccc;
+  background-color: #222; 
+  border-color: #444;
+} 
+/* //////////////////////////////////////////////////// */
+
+
+
+/*///////////////// book_detail에 삽입된 css 목록 시작 //////////////// */
+/* col-md-3 */
+.card-img-top{
+	border-radius: 15px 0px 0px 15px;
+	box-sizing: border-box;	  
+}
+.card_img{
+	border-radius: 30px 0px 0px 30px;
+}
+
+/* col-md-6 */
+#detail_main{
+	border-radius: 0px 0px 25px 25px;
+	padding: 10px;
+	box-sizing: border-box;	 
+}
+.book_title {
+	font-size: 25px;
+	text-align: right;
+	font-weight: bold;
 }	
+.book_story{
+	text-align:justify;
+	color: rgb(60,10,10);
+	border-bottom: 2px solid;
+}
+
+.book_sub {
+	font-size: 13px;
+	color: gray;
+	text-align: right;
+
+}
+.list_price1{
+	font-size: 14px; color: gray;
+}
+.list_price2{
+text-align:right;
+	font-size: 14px; color: gray;
+}
+.sell_price1{
+	font-size: 17px; color: black;
+}
+.sell_price2{
+text-align:right;
+	font-size: 23px; color: blue;
+}
+
+/* col-md-3 */
+.buy_box{
+	border: rgb(210,202,186,0.01) 10px solid;
+	box-sizing: border-box;	 
+	position: sticky;
+	float: right;
+	width: 100%;
+	height: 530px;
+	background:rgb(210,202,186,0.1);
+	border-radius: 0px 30px 30px 0px ;
+}
+.vCenter {  display: flex;
+    justify-content: center;
+    align-content: center; }
+.buy_area1{
+	font-size:11px;
+	 margin-left: 10px
+}
+.buy_area2{
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+}
+.count_btn1{
+	margin-right: -1px;
+	width: 30px;
+	border-right: 0px; 
+	border: 2px solid #bcbdbf;
+	background-color: #f5f5f5;
+}
+.count_btn2{
+	border-radius: 0px 5px 5px 0px;
+	margin-left: -1px;
+	width: 30px;
+	border-left: 0px; 
+	border: 2px solid #bcbdbf;
+	background-color: #f5f5f5;
+}
+.count_total{
+	background-color: white; 
+	width: 100px;
+	height: 30px; 
+	margin: 0px -3px 0px -3px ;
+	border: 2px solid #bcbdbf;
+	text-align: center;
+}
+.count_total_price{
+	border-radius: 0px 5px 5px 0px;
+	font-weight:bold;
+	background-color: white; 
+	width: auto; 
+	border: 2px solid #bcbdbf;
+	text-align: center;
+	margin-top: 15px;
+}
+.buy_button1{
+	font-weight:bold;
+	background-color:rgb(145,145,145,0.2);
+	color:black;
+	border: solid 0px;
+	border-radius: 8px;
+	margin:0px 0px 10px 15px;
+	width: 90%;
+	height: 40px;
 	
+}
+.cart_btn{
+	font-weight:bold;
+	background-color:rgb(145,145,145,0.2);
+	color:black;
+	border: solid 0px;
+	border-radius: 8px;
+	margin:0px 0px 10px 15px;
+	width: 90%;
+	height: 40px;
+	
+}
+.buy_button2{
+	font-weight:bold;
+	background-color:white;
+	color:#796e62;
+	border: solid 0px;
+	border-radius: 8px;
+	margin:0px 0px 10px 15px;
+	width: 90%;
+	height: 40px;
+}
+
+.buy_button3{
+	font-weight:bold;
+	background-color:#dc3545;
+	
+	color:#fff;
+	border: solid 0px;
+	border-radius: 8px;
+	margin:0px 0px 10px 15px;
+	width: 90%;
+	height: 40px;
+}
+
+/* book_detail 하위 목록 */
+#row_area{
+	background-color: #fefefe;
+	border-radius: 15px; 
+}
+#new_books{
+	 height: 80px; 
+	 text-align: center;
+	 animation : fadein 2s;
+}
+
+.slider {
+   overflow:hidden;
+   position:relative;
+   width: 1500px;
+   height:210px;
+   margin: auto;
+   display: flex;
+    animation: fadein 5s; 
+}
+.image-box {
+   width:5280px; 
+   height:100%;
+   display:flex;
+   flex-wrap:nowrap;
+   animation: bannermove 30s linear infinite;
+}
+@keyframes bannermove {
+  0% {
+      transform: translate(0, 0);
+  }
+  100% {
+      transform: translate(-50%, 0);
+  }
+}
+@keyframes fadein {
+ 0% {
+ opacity:0;
+ }
+ 70%{
+ opacity:0.5;
+ }
+ 100% {
+ opacity:1;
+ }
+}
+#random_book_img{
+	margin-left: 40px;
+}
+
+/*///////////////// book_detail에 삽입된 css 목록 끝 //////////////// */
+

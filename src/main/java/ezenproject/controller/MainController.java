@@ -28,10 +28,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ezenproject.dto.BookDTO;
+import ezenproject.dto.CouponDTO;
 import ezenproject.dto.MemberDTO;
 import ezenproject.dto.OrderDTO;
 import ezenproject.dto.PageDTO;
 import ezenproject.service.BookService;
+import ezenproject.service.CouponService;
 import ezenproject.service.MemberService;
 import ezenproject.service.OrderService;
 
@@ -49,6 +51,10 @@ public class MainController {
 
 	@Autowired
 	private OrderService oservice;
+	
+	@Autowired
+	private CouponService couponservice;
+	
 	private BookDTO bdto;
 	private MemberDTO mdto;
 	private OrderDTO odto;
@@ -92,6 +98,7 @@ public class MainController {
 		return mav;
 	}
 
+//	/////////////////////////////// 여기서부터 로그인& 로그아웃 & 회원가입/////////////////////////////////////////////////
 //	로그인 하는 행위
 	@RequestMapping(value = "/member/login.do", method = RequestMethod.POST)
 	public ModelAndView memberLoginMethod(@ModelAttribute("member") MemberDTO dto, RedirectAttributes rAttr,
@@ -141,6 +148,8 @@ public class MainController {
 		return mav;
 	}
 
+//	///////////////////////////////////여기까지 로그인 & 로그아웃 & 회원가입/////////////////////////////////////
+	
 //	///////////////////////////여기서부터 마이 페이지////////////////////////////////////////
 
 	//회원정보 출력
@@ -223,7 +232,7 @@ public class MainController {
 	
 	
 	
-	
+//////////////////////////////여기서부터 도서 리스트/////////////////////////////////////////////////////	
 	
 	
 //	모든 종류 도서 리스트
@@ -297,32 +306,77 @@ public class MainController {
 		return mav;
 	}
 
-//////////////////주문페이지 ////////////////////////////////////////////////////////////
+	
+//	///////////////////////////여기까지 도서 리스트////////////////////////////////////////////
+	
+///////////////////////////여기서부터 도서 상세 페이지//////////////////////////////////////	
+	
+//	도서 상세 페이지 들어가기
+	@RequestMapping(value = "/book/book_detail.do")
+	public ModelAndView viewMethod(HttpServletRequest request, int currentPage, int num, ModelAndView mav) {
+		String viewName = (String)request.getAttribute("viewName");
+		List<BookDTO> alist = bservice.listProcess();
+		mav.addObject("alist", alist);
+		
+		try {
+			if(bservice.contentProcess(num).getNum()==num) {
+					mav.addObject("dto", bservice.contentProcess(num));
+					
+					mav.addObject("currentPage", currentPage);
+					mav.setViewName(viewName);
+		}
+			
+		}catch (Exception e) {
+			viewName = "/erroralert";
+			mav.setViewName(viewName);
+		}
+		
+		return mav;
+		
+	}
+	
+	
+//	////////////////////////////여기까지 도서 상세 페이지./////////////////////////////////////////
+	
+	
+	
+//////////////////여기서부터 주문페이지 ////////////////////////////////////////////////////////////
 
-//http://localhost:8090/order/orderDetail.do?num=넘
+
 
 //	주문 페이지 들어가기
 	@RequestMapping("/order/orderDetail.do")
-	public ModelAndView viewMethod(HttpServletRequest request, int num, ModelAndView mav) {
-//BoardDTO dto= service.contentProcess(num);
+	public ModelAndView viewMethod(HttpServletRequest request, int num, ModelAndView mav, String member_number) {
+ bdto= bservice.contentProcess(num);
+List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 		String viewName = (String) request.getAttribute("viewName");
 
-		mav.addObject("bdto", bservice.selectOneProcess(num));
-//		mav.addObject("currentPage", currentPage);
-//mav.setViewName("/board/view");
+		mav.addObject("bdto", bdto);
+		mav.addObject("couponlist", couponlist);
 		mav.setViewName(viewName);
+		
 		return mav;
 
 	}
+
+
+	
 	
 //	주문하는 행위
 	@RequestMapping(value = "/order/ordersave.do", method = RequestMethod.POST)
-	public String newOrderMethod(OrderDTO dto, HttpServletRequest request) {
+	public String newOrderMethod(OrderDTO dto, HttpServletRequest request, String coupon_number) {
 		oservice.newOrderNumberProcess(dto);
 		oservice.newOrderSaveProcess(dto);
+		couponservice.usedCouponProcess(coupon_number);
 		
 		return "redirect:/";
 	}
+	
+	
+
+	
+	
+//	////////////////////////////여기까지 주문 페이지///////////////////////////////////////
 
 ////////////////////////////////////////////////////여기부터 관리자 페이지 메소드입니다.////////////////////
 
@@ -401,7 +455,7 @@ public class MainController {
 
 //	도서 제품 데이터 영구 삭제
 	@ResponseBody
-	@RequestMapping(value = "/books/deletdata/{num}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/books/deletedata/{num}", method = RequestMethod.DELETE)
 	public void deleteBookDataMethod(@PathVariable("num") int num) {
 		bservice.deleteDataProcess(num, filepath);
 	}
@@ -462,7 +516,7 @@ public class MainController {
 
 //	회원 데이터 영구 삭제
 	@ResponseBody
-	@RequestMapping(value = "/members/deletdata/{num}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/members/deletedata/{num}", method = RequestMethod.DELETE)
 	public void deleteMemberDataMethod(@PathVariable("num") int num) {
 		mservice.deleteDataProcess(num);
 	}
@@ -491,9 +545,44 @@ public class MainController {
 
 //	주문 데이터 영구 삭제
 	@ResponseBody
-	@RequestMapping(value = "/orders/deletdata/{num}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/orders/deletedata/{num}", method = RequestMethod.DELETE)
 	public void deleteOrderDataMethod(@PathVariable("num") int num) {
 		oservice.deleteDataProcess(num);
+	}
+	
+	
+//	회원에게 할인권 부여
+	@ResponseBody
+	@RequestMapping(value = "/members/newcouponsave", method = RequestMethod.POST)
+	public void newCouponMethod(CouponDTO dto) {
+		
+
+		couponservice.newCouponCodeProcess(dto);
+		couponservice.saveNewCouponProcess(dto);
+	}
+	
+//	관리자 페이지 회원 관리 페이지 쿠폰 출력
+	@ResponseBody
+	@RequestMapping(value = "/members/couponlist/{member_number}")
+	public Map<String, Object> listCouponMethod(HttpServletRequest request, 
+			@PathVariable("member_number") String member_number) {
+		Map<String, Object> map = new HashMap<String, Object>();
+
+		List<CouponDTO> alist = couponservice.listProcess(member_number);
+
+
+		map.put("alist", alist);
+
+		return map;
+	}
+
+	
+	
+//	할인권 삭제
+	@ResponseBody
+	@RequestMapping(value = "/members/deletecoupon/{num}", method = RequestMethod.DELETE)
+	public void deleteCouponMethod(@PathVariable("num") int num) {
+		couponservice.deleteCouponProcess(num);
 	}
 
 //////////////////////////////////////////////////////여기까지 관리자 페이지 메소드입니다.///////////////	

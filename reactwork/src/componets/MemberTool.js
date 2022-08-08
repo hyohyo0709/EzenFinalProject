@@ -30,6 +30,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Collapse from '@mui/material/Collapse';
 import MemberDataDelete from './MemberDataDelete';
+import CouponAdd from './CouponAdd';
+import CouponList from './CouponList';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -191,9 +193,6 @@ const MemberTool = () => {
                   회원 설정
                 </Typography>
                 <Stack direction='row' spacing={2}>
-                  {/* <div>
-                    <BookUpdate num={row.num} />
-                  </div> */}
                   <Button
                     variant='outlined'
                     onClick={() => {
@@ -210,6 +209,10 @@ const MemberTool = () => {
                   >
                     계정 상태 바꾸기
                   </Button>
+
+                  <div>
+                    <CouponAdd member_number={row.member_number} />
+                  </div>
                   <div>
                     <MemberDataDelete num={row.num} />
                   </div>
@@ -245,6 +248,12 @@ const MemberTool = () => {
                     >
                       이메일 :{row.member_email}
                     </Typography>
+                  </CardContent>
+                </Card>
+                <Card sx={{ minWidth: 100 }}>
+                  <CardContent>
+                    <Typography variant='body2'>보유 할인권</Typography>
+                    <CouponList member_number={row.member_number} />
                   </CardContent>
                 </Card>
               </Box>

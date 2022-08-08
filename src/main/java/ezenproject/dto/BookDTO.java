@@ -30,17 +30,37 @@ public class BookDTO {
 	private MultipartFile filename;
 
 	
+//	판매가 변수
+	private int sellprice;
 	
 	
+//	할인권 적용 가격 변수
+	private int couponprice;
+	
+	
+	public void setSellprice(int sellprice) {
+		this.sellprice = sellprice;
+	}
+	
+	public int getSellprice() {
+		return sellprice;
+	}
+	
+	
+	public int getCouponprice() {
+		return couponprice;
+	}
+
+	public void setCouponprice(int couponprice) {
+		this.couponprice = couponprice;
+	}
+
 	public BookDTO() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	
 	
-	
-
-
 
 	public String getBook_author() {
 		return book_author;

@@ -27,26 +27,29 @@ public class BookServiceImp implements BookService{
 	public BookServiceImp() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
+//	도서 갯수
 	@Override
 	public int countProcess() {
 		
 		return dao.count();
 	}
 	
-
+// 모든 종류 도서 불러오기
 	@Override
 	public List<BookDTO> allBookListProcess(PageDTO pv) {
 		
 		return dao.allBookList(pv);
 	}
 	
+//	장르별 도서 갯수
 	@Override
 	public int countCategoryProcess(int book_category) {
 		
 		return dao.countCategory(book_category);
 	}
 	
+//	장르별 도서 불러오기
 	@Override
 	public List<BookDTO> categoryBookListProcess(PageDTO pv, int book_category) {
 		
@@ -58,18 +61,43 @@ public class BookServiceImp implements BookService{
 		
 	}
 	
-	
+//	검색한 도서 갯수
 	@Override
 	public int countSearchProcess(String searchWord) {
 		
 		return dao.countSearch(searchWord);
 	}
 		
+//	검색한 도서 출력
 	@Override
 	public List<BookDTO> searchListProcess(PageDTO pv) {
 		
 		return dao.searchList(pv);
 	}
+	
+	
+	@Override
+	public void makeSellprice(BookDTO dto, int book_price) {
+		
+		dto.setSellprice(book_price*9/10);
+		
+	}
+	
+	
+//	도서 상세페이지
+	@Override
+	public BookDTO contentProcess(int num) {
+		BookDTO dto = new BookDTO();
+		dto= dao.content(num);
+		makeSellprice(dto, dto.getBook_price());
+		
+		return dto;
+	}
+	
+	
+	
+	
+	
 	
 	
 	

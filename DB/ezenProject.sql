@@ -84,6 +84,19 @@ select*from EZENORDERS;
     order by o.num;
     
     
+    create table ezencoupons(
+    num             NUMBER(38) NOT NULL,
+    coupon_number VARCHAR2(30),
+    member_number   VARCHAR2(20),
+    coupon_type     number(1),
+    coupon_value    number(20)
+    );
+    
+    commit;
+    
+select*from ezencoupons;
+    
+    
     
 create sequence ezenbooks_num_seq
 start with 1 
@@ -98,6 +111,13 @@ nocache
 nocycle;
 
 create sequence ezenorders_num_seq
+start with 1 
+increment by 1
+nocache
+nocycle;
+
+
+create sequence ezencoupons_num_seq
 start with 1 
 increment by 1
 nocache
