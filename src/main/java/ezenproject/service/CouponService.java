@@ -12,5 +12,7 @@ public interface CouponService {
 	public void newCouponCodeProcess(CouponDTO dto);
 	public List<CouponDTO> listProcess(String member_number);
 	public void deleteCouponProcess(int num);
+	public List<CouponDTO> myCouponlistProcess(String member_number);
+
 
 }

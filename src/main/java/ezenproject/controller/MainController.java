@@ -230,11 +230,12 @@ public class MainController {
 		
 		//할인권 출력
 		@RequestMapping(value = "/mypage/mycoupon.do", method = RequestMethod.GET)
-		public ModelAndView myCouponListMethod(ModelAndView mav, String member_number) {	 
+		public ModelAndView myCouponlist(ModelAndView mav, String member_number) {	 
 			 
-			 List<CouponDTO> aList = couponservice.listProcess(member_number);
+			 List<CouponDTO> aList = couponservice.myCouponlistProcess(member_number);
 			
 			 mav.addObject("aList", aList); 
+			// System.out.println(aList);
 			mav.setViewName("/mypage/mycoupon");
 			return mav;
 		} 

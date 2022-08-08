@@ -70,5 +70,12 @@ public class CouponServiceImp implements CouponService{
 	}
 	
 //	///////////////////여기까지 관리자 서비스///////////////////////////////////////
+
+@Override
+public List<CouponDTO> myCouponlistProcess(String member_number) {
+	
+	
+	return dao.myCouponlist(member_number);
+}
 	
 }

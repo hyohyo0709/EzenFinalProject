@@ -27,18 +27,21 @@
     />
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script type="text/javascript">
-/* 	function couponlist(){
-		var list= document.create
-	if 쿠폰 유형.equal:"1"
-	숫자+ %
-	
-	else 쿠폰유형.equal"2"
-	숫자+원
-	}=> 리스트가 아니고 골라서 가져와야하므로 서비스부터 다시 설정 */
-	</script>
+
     
 </head>
+
+<style >
+body {width:100%; height:100%; margin:0; padding:0; overflow-y:scroll; position:relative;} 
+html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+ #coupontable{
+    position:relative;
+   	bottom:120px;
+    left:300px;
+    width:70%;
+    
+    }
+</style>
 <body>
 
      <!-- Header start -->
@@ -56,19 +59,40 @@
 	  
  		 <button id="member" onclick="location.href='http://localhost:8090/mypage/memberdetail.do?num=${member.num}'" class="list-group-item list-group-item-action">회원정보 수정</button>
  		 <button id="order" onclick="location.href='http://localhost:8090/mypage/myorderlist.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action">주문확인 / 취소</button>
-  		<button id="coupon" onclick="location.href='http://localhost:8090/mypage/mycoupon.do?member_number=${coupon.member_number}'" class="list-group-item list-group-item-action">쿠폰조회</button>
+  		<button id="coupon" onclick="location.href='http://localhost:8090/mypage/mycoupon.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action">쿠폰조회</button>
 
 	</div> 
 	</div>
 	</div>
-	</div>
-
- <!-- mypage menu end -->
+ <!-- mypage menu end --> 
  
-
- 
+   <!-- mycoupon detail start -->
+ <table id='coupontable' class="table caption-top table-secondary">
+ 	<caption>쿠폰확인</caption>
+   <thead>
+    <tr >
+      <th scope="col">쿠폰번호</th>
+      <th scope="col">할인유형</th>
+    </tr>
+  </thead>
+  <tbody >
+  <c:forEach items="${aList}" var="myCoupon">
+  
+  
+	<tr >		
+   		<td>${myCoupon.coupon_number}</td>
+   		<c:if test="${myCoupon.coupon_type==1 }">
+  			<td>${myCoupon.coupon_value}% 할인 </td> 
+ 		</c:if>
+   		<c:if test="${myCoupon.coupon_type==2 }">
+  			<td>${myCoupon.coupon_value}원 할인 </td> 
+ 		</c:if>  
+ 	</tr> 
+</c:forEach>
+</tbody>
+</table>
+</div>
  <!-- coupon detail end -->
- 
 
   
 </body>

@@ -11,10 +11,14 @@ public class CouponDTO {
 	private int coupon_type;
 	private int coupon_value;
 	
+	private MemberDTO ezenmembers;
+
 	
 	public CouponDTO() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 
 
 	public int getNum() {
@@ -64,6 +68,16 @@ public class CouponDTO {
 
 	public void setCoupon_value(int coupon_value) {
 		this.coupon_value = coupon_value;
+	}
+
+
+	public MemberDTO getEzenmembers() {
+		return ezenmembers;
+	}
+
+
+	public void setEzenmembers(MemberDTO ezenmembers) {
+		this.ezenmembers = ezenmembers;
 	}
 	
 	

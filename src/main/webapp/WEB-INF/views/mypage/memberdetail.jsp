@@ -5,8 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="../assets/css/style.css" rel="stylesheet" />
+<title>회원정보 수정</title>
+	    <link
+      rel="short icon"
+      href="../assets/img/favicon.png"
+      type="image/x-icon"
+    />
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -21,7 +25,9 @@
     />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script defer type="text/javascript" src="./mypage.js"></script>
+<script defer type="text/javascript" src="mypage.js"></script>
+<link href="../assets/css/style.css" rel="stylesheet" />
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#update").click(function(){
@@ -69,6 +75,8 @@
 </script>
 
 <style>
+
+   
    #frm{
    position:relative;
      bottom:110px;
@@ -89,19 +97,19 @@
   <!--mypage menu를 왼쪽으로  -->
   <div class="container">
   <div class="row">
-  <div class="col-2">
+  <div class="col-md-2">
 	<div class="list-group" id="quickmenu" align='left' > 
 	  <input type="text" id="mymenu" readonly="readonly"  class="list-group-item list-group-item-action active list-group-item-secondary"
 	    value="사용자 My Menu" />
 	  
 	  <button id="member" onclick="location.href='http://localhost:8090/mypage/memberdetail.do?num=${member.num}'" class="list-group-item list-group-item-action">회원정보 수정</button>
 	  <button id="order" onclick="location.href='http://localhost:8090/mypage/myorderlist.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action">주문확인 / 취소</button>
-  		<button id="coupon" onclick="location.href='http://localhost:8090/mypage/mycoupon.do?member_number=${coupon.member_number}'" class="list-group-item list-group-item-action">쿠폰조회</button>
+  		<button id="coupon" onclick="location.href='http://localhost:8090/mypage/mycoupon.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action">쿠폰조회</button>
 	
 	</div> 
 	</div>
 	</div>
-</div>
+
  <!-- mypage menu end -->
   
   
@@ -180,6 +188,7 @@
   </div>
 </form>
 
+</div>
   <!-- member detail end -->
   
    <!-- Footer Start -->

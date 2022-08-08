@@ -7,6 +7,25 @@
     
     <mapper namespace="ezenproject.dao.CouponDAO">
     
+  <resultMap type="MemberDTO" id="MemberDTO">
+  <id property="member_number" column="member_number"/>
+  </resultMap>    
+  
+    <resultMap type="CouponDTO" id="CouponResult">
+  <id property="num" column="num"/>
+  <id property="coupon_number" column="coupon_number"/>
+  <id property="member_number" column="member_number"/>
+  <id property="coupon_type" column="coupon_type"/>
+  <id property="coupon_value" column="coupon_value"/>
+
+  <collection property="ezenmembers" resultMap="MemberDTO"/>
+  	
+
+ </resultMap>
+    
+    
+    
+    
     
     <!--//////////// 여기부터 관리자 페이지 매퍼////////////  -->
     
@@ -40,12 +59,13 @@
     
    <!-- /////////////여기부터 마이 페이지 매퍼 ////////////////  -->
     
-    <select id="myCouponlist" parameterType="String" resultType="CouponDTO">
+    <select id="myCouponlist" parameterType="CouponDTO" resultMap="CouponResult">
     <![CDATA[
-    select coupon_number, coupon_value
-   	from ezencoupons 
-    where member_number=#{member_number}
-    order by num
+    select  c.num, c.coupon_number, c.member_number, c.coupon_type, c.coupon_value, m.member_number
+    from ezencoupons c, ezenmembers m
+    where c.member_number=m.member_number
+    and c.member_number=#{member_number}
+    order by c.num
     ]]>
     </select> 
      

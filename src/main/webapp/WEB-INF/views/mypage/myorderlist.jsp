@@ -6,7 +6,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>주문확인/취소</title>
+	    <link
+      rel="short icon"
+      href="../assets/img/favicon.png"
+      type="image/x-icon"
+    />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript" src="./mypage.js"></script>
   <link
@@ -21,7 +26,6 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
-<link href="../assets/css/style.css" rel="stylesheet" />
 <script type="text/javascript">
 function orderstatus(status,path){
 	
@@ -64,7 +68,7 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
 	  
   		<button id="member" onclick="location.href='http://localhost:8090/mypage/memberdetail.do?num=${member.num}'" class="list-group-item list-group-item-action">회원정보 수정</button>
  		 <button id="order" onclick="location.href='http://localhost:8090/mypage/myorderlist.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action">주문확인 / 취소</button>
-  		<button id="coupon" onclick="location.href='http://localhost:8090/mypage/mycoupon.do?member_number=${coupon.member_number}'" class="list-group-item list-group-item-action">쿠폰조회</button>
+  		<button id="coupon" onclick="location.href='http://localhost:8090/mypage/mycoupon.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action">쿠폰조회</button>
 
 	</div>
 	</div>
@@ -124,10 +128,10 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
   </div>
   
   <!-- order detail end -->
-  
+ </body> 
     <!-- Footer Start -->
  <%@ include file = "../common/footer.jsp"%>
   <!-- Footer end -->
   
-</body>
+
 </html>
