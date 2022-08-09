@@ -246,17 +246,16 @@ public class MainController {
 	}	
 	
 	/* 주문페이지 장바구니 수량 수정 */
-	@RequestMapping(value = "/order/orderCartDetail/update" , method = RequestMethod.POST)
-	public String updateOrderCartPOST(CartDTO dto) {
+	@ResponseBody
+	@RequestMapping(value = "/order/orderCartDetail/update" , method = RequestMethod.PUT)
+	public void updateOrderCartPOST(CartDTO dto) {
 		cservice.modifyCountProcess(dto);
-		return "redirect:/order/orderCartDetail/" + dto.getMember_number();
-		
 	}	
 	/* 주문페이지 장바구니 제거 */
-	@RequestMapping(value = "/order/orderCartDetail/delete" , method = RequestMethod.POST)
-	public String deleteOrderCartDELETE(CartDTO dto) {
-		cservice.deleteCartProcess(dto.getNum());
-		return "redirect:/order/orderCartDetail/" + dto.getMember_number();
+	@ResponseBody
+	@RequestMapping(value = "/order/orderCartDetail/delete" , method = RequestMethod.DELETE)
+	public void deleteOrderCartDELETE(CartDTO dto, int num) {
+		cservice.deleteCartProcess(num);
 	}	
 
 	

@@ -110,7 +110,6 @@
 		})
 
 		$("#btnOrder").click(function() {
-
 			$('#order_frm').attr("action", "/order/ordersave.do").submit();
 
 		})
@@ -148,8 +147,9 @@
 		
 	 
 	});
-		
-	
+ 	
+ 	
+ 	
 	
 	
 </script>
@@ -170,7 +170,8 @@
 
 	<!-- body start -->
 	<body class="bg-light">
-	
+	<form class="needs-validation" novalidate name="order_frm"
+		id="order_frm" method="post">
 	
 		<div class="container">
 			<main>
@@ -182,6 +183,7 @@
 
 
 				<div class="row g-5">
+				
 					<div class="col-md-5 col-lg-4 order-md-last">
 						<h4 class="d-flex justify-content-between align-items-center mb-3">
 							<span class="text-primary">Your cart</span> <span
@@ -202,7 +204,7 @@
 											<input type="hidden" class="individual_totalPrice_input" value="${cdto.saleprice * cdto.cart_amount}">
 											<input type="hidden" class="individual_point_input" value="${cdto.point}">
 											<input type="hidden" class="individual_totalPoint_input" value="${cdto.totalPoint}">
-											<input type="hidden" class="individual_book_id_input" value="${cdto.book_id}">								
+											<input type="hidden" class="individual_book_id_input" name="book_id" value="${cdto.book_id}">								
 											</td>
 											<td class="td_width_4 table_text_align_center" height="25px;">
 											<button class="delete_btn" data-num="${cdto.num}"><img alt="delete_btn" src="/assets/img/delete_btn.png" width="12px" height="12px" align="middle"></button>
@@ -226,28 +228,22 @@
 												</div>
 												</td>
 										</tr>
+										<!-- 
+									
+									 -->
 										<tr>
 											<td align="left" class="list_price">판매가 : </td>
 											<td class="list_price"><del><fmt:formatNumber value="${cdto.book_price *cdto.cart_amount}" pattern="#,###"/></del></td>
-											<td class="list_price"> => <fmt:formatNumber value="${cdto.saleprice * cdto.cart_amount}" pattern="#,###원" /></td>
+											<td class="list_price"> => <input style="text-align: right; border: 0px; height: 18px; overflow: hidden;" type="text" id="order_cost" value="<fmt:formatNumber value="${cdto.saleprice * cdto.cart_amount}" pattern="#,###원" />"> </td>
 										</tr>
 										
 									</tbody>
 								</table>
-								<!-- 수량조절 form -->
-								<form action="/order/orderCartDetail/update" method="post" class="quantity_update_form">
-								<input type="hidden" name="num" class="update_num">
-								<input type="hidden" name="cart_amount" class="update_cart_amount">
-								<input type="hidden" name="member_number" value="${member.member_number}">
-								</form>	
-								<!-- 삭제 form -->
-								<form action="/order/orderCartDetail/delete" method="post" class="quantity_delete_form">
-								<input type="hidden" name="num" class="delete_num">
-								<input type="hidden" name="member_number" value="${member.member_number}">
-								</form>		
 								</div>
 								</c:forEach>
 									</div>
+									
+									
 							<ul class="list-group mb-3">
 							<li class="list-group-item d-flex justify-content-between lh-sm">
 							</li>
@@ -288,19 +284,6 @@
 							<li class="list-group-item justify-content-between">
 								<span>결제금액</span>
 								<span style="float: right;"><span class="totalPrice_span">${totalPrice}</span>원 </span>
-								<!-- <input type="number" name="order_cost" id="order_cost" 
-								style="font-weight:bold; border:none; background: transparent;text-align:right;" /> 
-								<strong>원</strong> -->
-							</li>
-						</ul>
-						
-						<!--         <form class="card p-2">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Promo code">
-            <button type="submit" class="btn btn-secondary">Redeem</button>
-          </div>
-        </form> -->
-			
 					</div>
 					<div class="col-md-7 col-lg-8">
 						<h4 class="mb-3">배송 정보 입력</h4>
@@ -327,7 +310,7 @@
 
 							<div class="col-sm-6">
 								<label for="firstName" class="form-label">받으시는 분 이름</label> <input
-									type="text" class="form-control" id="order_name"
+									type="text" class="form-control" 
 									name="order_name" placeholder="이름을 입력해주세요" value="" required>
 								<div class="invalid-feedback">받으시는 분 이름을 입력해주세요</div>
 							</div>
@@ -340,7 +323,7 @@
 
 							<div class="col-sm-6">
 								<label for="firstName" class="form-label">받으시는 분 연락처</label> <input
-									type="text" class="form-control" id="order_phone"
+									type="text" class="form-control" name="order_phone" id="order_phone"
 									 placeholder="전화번호를 입력해주세요." value=""
 									required>
 								<div class="invalid-feedback">받으시는 분 연락처를 입력해주세요</div>
@@ -394,7 +377,7 @@
 							<div class="col-12">
 								<label for="address" class="form-label">상세주소</label> <input
 									type="text" class="form-control" id="order_address"
-									 value="" placeholder="1234-1 행복하우스 101호 "
+									name="order_address" value="" placeholder="1234-1 행복하우스 101호 "
 									required>
 								<div class="invalid-feedback">상세주소를 입력해주세요</div>
 							</div>
@@ -505,17 +488,11 @@
 	
 		</div>
 <div></div>
-<form class="needs-validation" novalidate name="order_frm"
-		id="order_frm" method="post">
-	<c:forEach items="${clist}" var="cdto">
-	<input type="hidden" name="order_cost" value="${cdto.book_price * 10 / 9}">
-	<input type="hidden" name="member_number" value="${member.member_number }">
-	<input type="hidden" name="book_id" value="${cdto.book_id}">
-	<input type="hidden" name="order_phone" value="('#order_phone').val()}">
-	<input type="hidden" name="member_email" value="('#member_email').val()}">
-	<input type="hidden" name="order_address" value="('#order_address').val()">
-	</c:forEach>
-</form>
+
+								</form>
+
+	
+	
 	<!-- body end -->
 
 	<!-- Footer Start -->
@@ -527,6 +504,7 @@ $(document).ready(function(){
 		//장바구니 스크립트//
 	
 	setTotalInfo();	
+	
 		
 $(".individual_cart_checkbox").on("change", function(){
 	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
@@ -551,7 +529,7 @@ $(".all_check_input").on("click", function(){
 
 /* 총 주문 정보 세팅(배송비, 총 가격, 물품 수, 종류) */
 function setTotalInfo(){
-	
+
 	let totalPrice = 0;				// 총 가격
 	let totalCount = 0;				// 총 갯수
 	let totalKind = 0;				// 총 종류
@@ -593,23 +571,45 @@ $(".minus_btn").on("click", function(){
 	}
 });
 
-	/* 수량 수정 버튼 */
-$(".quantity_modify_btn").on("click", function(){
-	let num = $(this).data("num");
-	let cart_amount = $(this).parent("div").find("input").val();
-	$(".update_num").val(num);
-	$(".update_cart_amount").val(cart_amount);
-	$(".quantity_update_form").submit();
-	
-});
+const form = {
+			member_number : '${member.member_number}',
+			num :  '',
+			cart_amount : ''}
+const form2 = {
+			member_number : '${member.member_number}',
+			num : ''
+}
+			
+			
+	$(document).on("click", ".quantity_modify_btn",function(e){
+		form.num = $(this).data("num");
+		form.cart_amount = $(this).parent("div").find("input").val();
+		$.ajax({
+		url:'/order/orderCartDetail/update',
+		type: 'PUT',
+		data: form,
+		sucess: alert("변경"),
+		complete: function() {
+        location.reload();
+        }
+		})
+	})
 
 /* 장바구니 삭제 버튼 */
-$(".delete_btn").on("click", function(e){
-	e.preventDefault();
-	const num = $(this).data("num");
-	$(".delete_num").val(num);
-	$(".quantity_delete_form").submit();
+$(document).on("click", ".delete_btn",function(e){
+	form2.num = $(this).data("num");
+	$.ajax({
+		url:'/order/orderCartDetail/delete',
+		type: 'DELETE',
+		data: form2,
+		sucess: alert("삭제"),
+		complete: function() {
+        location.reload();
+        }
+		})
 });
+	//폼 데이터 저장용
+	let orderName = $(this).parent("div").find("label").val();
 	
 	</script>
 </html>
