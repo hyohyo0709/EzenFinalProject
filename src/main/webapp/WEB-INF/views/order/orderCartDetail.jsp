@@ -97,6 +97,7 @@
 
 <script type="text/javascript">
  	$(document).ready(function() {
+ 		
 		$('#couponpricedirfrm').hide();
 		 $('#couponpriceperfrm').hide();
 		 
@@ -109,13 +110,12 @@
 			}
 		})
 
-		$("#btnOrder").click(function() {
+	/* 	$("#btnOrder").click(function() {
 			$('#order_frm').attr("action", "/order/ordersave.do").submit();
 
-		})
+		}) */
 		
 	 	$("#btnCoupon").click(function(){			
-				
 			
 			 var nn=$("#couponSelect").val(); // 
 				var cnum = $("#couponSelect").find("option:selected").data("sub");
@@ -140,19 +140,150 @@
 				 $('#couponpriceperfrm').hide();
 				 $('#order_cost').val("${cdto.sellprice}");
 			 }
-			 
-			 
-				
 		}) 
 		
-	 
-	});
- 	
- 	
- 	
-	
-	
-</script>
+		
+		
+		$(".individual_cart_checkbox").on("change", function(){
+			/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
+			setTotalInfo($(".cart_info_td"));
+		});
+
+		/* 체크박스 전체 선택 */
+		$(".all_check_input").on("click", function(){
+
+			/* 체크박스 체크/해제 */
+			if($(".all_check_input").prop("checked")){
+				$(".individual_cart_checkbox").attr("checked", true);
+			} else{
+				$(".individual_cart_checkbox").attr("checked", false);
+			}
+			
+			/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
+			setTotalInfo($(".cart_info_td"));	
+
+		/* 총 주문 정보 세팅(배송비, 총 가격, 물품 수, 종류) */
+		function setTotalInfo(){
+
+			let totalPrice = 0;				// 총 가격
+			let totalCount = 0;				// 총 갯수
+			let totalKind = 0;				// 총 종류
+			let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
+		$(".cart_info_td").each(function(index, element){
+				
+				if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
+					// 총 가격
+					totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
+					// 총 갯수
+					totalCount += parseInt($(element).find(".individual_cart_amount_input").val());
+					// 총 종류
+					totalKind += 1;
+				}
+
+			});
+			
+				finalTotalPrice = totalPrice /* - totalCoupon */;
+			
+			/* ※ 세자리 컴마 Javscript Number 객체의 toLocaleString() */
+			
+			// 총 가격
+			$(".totalPrice_span").text(totalPrice.toLocaleString());
+			// 총 갯수
+			$(".totalCount_span").text(totalCount);
+			// 총 종류
+			$(".totalKind_span").text(totalKind);
+		}});
+			
+			/* 수량 버튼 */	
+		$(".plus_btn").on("click", function(){
+			let quantity = $(this).parent("div").find("input").val();
+			$(this).parent("div").find("input").val(++quantity);
+		});
+		$(".minus_btn").on("click", function(){
+			let quantity = $(this).parent("div").find("input").val();
+			if(quantity > 1){
+				$(this).parent("div").find("input").val(--quantity);		
+			}
+		});
+
+		const form = {
+					member_number : '${member.member_number}',
+					num :  '',
+					cart_amount : ''}
+		const form2 = {
+					member_number : '${member.member_number}',
+					num : ''
+		}
+			
+					
+			$(document).on("click", ".quantity_modify_btn",function(e){
+				form.num = $(this).data("num");
+				form.cart_amount = $(this).parent("div").find("input").val();
+				$.ajax({
+				url:'/order/orderCartDetail/update',
+				type: 'PUT',
+				data: form,
+				sucess: alert("변경"),
+				complete: function() {
+		        location.reload();
+		        }
+				})
+			})
+
+		/* 장바구니 삭제 버튼 */
+		$(document).on("click", ".delete_btn",function(e){
+			form2.num = $(this).data("num");
+			$.ajax({
+				url:'/order/orderCartDetail/delete',
+				type: 'DELETE',
+				data: form2,
+				sucess: alert("삭제"),
+				complete: function() {
+		        location.reload();
+		        }
+				})
+		});
+
+		const form3 = {
+				order_cost:'',
+				member_number : '${member.member_number}',
+				book_id : '',
+				order_phone: '',
+				order_name: '',
+				order_address:''
+		}	
+		
+		
+		
+
+		//주문페이지 데이터 저장용
+		var lenght_check = $("#book_id").val();
+		$("#btnOrder").on("click",function(e){
+		for(var i=0; i<lenght_check.lenght; i++){
+			form3.order_cost = $('#saleprice').val();
+			form3.book_id = $('#book_id').val();
+			form3.order_phone = $('#order_phone').val();
+			form3.order_name = $('#order_name').val();
+			form3.order_address = $('#order_address').val();
+			$.ajax({
+				url:'/cart/ordersave',
+				type:'PUT',
+				data:form3,
+				async:false,
+				complete: function(){
+					let url ='/mypage/myoderlist/${member.member_number}'
+					loacataion.replace(url);
+				},	
+				error: function(){
+					alert('실패');
+				}
+			});
+			};
+		})
+		
+ 	});//document end
+		</script>
+		
 
 
 </head>
@@ -170,9 +301,9 @@
 
 	<!-- body start -->
 	<body class="bg-light">
-	<form class="needs-validation" novalidate name="order_frm"
+<!-- 	<form class="needs-validation" novalidate name="order_frm"
 		id="order_frm" method="post">
-	
+	 -->
 		<div class="container">
 			<main>
 				<div class="py-5 text-center">
@@ -199,7 +330,7 @@
 											<td class="cart_info_td" align="left" height="25px;" colspan="2">
 											<input style="max-height: 25px;" type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
 											<input type="hidden" class="individual_book_price_input" value="${cdto.book_price}">
-											<input type="hidden" class="individual_saleprice_input" value="${cdto.saleprice}">
+											<input type="hidden" class="individual_saleprice_input" id="saleprice" value="${cdto.saleprice}">
 											<input type="hidden" class="individual_cart_amount_input" value="${cdto.cart_amount}">
 											<input type="hidden" class="individual_totalPrice_input" value="${cdto.saleprice * cdto.cart_amount}">
 											<input type="hidden" class="individual_point_input" value="${cdto.point}">
@@ -228,13 +359,10 @@
 												</div>
 												</td>
 										</tr>
-										<!-- 
-									
-									 -->
 										<tr>
 											<td align="left" class="list_price">판매가 : </td>
 											<td class="list_price"><del><fmt:formatNumber value="${cdto.book_price *cdto.cart_amount}" pattern="#,###"/></del></td>
-											<td class="list_price"> => <input style="text-align: right; border: 0px; height: 18px; overflow: hidden;" type="text" id="order_cost" value="<fmt:formatNumber value="${cdto.saleprice * cdto.cart_amount}" pattern="#,###원" />"> </td>
+											<td class="list_price"> => <input style="text-align: right; border: 0px; max-width: 130px; height: 18px; overflow: hidden; padding: 0;" type="text" id="order_cost" value="<fmt:formatNumber value="${cdto.saleprice * cdto.cart_amount}" pattern="#,###원" />"> </td>
 										</tr>
 										
 									</tbody>
@@ -310,8 +438,8 @@
 
 							<div class="col-sm-6">
 								<label for="firstName" class="form-label">받으시는 분 이름</label> <input
-									type="text" class="form-control" 
-									name="order_name" placeholder="이름을 입력해주세요" value="" required>
+									type="text" class="form-control"
+								id="order_name"	name="order_name" placeholder="이름을 입력해주세요" value="" required>
 								<div class="invalid-feedback">받으시는 분 이름을 입력해주세요</div>
 							</div>
 							<div class="col-sm-6">
@@ -489,7 +617,7 @@
 		</div>
 <div></div>
 
-								</form>
+								<!-- </form> -->
 
 	
 	
@@ -499,117 +627,5 @@
 	<%@ include file="../common/footer.jsp"%>
 	<!-- Footer end -->
 </body>
-	<script>
-$(document).ready(function(){
-		//장바구니 스크립트//
-	
-	setTotalInfo();	
-	
-		
-$(".individual_cart_checkbox").on("change", function(){
-	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-	setTotalInfo($(".cart_info_td"));
-});
 
-/* 체크박스 전체 선택 */
-$(".all_check_input").on("click", function(){
-
-	/* 체크박스 체크/해제 */
-	if($(".all_check_input").prop("checked")){
-		$(".individual_cart_checkbox").attr("checked", true);
-	} else{
-		$(".individual_cart_checkbox").attr("checked", false);
-	}
-	
-	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
-	setTotalInfo($(".cart_info_td"));	
-	
-});
-
-
-/* 총 주문 정보 세팅(배송비, 총 가격, 물품 수, 종류) */
-function setTotalInfo(){
-
-	let totalPrice = 0;				// 총 가격
-	let totalCount = 0;				// 총 갯수
-	let totalKind = 0;				// 총 종류
-	let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
-$(".cart_info_td").each(function(index, element){
-		
-		if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
-			// 총 가격
-			totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
-			// 총 갯수
-			totalCount += parseInt($(element).find(".individual_cart_amount_input").val());
-			// 총 종류
-			totalKind += 1;
-		}
-
-	});
-	
-		finalTotalPrice = totalPrice /* - totalCoupon */;
-	
-	/* ※ 세자리 컴마 Javscript Number 객체의 toLocaleString() */
-	
-	// 총 가격
-	$(".totalPrice_span").text(totalPrice.toLocaleString());
-	// 총 갯수
-	$(".totalCount_span").text(totalCount);
-	// 총 종류
-	$(".totalKind_span").text(totalKind);
-}});
-	
-	/* 수량 버튼 */	
-$(".plus_btn").on("click", function(){
-	let quantity = $(this).parent("div").find("input").val();
-	$(this).parent("div").find("input").val(++quantity);
-});
-$(".minus_btn").on("click", function(){
-	let quantity = $(this).parent("div").find("input").val();
-	if(quantity > 1){
-		$(this).parent("div").find("input").val(--quantity);		
-	}
-});
-
-const form = {
-			member_number : '${member.member_number}',
-			num :  '',
-			cart_amount : ''}
-const form2 = {
-			member_number : '${member.member_number}',
-			num : ''
-}
-			
-			
-	$(document).on("click", ".quantity_modify_btn",function(e){
-		form.num = $(this).data("num");
-		form.cart_amount = $(this).parent("div").find("input").val();
-		$.ajax({
-		url:'/order/orderCartDetail/update',
-		type: 'PUT',
-		data: form,
-		sucess: alert("변경"),
-		complete: function() {
-        location.reload();
-        }
-		})
-	})
-
-/* 장바구니 삭제 버튼 */
-$(document).on("click", ".delete_btn",function(e){
-	form2.num = $(this).data("num");
-	$.ajax({
-		url:'/order/orderCartDetail/delete',
-		type: 'DELETE',
-		data: form2,
-		sucess: alert("삭제"),
-		complete: function() {
-        location.reload();
-        }
-		})
-});
-	//폼 데이터 저장용
-	let orderName = $(this).parent("div").find("label").val();
-	
-	</script>
 </html>
