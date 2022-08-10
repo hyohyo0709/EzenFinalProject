@@ -225,6 +225,9 @@ const BookAdd = () => {
               >
                 <MenuItem value={1}>소설</MenuItem>
                 <MenuItem value={2}>인문/사회</MenuItem>
+                <MenuItem value={3}>에세이</MenuItem>
+                <MenuItem value={4}>역사</MenuItem>
+                <MenuItem value={5}>예술</MenuItem>
               </Select>
             </FormControl>
           </Box>

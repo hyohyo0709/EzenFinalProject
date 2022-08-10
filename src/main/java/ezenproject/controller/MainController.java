@@ -70,18 +70,27 @@ public class MainController {
 	private String filepath;
 
 //	메인 페이지 연결
-	// http://localhost:8090/
-	@RequestMapping(value = { "/", "/index.do" }, method = RequestMethod.GET)
+	// http://localhost:8090/  
+	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request, ModelAndView mav) {
 		String viewname = (String) request.getAttribute("viewName");
 		if (viewname == null) {
 			viewname = "/index";
 		}
-
 		mav.setViewName(viewname);
-
 		return mav;
 	}
+
+// 메인페이지 북 카테고리 연결
+	@RequestMapping(value = "/index.do")
+	public ModelAndView mainlistAllBookMethod(HttpServletRequest request, PageDTO pv, ModelAndView mav) {
+		String viewName = (String) request.getAttribute("viewName");
+			List<BookDTO> alist = bservice.listProcess();
+			mav.addObject("alist", alist);
+			mav.setViewName(viewName);
+			return mav;
+	}
+			
 
 //	Form으로 끝나는 친구들 연결 시키는거(result = false)
 	@RequestMapping(value = "/*/*Form.do", method = RequestMethod.GET)

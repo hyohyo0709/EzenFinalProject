@@ -93,8 +93,7 @@
     select*from ezenbooks where num=#{num}
     and book_status=1
     </select>
- 
-     
+
     
     <!-- //////////////////여기서부터 관리자 페이지 매퍼입니다.////////////////////////  -->
     

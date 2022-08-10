@@ -90,9 +90,9 @@
 <div class="cover">
 
 <c:url var="detail_path" value="book_detail.do">
-										<c:param name="currentPage" value="${pv.currentPage }" />
-										<c:param name="num" value="${book.num }" />
-									</c:url>
+	<c:param name="currentPage" value="${pv.currentPage }" />
+	<c:param name="num" value="${book.num }" />
+</c:url>
 <a href="${detail_path }">
 <img src="../assets/img/${book.book_img }" alt="..."></a>
 

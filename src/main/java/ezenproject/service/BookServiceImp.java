@@ -93,14 +93,7 @@ public class BookServiceImp implements BookService{
 		
 		return dto;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 /////////////////////////////	여기서부터 관리자 페이지 서비스입니다//////////
 	
 	@Override
