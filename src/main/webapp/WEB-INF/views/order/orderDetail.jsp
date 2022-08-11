@@ -251,7 +251,7 @@
 								
 								
 								<input type="number" name="order_cost" id="order_cost" value="${bdto.sellprice}" 
-								style="font-weight:bold; border:none; background: transparent;text-align:right;" /> 
+								style="font-weight:bold; border:none; background: transparent;text-align:right;" readonly="readonly"/> 
 								<strong>원</strong>
 
 							</li>

@@ -41,6 +41,11 @@
 <link rel="short icon" href="../assets/img/favicon.png"
 	type="image/x-icon" />
 
+
+
+
+
+
 </head>
 
 <body>
@@ -67,15 +72,12 @@
 
 	<!-- booklist start -->
 
-<c:url var="detail_path" value="/book/book_detail.do">
-	<c:param name="currentPage" value="${pv.currentPage }" />
-	<c:param name="num" value="${book.num }" />
-</c:url>
+
 
 <div id="wrap">
 <div class="wrapper">
-	<c:forEach items="${alist}" var="book">
-	<div class="list_header">
+
+<div class="list_header">
 	<h5 class="title_best_basic">
 		분야 종합 
 	<small>(집계기준 : 2022.7.20 ~ ${year}.${month}.${date})</small>
@@ -83,6 +85,8 @@
 
 	</h5>
 	</div>
+	<c:forEach items="${alist}" var="book">
+	
 	
 	
 <ul class="list_type01">
@@ -100,7 +104,6 @@
 
 
 <div class="detail">
-
 
 	<div class="booklist_title">
 	 <strong>${book.book_title}</strong>
@@ -138,9 +141,7 @@
     <div class="info">
     지금 주문하면  <strong class="blue">내일(${tomorrowmonth}월 ${tomorrowdate}일 ${tomorrowday}요일)</strong><strong class="blue"> 도착 예정</strong> 입니다
     
-    </div>
-    <br>
- 
+    </div> 
 </div>
 
 <div class="book_add">
@@ -162,8 +163,8 @@
 	</c:when>
 	
 	<c:otherwise>
-			<button class="btn btn-warning" disabled>일시품절</button>
-			<button class="btn btn-danger" disabled>일시품절</button>
+	<a class="btn_medium btn_blue_zero" > 일시품절 </a>
+			
 		</c:otherwise>
 	</c:choose>
 
@@ -239,6 +240,10 @@
 <!-- pagination end -->
 	
 <!-- board end -->
+
+
+
+
 
 <!-- Footer Start -->
 <%@ include file="../common/footer.jsp"%>

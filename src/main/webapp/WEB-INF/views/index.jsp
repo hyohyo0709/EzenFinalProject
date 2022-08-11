@@ -41,8 +41,8 @@ pageEncoding="UTF-8"%>
    
 
     <!-- body start -->
-    <%@ include file = "./common/main.jsp"%> 
-
+    
+<%@ include file = "./main/main.jsp"%> 
     <!-- body end -->
 
     <!-- Footer Start -->

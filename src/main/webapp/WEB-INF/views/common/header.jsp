@@ -4,6 +4,10 @@ pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath"  value="${pageContext.request.contextPath}"  />
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" >
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
   <div class="container">
     <a class="navbar-brand" href="/">배너 들어 갈 자리</a>
@@ -40,7 +44,7 @@ pageEncoding="UTF-8"%>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">신작 도서</a>
+          <a class="nav-link" href="/book/newBooklist.do">신작 도서</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">추천 도서</a>
@@ -150,3 +154,5 @@ pageEncoding="UTF-8"%>
   </div>
 </nav>
 <br />
+
+

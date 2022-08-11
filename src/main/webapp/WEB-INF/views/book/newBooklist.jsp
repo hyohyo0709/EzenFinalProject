@@ -42,11 +42,12 @@
 	type="image/x-icon" />
 
 
-<title>검색결과</title>
-<link rel="short icon" href="../assets/img/favicon.png"
-	type="image/x-icon" />
+
+
+
 
 </head>
+
 <body>
 	<!-- Header Start -->
 	<!-- Nabar start -->
@@ -54,39 +55,29 @@
 	<%@ include file="../common/header.jsp"%>
 	<!-- Header end -->
 
-<c:choose>
-	<c:when test="${alist!=null }">
+<!-- breadclumb start -->
+	<section class="bread">
+		<div class="container">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="/">메인</a></li>
+					<li class="breadcrumb-item active" aria-current="page">신작 도서</li>
+				</ol>
+			</nav>
+		</div>
+	</section>
 
+	<!-- breadclumb end -->
+	<!-- head end -->
 
-		<!-- breadclumb start -->
-		<section class="bread">
-			<div class="container">
-
-		<nav aria-label="breadcrumb">
-			<ol class="breadcrumb">
-
-			<li class="breadcrumb-item active" aria-current="page">"${pv.searchWord }"
-					검색 결과</li>
-			</ol>
-		</nav>
-	</div>
-			</section>
-
-			<!-- breadclumb end -->
-			<!-- head end -->
-
-			<!-- booklist start -->
-			
-			
-
-<!-- ////////////////////////////////////////////// -->
+	<!-- booklist start -->
 
 
 
 <div id="wrap">
 <div class="wrapper">
-	<c:forEach items="${alist}" var="book">
-	<div class="list_header">
+
+<div class="list_header">
 	<h5 class="title_best_basic">
 		분야 종합 
 	<small>(집계기준 : 2022.7.20 ~ ${year}.${month}.${date})</small>
@@ -94,25 +85,25 @@
 
 	</h5>
 	</div>
+	<c:forEach items="${newList}" var="book">
+	
 	
 	
 <ul class="list_type01">
 <li>
 <div class="cover">
 
-
-<c:url var="detail_path" value="/book/book_detail.do">
-	<c:param name="currentPage" value="${pv.currentPage }" />
-	<c:param name="num" value="${book.num }" />
-</c:url>
-<a href="detail_path">
+<c:url var="detail_path" value="book_detail.do">
+										<c:param name="currentPage" value="${pv.currentPage }" />
+										<c:param name="num" value="${book.num }" />
+									</c:url>
+<a href="${detail_path }">
 <img src="../assets/img/${book.book_img }" alt="..."></a>
 
 </div>
 
 
 <div class="detail">
-
 
 	<div class="booklist_title">
 	 <strong>${book.book_title}</strong>
@@ -150,9 +141,7 @@
     <div class="info">
     지금 주문하면  <strong class="blue">내일(${tomorrowmonth}월 ${tomorrowdate}일 ${tomorrowday}요일)</strong><strong class="blue"> 도착 예정</strong> 입니다
     
-    </div>
-    <br>
- 
+    </div> 
 </div>
 
 <div class="book_add">
@@ -174,8 +163,8 @@
 	</c:when>
 	
 	<c:otherwise>
+	<a class="btn_medium btn_blue_zero" > 일시품절 </a>
 			
-			<a class="btn_medium btn_blue_zero" > 일시품절 </a>
 		</c:otherwise>
 	</c:choose>
 
@@ -201,7 +190,7 @@
 <!-- 이전 시작 -->
 	<li class="page-item"><c:if test="${pv.startPage>1}">
 		<a class="page-link"
-			href="/book/searchlist.do?searchWord=${pv.searchWord }&currentPage=${pv.startPage-pv.blockPage}"
+			href="/book/allBooklist.do?currentPage=${pv.startPage-pv.blockPage}"
 			aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 		</a>
 		</c:if></li>
@@ -209,9 +198,8 @@
 
 <!-- 게시판 목록 이동 시작 -->
 	<c:forEach var="i" begin="${pv.startPage }" end="${pv.endPage }">
-		<c:url var="currPage" value="searchlist.do">
+		<c:url var="currPage" value="allBooklist.do">
 			<c:param name="currentPage" value="${i}" />
-			<c:param name="searchWord" value="${pv.searchWord }"/>
 		</c:url>
 	<c:choose>
 		<c:when test="${i==pv.currentPage }">
@@ -239,7 +227,7 @@
 	<li class="page-item">
 	<c:if test="${pv.endPage<pv.totalPage}">
 			<a class="page-link" 
-				href="/book/searchlist.do?searchWord=${pv.searchWord }&currentPage=${pv.startPage+pv.blockPage}"
+				href="/book/allBooklist.do?currentPage=${pv.startPage+pv.blockPage}"
 				aria-label="Next"> 
 				<span aria-hidden="true">&raquo;</span>
 			</a>
@@ -250,29 +238,15 @@
 	</nav>
 </div>
 <!-- pagination end -->
+	
+<!-- board end -->
 
 
-<!-- ////////////////////////////////////////////// -->
 
-		</c:when>
-		
-		<c:otherwise>
-		<section>
-		
-		 
-    <div class="col-lg-6 mx-auto" style="text-align:center">
-    <h1 class="display-5 fw-bold"> 검색 결과가 없습니다.</h1>
-    
-      <p class="lead mb-4">검색어의 철자가 정확한지 확인바랍니다.</p>
-       
-      
-      
-		</div>
-		</section>
-		
-		</c:otherwise>
-	</c:choose>
-	<!-- Footer Start -->
-	<%@ include file="../common/footer.jsp"%>
-	<!-- Footer end -->
+
+
+<!-- Footer Start -->
+<%@ include file="../common/footer.jsp"%>
+<!-- Footer end -->
+	 </body>
 </html>

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class PageDTO {
 	private int currentPage; // 현재페이지
 	private int totalCount; // 총 레코드수
-	private int blockCount = 1; // 한 페이지에 보여줄 레코드수
+	private int blockCount = 20; // 한 페이지에 보여줄 레코드수
 	private int blockPage = 5; // 한 블록에 보여줄 페이지수
 	private int totalPage; // 총 페이지수
 	private int startRow; // 시작 레코드 번호
