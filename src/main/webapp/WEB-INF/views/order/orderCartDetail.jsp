@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
 <head>
 <meta charset="UTF-8" />
@@ -223,7 +223,6 @@
 				url:'/order/orderCartDetail/update',
 				type: 'PUT',
 				data: form,
-				sucess: alert("변경"),
 				complete: function() {
 		        location.reload();
 		        }
@@ -237,7 +236,6 @@
 				url:'/order/orderCartDetail/delete',
 				type: 'DELETE',
 				data: form2,
-				sucess: alert("삭제"),
 				complete: function() {
 		        location.reload();
 		        }
@@ -253,32 +251,24 @@
 				order_address:''
 		}	
 		
-		
-		
 
 		//주문페이지 데이터 저장용
-		var lenght_check = $("#book_id").val();
-		$("#btnOrder").on("click",function(e){
-		for(var i=0; i<lenght_check.lenght; i++){
-			form3.order_cost = $('#saleprice').val();
+		
+		$("#btnOrder").on("click",function(){
+			form3.order_cost =$('#saleprice').val();
 			form3.book_id = $('#book_id').val();
-			form3.order_phone = $('#order_phone').val();
+			form3.order_phone =$('#order_phone').val();
 			form3.order_name = $('#order_name').val();
 			form3.order_address = $('#order_address').val();
+				/* for(var i=0; i<${fn:length(clist)}; i++){ */
 			$.ajax({
 				url:'/cart/ordersave',
-				type:'PUT',
-				data:form3,
-				async:false,
-				complete: function(){
-					let url ='/mypage/myoderlist/${member.member_number}'
-					loacataion.replace(url);
-				},	
-				error: function(){
-					alert('실패');
-				}
+				type:'POST',
+				traditional: true,
+				data: form3,
+				async:false
 			});
-			};
+			/* }; */
 		})
 		
  	});//document end
@@ -335,7 +325,7 @@
 											<input type="hidden" class="individual_totalPrice_input" value="${cdto.saleprice * cdto.cart_amount}">
 											<input type="hidden" class="individual_point_input" value="${cdto.point}">
 											<input type="hidden" class="individual_totalPoint_input" value="${cdto.totalPoint}">
-											<input type="hidden" class="individual_book_id_input" name="book_id" value="${cdto.book_id}">								
+											<input type="hidden" class="individual_book_id_input" id="book_id" name="book_id" value="${cdto.book_id}">								
 											</td>
 											<td class="td_width_4 table_text_align_center" height="25px;">
 											<button class="delete_btn" data-num="${cdto.num}"><img alt="delete_btn" src="/assets/img/delete_btn.png" width="12px" height="12px" align="middle"></button>
@@ -438,7 +428,7 @@
 
 							<div class="col-sm-6">
 								<label for="firstName" class="form-label">받으시는 분 이름</label> <input
-									type="text" class="form-control"
+									type="text" class="form-control" data-order_name
 								id="order_name"	name="order_name" placeholder="이름을 입력해주세요" value="" required>
 								<div class="invalid-feedback">받으시는 분 이름을 입력해주세요</div>
 							</div>
@@ -451,7 +441,7 @@
 
 							<div class="col-sm-6">
 								<label for="firstName" class="form-label">받으시는 분 연락처</label> <input
-									type="text" class="form-control" name="order_phone" id="order_phone"
+									type="text" class="form-control" name="order_phone" id="order_phone" data-order_phone
 									 placeholder="전화번호를 입력해주세요." value=""
 									required>
 								<div class="invalid-feedback">받으시는 분 연락처를 입력해주세요</div>
@@ -504,7 +494,7 @@
 
 							<div class="col-12">
 								<label for="address" class="form-label">상세주소</label> <input
-									type="text" class="form-control" id="order_address"
+									type="text" class="form-control" id="order_address" data-order_address
 									name="order_address" value="" placeholder="1234-1 행복하우스 101호 "
 									required>
 								<div class="invalid-feedback">상세주소를 입력해주세요</div>

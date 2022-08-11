@@ -261,15 +261,12 @@ public class MainController {
 	
 	//장바구니 주문하는 행위
 	@ResponseBody
-	@RequestMapping(value = "/cart/ordersave", method = RequestMethod.PUT)
+	@RequestMapping(value = "/cart/ordersave", method = RequestMethod.POST)
 	public void cartOrderMethod(OrderDTO dto, HttpServletRequest request, String coupon_number) {
 		oservice.newOrderNumberProcess(dto);
-		oservice.newOrderSaveProcess(dto);
 		couponservice.usedCouponProcess(coupon_number);
+		            	oservice.cartOrderSaveProcess();
 
-}
-	
-	
 	////////////////////장바구니 페이지 끝////////////////////////////////
 	
 	//메인페이지
