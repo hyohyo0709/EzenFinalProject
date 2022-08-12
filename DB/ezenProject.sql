@@ -95,6 +95,22 @@ select*from EZENORDERS;
     commit;
     
 select*from ezencoupons;
+ 
+ 
+ 
+ 
+ 
+ create table ezencarts(
+num number not null primary key,
+member_number varchar2(20) not null,
+book_id varchar2(20) not null, 
+cart_amount number default 1
+); 
+ 
+ select*from ezencarts;
+ 
+ 
+ 
     
     
     
@@ -122,6 +138,13 @@ start with 1
 increment by 1
 nocache
 nocycle;
+
+create sequence seq_cart
+start with 1
+increment by 1;
+
+
+
 
 commit;
 

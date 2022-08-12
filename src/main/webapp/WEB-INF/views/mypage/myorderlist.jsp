@@ -54,7 +54,7 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
     <!-- Header end -->
     
   <!-- mypage menu start -->
-  
+  <div class="container">
 	<%@ include file = "mypagemenu.jsp"%>
   <!-- mypage menu end -->
     
@@ -109,7 +109,7 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
  </c:forEach>
 </tbody>
 </table>
-  
+  </div>
   <!-- order detail end -->
   
     <!-- Footer Start -->

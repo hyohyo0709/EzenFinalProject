@@ -137,7 +137,7 @@ small{
 	
 	
 	  <!-- mypage menu start -->
-
+<div class="container">
 	<%@ include file = "mypagemenu.jsp"%>
   <!-- mypage menu end -->
   
@@ -184,7 +184,7 @@ small{
         </div>
     </div>
 </div>
-
+</div>
   <!-- order detail end -->
     <!-- Footer Start -->
  <%@ include file = "../common/footer.jsp"%>

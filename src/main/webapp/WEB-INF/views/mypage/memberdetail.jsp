@@ -86,7 +86,7 @@
    
 
   <!-- mypage menu start -->
-
+<div class="container">
 	<%@ include file = "mypagemenu.jsp"%>
   <!-- mypage menu end -->
   
@@ -165,6 +165,7 @@
   <input type="button" id="delete" class="btn btn-danger" value="회원 탈퇴" />
   </div>
 </form>
+</div>
 
   <!-- member detail end -->
   

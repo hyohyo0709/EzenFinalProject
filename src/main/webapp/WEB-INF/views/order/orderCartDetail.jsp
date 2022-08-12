@@ -2,9 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
-<html lang="en">
 <head>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -20,11 +19,11 @@
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
 
-<link href="../assets/css/style.css" rel="stylesheet" />
+<link href="/assets/css/style.css" rel="stylesheet" />
 <title>주문 상세</title>
 
 <!-- 파비콘 -->
-<link rel="short icon" href="../assets/img/favicon.png"
+<link rel="short icon" href="/assets/img/favicon.png"
 	type="image/x-icon" />
 <head>
 <meta charset="utf-8">
@@ -97,10 +96,11 @@
 <script src="form-validation.js"></script>
 
 <script type="text/javascript">
-	$(document).ready(function() {
+ 	$(document).ready(function() {
+ 		
 		$('#couponpricedirfrm').hide();
 		 $('#couponpriceperfrm').hide();
-		 
+		 setTotalInfo();	
 		
 		$("#same-address").change(function() {
 			if (this.checked) {
@@ -110,48 +110,201 @@
 			}
 		})
 
-		$("#btnOrder").click(function() {
+	 	$("#btnOrder").click(function() {
+			$('#order_frm').attr("action", "/order/cartordersave.do").submit();
 
-			$('#order_frm').attr("action", "/order/ordersave.do").submit();
-
-		})
+		}) 
 		
-		$("#btnCoupon").click(function(){			
-				
+	 	
+		
+		
+		
+		$(".individual_cart_checkbox").on("change", function(){
+			/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
+			setTotalInfo($(".cart_info_td"));
+		});
+
+		/* 체크박스 전체 선택 */
+		$(".all_check_input").on("click", function(){
+
+			/* 체크박스 체크/해제 */
+			if($(".all_check_input").prop("checked")){
+				$(".individual_cart_checkbox").attr("checked", true);
+			} else{
+				$(".individual_cart_checkbox").attr("checked", false);
+			}
 			
-			 var couponValue=$("#couponSelect").val(); // 
-				var cnum = $("#couponSelect").find("option:selected").data("sub");
-			 
-			 if(couponValue<1 && couponValue>0){
-				 $('#coupon_number').val(cnum);
-				 $('#couponpricedirfrm').hide();
-				 $('#couponpriceperfrm').show();
-				  $('#couponpriceper').val(100-couponValue*100);
-				  $('#order_cost').val(Math.round("${bdto.sellprice}"*couponValue));
-			 }
-			 if(couponValue>=1){
-				 $('#coupon_number').val(cnum);
-				 $('#couponpriceperfrm').hide();
-				 $('#couponpricedirfrm').show();
-				 $('#couponpricedir').val(couponValue);
-				 $('#order_cost').val("${bdto.sellprice}"-couponValue);
-			 }
-			 if(couponValue==0){
-				 $('#coupon_number').val(null);
-				 $('#couponpricedirfrm').hide();
-				 $('#couponpriceperfrm').hide();
-				 $('#order_cost').val("${bdto.sellprice}");
-			 }
-			 
-			 
+			/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
+			setTotalInfo($(".cart_info_td"));	
+		});
+		/* 총 주문 정보 세팅(배송비, 총 가격, 물품 수, 종류) */
+		function setTotalInfo(){
+
+			let totalPrice = 0;				// 총 가격
+			let totalCount = 0;				// 총 갯수
+			let totalKind = 0;				// 총 종류
+			let finalTotalPrice = 0; 		// 최종 가격(총 가격 + 배송비)
+		$(".cart_info_td").each(function(index, element){
 				
-		})
+				if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
+					// 총 가격
+					totalPrice += parseInt($(element).find(".individual_totalPrice_input").val());
+					// 총 갯수
+					totalCount += parseInt($(element).find(".individual_cart_amount_input").val());
+					// 총 종류
+					totalKind += 1;
+				}
+				});
+			
+				finalTotalPrice = totalPrice /* - totalCoupon */;
+			
+			/* ※ 세자리 컴마 Javscript Number 객체의 toLocaleString() */
+			
+			// 총 가격
+			/* $(".totalPrice_span").text(totalPrice.toLocaleString()); */
+			$('#order_cost').val(totalPrice);
+			// 총 갯수
+			$(".totalCount_span").text(totalCount);
+			// 총 종류
+			$(".totalKind_span").text(totalKind);
+			
+			
+			$("#btnCoupon").click(function(){			
+				
+				 var couponValue=$("#couponSelect").val(); // 
+					var cnum = $("#couponSelect").find("option:selected").data("sub");
+				 
+				 if(couponValue<1 && couponValue>0){
+					 $('#coupon_number').val(cnum);
+					 $('#couponpricedirfrm').hide();
+					 $('#couponpriceperfrm').show();
+					  $('#couponpriceper').val(100-couponValue*100);
+					  $('#order_cost').val(Math.round(totalPrice*couponValue) );
+				 }
+				 if(couponValue>=1){
+					 $('#coupon_number').val(cnum);
+					 $('#couponpriceperfrm').hide();
+					 $('#couponpricedirfrm').show();
+					 $('#couponpricedir').val(couponValue);
+					 $('#order_cost').val(totalPrice-couponValue);
+				 }
+				 if(couponValue==0){
+					 $('#coupon_number').val(null);
+					 $('#couponpricedirfrm').hide();
+					 $('#couponpriceperfrm').hide();
+					 $('#order_cost').val(totalPrice);
+				 }
+			}) 
+			
+			
+		};
+			
 		
 		
-	})
-	
-	
-</script>
+		
+		
+			/* 수량 버튼 */	
+			
+			
+			
+			
+			
+			
+		  $(".plus_btn").on("click", function(){
+			  
+			  var i =$(this).parent("div").find('#quantity_order_input').val();
+			  
+			  $(this).parent("div").find('#quantity_order_input').val(++i);
+		  });
+			  
+		$(".minus_btn").on("click", function(){
+			
+			
+			var i =$(this).parent("div").find('#quantity_order_input').val();
+			if(i > 1){
+				$(this).parent("div").find('#quantity_order_input').val(--i);
+			}
+			
+		}); 
+
+		const form = {
+					member_number : '${member.member_number}',
+					num :  '',
+					cart_amount : ''}
+		const form2 = {
+					member_number : '${member.member_number}',
+					num : ''
+		}
+			
+					
+			$(document).on("click", ".quantity_modify_btn",function(e){
+				form.num = $(this).data("num");
+				form.cart_amount = $(this).parent("div").find('#quantity_order_input').val();
+				$.ajax({
+				url:'/order/orderCartDetail/update',
+				type: 'PUT',
+				data: form,
+				complete: function() {
+		        location.reload();
+		        }
+				})
+			})
+
+		/* 장바구니 삭제 버튼 */
+		$(document).on("click", ".delete_btn",function(e){
+			form2.num = $(this).data("num");
+			$.ajax({
+				url:'/order/orderCartDetail/delete',
+				type: 'DELETE',
+				data: form2,
+				complete: function() {
+		        location.reload();
+		        }
+				})
+		});
+ 
+		 /* const form3 = {
+				one_order_cost:'',
+				member_number : '${member.member_number}',
+				book_id : '',
+				order_phone: '',
+				order_name: '',
+				order_address:''
+		}	  */
+		 //주문페이지 데이터 저장용
+		/* 	const orderArray = [];
+			orderArray.push($('#saleprice').val());
+			orderArray.push('${member.member_number}');
+			orderArray.push($('#book_id').val());
+			orderArray.push($('#order_phone').val());
+			orderArray.push($('#order_name').val());
+			orderArray.push($('#order_address').val()); */
+		  /* $("#btnOrder").on("click",function(){
+			$.ajax({
+				url:'/cart/ordersave',
+				dataType    :   "json",
+				type:'POST',
+				traditional: true,
+				data: {"orderList" : orderArray},
+				async:false,
+				success:alert("성공")
+				,
+				error: alert("실패")
+			});
+		
+		});   */
+		 
+		/* for(var i=0; i<${fn:length(clist)}; i++){ */ 
+		/* 	form3.order_cost =$('#saleprice').val();
+			form3.book_id = $('#book_id').val();
+			form3.order_phone =$('#order_phone').val();
+			form3.order_name = $('#order_name').val();
+			form3.order_address = $('#order_address').val(); */
+		//상품 하나 하나 객체에 담고 후에 배열로 담아서 넘기기 콘트롤러에서 list로 받기 서비스 같은거 다 list로 받을 수 있게 바꿔야한다
+		//book_id값을 객체로 넘기고 배열로 넘긴다 
+ 	});//document end
+		</script>
+		
 
 
 </head>
@@ -168,10 +321,10 @@
 	<!-- card end -->
 
 	<!-- body start -->
-<body class="bg-light">
-	<form class="needs-validation" novalidate name="order_frm"
+	<body class="bg-light">
+ 	<form class="needs-validation" novalidate name="order_frm"
 		id="order_frm" method="post">
-
+	 
 		<div class="container">
 			<main>
 				<div class="py-5 text-center">
@@ -182,32 +335,73 @@
 
 
 				<div class="row g-5">
+				
 					<div class="col-md-5 col-lg-4 order-md-last">
 						<h4 class="d-flex justify-content-between align-items-center mb-3">
 							<span class="text-primary">Your cart</span> <span
-								class="badge bg-primary rounded-pill">1</span>
+								class="badge bg-primary rounded-pill totalKind_span" >${clist.size() }</span>
 						</h4>
-						<ul class="list-group mb-3">
-							<li class="list-group-item d-flex justify-content-between lh-sm">
-								<div>
-									<h6 class="my-0">상품명</h6>
-									<small class="text-muted" name="book_title">${bdto.book_title}</small>
-									<small class="text-muted" hidden="true"><input
-										name="book_id" type="text" value="${bdto.book_id}" /></small>
-								</div> <span class="text-muted" name="book_price">${bdto.book_price}원</span>
-							</li>
-							<li class="list-group-item d-flex justify-content-between lh-sm">
-								<div>
-									<h6 class="my-0">
-										<p>상품 이미지</p>
-									</h6>
-
-									<div class="text-muted" id="img-responsive" name="book_img">
-										<img src="/assets/img/${bdto.book_img}" height="300px"
-											width="100%" class="img-responsive img-thumbnail"
-											alt="${bdto.book_img}">
+						<div class="cart_order_area">
+							<c:forEach items="${clist}" var="cdto" varStatus="status">
+							<div class="cart_list">
+							<img alt="${cdto.book_img}" src="/assets/img/${cdto.book_img}" height="130px" width="85px" st>
+							<table class="table_cart_order">
+									<tbody>
+										<tr >
+											<td class="cart_info_td" align="left" height="25px;" colspan="2">
+											<input style="max-height: 25px;" type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
+											<input type="hidden" class="individual_book_price_input" value="${cdto.book_price}">
+											<input type="hidden" class="individual_saleprice_input" id="saleprice" value="${cdto.saleprice}">
+											<input type="hidden" class="individual_cart_amount_input" value="${cdto.cart_amount}">
+											<input type="hidden" class="individual_totalPrice_input" value="${cdto.saleprice * cdto.cart_amount}">
+											<input type="hidden" class="individual_point_input" value="${cdto.point}">
+											<input type="hidden" class="individual_totalPoint_input" value="${cdto.totalPoint}">
+											<input type="hidden" class="individual_book_id_input" id="book_id" name="orderDTO[${status.count-1}].book_id" value="${cdto.book_id}">								
+											</td>
+											<td class="td_width_4 table_text_align_center" height="25px;">
+											<button class="delete_btn" data-num="${cdto.num}"><img alt="delete_btn" src="/assets/img/delete_btn.png" width="12px" height="12px" align="middle"></button>
+											</td>
+										</tr>
+										<tr  >
+											<th colspan="3" style="height: 23px; padding: 0px">${cdto.book_title}</th>
+										</tr>
+										<tr><td>&nbsp;</td></tr>
+										<tr>
+											<td colspan="3" style="max-height: 28px padding: 0px;  ">
+												<div>
+												<div class="quantity_div2">
+												<div class="quantity_div3">
+												<input type="button" class="quantity_btn minus_btn" id="order_minus_btn"
+									value="-" />
+												<!-- <button class="quantity_btn minus_btn" id="order_minus_btn">-</button> -->
+												<input id="quantity_order_input" type="text" value="${cdto.cart_amount}" class="quantity_input" readonly="readonly"/>
+												<!-- <button class="quantity_btn plus_btn" id="order_plus_btn">+</button> -->
+												
+												<input type="button" class="quantity_btn plus_btn" id="order_plus_btn"
+									value="+" />
+												</div>
+												<a class="quantity_modify_btn" id="quantity_order_cart_btn" data-num="${cdto.num}">수량 변경</a>
+												</div>
+												</div>
+												</td>
+										</tr>
+										<tr>
+											<td align="left" class="list_price">판매가 : </td>
+											<td class="list_price"><del><fmt:formatNumber value="${cdto.book_price *cdto.cart_amount}" pattern="#,###"/></del></td>
+											<td class="list_price"> => <input style="text-align: right; border: 0px; max-width: 130px; height: 18px; 
+											overflow: hidden; padding: 0;" type="text" id="one_order_cost" 
+											value="<fmt:formatNumber value="${cdto.saleprice * cdto.cart_amount}" pattern="#,###원" />"> </td>
+										</tr>
+										
+									</tbody>
+								</table>
+								</div>
+								</c:forEach>
 									</div>
-								</div> <span class="text-muted"></span>
+									
+									
+							<ul class="list-group mb-3">
+							<li class="list-group-item d-flex justify-content-between lh-sm">
 							</li>
 							<li class="list-group-item d-flex justify-content-between lh-sm">
 								<div>
@@ -243,42 +437,44 @@
 								 
 								 <input name="coupon_number" id="coupon_number" value="" type="hidden" />
 							</li>
-						
-							
-							
-							<li class="list-group-item d-flex justify-content-between">
+							<%-- <li class="list-group-item justify-content-between">
+								<span>결제금액</span>
+								<span style="float: right;"><span class="totalPrice_span">${totalPrice}
+								
+								
+								</span>원 
+								
+								
+								
+								</span> --%>
+								
+								
+								<li class="list-group-item d-flex justify-content-between">
 								<span>결제금액</span> 
 								
 								
-								<input type="number" name="order_cost" id="order_cost" value="${bdto.sellprice}" 
+								<input  type="number" name="order_cost" id="order_cost" value="${totalPrice}" 
 								style="font-weight:bold; border:none; background: transparent;text-align:right;" readonly="readonly"/> 
 								<strong>원</strong>
 
 							</li>
-						</ul>
-
-						<!--         <form class="card p-2">
-          <div class="input-group">
-            <input type="text" class="form-control" placeholder="Promo code">
-            <button type="submit" class="btn btn-secondary">Redeem</button>
-          </div>
-        </form> -->
-
+								
+								
 					</div>
-
+					
+					
 					<div class="col-md-7 col-lg-8">
 						<h4 class="mb-3">배송 정보 입력</h4>
 
 						<div class="col-5">
 							<label for="id" class="form-label">주문자 아이디 <span
-								class="text-muted"></span></label> <input type="id" class="form-control"
+								class="text-muted"></span></label> <input class="form-control"
 								id="member_id" name="member_id" value="${member.member_id}"
-								readonly="readonly"> <input type="id"
+								readonly="readonly"> <input
 								class="form-control" id="member_number" name="member_number"
 								value="${member.member_number}" readonly="readonly"
 								hidden="true">
-
-						</div>
+							</div>
 
 
 						<div class="row g-3">
@@ -292,8 +488,8 @@
 
 							<div class="col-sm-6">
 								<label for="firstName" class="form-label">받으시는 분 이름</label> <input
-									type="text" class="form-control" id="order_name"
-									name="order_name" placeholder="이름을 입력해주세요" value="" required>
+									type="text" class="form-control" data-order_name
+								id="order_name"	name="order_name" placeholder="이름을 입력해주세요" value="" required>
 								<div class="invalid-feedback">받으시는 분 이름을 입력해주세요</div>
 							</div>
 							<div class="col-sm-6">
@@ -305,8 +501,8 @@
 
 							<div class="col-sm-6">
 								<label for="firstName" class="form-label">받으시는 분 연락처</label> <input
-									type="text" class="form-control" id="order_phone"
-									name="order_phone" placeholder="전화번호를 입력해주세요." value=""
+									type="text" class="form-control" name="order_phone" id="order_phone" data-order_phone
+									 placeholder="전화번호를 입력해주세요." value=""
 									required>
 								<div class="invalid-feedback">받으시는 분 연락처를 입력해주세요</div>
 							</div>
@@ -358,7 +554,7 @@
 
 							<div class="col-12">
 								<label for="address" class="form-label">상세주소</label> <input
-									type="text" class="form-control" id="order_address"
+									type="text" class="form-control" id="order_address" data-order_address
 									name="order_address" value="" placeholder="1234-1 행복하우스 101호 "
 									required>
 								<div class="invalid-feedback">상세주소를 입력해주세요</div>
@@ -467,14 +663,19 @@
 						</div>
 					</div>
 			</main>
-
+	
 		</div>
-	</form>
+<div></div>
 
+								 </form> 
+
+	
+	
 	<!-- body end -->
 
 	<!-- Footer Start -->
 	<%@ include file="../common/footer.jsp"%>
 	<!-- Footer end -->
 </body>
+
 </html>

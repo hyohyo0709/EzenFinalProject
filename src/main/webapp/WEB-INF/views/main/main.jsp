@@ -171,11 +171,11 @@ $(document).ready(function(){
     <c:choose>
           <c:when test="${isLogOn == true  && member!= null}">
     <li><a href="/mypage/mypageForm.do">마이페이지</a></li>
-    <li><a href="#">장바구니 </a></li>
+    <li><a href="/cart/list/${member.member_number}">장바구니 </a></li>
   </c:when>
   <c:otherwise>
 	       <li><a href="/member/loginForm.do">마이페이지</a></li>
-	       <li><a href="#">장바구니 </a></li>
+	       <li><a href="/member/loginForm.do">장바구니 </a></li>
 	       </c:otherwise>
 	       </c:choose>
   </ul>

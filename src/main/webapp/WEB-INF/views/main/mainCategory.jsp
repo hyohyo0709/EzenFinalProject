@@ -23,11 +23,11 @@
 	<div class="row g-5">
 	
 	<div class="col-lg-4 border-start custom-border">
-	<strong>소설</strong>
-	<c:forEach items="${alist}" var="book" varStatus="status">
+	<strong>시</strong>
+	<c:forEach items="${alist}" var="book" varStatus="status" begin="0" end="4">
 	<c:if test="${book.book_category==1 && book.book_status==1}">
 			<div class="post-entry-1">	
-				<a href="/book/novelCategorylist.do?book_category=1">
+				<a href="/book/Categorylist.do?book_category=1&categoryName=시">
 				<img src="../assets/img/${book.book_img}" alt="" class="img-fluid">
 				<span class="date">${book.book_author}</span>
 				<h5>${book.book_title}</h5></a>
@@ -38,11 +38,11 @@
 
 
 	<div class="col-lg-4 border-start custom-border">
-    <strong>인문/사회</strong>
-    <c:forEach items="${alist}" var="book" varStatus="status">
+    <strong>역사소설</strong>
+    <c:forEach items="${alist}" var="book" varStatus="status" begin="0" end="4">
 	<c:if test="${book.book_category==2 && book.book_status==1}">
 		<div class="post-entry-1">
-		<a href="/book/humansocietyCategorylist.do?book_category=2">
+		<a href="/book/Categorylist.do?book_category=2&categoryName=역사소설">
 		<img src="../assets/img/${book.book_img }" alt="" class="img-fluid">
 		<span class="date">${book.book_author}</span>
 		<h5>${book.book_title}</h5></a>
@@ -58,23 +58,19 @@
 			종합 주간 베스트셀러 <span style="color: red"> Top 5 </span></p>
 
 		 <c:forEach items="${alist}" var="book" varStatus="status" begin="0" end="4">
+		 <c:if test="${ book.book_status==1}">
 		 <div class="card" >
 		<a href="/book/allBooklist.do">
 		<img src="../assets/img/${book.book_img}" alt="" class="img-fluid">
 		 <strong class="rank">${status.count}</strong>
 				<div class="card-body" style="text-align: center">
-					<c:if test="${book.book_category==1 && book.book_status==1}">
-						<small class="text-muted">[소설]</small>
-					</c:if>
-
-					<c:if test="${book.book_category==2 && book.book_status==1}">
-						<small class="text-muted">[인문/사회]</small>
-					</c:if> 
-
+					
+	
 					<h5 class="card-title">${book.book_title}</h5>
 				</div>
 			</a>
 		</div> <!-- end card -->
+		</c:if>
 		</c:forEach>
 
 		</div>

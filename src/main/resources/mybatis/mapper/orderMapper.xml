@@ -99,7 +99,7 @@
 	</select> 
     
     
-    
+    <!--주문이 들어가는 행위  -->
     <insert id="orderSave" parameterType="OrderDTO">
     insert into ezenorders (num, order_number, order_cost, member_number, book_id, order_status,
     order_phone, order_name, order_address)
@@ -108,7 +108,7 @@
     
     </insert>
     
-    
+    <!--배송 상태 확인  -->
      <select id="checkOrderStatus"
     parameterType="OrderDTO"
     resultMap="OrderResult">

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -29,11 +30,14 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import ezenproject.dto.BookDTO;
+import ezenproject.dto.CartDTO;
 import ezenproject.dto.CouponDTO;
+import ezenproject.dto.ListOrderDTO;
 import ezenproject.dto.MemberDTO;
 import ezenproject.dto.OrderDTO;
 import ezenproject.dto.PageDTO;
 import ezenproject.service.BookService;
+import ezenproject.service.CartService;
 import ezenproject.service.CouponService;
 import ezenproject.service.MemberService;
 import ezenproject.service.OrderService;
@@ -56,11 +60,15 @@ public class MainController {
 	@Autowired
 	private CouponService couponservice;
 	
+	@Autowired
+	private CartService cservice;
+	
 	private BookDTO bdto;
 	private MemberDTO mdto;
 	private OrderDTO odto;
 	private PageDTO pdto;
-
+	private CartDTO cdto;
+	
 	private int currentPage;
 
 	public MainController() {
@@ -76,13 +84,14 @@ public class MainController {
 	// http://localhost:8090/
 	@RequestMapping(value =  {"/","/index.do" } , method = RequestMethod.GET)
 	public ModelAndView main(HttpServletRequest request, ModelAndView mav) {
+		int totalRecord = bservice.countProcess();
 		String viewname = (String) request.getAttribute("viewName");
 		if (viewname == null) {
 			viewname = "/index";
 		}
 		
-		
-		List<BookDTO> alist = bservice.listProcess();
+		pdto = new PageDTO(1, totalRecord);
+		List<BookDTO> alist = bservice.allBookListProcess(pdto);
 		mav.addObject("alist", alist);
 		
 		mav.setViewName(viewname);
@@ -287,7 +296,7 @@ public class MainController {
 //	카테고리별 책 리스트
 	@RequestMapping(value = "/book/*Categorylist.do", method = RequestMethod.GET)
 	public ModelAndView listCategoryBookMethod(HttpServletRequest request, PageDTO pv, ModelAndView mav,
-			int book_category) {
+			int book_category, String categoryName) {
 		int totalRecord = bservice.countCategoryProcess(book_category);
 		String viewName = (String) request.getAttribute("viewName");
 		if (totalRecord != 0) {
@@ -298,6 +307,7 @@ public class MainController {
 			}
 			pdto = new PageDTO(currentPage, totalRecord);
 			List<BookDTO> alist = bservice.categoryBookListProcess(pdto, book_category);
+			mav.addObject("categoryName", categoryName);
 			mav.addObject("alist", alist);
 			mav.addObject("pv", pdto);
 
@@ -400,10 +410,109 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 	}
 	
 	
+//	장바구니 페이지 주문하는 행위
+	@RequestMapping(value = "/order/cartordersave.do", method = RequestMethod.POST)
+	public String newCartOrderMethod(ListOrderDTO listorder, HttpServletRequest request, String coupon_number,
+			int order_cost, String member_number, String order_phone, String order_name, String order_address) {
+		
+		OrderDTO standarddto=listorder.getOrderDTO().get(0);
+				oservice.newOrderNumberProcess(standarddto);
+				String standardcode = standarddto.getOrder_number();
+				
+				
+		for(int i=0; i< listorder.getOrderDTO().size(); i++ ) {
+			OrderDTO alist= listorder.getOrderDTO().get(i);
+			alist.setOrder_number(standardcode);
+			alist.setOrder_cost(order_cost);
+			alist.setMember_number(member_number);
+			alist.setOrder_phone(order_phone);
+			alist.setOrder_name(order_name);
+			alist.setOrder_address(order_address);
+			
+			oservice.newOrderSaveProcess(alist);
+		}
+		
+		
 
+//		oservice.newOrderSaveProcess(dto);
+		couponservice.usedCouponProcess(coupon_number);
+		
+		return "redirect:/";
+	}
+	
+	
 	
 	
 //	////////////////////////////여기까지 주문 페이지///////////////////////////////////////
+	
+	
+	
+////////////////////////////////장바구니 메소드 시작//////////////////////////////////////
+
+/* 장바구니 추가 */
+/**
+* 0: 등록 실패
+* 1: 등록 성공
+* 2: 등록된 데이터 존재
+*/
+
+
+@ResponseBody
+@RequestMapping(value = "/cart/list/add")
+public String addCartPOST(CartDTO dto, HttpServletRequest request) {
+
+int result = cservice.addCartProcess(dto);
+return result + "";	
+}
+
+/* 장바구니 페이지 이동 */	
+
+@RequestMapping(value ="/cart/list/{member_number}" , method = RequestMethod.GET)
+public String cartPageGET(@PathVariable("member_number") String member_number, Model model) {
+model.addAttribute("clist", cservice.getCartProcess(member_number));
+
+return "/cart/list";
+}	
+/* 장바구니 수량 수정 */
+@RequestMapping(value = "/cart/list/update" , method = RequestMethod.POST)
+public String updateCartPOST(CartDTO dto) {
+cservice.modifyCountProcess(dto);
+return "redirect:/cart/list/" + dto.getMember_number();
+
+}	
+/* 장바구니 제거 */
+@RequestMapping(value = "/cart/list/delete" , method = RequestMethod.POST)
+public String deleteCartDELETE(CartDTO dto) {
+cservice.deleteCartProcess(dto.getNum());
+return "redirect:/cart/list/" + dto.getMember_number();
+}		
+
+/* 장바구니 주문 페이지 */
+@RequestMapping(value ="/order/orderCartDetail/{member_number}" , method = RequestMethod.GET)
+public String cartOrderGET(@PathVariable("member_number") String member_number, Model model) {
+model.addAttribute("clist", cservice.getCartProcess(member_number));
+model.addAttribute("couponlist", couponservice.listProcess(member_number));
+
+return "/order/orderCartDetail";
+}	
+
+/* 주문페이지 장바구니 수량 수정 */
+@ResponseBody
+@RequestMapping(value = "/order/orderCartDetail/update" , method = RequestMethod.PUT)
+public void updateOrderCartPOST(CartDTO dto) {
+cservice.modifyCountProcess(dto);
+}	
+/* 주문페이지 장바구니 제거 */
+@ResponseBody
+@RequestMapping(value = "/order/orderCartDetail/delete" , method = RequestMethod.DELETE)
+public void deleteOrderCartDELETE(CartDTO dto, int num) {
+cservice.deleteCartProcess(num);
+}	
+
+
+
+////////////////////장바구니 페이지 끝////////////////////////////////
+	
 
 ////////////////////////////////////////////////////여기부터 관리자 페이지 메소드입니다.////////////////////
 

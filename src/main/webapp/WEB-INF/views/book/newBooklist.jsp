@@ -60,7 +60,7 @@
 		<div class="container">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="/">메인</a></li>
+					<li class="breadcrumb-item"><a href="/">메인페이지</a></li>
 					<li class="breadcrumb-item active" aria-current="page">신작 도서</li>
 				</ol>
 			</nav>
