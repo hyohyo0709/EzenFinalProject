@@ -107,10 +107,10 @@
     
     </insert>
     
-    <insert id="cartOrderSave" parameterType="map">
+    <insert id="cartOrderSave" parameterType="java.util.List">
     insert into ezenorders (num, order_number, order_cost, member_number, book_id, order_status,
     order_phone, order_name, order_address)
-    values <foreach collection="clist" index="index" item="cdto" separator=","> (ezenorders_num_seq.nextval, #{order_number}, #{cdto.order_cost}, #{member_number}, #{cdto.book_id}, 1,
+    values <foreach collection="list" index="index" item="orderList" > (ezenorders_num_seq.nextval, #{order_number}, #{cdto.order_cost}, #{member_number}, #{cdto.book_id}, 1,
     #{order_phone}, #{order_name}, #{order_address})</foreach>
     
     </insert>

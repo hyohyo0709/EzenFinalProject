@@ -97,7 +97,7 @@
 
 <script type="text/javascript">
  	$(document).ready(function() {
- 		
+ 		setTotalInfo();	
 		$('#couponpricedirfrm').hide();
 		 $('#couponpriceperfrm').hide();
 		 
@@ -161,7 +161,7 @@
 			
 			/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
 			setTotalInfo($(".cart_info_td"));	
-
+		});
 		/* 총 주문 정보 세팅(배송비, 총 가격, 물품 수, 종류) */
 		function setTotalInfo(){
 
@@ -179,8 +179,7 @@
 					// 총 종류
 					totalKind += 1;
 				}
-
-			});
+				});
 			
 				finalTotalPrice = totalPrice /* - totalCoupon */;
 			
@@ -192,8 +191,12 @@
 			$(".totalCount_span").text(totalCount);
 			// 총 종류
 			$(".totalKind_span").text(totalKind);
-		}});
+		};
 			
+		
+		
+		
+		
 			/* 수량 버튼 */	
 		$(".plus_btn").on("click", function(){
 			let quantity = $(this).parent("div").find("input").val();
@@ -250,27 +253,37 @@
 				order_name: '',
 				order_address:''
 		}	
-		
-
 		//주문페이지 데이터 저장용
-		
+			const orderArray = [];
+			orderArray.push($('#saleprice').val());
+			orderArray.push('${member.member_number}');
+			orderArray.push($('#book_id').val());
+			orderArray.push($('#order_phone').val());
+			orderArray.push($('#order_name').val());
+			orderArray.push($('#order_address').val());
 		$("#btnOrder").on("click",function(){
-			form3.order_cost =$('#saleprice').val();
+			$.ajax({
+				url:'/cart/ordersave',
+				dataType    :   "json",
+				type:'POST',
+				traditional: true,
+				data: {"orderList" : orderArray},
+				async:false,
+				success:alert("성공")
+				,
+				error: alert("실패")
+			});
+			/*  };  */
+		});
+		
+		/* for(var i=0; i<${fn:length(clist)}; i++){ */ 
+		/* 	form3.order_cost =$('#saleprice').val();
 			form3.book_id = $('#book_id').val();
 			form3.order_phone =$('#order_phone').val();
 			form3.order_name = $('#order_name').val();
-			form3.order_address = $('#order_address').val();
-				/* for(var i=0; i<${fn:length(clist)}; i++){ */
-			$.ajax({
-				url:'/cart/ordersave',
-				type:'POST',
-				traditional: true,
-				data: form3,
-				async:false
-			});
-			/* }; */
-		})
-		
+			form3.order_address = $('#order_address').val(); */
+		//상품 하나 하나 객체에 담고 후에 배열로 담아서 넘기기 콘트롤러에서 list로 받기 서비스 같은거 다 list로 받을 수 있게 바꿔야한다
+		//book_id값을 객체로 넘기고 배열로 넘긴다 
  	});//document end
 		</script>
 		

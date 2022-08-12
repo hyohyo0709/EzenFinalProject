@@ -117,9 +117,12 @@ public class OrderServiceImp implements OrderService{
 
 
 	@Override
-	public void cartOrderSaveProcess(OrderDTO dto) {
-		dao.cartOrderSave(dto);
+	public List<OrderDTO> cartOrderSaveProcess(List<OrderDTO> orderList) {
+		return dao.cartOrderSave(orderList);
 	}
+
+
+
 
 
 

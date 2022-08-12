@@ -1,5 +1,7 @@
 package ezenproject.dto;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -18,10 +20,16 @@ public class OrderDTO {
 	private String cart_order_number;
 	
 	private MemberDTO ezenmembers;
-	private BookDTO ezenbooks;
+	private List<BookDTO> ezenbooks;
+	private List<OrderDTO> orderList;
 	
 	
-	
+	public List<OrderDTO> getOrderList() {
+		return orderList;
+	}
+	public void setOrderList(List<OrderDTO> orderList) {
+		this.orderList = orderList;
+	}
 	public String getCart_order_number() {
 		return cart_order_number;
 	}
@@ -34,15 +42,12 @@ public class OrderDTO {
 	public void setEzenmembers(MemberDTO ezenmembers) {
 		this.ezenmembers = ezenmembers;
 	}
-	public BookDTO getEzenbooks() {
+	public List<BookDTO> getEzenbooks() {
 		return ezenbooks;
 	}
-	public void setEzenbooks(BookDTO ezenbooks) {
+	public void setEzenbooks(List<BookDTO> ezenbooks) {
 		this.ezenbooks = ezenbooks;
 	}
-	
-	
-	
 	public int getNum() {
 		return num;
 	}

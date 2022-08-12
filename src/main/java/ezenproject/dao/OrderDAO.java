@@ -17,12 +17,11 @@ public interface OrderDAO {
 	public void deleteData(int num);
 	
 	public void orderSave(OrderDTO dto);
-	public void cartOrderSave(OrderDTO dtd);
 	public List<OrderDTO> myOrderList(String memnumber);
 	public OrderDTO selectOrderInformation(int num);
 	public OrderDTO checkOrderStatus(String order_number);
 	
 	public void updateOrderInformation(OrderDTO dto);
-	
+	public List<OrderDTO> cartOrderSave(List<OrderDTO> orderList);
 
 }
