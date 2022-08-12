@@ -30,7 +30,7 @@ public OrderDTO orderStatusProcess(String order_number);
 public void updateOrderProcess(OrderDTO dto);
 
 
-public List<OrderDTO> cartOrderSaveProcess(List<OrderDTO> orderList);
+public int cartOrderSaveProcess(List<OrderDTO> orderList);
 
 	
 }

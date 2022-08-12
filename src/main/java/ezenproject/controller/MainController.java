@@ -262,22 +262,12 @@ public class MainController {
 	//장바구니 주문하는 행위
 	@ResponseBody
 	@RequestMapping(value = "/cart/ordersave", method = RequestMethod.POST)
-	public void cartOrderMethod(OrderDTO dto, String coupon_number, @RequestParam(value="orderList", required=false) List<OrderDTO> orderList) {
-		System.out.println("Test"+orderList);
+	public void cartOrderMethod(OrderDTO dto, String coupon_number) {
 		oservice.newOrderNumberProcess(dto);
-		oservice.cartOrderSaveProcess(orderList);
+		oservice.newOrderSaveProcess(dto);
 		couponservice.usedCouponProcess(coupon_number);
 	}
-	/*
-	 * //장바구니 주문하는 행위
-	 * 
-	 * @ResponseBody
-	 * 
-	 * @RequestMapping(value = "/cart/ordersave", method = RequestMethod.POST)
-	 * public void cartOrderMethod(OrderDTO dto, String coupon_number) {
-	 * oservice.newOrderNumberProcess(dto); oservice.newOrderSaveProcess(dto);
-	 * couponservice.usedCouponProcess(coupon_number); }
-	 */	////////////////////장바구니 페이지 끝////////////////////////////////
+	////////////////////장바구니 페이지 끝////////////////////////////////
 	
 	//메인페이지
 	@RequestMapping(value = { "/", "/index.do" }, method = RequestMethod.GET)

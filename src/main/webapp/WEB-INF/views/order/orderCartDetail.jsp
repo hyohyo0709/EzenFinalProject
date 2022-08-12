@@ -98,6 +98,7 @@
 <script type="text/javascript">
  	$(document).ready(function() {
  		setTotalInfo();	
+ 		totalPrice = 0;
 		$('#couponpricedirfrm').hide();
 		 $('#couponpriceperfrm').hide();
 		 
@@ -186,14 +187,13 @@
 			/* ※ 세자리 컴마 Javscript Number 객체의 toLocaleString() */
 			
 			// 총 가격
-			$(".totalPrice_span").text(totalPrice.toLocaleString());
+			$(".totalPrice_span").text(totalPrice);
 			// 총 갯수
 			$(".totalCount_span").text(totalCount);
 			// 총 종류
 			$(".totalKind_span").text(totalKind);
 		};
 			
-		
 		
 		
 		
@@ -244,44 +244,40 @@
 		        }
 				})
 		});
-
-		const form3 = {
-				order_cost:'',
+	finalPrice = document.getElementById('totalprice').innerHTML;
+	$.each()
+	const form3 = {
+				order_cost:finalPrice,
 				member_number : '${member.member_number}',
-				book_id : '',
+				book_id : $('#book_id').val(),
 				order_phone: '',
 				order_name: '',
 				order_address:''
-		}	
-		//주문페이지 데이터 저장용
-			const orderArray = [];
-			orderArray.push($('#saleprice').val());
-			orderArray.push('${member.member_number}');
-			orderArray.push($('#book_id').val());
-			orderArray.push($('#order_phone').val());
-			orderArray.push($('#order_name').val());
-			orderArray.push($('#order_address').val());
-		$("#btnOrder").on("click",function(){
-			$.ajax({
-				url:'/cart/ordersave',
-				dataType    :   "json",
-				type:'POST',
-				traditional: true,
-				data: {"orderList" : orderArray},
-				async:false,
-				success:alert("성공")
-				,
-				error: alert("실패")
-			});
-			/*  };  */
-		});
+		}	 
 		
-		/* for(var i=0; i<${fn:length(clist)}; i++){ */ 
-		/* 	form3.order_cost =$('#saleprice').val();
-			form3.book_id = $('#book_id').val();
+		//주문페이지 데이터 저장용
+	
+			$("#btnOrder").on("click",function(){
+			$.ajaxSettings.traditional = true;
 			form3.order_phone =$('#order_phone').val();
 			form3.order_name = $('#order_name').val();
-			form3.order_address = $('#order_address').val(); */
+			form3.order_address = $('#order_address').val();
+			$.ajax({
+				url:'/cart/ordersave',
+				dataType : "json", 	
+				type:'POST',
+				traditional: true,
+				async:false,
+				data: form3, 
+				success:function(data) {
+					data = data.replace(/(^\s*)|(\s*$)/gi, "");
+					alert(data);}
+			});
+			});
+			/*  };  */
+		
+		/* for(var i=0; i<${fn:length(clist)}; i++){ */ 
+	
 		//상품 하나 하나 객체에 담고 후에 배열로 담아서 넘기기 콘트롤러에서 list로 받기 서비스 같은거 다 list로 받을 수 있게 바꿔야한다
 		//book_id값을 객체로 넘기고 배열로 넘긴다 
  	});//document end
@@ -414,7 +410,7 @@
 							</li>
 							<li class="list-group-item justify-content-between">
 								<span>결제금액</span>
-								<span style="float: right;"><span class="totalPrice_span">${totalPrice}</span>원 </span>
+								<span style="float: right;"><span id="totalprice" class="totalPrice_span"></span>원 </span>
 					</div>
 					<div class="col-md-7 col-lg-8">
 						<h4 class="mb-3">배송 정보 입력</h4>

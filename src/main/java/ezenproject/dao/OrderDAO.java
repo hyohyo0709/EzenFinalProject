@@ -22,6 +22,6 @@ public interface OrderDAO {
 	public OrderDTO checkOrderStatus(String order_number);
 	
 	public void updateOrderInformation(OrderDTO dto);
-	public List<OrderDTO> cartOrderSave(List<OrderDTO> orderList);
+	public int cartOrderSave(List<OrderDTO> orderList);
 
 }
