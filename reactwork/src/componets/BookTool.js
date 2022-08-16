@@ -143,9 +143,89 @@ const BookTool = () => {
   const categoryCheck = (book_category) => {
     // 장르는 계속 추가될 예정
     if (book_category === 1) {
-      return '소설';
+      return '시';
     } else if (book_category === 2) {
-      return '인문/사회';
+      return '역사소설';
+    } else if (book_category === 3) {
+      return '과학소설(SF)';
+    } else if (book_category === 4) {
+      return '추리/미스터리 소설';
+    } else if (book_category === 5) {
+      return '판타지/환상문학';
+    } else if (book_category === 6) {
+      return '희곡';
+    } else if (book_category === 7) {
+      return '교양인문학';
+    } else if (book_category === 8) {
+      return '인문에세이';
+    } else if (book_category === 9) {
+      return '철학';
+    } else if (book_category === 10) {
+      return '심리/정신분석학';
+    } else if (book_category === 11) {
+      return '신화/종교학';
+    } else if (book_category === 12) {
+      return '문화/문화이론';
+    } else if (book_category === 13) {
+      return '비평/칼럼';
+    } else if (book_category === 14) {
+      return '사회문제';
+    } else if (book_category === 15) {
+      return '환경/생태문제';
+    } else if (book_category === 16) {
+      return '사회운동';
+    } else if (book_category === 17) {
+      return '언론/미디어';
+    } else if (book_category === 18) {
+      return '법과 생활';
+    } else if (book_category === 19) {
+      return '동양사일반';
+    } else if (book_category === 20) {
+      return '역사학';
+    } else if (book_category === 21) {
+      return '한국고대~고려시대';
+    } else if (book_category === 22) {
+      return '조선사';
+    } else if (book_category === 23) {
+      return '서양사';
+    } else if (book_category === 24) {
+      return '전쟁/분쟁사';
+    } else if (book_category === 25) {
+      return '컬러링북';
+    } else if (book_category === 26) {
+      return '예술/대중문화의 이해';
+    } else if (book_category === 27) {
+      return '미술';
+    } else if (book_category === 28) {
+      return '음악';
+    } else if (book_category === 29) {
+      return '건축';
+    } else if (book_category === 30) {
+      return '무용';
+    } else if (book_category === 31) {
+      return '기초과학/교양과학';
+    } else if (book_category === 32) {
+      return '과학사회학';
+    } else if (book_category === 33) {
+      return '생면과학';
+    } else if (book_category === 34) {
+      return '의학';
+    } else if (book_category === 35) {
+      return '천문학';
+    } else if (book_category === 36) {
+      return '화학';
+    } else if (book_category === 37) {
+      return '경제학/경제일반';
+    } else if (book_category === 38) {
+      return '기업 경영';
+    } else if (book_category === 39) {
+      return '마케팅/세일즈';
+    } else if (book_category === 40) {
+      return '트렌드/미래전망';
+    } else if (book_category === 41) {
+      return '재테크/투지';
+    } else if (book_category === 42) {
+      return '창업/취업/은퇴';
     }
   };
 

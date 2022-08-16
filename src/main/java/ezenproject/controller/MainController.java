@@ -4,9 +4,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeSet;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -205,7 +207,20 @@ public class MainController {
 		public ModelAndView orderListMethod(ModelAndView mav, String member_number) {	 
 			 
 			 List<OrderDTO> aList = oservice.myOrderListProcess(member_number);
+
+			 
+			// 주문번호만 나열하는 코드 
+			List<Object> ordernumbers = new ArrayList<Object>();
 			
+			for(int i=0; i<aList.size(); i++) {
+				ordernumbers.add(aList.get(i).getOrder_number());
+			};
+			
+			TreeSet<Object> checkordernumbers = new TreeSet<Object>(ordernumbers);
+			List<Object> realordernumbers = new ArrayList<Object>(checkordernumbers);
+			
+			
+			 mav.addObject("orderNumbers", realordernumbers);
 			 mav.addObject("aList", aList); 
 			mav.setViewName("/mypage/myorderlist");
 			return mav;
@@ -382,12 +397,13 @@ public class MainController {
 
 
 //	주문 페이지 들어가기
-	@RequestMapping("/order/orderDetail.do")
-	public ModelAndView viewMethod(HttpServletRequest request, int num, ModelAndView mav, String member_number) {
+	@RequestMapping(value = "/order/orderDetail.do")
+	public ModelAndView viewMethod(HttpServletRequest request, int num, ModelAndView mav, String member_number, int book_qty) {
  bdto= bservice.contentProcess(num);
 List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 		String viewName = (String) request.getAttribute("viewName");
 
+		mav.addObject("book_qty", book_qty);
 		mav.addObject("bdto", bdto);
 		mav.addObject("couponlist", couponlist);
 		mav.setViewName(viewName);
@@ -408,6 +424,17 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 		
 		return "redirect:/";
 	}
+	
+	
+	
+	/* 장바구니 주문 페이지 */
+	@RequestMapping(value ="/order/orderCartDetail/{member_number}" , method = RequestMethod.GET)
+	public String cartOrderGET(@PathVariable("member_number") String member_number, Model model) {
+	model.addAttribute("clist", cservice.getCartProcess(member_number));
+	model.addAttribute("couponlist", couponservice.listProcess(member_number));
+
+	return "/order/orderCartDetail";
+	}	
 	
 	
 //	장바구니 페이지 주문하는 행위
@@ -432,9 +459,7 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 			oservice.newOrderSaveProcess(alist);
 		}
 		
-		
 
-//		oservice.newOrderSaveProcess(dto);
 		couponservice.usedCouponProcess(coupon_number);
 		
 		return "redirect:/";
@@ -492,14 +517,7 @@ cservice.deleteCartProcess(dto.getNum());
 return "redirect:/cart/list/" + dto.getMember_number();
 }		
 
-/* 장바구니 주문 페이지 */
-@RequestMapping(value ="/order/orderCartDetail/{member_number}" , method = RequestMethod.GET)
-public String cartOrderGET(@PathVariable("member_number") String member_number, Model model) {
-model.addAttribute("clist", cservice.getCartProcess(member_number));
-model.addAttribute("couponlist", couponservice.listProcess(member_number));
 
-return "/order/orderCartDetail";
-}	
 
 /* 주문페이지 장바구니 수량 수정 */
 @ResponseBody

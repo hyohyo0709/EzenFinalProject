@@ -127,20 +127,20 @@
 				 $('#couponpricedirfrm').hide();
 				 $('#couponpriceperfrm').show();
 				  $('#couponpriceper').val(100-couponValue*100);
-				  $('#order_cost').val(Math.round("${bdto.sellprice}"*couponValue));
+				  $('#order_cost').val(Math.round("${bdto.sellprice* book_qty}"*couponValue));
 			 }
 			 if(couponValue>=1){
 				 $('#coupon_number').val(cnum);
 				 $('#couponpriceperfrm').hide();
 				 $('#couponpricedirfrm').show();
 				 $('#couponpricedir').val(couponValue);
-				 $('#order_cost').val("${bdto.sellprice}"-couponValue);
+				 $('#order_cost').val("${bdto.sellprice * book_qty}"-couponValue);
 			 }
 			 if(couponValue==0){
 				 $('#coupon_number').val(null);
 				 $('#couponpricedirfrm').hide();
 				 $('#couponpriceperfrm').hide();
-				 $('#order_cost').val("${bdto.sellprice}");
+				 $('#order_cost').val("${bdto.sellprice * book_qty}");
 			 }
 			 
 			 
@@ -207,7 +207,16 @@
 											width="100%" class="img-responsive img-thumbnail"
 											alt="${bdto.book_img}">
 									</div>
+									
+									
 								</div> <span class="text-muted"></span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between lh-sm">
+								<div>
+									<h6 class="my-0">수량</h6>
+									<small class="text-muted"></small>
+									<input name="book_qty" value="${book_qty }" hidden="true">
+								</div> <span class="text-muted">${book_qty }권</span>
 							</li>
 							<li class="list-group-item d-flex justify-content-between lh-sm">
 								<div>
@@ -250,7 +259,7 @@
 								<span>결제금액</span> 
 								
 								
-								<input type="number" name="order_cost" id="order_cost" value="${bdto.sellprice}" 
+								<input type="number" name="order_cost" id="order_cost" value="${bdto.sellprice * book_qty}" 
 								style="font-weight:bold; border:none; background: transparent;text-align:right;" readonly="readonly"/> 
 								<strong>원</strong>
 

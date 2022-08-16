@@ -124,7 +124,7 @@
 							</th>
 						</tr>
 						<tr>
-						<th><p style="margin-top: 10px">줄거리</p></th>
+						<th><p style="margin-top: 10px">책 소개</p></th>
 						</tr>
 						<tr>
 							<td width="100%" colspan="2" class="book_story">${dto.book_content}</td>
@@ -183,7 +183,7 @@
 								<td colspan="3">	
 									<input type="hidden" value="-" id="minus_btn">
 									
-									<input  name="total_price" value="${dto.sellprice}">
+									<%-- <input  name="total_price" value="${dto.sellprice}"> --%>
 									<p class="cart_count_total_price"><span class="totalPrice_span">
 									<fmt:formatNumber value="5000" pattern="#,###원" /></span> 원</p>
 									<input type="hidden" value="+" id="plus_btn">
@@ -198,11 +198,7 @@
 					
 					<!-- ////// 구매 버튼 목록 시작 /////// -->
 					<!-- //구매 버튼 링크들// -->
-					<c:url var="order_link" value="/order/orderDetail.do">
-					<c:param name="num" value="${dto.num }"/>
-					<c:param name="member_number" value="${member.member_number }"/>
 					
-					</c:url>
 					<c:url var="pickup_link" value="/order/pickup.do">
 					<c:param name="num" value="${dto.num }"/>
 					</c:url>
@@ -224,7 +220,7 @@
 					<input class="cart_btn" id="cart_btn" type="button" value="장바구니 추가">
 					<input class="buy_button1" type="button" value="장바구니 확인" onclick="window.open('/cart/list/${member.member_number}')"/>
 					<input class="buy_button2" type="button" value="매장구매" onclick="window.open('${pickup_link}')">
-					<input class="buy_button3" type="button" value="바로구매" onclick="window.open('${order_link}')">
+					<input class="buy_button3" type="button" value="바로구매" onclick="order_link()">
 					</c:when>
 					<c:when test="${dto.book_stock==0 && isLogOn == true && member!= null}">
 					<input class="buy_button1" type="button" value="장바구니 추가" onclick="noStock()">
@@ -315,8 +311,18 @@
 	
 	
 	});
+		
+			
 	
 	//서버 전송용 데이터
+	
+	function order_link(){
+		var link="/order/orderDetail.do?num="+${dto.num }+"&member_number="+'${member.member_number }'+"&book_qty="+$("#quantity_input").val();
+
+
+window.open(link);
+	}
+	
 	const form = {
 		member_number : '${member.member_number}',
 		book_id : '${dto.book_id}',

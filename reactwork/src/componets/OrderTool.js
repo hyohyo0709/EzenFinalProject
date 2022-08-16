@@ -183,7 +183,7 @@ const OrderTool = () => {
           <TableCell align='center'>{row.ezenmembers.member_id}</TableCell>
           <TableCell align='center'>{row.book_id}</TableCell>
           <TableCell align='center'>{row.ezenbooks.book_title}</TableCell>
-
+          <TableCell align='center'>{row.book_qty}권</TableCell>
           <TableCell align='center'>{row.order_cost} 원</TableCell>
 
           <TableCell align='center'>{statusCheck(row.order_status)}</TableCell>
@@ -296,8 +296,8 @@ const OrderTool = () => {
                 <TableCell align='center'>주문 회원 ID</TableCell>
                 <TableCell align='center'>도서 ID</TableCell>
                 <TableCell align='center'>도서 제목</TableCell>
-
-                <TableCell align='center'>총 금액</TableCell>
+                <TableCell align='center'>수량(권)</TableCell>
+                <TableCell align='center'>총 금액(주문단위 금액)</TableCell>
 
                 <TableCell align='center'>주문 상태</TableCell>
               </TableRow>

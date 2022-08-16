@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" src="./mypage.js"></script>
+
   <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -23,6 +23,10 @@
     ></script>
 <link href="../assets/css/style.css" rel="stylesheet" />
 <script type="text/javascript">
+$(document).ready(function(){
+	console.log('${orderNumbers}');
+});
+
 function orderstatus(status,path){
 	
 	if(status!=0){
@@ -62,17 +66,23 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
 
   
 <table id='ordertable' class="table table-hover border border-secondary" >
-  <thead>
+    <c:forEach items="${orderNumbers}" var="orderNumbers">
+  
+   <thead>
+   <tr><td> 주문 번호 : <c:out value="${orderNumbers }"/></td></tr>
+   
     <tr >
-      <th scope="col">주문번호</th>
+      
       <th scope="col">책 제목</th>
       <th scope="col">주문수량</th>
-      <th scope="col">가격</th>
+      <th scope="col">총 결제금액</th>
       <th scope="col">배송현황</th>
     </tr>
   </thead>
   <tbody >
+ 
   <c:forEach items="${aList}" var="dto">
+ <c:if test="${dto.order_number == orderNumbers }">
   	<c:url var="path" value="mypage/myorderdetail.do">
 		<c:param name="num" value="${dto.num}" />
 		<c:param name="member_number" value="${dto.member_number}" />
@@ -80,9 +90,8 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
     <tr onclick="orderstatus('${dto.order_status}','${path}')">
 	  <td>${dto.order_number}</td>
       <td>${dto.ezenbooks.book_title}</td>
-      <!-- 그냥 출력하면 소수점이 출력되서 정수로 표현하기위한 jstl태그 추가 -->
-      <fmt:parseNumber var="qty" value="${ dto.order_cost / dto.ezenbooks.book_price}" integerOnly="true" />
-      <td>${qty}권</td>
+     
+      <td>${dto.book_qty}권</td>
       <td>${dto.order_cost}원</td>
       <c:set var="status" value="${dto.order_status}" scope="session"/>
       <c:choose>
@@ -106,8 +115,13 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
       </c:when>
       </c:choose>
     </tr>
+    </c:if>
  </c:forEach>
 </tbody>
+  </c:forEach>
+  
+  
+ 
 </table>
   </div>
   <!-- order detail end -->
