@@ -1,0 +1,23 @@
+	for(var i=0; i<${fn:length(bList)}; i++){
+		$("#ordnum"+i).on("click",function(){
+			var ordnum = $(this).val();
+			alert(ordnum);
+			$.ajax({
+				url:'/mypage/myorders',
+				dataType:"json",
+				type:'GET',
+				data:{"order_number": ordnum},
+				success:function(data){
+					item= data;
+					console.log(item);
+					alert(item[0].order_number);
+					var test2 =item[0].order_number;
+					var test3 =item[0].book_id;
+					$('#demo').append()
+					  $('#demo').append(test2);
+					  $('#demo').append(test3);
+						},
+				error:alert("실패")
+		})
+		})
+	}

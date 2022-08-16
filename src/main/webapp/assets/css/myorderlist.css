@@ -1,0 +1,95 @@
+*{
+  box-sizing: border-box; 
+}
+  
+.que:first-child{
+    border-top: 1px solid black;
+  }
+  
+.que{
+  position: relative;
+  padding: 17px 0;
+  cursor: pointer;
+  font-size: 14px;
+  border-bottom: 1px solid #dddddd;
+  height: 60px;
+}
+.que>span{
+	margin-right: 30px;
+	float: left;
+	width: 16%;
+}  
+.que::before.on{
+  color: #006633;
+  font-size: 14px;
+  margin: 0 5px;
+  float: left;
+}
+.que::before{
+  color: #006633;
+  font-size: 14px;
+  margin: 0 5px;
+  float: left;
+}
+.que.on>span{
+margin-right: 30px;
+	float: left;
+	width: 16%;
+}
+
+.anw {
+  display: none;
+   overflow: hidden;
+  font-size: 14px;
+  background-color: #f4f4f2;
+  padding: 10px 0;
+}
+  
+.anw::before {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #666;
+  margin-left: 20px;
+}
+.text-wrap{
+	 font-size: 14px;
+ 	 margin-top: 10px;
+  	 transform: translate(0, -50%);
+	 display: flex;
+}
+.text-wrap>span{
+	margin-left: 50px;
+	min-width:140px; 
+	}
+
+.arrow-wrap {
+  position: absolute;
+  top:50%; right: 10px;
+  transform: translate(0, -50%);
+}
+
+.que .arrow-top {
+  display: none;
+}
+.que .arrow-bottom {
+  display: block;
+}
+.que.on .arrow-bottom {
+  display: none;
+}
+.que.on .arrow-top {
+  display: block; 
+}
+.body{
+}
+.inner>tr{
+	height: 140px;
+	vertical-align: top;
+	cursor: pointer;
+	padding-bottom: 10px;
+}
+.inner>tr>td{
+	border-bottom: 1px solid gray;
+	
+	}

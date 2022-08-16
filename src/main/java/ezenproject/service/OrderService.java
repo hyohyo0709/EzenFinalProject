@@ -24,13 +24,10 @@ public void newOrderNumberProcess(OrderDTO dto);
 public void newOrderSaveProcess(OrderDTO dto);
 
 public List<OrderDTO> myOrderListProcess(String memnumber);
+public List<OrderDTO> myOrderList2Process(String member_number);
+public List<OrderDTO> myOrderList3Process(String order_number);
 public OrderDTO orderInformationProcess(int ordernum);
 public OrderDTO orderStatusProcess(String order_number);
 
 public void updateOrderProcess(OrderDTO dto);
-
-
-public int cartOrderSaveProcess(List<OrderDTO> orderList);
-
-	
 }

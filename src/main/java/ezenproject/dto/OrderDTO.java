@@ -1,7 +1,5 @@
 package ezenproject.dto;
 
-import java.util.List;
-
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,37 +15,35 @@ public class OrderDTO {
 	private String order_phone;
 	private String order_name;
 	private String order_address;
-	private String cart_order_number;
+	private int book_qty;
+	private String book_img;
 	
+	public String getBook_img() {
+		return book_img;
+	}
+	public void setBook_img(String book_img) {
+		this.book_img = book_img;
+	}
 	private MemberDTO ezenmembers;
-	private List<BookDTO> ezenbooks;
-	private List<OrderDTO> orderList;
+	private BookDTO ezenbooks;
 	
 	
-	public List<OrderDTO> getOrderList() {
-		return orderList;
-	}
-	public void setOrderList(List<OrderDTO> orderList) {
-		this.orderList = orderList;
-	}
-	public String getCart_order_number() {
-		return cart_order_number;
-	}
-	public void setCart_order_number(String cart_order_number) {
-		this.cart_order_number = cart_order_number;
-	}
+	
 	public MemberDTO getEzenmembers() {
 		return ezenmembers;
 	}
 	public void setEzenmembers(MemberDTO ezenmembers) {
 		this.ezenmembers = ezenmembers;
 	}
-	public List<BookDTO> getEzenbooks() {
+	public BookDTO getEzenbooks() {
 		return ezenbooks;
 	}
-	public void setEzenbooks(List<BookDTO> ezenbooks) {
+	public void setEzenbooks(BookDTO ezenbooks) {
 		this.ezenbooks = ezenbooks;
 	}
+	
+	
+	
 	public int getNum() {
 		return num;
 	}
@@ -102,6 +98,13 @@ public class OrderDTO {
 	public void setOrder_address(String order_address) {
 		this.order_address = order_address;
 	}
+	public int getBook_qty() {
+		return book_qty;
+	}
+	public void setBook_qty(int book_qty) {
+		this.book_qty = book_qty;
+	}
+	
 	
 	
 	

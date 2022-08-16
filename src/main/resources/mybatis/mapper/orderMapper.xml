@@ -35,6 +35,7 @@
   <id property="order_phone" column="order_phone"/>
   <id property="order_name" column="order_name"/>
   <id property="order_address" column="order_address"/>
+  <id property="book_qty" column="book_qty"/>
   
   
   <collection property="ezenmembers" resultMap="MemberDTO"/>
@@ -44,7 +45,7 @@
     
     <select id="list" resultMap="OrderResult">
     <![CDATA[
-    select o.num, o.order_number, o.order_cost, o.member_number, o.book_id, o.order_status, 
+    select o.num, o.order_number, o.order_cost, o.member_number, o.book_id, o.order_status, o.book_qty,
     m.member_id, b.book_title, b.book_price, o.order_phone, o.order_name, o.order_address, m.member_name, m.member_phone
     from ezenbooks b, ezenmembers m, ezenorders o
     where o.member_number = m.member_number
@@ -68,14 +69,15 @@
     
     
     
+    
     <!--여기까지 관리자 페이지 매퍼입니다.  -->
     
     
     
     <select id="myOrderList" resultMap="OrderResult" parameterType="OrderDTO">
     <![CDATA[
-    select o.num, o.order_number, o.order_cost, o.member_number, o.book_id, o.order_status, 
-    m.member_id, b.book_title, b.book_price, o.order_phone, o.order_name, o.order_address, m.member_name
+    select o.num, o.order_number, o.order_cost, o.member_number, o.book_id, o.order_status, o.book_qty,
+    m.member_id, b.book_title, b.book_price,b.book_img, o.order_phone, o.order_name, o.order_address, m.member_name
     from ezenbooks b, ezenmembers m, ezenorders o
     where o.member_number = m.member_number
     and o.book_id=b.book_id
@@ -90,7 +92,7 @@
    		parameterType="OrderDTO"
 		resultMap="OrderResult">
 	SELECT b.num, b.book_title, b.book_publisher,b.book_author, b.book_price,b.book_content,b.book_img, b.book_isbn,
-	o.num, o.order_number, o.order_cost, o.member_number, o.book_id, o.order_status
+	o.num, o.order_number, o.order_cost, o.member_number, o.book_id, o.order_status, o.book_qty
 	FROM ezenorders o, ezenbooks b, ezenmembers m 
 	WHERE 
 	o.book_id = b.book_id 
@@ -98,31 +100,21 @@
 	</select> 
     
     
-    
+    <!--주문이 들어가는 행위  -->
     <insert id="orderSave" parameterType="OrderDTO">
     insert into ezenorders (num, order_number, order_cost, member_number, book_id, order_status,
-    order_phone, order_name, order_address)
+    order_phone, order_name, order_address, book_qty)
     values(ezenorders_num_seq.nextval, #{order_number}, #{order_cost}, #{member_number}, #{book_id}, 1,
-    #{order_phone}, #{order_name}, #{order_address})
+    #{order_phone}, #{order_name}, #{order_address}, #{book_qty})
     
     </insert>
     
-    <insert id="cartOrderSave" parameterType="java.util.List">
-    insert into ezenorders (num, order_number, order_cost, member_number, book_id, order_status,
-    order_phone, order_name, order_address)
-    values <foreach collection="orderList" index="index" item="list" >(ezenorders_num_seq.nextval, #{order_number}, #{order_cost}, #{member_number}, #{book_id}, 1,
-    #{order_phone}, #{order_name}, #{order_address})</foreach>
-    
-    </insert>
-  
-    
-    
-    
+    <!--배송 상태 확인  -->
      <select id="checkOrderStatus"
     parameterType="OrderDTO"
     resultMap="OrderResult">
     SELECT o.order_status, o.order_number, o.order_name, o.order_phone, o.order_address, o.order_phone, 
-    m.member_name, m.member_phone, b.book_title, o.num
+    m.member_name, m.member_phone, b.book_title, o.num, o.book_qty
     FROM ezenorders o, ezenbooks b, ezenmembers m 
     WHERE  m.member_number = o.member_number 
     AND o.book_id = b.book_id
