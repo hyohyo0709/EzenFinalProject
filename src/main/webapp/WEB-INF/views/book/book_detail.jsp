@@ -146,7 +146,7 @@
 					<div class="buy_area1">
 					<div style=" border-bottom : 1px solid gray; margin-bottom: 5px">
 					<span style="color: gray;">● 배송비 :</span>
-						  <span style= "color: gary;">무료</span></br></br>
+						  <span style= "color: gary;">2500원</span></br></br>
 					<span>● 배송일정 : 서울시 서초구 서초동 기준</span></bar>
 					<p style="color: red;">
 					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -292,8 +292,8 @@
 	let count = 1;
 	let quantity = $("#quantity_input").val();
 	Price = 0;
-	totalPrice= ${dto.book_price / 10 *9};
-	Price +=  ${dto.book_price / 10 *9};
+	totalPrice= ${dto.sellprice};
+	Price +=  ${dto.sellprice};
 	
 	$("#plus_btn").on("click", function(){
 		$("#quantity_input").val(++quantity);

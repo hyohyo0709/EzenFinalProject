@@ -15,6 +15,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" >
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
+<script>
+$(document).ready(function(){
+	  var currentPosition = parseInt($(".quickmenu").css("top"));
+	  $(window).scroll(function() {
+	    var position = $(window).scrollTop(); 
+	    $(".quickmenu").stop().animate({"top":position+currentPosition+"px"},1000);
+	  });
+	});
+</script>
+
+
 </head>
 <body>
 
@@ -53,7 +64,7 @@
 
 	<!-- 베스트 셀러 -->
 	
-	<div class="col-lg-4">
+	<div class="col-lg-3">
 		<p class="title">
 			종합 주간 베스트셀러 <span style="color: red"> Top 5 </span></p>
 
@@ -66,12 +77,36 @@
 				<div class="card-body" style="text-align: center">
 					
 	
-					<h5 class="card-title">${book.book_title}</h5>
+					<p class="card-title">${book.book_title}</p>
 				</div>
 			</a>
 		</div> <!-- end card -->
 		</c:if>
 		</c:forEach>
+
+<!-- 퀵메뉴 -->			
+	 
+	 <div class="col-lg-1">
+	<div class="quickmenu">
+  
+  <ul>
+    <c:choose>
+          <c:when test="${isLogOn == true  && member!= null}">
+    <li><a href="/mypage/mypageForm.do">마이페이지</a></li>
+    <li><a href="/cart/list/${member.member_number}">장바구니 </a></li>
+  </c:when>
+  <c:otherwise>
+	       <li><a href="/member/loginForm.do">마이페이지</a></li>
+	       <li><a href="/member/loginForm.do">장바구니 </a></li>
+	       </c:otherwise>
+	       </c:choose>
+  </ul>
+	</div>
+</div>
+	 
+	 
+	 	<!-- "col-lg-1" 퀵메뉴 끝 -->
+
 
 		</div>
 	 <!--	베스트셀러 "col-lg-4"의 끝 -->

@@ -59,7 +59,7 @@ body{
 /* 베스트셀러 책 제목 */
 .title {
 	color: #212529;
-	font-size: 18px;
+	font-size: 15px;
 	text-align: center;
 }
 /* 베스트셀러 이미지 */
@@ -151,11 +151,12 @@ margin-right: 2rem;
 	}
 .quickmenu {
 	position:absolute;
-	width:66px;
-	top:50%;
+	width:70px;
+	top:600px;
 	margin-top:-50px;
-	right:3px;
+	margin-left:190px;
 	background:#fff;}
+	
 .quickmenu ul {
 	position:relative;
 	float:left;

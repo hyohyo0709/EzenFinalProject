@@ -263,45 +263,7 @@
 				})
 		});
  
-		 /* const form3 = {
-				one_order_cost:'',
-				member_number : '${member.member_number}',
-				book_id : '',
-				order_phone: '',
-				order_name: '',
-				order_address:''
-		}	  */
-		 //주문페이지 데이터 저장용
-		/* 	const orderArray = [];
-			orderArray.push($('#saleprice').val());
-			orderArray.push('${member.member_number}');
-			orderArray.push($('#book_id').val());
-			orderArray.push($('#order_phone').val());
-			orderArray.push($('#order_name').val());
-			orderArray.push($('#order_address').val()); */
-		  /* $("#btnOrder").on("click",function(){
-			$.ajax({
-				url:'/cart/ordersave',
-				dataType    :   "json",
-				type:'POST',
-				traditional: true,
-				data: {"orderList" : orderArray},
-				async:false,
-				success:alert("성공")
-				,
-				error: alert("실패")
-			});
-		
-		});   */
 		 
-		/* for(var i=0; i<${fn:length(clist)}; i++){ */ 
-		/* 	form3.order_cost =$('#saleprice').val();
-			form3.book_id = $('#book_id').val();
-			form3.order_phone =$('#order_phone').val();
-			form3.order_name = $('#order_name').val();
-			form3.order_address = $('#order_address').val(); */
-		//상품 하나 하나 객체에 담고 후에 배열로 담아서 넘기기 콘트롤러에서 list로 받기 서비스 같은거 다 list로 받을 수 있게 바꿔야한다
-		//book_id값을 객체로 넘기고 배열로 넘긴다 
  	});//document end
 		</script>
 		
@@ -373,9 +335,9 @@
 												<div class="quantity_div3">
 												<input type="button" class="quantity_btn minus_btn" id="order_minus_btn"
 									value="-" />
-												<!-- <button class="quantity_btn minus_btn" id="order_minus_btn">-</button> -->
+												
 												<input id="quantity_order_input" type="text" value="${cdto.cart_amount}" class="quantity_input" readonly="readonly"/>
-												<!-- <button class="quantity_btn plus_btn" id="order_plus_btn">+</button> -->
+												
 												
 												<input type="button" class="quantity_btn plus_btn" id="order_plus_btn"
 									value="+" />
@@ -437,16 +399,7 @@
 								 
 								 <input name="coupon_number" id="coupon_number" value="" type="hidden" />
 							</li>
-							<%-- <li class="list-group-item justify-content-between">
-								<span>결제금액</span>
-								<span style="float: right;"><span class="totalPrice_span">${totalPrice}
-								
-								
-								</span>원 
-								
-								
-								
-								</span> --%>
+							
 								
 								
 								<li class="list-group-item d-flex justify-content-between">

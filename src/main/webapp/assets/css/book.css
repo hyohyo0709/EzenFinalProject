@@ -179,6 +179,25 @@ body{
     text-align: center;
    
 }
+
+.list_cart_btn{
+    display: inline-block;
+    white-space: nowrap;
+    vertical-align: middle;
+    
+    padding: 0px 8px 0;
+    height: 50px;
+    font-size: 17px !important;
+    line-height: 20px;
+    font-weight: bold;
+    font-family: 'dotum',sans-serif;
+    color: #555;
+    text-decoration: none !important;
+    background-color: #fff;
+    text-align: center;
+   
+}
+
 /* 하단 이동 버튼 수정  */
 
 .page-item.active .page-link {
