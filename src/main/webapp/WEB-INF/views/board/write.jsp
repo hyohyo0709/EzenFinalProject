@@ -24,8 +24,7 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		$('#btnList').click(function() {
-			$('#frm').attr('action', 'list.do');
-			$('#frm').submit();
+			history.go(-2);
 		});
 
 		$('#btnSave').click(function() {
@@ -64,19 +63,19 @@
 <body>
 	<!-- Header start -->
 	
-    <%@ include file = "../../../common/header.jsp"%>
+    <%@ include file = "../common/header.jsp"%>
     <!-- Header end -->
 
 	<form name="frm" id="frm" method="post" enctype="multipart/form-data">
 		<table class="table">
 			<tr>
 				<td width="20%" align="center">ID</td>
-				<td><input type="text" name="member_id" size="10" maxlength="10" value="${mdto.member_id}" readonly="readonly"/></td>
+				<td><input type="text" name="member_id" size="10" maxlength="10" value="${member.member_id}" readonly="readonly"/></td>
 			</tr>
 
 			<tr>
 				<td width="20%" align="center">Email</td>
-				<td><input type="text" name="member_email" size="30" maxlength="30" value="${mdto.member_email}" readonly="readonly" /></td>
+				<td><input type="text" name="member_email" size="30" maxlength="30" value="${member.member_email}" readonly="readonly" /></td>
 			</tr>
 
 			<tr>
@@ -101,15 +100,18 @@
 			<tr>
 				<td width="20%" align="center">첨부파일</td>
 				<td><input type="file" name="filename" id="filepath" />
+				<input type="hidden" name="board_type" value="${board_type}" />
+				</td>
 			</tr>
-
+			
 	
 		</table>
 
 		<!-- 답변글일때 -->
 		<c:if test="${dto!=null}">
 			<input type="hidden" name="num" value="${dto.num}" />
-			<input type="hidden" name="currentPage" id="currentPage" value="${currentPage}" />
+			<input type="hidden" name="board_type" value="${board_type}" />
+			<input type="hidden" name="currentPage" value="${currentPage}" />
 			<input type="hidden" name="ref" value="${dto.ref}" />
 			<input type="hidden" name="re_step" value="${dto.re_step}" />
 			<input type="hidden" name="re_level" value="${dto.re_level}" />
@@ -120,7 +122,7 @@
 		</div>
 	</form>
 	    <!-- Footer Start -->
- <%@ include file = "../../../common/footer.jsp"%>
+ <%@ include file = "../common/footer.jsp"%>
   <!-- Footer end -->
 </body>
 </html>

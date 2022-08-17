@@ -28,6 +28,13 @@ import BookUpdate from './componets/BookUpdate';
 import OrderTool from './componets/OrderTool';
 import OrderStatusChange from './componets/OrderStatusChange';
 import OrderDataDelete from './componets/OrderDataDelete';
+import BoardTool from './componets/BoardTool';
+import CouponAdd from './componets/CouponAdd';
+import MemberDataDelete from './componets/MemberDataDelete';
+import CouponList from './componets/CouponList';
+import BoardDataDelete from './componets/BoardDataDelete';
+import BoardReply from './componets/BoardReply';
+import BoardFileDownload from './componets/BoardFileDownload';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -46,6 +53,10 @@ const App = () => {
           <Route path='list' element={<MemberTool />} />
           <Route path='statuschange/:num' element={<MemberTool />} />
           <Route path='typechange/:num' element={<MemberTool />} />
+          <Route path='deletedata/:num' element={<MemberDataDelete />} />
+          <Route path='newcouponsave' element={<CouponAdd />} />
+          <Route path='couponlist/:member_number' element={<CouponAdd />} />
+          <Route path='deletecoupon/:num' element={<CouponList />} />
         </Route>
 
         <Route path='books' element={<BookTool />}>
@@ -53,7 +64,7 @@ const App = () => {
           <Route path='statuschange/:num' element={<BookTool />} />
           <Route path='stockchange/:num' element={<BookTool />} />
           <Route path='newbooksave' element={<BookAdd />} />
-          <Route path='deletdata/:num' element={<BookDataDelete />} />
+          <Route path='deletedata/:num' element={<BookDataDelete />} />
           <Route path='updatebook' element={<BookUpdate />} />
           <Route path='selectone/:num' element={<BookUpdate />} />
         </Route>
@@ -61,7 +72,20 @@ const App = () => {
         <Route path='orders' element={<OrderTool />}>
           <Route path='list' element={<OrderTool />} />
           <Route path='statuschange' element={<OrderStatusChange />} />
-          <Route path='deletdata/:num' element={<OrderDataDelete />} />
+          <Route path='deletedata/:num' element={<OrderDataDelete />} />
+        </Route>
+
+        <Route path='boards' element={<BoardTool />}>
+          <Route path='list/:board_type' element={<BoardTool />} />
+          <Route path='delete/:num/:board_type' element={<BoardDataDelete />} />
+          <Route
+            path='reply/:board_type/:ref/:re_step/re_level'
+            element={<BoardReply />}
+          />
+          <Route
+            path='contentdownload/:num/:board_type/:upload'
+            element={<BoardFileDownload />}
+          />
         </Route>
       </Routes>
     </div>
@@ -116,11 +140,19 @@ function Layout() {
               </Link>
             </Item>
             <Item>
+              <Link to='/boards'>
+                <Button variant='contained' size='large'>
+                  게시판 관리
+                </Button>
+              </Link>
+            </Item>
+
+            <Item>
               <Button
                 variant='contained'
                 size='large'
                 color='success'
-                href='http://localhost:8090/index.jsp'
+                href='http://localhost:8090/'
               >
                 메인 홈페이지로 이동
               </Button>

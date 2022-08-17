@@ -1,4 +1,4 @@
-package ezenproject.dto;
+	package ezenproject.dto;
 
 import java.sql.Date;
 
@@ -7,9 +7,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 @Component
 public class BoardDTO {
-	private int num, readcount, ref, re_step, re_level;
+	private int num, board_type, readcount, ref, re_step, re_level;
 	private String member_id, member_email, subject, content;
 	private Date reg_date;
+	
+	private MemberDTO ezenmembers;
 	
 	//board테이블의 파일첨부 처리해주는 멤버변수
 	private String upload;
@@ -114,6 +116,22 @@ public class BoardDTO {
 
 	public void setFilename(MultipartFile filename) {
 		this.filename = filename;
+	}
+
+	public int getBoard_type() {
+		return board_type;
+	}
+
+	public void setBoard_type(int board_type) {
+		this.board_type = board_type;
+	}
+
+	public MemberDTO getEzenmembers() {
+		return ezenmembers;
+	}
+
+	public void setEzenmembers(MemberDTO ezenmembers) {
+		this.ezenmembers = ezenmembers;
 	}
 	
 	

@@ -1,7 +1,5 @@
 package ezenproject.dto;
 
-
-
 import org.springframework.stereotype.Component;
 
 @Component
@@ -15,12 +13,28 @@ public class OrderDTO {
 	private String book_id;
 	private int order_status;
 	private String order_phone;
-	private String order_address;
 	private String order_name;
+	private String order_address;
 	
 	private MemberDTO ezenmembers;
 	private BookDTO ezenbooks;
-
+	
+	
+	
+	public MemberDTO getEzenmembers() {
+		return ezenmembers;
+	}
+	public void setEzenmembers(MemberDTO ezenmembers) {
+		this.ezenmembers = ezenmembers;
+	}
+	public BookDTO getEzenbooks() {
+		return ezenbooks;
+	}
+	public void setEzenbooks(BookDTO ezenbooks) {
+		this.ezenbooks = ezenbooks;
+	}
+	
+	
 	
 	public int getNum() {
 		return num;
@@ -64,30 +78,19 @@ public class OrderDTO {
 	public void setOrder_phone(String order_phone) {
 		this.order_phone = order_phone;
 	}
-	public String getOrder_address() {
-		return order_address;
-	}
-	public void setOrder_address(String order_address) {
-		this.order_address = order_address;
-	}
 	public String getOrder_name() {
 		return order_name;
 	}
 	public void setOrder_name(String order_name) {
 		this.order_name = order_name;
 	}
-	public MemberDTO getEzenmembers() {
-		return ezenmembers;
+	public String getOrder_address() {
+		return order_address;
 	}
-	public void setEzenmembers(MemberDTO ezenmembers) {
-		this.ezenmembers = ezenmembers;
+	public void setOrder_address(String order_address) {
+		this.order_address = order_address;
 	}
-	public BookDTO getEzenbooks() {
-		return ezenbooks;
-	}
-	public void setEzenbooks(BookDTO ezenbooks) {
-		this.ezenbooks = ezenbooks;
-	}
+	
 	
 	
 	

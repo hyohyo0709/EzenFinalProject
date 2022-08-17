@@ -213,15 +213,18 @@ const BookAdd = () => {
           <br />
           <Box sx={{ minWidth: 120 }}>
             <FormControl sx={{ m: 1, minWidth: 120 }} size='small'>
-              <InputLabel id='demo-simple-select-label'>장르</InputLabel>
+              <InputLabel id='demo-simple-select-required-label'>
+                장르
+              </InputLabel>
               <Select
-                labelId='demo-simple-select-label'
-                id='demo-simple-select'
+                labelId='demo-simple-select-required-label'
+                id='demo-simple-select-required'
                 value={selectCategory}
                 label='장르'
                 onChange={handleCategoryChange}
               >
                 <MenuItem value={1}>소설</MenuItem>
+                <MenuItem value={2}>인문/사회</MenuItem>
               </Select>
             </FormControl>
           </Box>

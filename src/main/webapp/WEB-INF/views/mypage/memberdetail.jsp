@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="../../assets/css/style.css" rel="stylesheet" />
+<link href="../assets/css/style.css" rel="stylesheet" />
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -21,46 +21,73 @@
     />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" src="../../common/mypage.js"></script>
+<script defer type="text/javascript" src="./mypage.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#update").click(function(){
-			$("#frm").attr('action', '/mypage/update.do').submit();
+			var result = confirm("회원 정보를 수정하시겠습니까?");
+			if(confirm){
+				$("#frm").attr('action', '/mypage/update.do').submit();
+				alert("회원정보가 수정되었습니다.")
+			}
+			
 		});
 		
 		$("#delete").click(function(){
-			var result = confirm("정말로 탈퇴하시겠습니까?");
+			var result = confirm("정말로 탈퇴하시겠습니까?\n탈퇴 처리된 계정의 복구는 관리자에게 문의해야 합니다.");
 			if(result){
 			$("#frm").attr('action', '/mypage/memberdelete.do').submit();
 			}
 		});
-
-
+		
+		
+		$("button[value='pass_change']").click(function(){	
+			var pattern=/\s/g;
+			
+			if($("#current_pass").val()!=("${memberInfo.member_pass}")){
+				alert("기존 비밀번호가 틀립니다.");
+			return false;
+			}
+			if($("#new_pass").val()==""||pattern.test($("#new_pass").val())){
+				alert("새로운 비밀번호를 입력해주세요.\n비밀번호에는 공백이 허용되지 않습니다.")
+				return false;
+			}
+			if($("#new_pass").val()!=$("#new_pass_check").val()){
+				alert("새로운 비밀번호가 일치하지 않습니다.");
+				return false;
+			}
+			
+			$("#member_pass").val($("#new_pass").val());
+			alert("비밀번호가 변경되었습니다.")
+			
+			$("#pass_change").modal("hide");
+			
+			
+		})
+		
 	});
 </script>
 
 <style>
-
    #frm{
    position:relative;
      bottom:110px;
     left:300px;
     width:70%;
     }
-
 </style>
 
 </head>
 <body>
 
     <!-- Header start -->
-    <%@ include file = "../../../common/header.jsp"%>
+    <%@ include file = "../common/header.jsp"%>
     <!-- Header end -->
    
 
   <!-- mypage menu start -->
 
-	<%@ include file = "../../../common/mypagemenu.jsp"%>
+	<%@ include file = "mypagemenu.jsp"%>
   <!-- mypage menu end -->
   
   
@@ -81,8 +108,45 @@
   </div>
   <div class="col-md-5">
     <label for="inputPassword4" class="form-label">비밀번호</label>
-    <input type="password" class="form-control" name="member_pass" >
+    <input type="password" class="form-control" name="member_pass" id="member_pass" value="${memberInfo.member_pass }" readonly="readonly">
+      <!-- 비밀번호 변경 버튼 -->
+<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#pass_change">
+  비밀번호 변경하기
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="pass_change" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">비밀번호 변경하기</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group mb-3">
+        <label  class="col-form-label"><strong>기존 비밀번호</strong></label>
+						<input type="password" class="form-control" name="current_pass" id="current_pass" placeholder="기존 비밀번호" required="required">		
+					</div>
+					<div class="form-group mb-3">
+					<label  class="col-form-label"><strong>새로운 비밀번호</strong></label>
+						<input type="password" class="form-control" name="new_pass" id="new_pass" placeholder="새로운 비밀번호" required="required">	
+					</div>  
+					<div class="form-group mb-3">
+					<label  class="col-form-label"><strong>새로운 비밀번호 확인</strong></label>
+						<input type="password" class="form-control" name="new_pass_check" id="new_pass_check" placeholder="비밀번호 확인" required="required">	
+					</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">취소</button>
+        <button type="button" class="btn btn-primary" id="pass_change" value="pass_change" 
+        data-bs-target="#member_pass" >변경하기</button>
+      </div>
+    </div>
   </div>
+</div>
+  </div>
+  
+  
   <div class="col-12">
     <label for="inputAddress" class="form-label">이메일</label>
     <input type="text" class="form-control" name="member_email" value="${memberInfo.member_email}">
@@ -97,15 +161,15 @@
   </div>
   <div>
   <input type="hidden" name="num" value="${memberInfo.num}"/>
-  <input type="button" id="update" class="btn btn-primary" value="수정" />
-  <input type="button" id="delete" class="btn btn-primary" value="탈퇴" />
+  <input type="button" id="update" class="btn btn-dark" value="수정" />
+  <input type="button" id="delete" class="btn btn-danger" value="회원 탈퇴" />
   </div>
 </form>
 
   <!-- member detail end -->
   
    <!-- Footer Start -->
- <%@ include file = "../../../common/footer.jsp"%>
+ <%@ include file = "../common/footer.jsp"%>
   <!-- Footer end -->
   
 </body>

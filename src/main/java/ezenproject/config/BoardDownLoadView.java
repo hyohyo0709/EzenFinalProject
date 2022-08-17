@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.view.AbstractView;
 
 import ezenproject.dao.BoardDAO;
+import ezenproject.dto.BoardDTO;
 
 
 
@@ -32,13 +34,16 @@ public class BoardDownLoadView extends AbstractView{
 	@Override
 	protected void renderMergedOutputModel(Map<String, Object> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		
 		int num = Integer.parseInt(request.getParameter("num"));
+		int board_type = Integer.parseInt(request.getParameter("board_type"));
 		
+		BoardDTO dto = new BoardDTO();
+		dto.setBoard_type(board_type);
+		dto.setNum(num);
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String saveDirectory = root + "temp" + File.separator;
 		
-		String upload = dao.getFile(num);
+		String upload = dao.getFile(dto);
 		System.out.println(upload);
 		String fileName = upload.substring(upload.indexOf("_")+1);
 		
@@ -54,7 +59,7 @@ public class BoardDownLoadView extends AbstractView{
 		//다운로드창에 보여 줄 파일명을 지정한다
 		response.setHeader("Content-Disposition", "attachment;filename="+str+";");
 		
-		//서버에 저장된 파일을 일겅와 클라이언트에 출력해 준다.
+		//서버에 저장된 파일을 읽어와 클라이언트에 출력해 준다.
 		FileCopyUtils.copy(new FileInputStream(new File(saveDirectory, upload)), response.getOutputStream());
 	}
 

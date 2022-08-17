@@ -1,7 +1,9 @@
 package ezenproject.service;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,16 +25,45 @@ public class BoardServiceImp implements BoardService{
 	
 	}
 	
+	@Override
+	public List<BoardDTO> myBoardListProcess(PageDTO pv, int board_type, String member_id) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("startRow", pv.getStartRow());
+		map.put("endRow", pv.getEndRow());
+		map.put("board_type", board_type);
+		map.put("member_id", member_id);
+		return dao.myBoardList(map);
+	}
+
 	
 	@Override
-	public int countProcess() {
+	public List<BoardDTO> listAllProcess(int board_type) {
+		return dao.listAll(board_type);
+	}
 	
-		return dao.count();
+	@Override
+	public int myCountProcess(Map<String,Object> map) {
+		return dao.myCount(map);
+	}
+	
+	@Override
+	public int countProcess(int num) {
+	
+		return dao.count(num);
 	}
 
 	@Override
 	public List<BoardDTO> listProcess(PageDTO pv) {
 		return dao.list(pv);
+	}
+	
+	@Override
+	public List<BoardDTO> otherBoardListProcess(PageDTO pv, int board_type) {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("startRow", pv.getStartRow());
+		map.put("endRow", pv.getEndRow());
+		map.put("board_type", board_type);
+		return dao.otherBoardList(map);
 	}
 
 	@Override
@@ -46,9 +77,9 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public BoardDTO contentProcess(int num) {
-		dao.readCount(num);
-		return dao.content(num);
+	public BoardDTO contentProcess(BoardDTO dto) {
+		dao.readCount(dto);
+		return dao.content(dto);
 	}
 
 	@Override
@@ -62,7 +93,7 @@ public class BoardServiceImp implements BoardService{
 		
 		String filename = dto.getUpload();
 		if(filename!=null) {
-		String path = dao.getFile(dto.getNum());
+		String path = dao.getFile(dto);
 		//기존첨부 파일이 있으면 삭제
 		if(path!=null) {
 			File fe = new File(urlpath, path);
@@ -74,20 +105,24 @@ public class BoardServiceImp implements BoardService{
 	}
 
 	@Override
-	public void deleteProcess(int num, String urlpath) {
-			String path = dao.getFile(num);
+	public void deleteProcess(BoardDTO dto, String urlpath) {
+			String path = dao.getFile(dto);
 			//기존첨부 파일이 있으면 삭제
 			if(path!=null) {
 				File fe = new File(urlpath, path);
 				fe.delete();
 			}
-			dao.delete(num);
+			dao.delete(dto);
 	}
 	
 
 	@Override
-	public String fileSelectprocess(int num) {
-		return dao.getFile(num);
+	public String fileSelectprocess(BoardDTO dto) {
+		return dao.getFile(dto);
 	}
+
+
+
+
 
 }

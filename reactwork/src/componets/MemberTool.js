@@ -12,6 +12,8 @@ import axios from 'axios';
 import Paper from '@mui/material/Paper';
 import {
   Button,
+  Card,
+  CardContent,
   Container,
   Stack,
   Table,
@@ -28,6 +30,8 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Collapse from '@mui/material/Collapse';
 import MemberDataDelete from './MemberDataDelete';
+import CouponAdd from './CouponAdd';
+import CouponList from './CouponList';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -154,13 +158,10 @@ const MemberTool = () => {
           <TableCell component='th' scope='row'>
             {row.member_number}
           </TableCell>
-          <TableCell align='right'>{row.member_id}</TableCell>
-          <TableCell align='right'>{row.member_pass}</TableCell>
-          <TableCell align='right'>{row.member_address}</TableCell>
-          <TableCell align='right'>{row.member_phone}</TableCell>
+          <TableCell align='center'>{row.member_id}</TableCell>
+          <TableCell align='center'>{row.member_pass}</TableCell>
 
-          <TableCell align='right'>{row.member_email}</TableCell>
-          <TableCell align='right'>
+          <TableCell align='center'>
             {row.member_type === 1 ? (
               <Button variant='contained' color='secondary'>
                 관리자 계정
@@ -172,7 +173,7 @@ const MemberTool = () => {
             )}
           </TableCell>
 
-          <TableCell align='right'>
+          <TableCell align='center'>
             {row.member_status === 1 ? (
               <Button variant='contained' color='success'>
                 활동 중
@@ -192,9 +193,6 @@ const MemberTool = () => {
                   회원 설정
                 </Typography>
                 <Stack direction='row' spacing={2}>
-                  {/* <div>
-                    <BookUpdate num={row.num} />
-                  </div> */}
                   <Button
                     variant='outlined'
                     onClick={() => {
@@ -211,13 +209,53 @@ const MemberTool = () => {
                   >
                     계정 상태 바꾸기
                   </Button>
+
+                  <div>
+                    <CouponAdd member_number={row.member_number} />
+                  </div>
                   <div>
                     <MemberDataDelete num={row.num} />
                   </div>
                 </Stack>
-                {/* <Card sx={{ minWidth: 275 }}>
-                  <CardContent></CardContent>
-                </Card> */}
+                <Card sx={{ minWidth: 275 }}>
+                  <CardContent>
+                    <Typography variant='body2'>회원 등록 정보</Typography>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color='text.secondary'
+                      gutterBottom
+                    >
+                      이름 :{row.member_name}
+                    </Typography>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color='text.secondary'
+                      gutterBottom
+                    >
+                      연락처 :{row.member_phone}
+                    </Typography>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color='text.secondary'
+                      gutterBottom
+                    >
+                      주소 :{row.member_address}
+                    </Typography>
+                    <Typography
+                      sx={{ fontSize: 14 }}
+                      color='text.secondary'
+                      gutterBottom
+                    >
+                      이메일 :{row.member_email}
+                    </Typography>
+                  </CardContent>
+                </Card>
+                <Card sx={{ minWidth: 100 }}>
+                  <CardContent>
+                    <Typography variant='body2'>보유 할인권</Typography>
+                    <CouponList member_number={row.member_number} />
+                  </CardContent>
+                </Card>
               </Box>
             </Collapse>
           </TableCell>
@@ -269,10 +307,7 @@ const MemberTool = () => {
                 <TableCell>회원 번호</TableCell>
                 <TableCell align='center'>ID</TableCell>
                 <TableCell align='center'>비밀 번호</TableCell>
-                <TableCell align='center'>주소</TableCell>
-                <TableCell align='center'>전화 번호</TableCell>
 
-                <TableCell align='center'>이메일</TableCell>
                 <TableCell align='center'>회원 유형</TableCell>
 
                 <TableCell align='center'>계정 상태</TableCell>

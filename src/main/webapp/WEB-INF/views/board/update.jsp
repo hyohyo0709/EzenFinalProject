@@ -35,8 +35,8 @@
 	function updateRun() {
 		$('[name=content]').val(
 				$('[name=content]').val().replace(/\n/gi, '<br/>'));
-
 		$('#frm').attr('action', 'update.do').submit();
+		
 	}
 
 	function cancelRun() {
@@ -68,7 +68,7 @@
 <body>
 	<!-- Header start -->
 	
-    <%@ include file = "../../../common/header.jsp"%>
+    <%@ include file = "../common/header.jsp"%>
     <!-- Header end -->
     
 	<form name="frm" id="frm" method="post" enctype="multipart/form-data">
@@ -109,13 +109,14 @@
 		<div id="btn" >
 		<input type="hidden" name="num" value="${dto.num}" /> 
 		<input type="hidden" name="currentPage" value="${currentPage}" class="btn btn-primary"/>
+		<input type="hidden" name="board_type" value="${dto.board_type}" /> 
 		<input type="button" id="update" value="수정" class="btn btn-primary"/>
 		<input type="button" id="cancel" value="취소"class="btn btn-primary" />
 		<input type="button" id="back" value="뒤로" class="btn btn-primary" />
 		</div>
 	</form>
   <!-- Footer Start -->
- <%@ include file = "../../../common/footer.jsp"%>
+ <%@ include file = "../common/footer.jsp"%>
   <!-- Footer end -->
 </body>
 </html>

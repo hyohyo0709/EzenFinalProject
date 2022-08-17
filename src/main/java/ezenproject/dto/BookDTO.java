@@ -28,6 +28,37 @@ public class BookDTO {
 	
 //	 페이지에서 파일첨부를 받아 처리해주는 멤버변수
 	private MultipartFile filename;
+
+	
+//	판매가 변수
+	private int sellprice;
+	
+	
+//	할인권 적용 가격 변수
+	private int couponprice;
+	
+	
+	public void setSellprice(int sellprice) {
+		this.sellprice = sellprice;
+	}
+	
+	public int getSellprice() {
+		return sellprice;
+	}
+	
+	
+	public int getCouponprice() {
+		return couponprice;
+	}
+
+	public void setCouponprice(int couponprice) {
+		this.couponprice = couponprice;
+	}
+
+	public BookDTO() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	
 	
 
@@ -161,6 +192,11 @@ public class BookDTO {
 	}
 	
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return String.format("%d %s %s %s %s %s %d %d 이미지 :%s",num, book_title, book_author, book_publisher, book_content, book_isbn, book_price, book_category,book_img);
+	}
 	
 	
 }
