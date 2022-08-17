@@ -62,7 +62,6 @@
 	DELETE FROM ezencarts WHERE member_number = #{member_number} AND book_id = #{book_id}
 	
 	</delete>	
-	
 	<delete id="allDelete" >
 		delete FROM ezencarts o
 		WHERE o.member_number = (

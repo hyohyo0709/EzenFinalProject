@@ -68,8 +68,8 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
    <thead>
    <tr><td style="border-bottom: 3px solid black; height: 50px; vertical-align: bottom;" colspan="5"> 주문 번호 : <c:out value="${orderNumbers }"/></td></tr>
     <tr style="height: 50px; vertical-align: top; ">
-      <th scope="col">이미지</th>
-      <th scope="col">책 제목</th>
+      <th scope="col">도서 표지</th>
+      <th scope="col">도서 제목</th>
       <th scope="col" class="text_r">주문수량</th>
       <th scope="col" class="text_r">총 결제금액</th>
       <th scope="col" class="text_r">배송현황</th>
@@ -84,7 +84,7 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
 		<c:param name="member_number" value="${dto.member_number}" />
 	</c:url>
     	<tr onclick="orderstatus('${dto.order_status}','${path}')"> 
-	  <td><img alt="${dto.ezenbooks.book_img}" src="/assets/img/${dto.ezenbooks.book_img}" height="130px" width="85px" style="border-radius: 5px;"></td>
+	  <td><img alt="${dto.ezenbooks.book_img}" src="../assets/img/${dto.ezenbooks.book_img}" height="130px" width="85px" style="border-radius: 5px;"></td>
       <td>${dto.ezenbooks.book_title}</td>
      
       <td class="text_r">${dto.book_qty}권</td>

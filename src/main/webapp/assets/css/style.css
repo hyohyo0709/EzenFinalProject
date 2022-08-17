@@ -1,14 +1,15 @@
-section {
-  margin-top: 30px;
-  margin-bottom: 20px;
+ #wrap {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding-bottom: 3%;
+	overflow:hidden;
+	
 }
 
 a {
   text-decoration: none;
   color: black;
-}
-body{
-   font-family: 'Noto Sans KR', sans-serif;
 }
 
 .post-entry-1{
@@ -59,7 +60,7 @@ body{
 /* 베스트셀러 책 제목 */
 .title {
 	color: #212529;
-	font-size: 18px;
+	font-size: 15px;
 	text-align: center;
 }
 /* 베스트셀러 이미지 */
@@ -151,11 +152,12 @@ margin-right: 2rem;
 	}
 .quickmenu {
 	position:absolute;
-	width:66px;
-	top:50%;
+	width:70px;
+	top:600px;
 	margin-top:-50px;
-	right:3px;
+	margin-left:190px;
 	background:#fff;}
+	
 .quickmenu ul {
 	position:relative;
 	float:left;
@@ -228,6 +230,15 @@ color:#444444;
 }
 
 /*///////////////// book_detail에 삽입된 css 목록 시작 //////////////// */
+
+
+.cart_null{ /* 장바구니 아무것도 없을때 */
+	text-align: center;
+	font-size: 30px;
+	margin-bottom: 500px;
+	margin-top: 200px;
+}
+
 /* col-md-3 */
 .card-img-top{
 	border-radius: 15px 0px 0px 15px;
@@ -235,14 +246,19 @@ color:#444444;
 }
 .card_img{
 	border-radius: 30px 0px 0px 30px;
+	margin:0 20px 0 20px;
+	height:530px;
+	width:300px;
 }
 
 /* col-md-6 */
 #detail_main{
 	border-radius: 0px 0px 25px 25px;
-	padding: 10px;
 	box-sizing: border-box;	 
-}
+	margin:0 30px 0 20px;
+	width:600px;
+	word-break:break-all;
+	}
 .book_title {
 	font-size: 25px;
 	text-align: right;
@@ -252,6 +268,7 @@ color:#444444;
 	text-align:justify;
 	color: rgb(60,10,10);
 	border-bottom: 2px solid;
+	min-width:600px;
 }
 
 .book_sub {
@@ -278,13 +295,13 @@ text-align:right;
 /* col-md-3 */
 .buy_box{
 	border: rgb(210,202,186,0.01) 10px solid;
-	box-sizing: border-box;	 
 	position: sticky;
 	float: right;
-	width: 100%;
+	width: 280px;
 	height: 530px;
 	background:rgb(210,202,186,0.1);
 	border-radius: 0px 30px 30px 0px ;
+	min-width:270px; 
 }
 .vCenter {  display: flex;
     justify-content: center;
@@ -304,6 +321,11 @@ text-align:right;
 	border-right: 0px; 
 	border: 2px solid #bcbdbf;
 	background-color: #f5f5f5;
+	transition-duration: 0.1s;
+}
+.count_btn1:hover{
+	background-color: #bcbdbf;
+	border: 2px solid #f5f5f5#bcbdbf;
 }
 .count_btn2{
 	border-radius: 0px 5px 5px 0px;
@@ -312,6 +334,11 @@ text-align:right;
 	border-left: 0px; 
 	border: 2px solid #bcbdbf;
 	background-color: #f5f5f5;
+	transition-duration: 0.1s;
+}
+.count_btn2:hover{
+	background-color: #bcbdbf;
+	border: 2px solid #f5f5f5#bcbdbf;
 }
 .count_total{
 	background-color: white; 
@@ -339,7 +366,10 @@ text-align:right;
 	margin:0px 0px 10px 15px;
 	width: 90%;
 	height: 40px;
-	
+	transition-duration: 0.3s;
+}
+.buy_button1:hover {
+  color: white;
 }
 .cart_btn{
 	font-weight:bold;
@@ -350,8 +380,12 @@ text-align:right;
 	margin:0px 0px 10px 15px;
 	width: 90%;
 	height: 40px;
-	
+ 	transition-duration: 0.3s;
 }
+.cart_btn:hover {
+  color: white;
+}
+
 .buy_button2{
 	font-weight:bold;
 	background-color:white;
@@ -361,29 +395,43 @@ text-align:right;
 	margin:0px 0px 10px 15px;
 	width: 90%;
 	height: 40px;
+	transition-duration: 0.3s;
 }
-
+.buy_button2:hover {
+  color: black;
+}
 .buy_button3{
 	font-weight:bold;
 	background-color:#dc3545;
-	
 	color:#fff;
 	border: solid 0px;
 	border-radius: 8px;
 	margin:0px 0px 10px 15px;
 	width: 90%;
 	height: 40px;
+	transition-duration: 0.3s;
+}
+.buy_button3:hover {
+  color: black;
+  background-color: rgb(255,0,0);
 }
 
 /* book_detail 하위 목록 */
 #row_area{
 	background-color: #fefefe;
 	border-radius: 15px; 
+	
+	
 }
 #new_books{
-	 height: 80px; 
+	 margin-left: 30px;
+	 height: 80px;
 	 text-align: center;
 	 animation : fadein 2s;
+	 font-size: 25px;
+	 min-width: 1300px;
+
+	
 }
 
 .slider {
@@ -510,12 +558,20 @@ text-align:right;
 	height:30px;
 	background-color: rgb(253,253,253);
 	border-radius: 3px 0px 0px 3px;
+	transition-duration: 0.3s;
+}
+#cart_minus_btn:hover{
+	background-color: rgb(230,230,230);
 }
 #cart_plus_btn{
 	width: 30px;
 	height:30px;
 	background-color:rgb(253,253,253);
 	margin-left: -9px;
+	transition-duration: 0.3s;
+}
+#cart_plus_btn:hover{
+	background-color: rgb(230,230,230);
 }
 #quantity_modify_btn{
 	float: left;
@@ -526,15 +582,28 @@ text-align:right;
 	border: 2px solid black;
 	border-radius: 0px 3px 3px 0px;
 	cursor: pointer;
+	font-weight: bold;
+	transition-duration: 0.3s;
+	vertical-align: middle;
+}
+#quantity_modify_btn:hover{
+	background-color: rgb(230,230,230);
 }
 .delete_btn{
 	float: right;
 	border: 0px;
-	width: auto;
-	height: auto;
-	display: block;
+	display:block;
+	margin: 0px auto;
 	background-color: inherit;
 	cursor: pointer;
+	
+}
+.delete_btn>img{
+	transform-origin: 50% 50%;
+	transition-duration: 0.3s;
+}
+.delete_btn>img:hover{
+	transform: rotate( 180deg );
 }
 .cart_count_btn1{
 	width: 30px;
@@ -594,17 +663,24 @@ text-align:right;
 	min-height: 150px;
 	background-color: rgb(253,253,253);
 	width: 100%;
+	
 }
 
 .cart_order{
 	font-weight:bold;
-	background-color:gray;
-	color:white;
+	background-color: rgb(220,220,220);
+	color: black;
 	border-radius: 8px;
 	margin:20px 10px 20px 10px;
 	width: 90%;
 	height: 40px;
-
+	transition-duration: 0.3s;
+	border: 2px solid rgb(215,215,215);
+}
+.cart_order:hover{
+	background-color:rgb(215,215,215);
+	border-color: black;
+	color:white;
 }
  .dead_area{
 	width: 2%;

@@ -46,17 +46,16 @@
 	</section>
 	<!-- breadclumb end -->
 	<!-- head end -->
-
+	<div id="wrap">
 	<!-- detail start -->
-	<div class="container">
-		<div class="row">
-			<div class="col-md-3">
-				<div id="card_img">
-					<img src="/assets/img/${dto.book_img}" height="530px" width="100%" class="card_img"
+<div class="container" style="min-width:1000px; display:flex; margin-top:10px;">
+			
+				<div id="card_img" style="float:left">
+					<img src="/assets/img/${dto.book_img}" class="card_img"
 						 alt="${dto.book_img }">
 				</div>
-			</div>
-			<div class="col-md-6" id="detail_main">
+			
+			<div id="detail_main" style="float:left">
 				<p class="book_title">${dto.book_title } </p>
 				<p class="book_sub"style="border-bottom: 1px solid black;">저자 :
 					${dto.book_author } | ${dto.book_publisher} | 
@@ -124,39 +123,41 @@
 							</th>
 						</tr>
 						<tr>
-						<th><p style="margin-top: 10px">줄거리</p></th>
+						<th><p style="margin-top: 10px;">줄거리</p></th>
 						</tr>
 						<tr>
-							<td width="100%" colspan="2" class="book_story">${dto.book_content}</td>
+							<td colspan="2" class="book_story">${dto.book_content}</td>
 						</tr>
 					</tbody>
 				</table>
+				
+
 			</div>
 				<!--////////// 구매관련 ///////////// -->
 
 				<!-- // ////// 재고 및 배송 시작 /////////  -->
 
-				<div class="col-md-3">
-				<div class="buy_box" >
-					<p style="margin-top: 10px; color: gray; 
-					font-size: 13px; text-align: center;">
-					<c:if test="${dto.book_stock == 1}">구매가능</c:if>
-					<c:if test="${dto.book_stock == 0}">재고없음</c:if>
-					</p>
-					<div class="buy_area1">
-					<div style=" border-bottom : 1px solid gray; margin-bottom: 5px">
-					<span style="color: gray;">● 배송비 :</span>
-						  <span style= "color: gary;">무료</span></br></br>
-					<span>● 배송일정 : 서울시 서초구 서초동 기준</span></bar>
-					<p style="color: red;">
-					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-					다음날 출고 예정</p>
-					<span>● 매장에서 받기 원하신다면 </span></br>
-					<span style="color: blue;">&nbsp&nbsp&nbsp&nbsp서울시 서초구 서초동에서 수령하세요</span>
-					<p></p>
-					 </div>
-					</div>
-					
+		<!-- 	<div class="col-md-3" > -->
+			<div class="buy_box" style="float:right;"  >
+				<p style="margin-top: 10px; color: gray; 
+				font-size: 13px; text-align: center;">
+				<c:if test="${dto.book_stock == 1}">구매가능</c:if>
+				<c:if test="${dto.book_stock == 0}">재고없음</c:if>
+				</p>
+				<div class="buy_area1">
+				<div style=" border-bottom : 1px solid gray; margin-bottom: 5px">
+				<span style="color: gray;">● 배송비 :</span>
+					  <span style= "color: gary;">2500원</span></br></br>
+				<span>● 배송일정 : 서울시 서초구 서초동 기준</span></bar>
+				<p style="color: red;">
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				다음날 출고 예정</p>
+				<span>● 매장에서 받기 원하신다면 </span></br>
+				<span style="color: blue;">&nbsp&nbsp&nbsp&nbsp서울시 서초구 서초동에서 수령하세요</span>
+				<p></p>
+				 </div>
+				</div>
+				
 				<!-- // ////// 재고 및 배송 시작 /////////  -->
 				
 					<!-- //////수량 선택 /////////-->
@@ -183,7 +184,7 @@
 								<td colspan="3">	
 									<input type="hidden" value="-" id="minus_btn">
 									
-									<input  name="total_price" value="${dto.sellprice}">
+									<%-- <input  name="total_price" value="${dto.sellprice}"> --%>
 									<p class="cart_count_total_price"><span class="totalPrice_span">
 									<fmt:formatNumber value="5000" pattern="#,###원" /></span> 원</p>
 									<input type="hidden" value="+" id="plus_btn">
@@ -224,7 +225,7 @@
 					<input class="cart_btn" id="cart_btn" type="button" value="장바구니 추가">
 					<input class="buy_button1" type="button" value="장바구니 확인" onclick="window.open('/cart/list/${member.member_number}')"/>
 					<input class="buy_button2" type="button" value="매장구매" onclick="window.open('${pickup_link}')">
-					<input class="buy_button3" type="button" value="바로구매" onclick="window.open('${order_link}')">
+					<input class="buy_button3" type="button" value="바로구매" onclick="order_link()">
 					</c:when>
 					<c:when test="${dto.book_stock==0 && isLogOn == true && member!= null}">
 					<input class="buy_button1" type="button" value="장바구니 추가" onclick="noStock()">
@@ -241,27 +242,25 @@
 					</c:choose>
 					</div>
 					
-					<!-- ////// 구매 버튼 목록 끝 /////// -->
+<!-- ////// 구매 버튼 목록 끝 /////// -->
 				</div>
-			</div>
+
 			
-					<!-- /////////// 구매 관련 끝 /////////////////// -->
-		</div>
-	</div>
-	<div class="container">
-	<div class="row">
-	<div class="col-md-3">
-	</div>
-	<div class="col-md-6" id="new_books">
-	<span style="font-size: 35px">다른 매력적인 책들을 만나보세요 </span>	
-	</div>
-	<div class="col-md-3">
-	</div>
-	</div>
+	<!-- /////////// 구매 관련 끝 /////////////////// -->
+
+	
+	
+</div><!-- end container -->
+	</div><!-- end wrap -->
+	<div id="new_books">
+	<span>다른 매력적인 책들을 만나보세요 </span>	
 	</div>
 	<!-- detail end -->
+	
 	<!-- 추가 도서 목록 (후에 이미지로 대체) 시작 -->
+	
 	<div class="row" id="row_area">
+	
 	<div class="slider">
 <div class="image-box">
 <div id="random_book_img">
@@ -272,6 +271,7 @@
   	</div>	
    </div>
 </div>
+
 	<!-- 추가 도서 목록 (후에 이미지로 대체) 끝-->
 	
 
@@ -292,8 +292,8 @@
 	let count = 1;
 	let quantity = $("#quantity_input").val();
 	Price = 0;
-	totalPrice= ${dto.book_price / 10 *9};
-	Price +=  ${dto.book_price / 10 *9};
+	totalPrice= ${dto.sellprice};
+	Price +=  ${dto.sellprice};
 	
 	$("#plus_btn").on("click", function(){
 		$("#quantity_input").val(++quantity);
@@ -315,8 +315,18 @@
 	
 	
 	});
+		
+			
 	
 	//서버 전송용 데이터
+	
+	function order_link(){
+		var link="/order/orderDetail.do?num="+${dto.num }+"&member_number="+'${member.member_number }'+"&book_qty="+$("#quantity_input").val();
+
+
+window.open(link);
+	}
+	
 	const form = {
 		member_number : '${member.member_number}',
 		book_id : '${dto.book_id}',

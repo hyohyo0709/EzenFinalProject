@@ -109,12 +109,10 @@
 				$("#order_address").val("${member.member_address}");
 			}
 		})
-		const member_num = {
-			member_number : '${member.member_number}'}
-		
+
 	 	$("#btnOrder").click(function() {
 			$('#order_frm').attr("action", "/order/cartordersave.do").submit();
-			
+
 		}) 
 		
 	 	
@@ -265,45 +263,7 @@
 				})
 		});
  
-		 /* const form3 = {
-				one_order_cost:'',
-				member_number : '${member.member_number}',
-				book_id : '',
-				order_phone: '',
-				order_name: '',
-				order_address:''
-		}	  */
-		 //주문페이지 데이터 저장용
-		/* 	const orderArray = [];
-			orderArray.push($('#saleprice').val());
-			orderArray.push('${member.member_number}');
-			orderArray.push($('#book_id').val());
-			orderArray.push($('#order_phone').val());
-			orderArray.push($('#order_name').val());
-			orderArray.push($('#order_address').val()); */
-		  /* $("#btnOrder").on("click",function(){
-			$.ajax({
-				url:'/cart/ordersave',
-				dataType    :   "json",
-				type:'POST',
-				traditional: true,
-				data: {"orderList" : orderArray},
-				async:false,
-				success:alert("성공")
-				,
-				error: alert("실패")
-			});
-		
-		});   */
 		 
-		/* for(var i=0; i<${fn:length(clist)}; i++){ */ 
-		/* 	form3.order_cost =$('#saleprice').val();
-			form3.book_id = $('#book_id').val();
-			form3.order_phone =$('#order_phone').val();
-			form3.order_name = $('#order_name').val();
-			form3.order_address = $('#order_address').val(); */
-		//상품 하나 하나 객체에 담고 후에 배열로 담아서 넘기기 콘트롤러에서 list로 받기 서비스 같은거 다 list로 받을 수 있게 바꿔야한다
-		//book_id값을 객체로 넘기고 배열로 넘긴다 
  	});//document end
 		</script>
 		
@@ -346,7 +306,7 @@
 						<div class="cart_order_area">
 							<c:forEach items="${clist}" var="cdto" varStatus="status">
 							<div class="cart_list">
-							<img alt="${cdto.book_img}" src="/assets/img/${cdto.book_img}" height="130px" width="85px" >
+							<img alt="${cdto.book_img}" src="/assets/img/${cdto.book_img}" height="130px" width="85px" st>
 							<table class="table_cart_order">
 									<tbody>
 										<tr >
@@ -358,10 +318,10 @@
 											<input type="hidden" class="individual_totalPrice_input" value="${cdto.saleprice * cdto.cart_amount}">
 											<input type="hidden" class="individual_point_input" value="${cdto.point}">
 											<input type="hidden" class="individual_totalPoint_input" value="${cdto.totalPoint}">
-											<input type="hidden" class="individual_book_id_input" id="book_id" name="orderDTO[${status.count-1}].book_id" value="${cdto.book_id}">								
+											<input type="hidden" class="individual_book_id_input" id="book_id" name="orderDTO[${status.index}].book_id" value="${cdto.book_id}">								
 											</td>
 											<td class="td_width_4 table_text_align_center" height="25px;">
-											<button class="delete_btn" data-num="${cdto.num}"><img alt="delete_btn" src="/assets/img/delete_btn.png" width="12px" height="12px" align="middle"></button>
+											<button class="delete_btn" data-num="${cdto.num}"><img alt="delete_btn" src="/assets/img/delete_btn.png" width="12xp" height="12px" align="middle"></button>
 											</td>
 										</tr>
 										<tr  >
@@ -375,9 +335,9 @@
 												<div class="quantity_div3">
 												<input type="button" class="quantity_btn minus_btn" id="order_minus_btn"
 									value="-" />
-												<!-- <button class="quantity_btn minus_btn" id="order_minus_btn">-</button> -->
-												<input id="quantity_order_input" type="text" value="${cdto.cart_amount}" class="quantity_input" readonly="readonly"/>
-												<!-- <button class="quantity_btn plus_btn" id="order_plus_btn">+</button> -->
+												
+												<input id="quantity_order_input" type="text" name="orderDTO[${status.index}].book_qty" value="${cdto.cart_amount}" class="quantity_input" readonly="readonly"/>
+												
 												
 												<input type="button" class="quantity_btn plus_btn" id="order_plus_btn"
 									value="+" />
@@ -439,26 +399,15 @@
 								 
 								 <input name="coupon_number" id="coupon_number" value="" type="hidden" />
 							</li>
-							<%-- <li class="list-group-item justify-content-between">
-								<span>결제금액</span>
-								<span style="float: right;"><span class="totalPrice_span">${totalPrice}
+							
 								
 								
-								</span>원 
-								
-								
-								
-								</span> --%>
-								
-								
-								<li class="list-group-item d-flex justify-content-between">
+								<li class="list-group-item">
 								<span>결제금액</span> 
-								
-								
-								<input  type="number" name="order_cost" id="order_cost" value="${totalPrice}" 
-								style="font-weight:bold; border:none; background: transparent;text-align:right;" readonly="readonly"/> 
-								<strong>원</strong>
-
+								<span style="float: right;">
+								<input type="number" name="order_cost" id="order_cost" value="${totalPrice}" 
+								style="font-weight:bold; border:none; margin-right:-20px; background: transparent; text-align:right; padding-right:0px; " readonly="readonly"/> 
+								<strong>원</strong></span>
 							</li>
 								
 								

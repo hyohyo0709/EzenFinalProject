@@ -94,15 +94,6 @@ public class OrderServiceImp implements OrderService{
 		
 		return dao.myOrderList(ordernum);
 	}
-	 @Override
-	public List<OrderDTO> myOrderList2Process(String member_number) {
-		return dao.myOrderList2(member_number);
-		}
-	 
-	@Override
-	public List<OrderDTO> myOrderList3Process(String order_number) {
-		return dao.myOrderList3(order_number);
-		}
 	 
 	 @Override
 	public OrderDTO orderInformationProcess(int num) {
@@ -122,13 +113,5 @@ public class OrderServiceImp implements OrderService{
 		dao.updateOrderInformation(dto);
 		
 	}
-
-
-
-
-
-
-
-	
 	 
 }

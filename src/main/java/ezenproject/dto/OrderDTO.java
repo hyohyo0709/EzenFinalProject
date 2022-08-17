@@ -16,14 +16,7 @@ public class OrderDTO {
 	private String order_name;
 	private String order_address;
 	private int book_qty;
-	private String book_img;
 	
-	public String getBook_img() {
-		return book_img;
-	}
-	public void setBook_img(String book_img) {
-		this.book_img = book_img;
-	}
 	private MemberDTO ezenmembers;
 	private BookDTO ezenbooks;
 	

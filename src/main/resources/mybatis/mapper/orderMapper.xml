@@ -77,7 +77,7 @@
     <select id="myOrderList" resultMap="OrderResult" parameterType="OrderDTO">
     <![CDATA[
     select o.num, o.order_number, o.order_cost, o.member_number, o.book_id, o.order_status, o.book_qty,
-    m.member_id, b.book_title, b.book_price,b.book_img, o.order_phone, o.order_name, o.order_address, m.member_name
+    m.member_id, b.book_title, b.book_price, o.order_phone, o.order_name, o.order_address, m.member_name, b.book_img
     from ezenbooks b, ezenmembers m, ezenorders o
     where o.member_number = m.member_number
     and o.book_id=b.book_id

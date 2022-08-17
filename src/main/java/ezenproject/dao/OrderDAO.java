@@ -22,8 +22,6 @@ public interface OrderDAO {
 	
 	public void orderSave(OrderDTO dto);
 	public List<OrderDTO> myOrderList(String memnumber);
-	public List<OrderDTO> myOrderList2(String member_number);
-	public List<OrderDTO> myOrderList3(String order_number);
 	public OrderDTO selectOrderInformation(int num);
 	public OrderDTO checkOrderStatus(String order_number);
 	
