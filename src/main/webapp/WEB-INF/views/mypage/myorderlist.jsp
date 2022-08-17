@@ -24,9 +24,6 @@
 <link href="../assets/css/style.css" rel="stylesheet" />
 <link href="../assets/css/myorderlist.css" rel="stylesheet" />
 <script type="text/javascript">
-$(document).ready(function(){
-	console.log('${orderNumbers}');
-});
 
 function orderstatus(status,path){
 	
@@ -43,7 +40,7 @@ body {width:100%; height:100%; margin:0; padding:0; overflow-y:scroll; position:
 html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
  #ordertable{
     position:relative;
-    top:-225px;
+    top:-193px;
     left:230px;
     width:78%;
     }
@@ -69,7 +66,7 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
     <c:forEach items="${orderNumbers}" var="orderNumbers">
   
    <thead>
-   <tr><td style="border-bottom: 3px solid black; height: 80px; vertical-align: bottom;" colspan="5"> 주문 번호 : <c:out value="${orderNumbers }"/></td></tr>
+   <tr><td style="border-bottom: 3px solid black; height: 50px; vertical-align: bottom;" colspan="5"> 주문 번호 : <c:out value="${orderNumbers }"/></td></tr>
     <tr style="height: 50px; vertical-align: top; ">
       <th scope="col">이미지</th>
       <th scope="col">책 제목</th>
@@ -116,6 +113,7 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
     </tr>
     </c:if>
  </c:forEach>
+ <tr style="height: 30px;"></tr>
 </tbody>
   </c:forEach>
   
