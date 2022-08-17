@@ -15,6 +15,7 @@ public class MemberDTO {
 	private int member_type;
 	private int member_status;
 	private String member_name;
+	private String member_passChk;
 	
 	
 	
@@ -91,6 +92,22 @@ public class MemberDTO {
 
 	public void setMember_name(String member_name) {
 		this.member_name = member_name;
+	}
+
+
+
+
+
+	public String getMember_passChk() {
+		return member_passChk;
+	}
+
+
+
+
+
+	public void setMember_passChk(String member_passChk) {
+		this.member_passChk = member_passChk;
 	}
 	
 	

@@ -74,10 +74,10 @@
     <!--회원 가입하는 행위  -->
     <insert id="insertMember"  parameterType="MemberDTO">
 	    <![CDATA[
-		 insert into ezenmembers(num, member_number, member_id,member_pass, member_email,
+		 insert into ezenmembers(num, member_number, member_id,member_pass,member_passChk, member_email,
 		 						 member_phone,member_address, member_type, member_status, member_name 
 		 						 )
-		 values(ezenmembers_num_seq.nextval, #{member_number}, #{member_id}, #{member_pass},
+		 values(ezenmembers_num_seq.nextval, #{member_number}, #{member_id}, #{member_pass},#{member_passChk},
 		 		#{member_email},#{member_phone},#{member_address},0, 1, #{member_name}
 		 		 )
 		]]>     

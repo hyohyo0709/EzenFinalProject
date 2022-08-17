@@ -20,9 +20,6 @@ pageEncoding="UTF-8"%>
       crossorigin="anonymous"
     ></script>
 
-
-
-
 <style>
     body {
       min-height: 100vh;
@@ -51,13 +48,9 @@ pageEncoding="UTF-8"%>
   </style>   
   
 <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  
  
-
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-
     <link href="../assets/css/style.css" rel="stylesheet" />
     <title>회원가입</title>
     <link
@@ -65,12 +58,125 @@ pageEncoding="UTF-8"%>
       href="../assets/img/favicon.png"
       type="image/x-icon"
     />
-  
+   
+<!--     <script type="text/javascript" src="./joinCheck.js"></script>
+ -->    
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ <script>
+
+	    //회원가입 버튼을 누르면 
+	$(function() {
+		$('#submit').click(function() {
+		let name =$('#member_name').val();	
+		let id = $('#member_id').val();
+		let pass = $('#member_pass').val();
+		let passChk = $('#member_passChk').val();
+		let phone =$('#member_phone').val();		
+		let email =$('#member_email').val();
+		let address =$('#member_address').val();
+		
+		
+		
+		if($('#member_name').val()==0){
+			alert('이름을 입력하세요.');
+			return false;
+		};
+			
+		
+		if($('#member_id').val()==0){
+			alert('아이디를 입력하시오.');
+			return false;
+		};
+			
+			
+		if($('#member_pass').val()==0){
+			alert('비밀번호를 입력하세요.');
+			return false;
+		};
+		
+		if($('#member_phone').val()==0){
+			alert('휴대폰 번호를 입력하세요.');
+			return false;
+		};			
+
+		
+		if($('#member_email').val()==0){
+			alert('이메일 주소를 입력해주세요.');
+			return false;
+		};	
+		
+									
+
+		//<아이디의 조건>
+		// /^[a-zA-Z0-9]$/ 은 a-z소문자 A-Z대문자 아무거나,0-9숫자 아무거나 사용할수 있다는 뜻
+		let idPattern = /^[a-zA-Z0-9]{4,12}$/;
+
+		//<비밀번호의 조건 >
+		let passPattern =/^[a-zA-Z0-9]{4,12}$/;
+
+		//휴대폰 번호의 조건
+		//let phone =  /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+		
+		//<이메일의 조건>
+		let emailPattern =/^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/;
+
+		//<이름의 조건>
+		//let namePattern = /^[가-힣]$/;
+		
+
  
+		
+
+		//아이디 조건문 
+		if(!(idPattern.test(member_id))){
+			alert('아이디는 4~12자리의 영문 대소문자와 숫자로만 입력하세요');
+			/* $('#pwd').focus() */
+			return false;
+		}
+		
+		//비밀번호 조건문 
+		if(!(passPattern.test(member_pass, member_passChk))){
+			alert('비밀번호는 4~12자리의 영문 대소문자와 숫자로만 입력하세요');
+			return false;
+			}
+		
+		// 비밀번호 일치
+		  if (!(member_pass === member_passChk)) {
+            alert("비밀번호가 일치하지 않습니다.");
+            return false;
+          }      
+		
+		//휴대폰 번호 조건문 
+		if(!(passPattern.test(member_phone))){
+			alert('휴대폰 번호 형식이 잘못되었습니다.');
+			return false;
+			}
+		
+
+/* 		//이메일 조건문 	 
+		 if (!(emailPattern.test(member_email))){
+			 alert ('이메일형식이 잘못되었습니다');
+			 return false;
+			} */
+		
+		//이름 조건문
+/* 		 if (!(namePattern.test(member_name))){
+			 alert ('이름은 2-5자만 입력가능합니다');
+			 return false;
+			 }
+ */
+ 
+		alert('회원가입이 완료됐습니다.');
+
+		return true;
+				
+		 });
+	 });    
+   
+    </script> 
   </head>
   
-  <body>
-  
+  <body>  
   <!-- Nabar start -->
     <%@ include file = "../common/header.jsp"%>
   <!-- Header end -->
@@ -85,92 +191,81 @@ pageEncoding="UTF-8"%>
      <div class="input-form-backgroud row">
       <div class="input-form col-md-12 mx-auto">
         <h4 class="mb-3">회원가입</h4>
-        <form class="validation-form" method="post" action="/member_join" novalidate >
-       
-      
-           <div class="row">
-              
-          <div class="mb-3">
-              <label for="nickname">아이디</label>
-              <input type="text" class="form-control" name="member_id" placeholder="" value="" required>
-              <div class="invalid-feedback">
+<!--         <form class="validation-form" method="post"  action="/member_join" novalidate >
+ -->        
+        <form class="validation-form" method="post"  action="/member_join" id="join"  novalidate>
+          <div class="row">
+              <div class="mb-3">
+              <label for="id">아이디</label>
+              <input type="text" class="form-control" name="member_id" placeholder=""  />
+<!--             <div class="invalid-feedback">
                 아이디를 입력해주세요.
-              </div>
+              </div>  -->
             </div>
           </div>
           
            <div class="mb-3">
-              <label for="name">이름</label>
-              <input type="text" class="form-control" name="member_name" placeholder="" value="" required>
-              <div class="invalid-feedback">
+              <label for="member_name">이름</label>
+              <input type="text" class="form-control" name="member_name" placeholder=""  />
+<!--                <div class="invalid-feedback">
                 이름을 입력해주세요.
-              </div>
+              </div>  -->
             </div>  
           
           
           <div class="mb-3">
-            <label for="email">비밀번호</label>
-            <input type="password"  class="form-control" name="member_pass" placeholder="" required>
-            <div class="invalid-feedback">
+            <label for="member_pass">비밀번호</label>
+            <input type="password"  class="form-control" name="member_pass" placeholder=""  />
+<!--          	<div class="invalid-feedback">
               비밀번호를 입력해주세요.
-            </div>
-          </div>    
+            </div > -->
+          </div> 
+             
+          <div class="mb-3">
+            <label for="member_passChk">비밀번호 확인</label>
+            <input type="password"  class="form-control" name="member_passChk" placeholder=""  />
+<!--              <div class="invalid-feedback">
+              비밀번호를 다시 입력해주세요.
+            </div>  -->
+          </div> 
                 
           <div class="mb-3">
-            <label for="email">휴대폰 번호</label>
-            <input type="text" class="form-control" name="member_phone" placeholder="" required>
-            <div class="invalid-feedback">
+            <label for="member_phone">휴대폰 번호</label>
+            <input type="text" class="form-control" name="member_phone"  placeholder=""  />
+<!--             <div class="invalid-feedback">
               휴대폰 번호를 입력해주세요.
-            </div>
+            </div>  -->
           </div>
           <div class="mb-3">
-            <label for="email">이메일</label>
-            <input type="text" class="form-control" name="member_email" placeholder="you@example.com" required>
-            <div class="invalid-feedback">
+            <label for="member_email">이메일</label>
+            <input type="text" class="form-control" name="member_email" placeholder="you@example.com"  />
+<!--              <div class="invalid-feedback">
               이메일을 입력해주세요.
-            </div>
+            </div>  -->
           </div>
 
           <div class="mb-3">
-            <label for="address">주소</label>
-            <input type="text" class="form-control" name="member_address" placeholder="서울특별시 강남구" required>
-            <div class="invalid-feedback">
+            <label for="member_address">주소</label>
+            <input type="text" class="form-control" name="member_address" placeholder="서울특별시 강남구" />
+<!--             <div class="invalid-feedback">
               주소를 입력해주세요.
-            </div>
+            </div> -->
           </div>
 
           <hr class="mb-4">
           <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" id="aggrement" required>
+            <input type="checkbox" class="custom-control-input" id="aggrement" />
             <label class="custom-control-label" for="aggrement">개인정보 수집 및 이용에 동의합니다.</label>
           </div>
           <div class="mb-4"></div>
-          <button class="btn btn-dark btn-lg btn-block" type="submit">가입 완료</button>
+          <button class="btn btn-dark btn-lg btn-block" type="submit" id="submit">가입 완료</button>
       </form>
-      </div>
+      </div>          
     </div>
     <footer class="my-5 text-center text-small">
-      
     </footer> 
     </div>
   </body>
-  
-  <script>
-    window.addEventListener('load', () => {
-      const forms = document.getElementsByClassName('validation-form');
-
-      Array.prototype.filter.call(forms, (form) => {
-        form.addEventListener('submit', function (event) {
-          if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-          }
-
-          form.classList.add('was-validated');
-        }, false);
-      });
-    }, false);
-  </script>
   
   <!-- detail end -->
 
