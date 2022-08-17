@@ -87,13 +87,13 @@ overflow:hidden;
 }  
 
 
-/* 요즘 이 책 이미지 margin-left: 3rem까지가 반응형에 적합  */
+/* 요즘 이 책 이미지 */
 .first_img {
 width:150px;
 height:auto;
 float:left;
-margin-left: 3.2rem;
-margin-right: 2rem;
+margin-left: 130px;
+/* margin-right: 2rem; */
 
 }
 
@@ -153,9 +153,9 @@ margin-right: 2rem;
 .quickmenu {
 	position:absolute;
 	width:70px;
-	top:600px;
+	top:540px;
 	margin-top:-50px;
-	margin-left:190px;
+	margin-left:200px;
 	background:#fff;}
 	
 .quickmenu ul {
@@ -391,12 +391,12 @@ text-align:right;
 	
 }
 #new_books{
-	 width:500px;
-	 margin-left:450px;
+	 margin-left:30px;
 	 height: 80px; 
 	 text-align: center;
 	 animation : fadein 2s;
 	 font-size: 25px;
+	 min-width:1300px;
 
 	
 }

@@ -184,7 +184,7 @@ body{
     display: inline-block;
     white-space: nowrap;
     vertical-align: middle;
-    
+
     padding: 0px 8px 0;
     height: 50px;
     font-size: 17px !important;
@@ -195,7 +195,7 @@ body{
     text-decoration: none !important;
     background-color: #fff;
     text-align: center;
-   
+
 }
 
 /* 하단 이동 버튼 수정  */

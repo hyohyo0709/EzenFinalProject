@@ -250,11 +250,15 @@
 
 	
 	
-</div><!-- end container -->
-	</div><!-- end wrap -->
+	</div><!-- end container -->
+
 	<div id="new_books">
-	<span>다른 매력적인 책들을 만나보세요 </span>	
+	<span>다른 매력적인 책들을 만나보세요</span>
 	</div>
+	
+	</div><!-- end wrap -->
+	
+	
 	<!-- detail end -->
 	
 	<!-- 추가 도서 목록 (후에 이미지로 대체) 시작 -->

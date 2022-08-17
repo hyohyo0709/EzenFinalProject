@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript" src="./mypage.js"></script>
+
   <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -22,7 +22,9 @@
       crossorigin="anonymous"
     ></script>
 <link href="../assets/css/style.css" rel="stylesheet" />
+<link href="../assets/css/myorderlist.css" rel="stylesheet" />
 <script type="text/javascript">
+
 function orderstatus(status,path){
 	
 	if(status!=0){
@@ -34,17 +36,15 @@ function orderstatus(status,path){
 }
 </script>
 <style >
-/* body {width:100%; height:100%; margin:0; padding:0; overflow-y:scroll; position:relative;} 
-html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;} */
-
+body {width:100%; height:100%; margin:0; padding:0; overflow-y:scroll; position:relative;} 
+html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
  #ordertable{
     position:relative;
-   	bottom:120px;
-    left:250px; 
-    width:60%;
+    top:-193px;
+    left:230px;
+    width:78%;
     }
 </style>
-
 </head>
 <body >
 
@@ -55,62 +55,71 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;} */
     <!-- Header end -->
     
   <!-- mypage menu start -->
-<div id ="wrap">
-<div class ="container" style="min-width: 1000px;" >
+  <div class="container">
 	<%@ include file = "mypagemenu.jsp"%>
   <!-- mypage menu end -->
     
   <!-- order detail start -->
 
-<table id='ordertable' class="table table-hover border border-secondary">
-  <thead>
-    <tr >
-      <th scope="col">주문번호</th>
-      <th scope="col">책 제목</th>
-      <th scope="col">주문수량</th>
-      <th scope="col">가격</th>
-      <th scope="col">배송현황</th>
+  
+<table id='ordertable' class="body" >
+    <c:forEach items="${orderNumbers}" var="orderNumbers">
+  
+   <thead>
+   <tr><td style="border-bottom: 3px solid black; height: 50px; vertical-align: bottom;" colspan="5"> 주문 번호 : <c:out value="${orderNumbers }"/></td></tr>
+    <tr style="height: 50px; vertical-align: top; ">
+      <th scope="col">도서 표지</th>
+      <th scope="col">도서 제목</th>
+      <th scope="col" class="text_r">주문수량</th>
+      <th scope="col" class="text_r">총 결제금액</th>
+      <th scope="col" class="text_r">배송현황</th>
     </tr>
   </thead>
-  <tbody >
+  
+  <tbody class="inner">
   <c:forEach items="${aList}" var="dto">
+ <c:if test="${dto.order_number == orderNumbers }">
   	<c:url var="path" value="mypage/myorderdetail.do">
 		<c:param name="num" value="${dto.num}" />
 		<c:param name="member_number" value="${dto.member_number}" />
 	</c:url>
-    <tr onclick="orderstatus('${dto.order_status}','${path}')">
-	  <td>${dto.order_number}</td>
+    	<tr onclick="orderstatus('${dto.order_status}','${path}')"> 
+	  <td><img alt="${dto.ezenbooks.book_img}" src="../assets/img/${dto.ezenbooks.book_img}" height="130px" width="85px" style="border-radius: 5px;"></td>
       <td>${dto.ezenbooks.book_title}</td>
-      <!-- 그냥 출력하면 소수점이 출력되서 정수로 표현하기위한 jstl태그 추가 -->
-      <fmt:parseNumber var="qty" value="${ dto.order_cost / dto.ezenbooks.book_price}" integerOnly="true" />
-      <td>${qty}권</td>
-      <td>${dto.order_cost}원</td>
-      <c:set var="status" value="${dto.order_status}" scope="session"/>
+     
+      <td class="text_r">${dto.book_qty}권</td>
+      <td class="text_r">${dto.order_cost}원</td>
+      <c:set var="status" value="${dto.order_status}"  scope="session"/>
       <c:choose>
       <c:when test="${status == 0}"  >
-      <td style="color: red">주문취소</td>
+      <td style="color: red "class="text_r" >주문취소</td>
       </c:when>
       <c:when test="${status == 1}">
-      <td>주문접수</td>
+      <td class="text_r">주문접수</td>
       </c:when>
       <c:when test="${status == 2}">
-      <td>상품준비</td>
+      <td class="text_r">상품준비</td>
       </c:when>
       <c:when test="${status == 3}">
-      <td>배송준비</td>
+      <td class="text_r">배송준비</td>
       </c:when>
       <c:when test="${status == 4}">
-      <td>배송중</td>
+      <td class="text_r">배송중</td>
       </c:when>
       <c:when test="${status == 5}">
-      <td>배송완료</td>
+      <td class="text_r">배송완료</td>
       </c:when>
       </c:choose>
     </tr>
+    </c:if>
  </c:forEach>
+ <tr style="height: 30px;"></tr>
 </tbody>
+  </c:forEach>
+  
+  
+ 
 </table>
-  </div>
   </div>
   <!-- order detail end -->
   

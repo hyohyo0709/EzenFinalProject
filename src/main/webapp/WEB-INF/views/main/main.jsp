@@ -21,10 +21,10 @@
 <body>
 	<!-- <main id="main" > -->
 <div id ="wrap">
-<div class ="container" style="min-width: 1000px;">
+<div class ="container" style="min-width: 1300px;">
 	<!-- Banner Start-->
 	
-	<div class="container" style="min-width: 1000px;" >
+	<div class="container"  style="min-width: 1300px;" >
 		<div id="carouselExampleIndicators" class="carousel slide"
 			data-bs-ride="carousel" style="margin-bottom: 50px">
 			<div class="carousel-indicators">
@@ -41,8 +41,8 @@
 		<div class="carousel-inner"  >
 		<div class="carousel-item active">
 		
-	<div class ="first_slide">
-	 	<div class="event_banner" >
+	<div class ="first_slide" >
+	 	<div class="event_banner"  >
 
 		<img src="/assets/img/요즘이책.jpg" class="first_img" alt="요즘이책 이미지">
 		
@@ -105,9 +105,9 @@
 
 	
 
-<div class="container">
-		<div class="row g-5" >
-		<div class="col-lg-4">
+<div class="container" style="min-width:1300px;">
+		<div class="row g-5" style="flex-wrap:nowrap; ">
+		<div class="col-lg-4" style="width:400px;">
 	<div class="post-entry-1 lg" >
 		<a href="/book/allBooklist.do">
 		<img src="../../assets/img/recommended-book1.jpg" alt="" class="img-fluid"></a>
@@ -145,11 +145,11 @@
 			과연 유령 열차가 완전히 하늘로 올라가 사라지기 전, 사람들은 무사히 열차에 올라 사랑하는 이의 마지막을 함께할
 			수 있을까</p>
 	</div>
-</div>
+</div><!-- col-lg-4"의 끝 -->
 <%@ include file = "mainCategory.jsp"%>
 
 
-</div><!--	"col-g-5"의 끝 -->	
+</div><!--	"row-g-5"의 끝 -->	
 
 
 </div><!-- end container -->	

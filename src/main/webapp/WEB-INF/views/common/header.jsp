@@ -134,6 +134,9 @@ pageEncoding="UTF-8"%>
         <li class="nav-item">
           <a class="nav-link" href="#">추천 도서</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">게시판</a>
+        </li>
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle"
