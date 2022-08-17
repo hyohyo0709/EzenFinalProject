@@ -46,17 +46,16 @@
 	</section>
 	<!-- breadclumb end -->
 	<!-- head end -->
-
+	<div id="wrap">
 	<!-- detail start -->
-	<div class="container">
-		<div class="row">
-			<div class="col-md-3">
-				<div id="card_img">
-					<img src="/assets/img/${dto.book_img}" height="530px" width="100%" class="card_img"
+<div class="container" style="min-width:1000px; display:flex; margin-top:10px;">
+			
+				<div id="card_img" style="float:left">
+					<img src="/assets/img/${dto.book_img}" class="card_img"
 						 alt="${dto.book_img }">
 				</div>
-			</div>
-			<div class="col-md-6" id="detail_main">
+			
+			<div id="detail_main" style="float:left">
 				<p class="book_title">${dto.book_title } </p>
 				<p class="book_sub"style="border-bottom: 1px solid black;">저자 :
 					${dto.book_author } | ${dto.book_publisher} | 
@@ -124,39 +123,41 @@
 							</th>
 						</tr>
 						<tr>
-						<th><p style="margin-top: 10px">책 소개</p></th>
+						<th><p style="margin-top: 10px">줄거리</p></th>
 						</tr>
 						<tr>
-							<td width="100%" colspan="2" class="book_story">${dto.book_content}</td>
+							<td colspan="2" class="book_story">${dto.book_content}</td>
 						</tr>
 					</tbody>
 				</table>
+				
+
 			</div>
 				<!--////////// 구매관련 ///////////// -->
 
 				<!-- // ////// 재고 및 배송 시작 /////////  -->
 
-				<div class="col-md-3">
-				<div class="buy_box" >
-					<p style="margin-top: 10px; color: gray; 
-					font-size: 13px; text-align: center;">
-					<c:if test="${dto.book_stock == 1}">구매가능</c:if>
-					<c:if test="${dto.book_stock == 0}">재고없음</c:if>
-					</p>
-					<div class="buy_area1">
-					<div style=" border-bottom : 1px solid gray; margin-bottom: 5px">
-					<span style="color: gray;">● 배송비 :</span>
-						  <span style= "color: gary;">2500원</span></br></br>
-					<span>● 배송일정 : 서울시 서초구 서초동 기준</span></bar>
-					<p style="color: red;">
-					&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-					다음날 출고 예정</p>
-					<span>● 매장에서 받기 원하신다면 </span></br>
-					<span style="color: blue;">&nbsp&nbsp&nbsp&nbsp서울시 서초구 서초동에서 수령하세요</span>
-					<p></p>
-					 </div>
-					</div>
-					
+		<!-- 	<div class="col-md-3" > -->
+			<div class="buy_box" style="float:right;"  >
+				<p style="margin-top: 10px; color: gray; 
+				font-size: 13px; text-align: center;">
+				<c:if test="${dto.book_stock == 1}">구매가능</c:if>
+				<c:if test="${dto.book_stock == 0}">재고없음</c:if>
+				</p>
+				<div class="buy_area1">
+				<div style=" border-bottom : 1px solid gray; margin-bottom: 5px">
+				<span style="color: gray;">● 배송비 :</span>
+					  <span style= "color: gary;">2500원</span></br></br>
+				<span>● 배송일정 : 서울시 서초구 서초동 기준</span></bar>
+				<p style="color: red;">
+				&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+				다음날 출고 예정</p>
+				<span>● 매장에서 받기 원하신다면 </span></br>
+				<span style="color: blue;">&nbsp&nbsp&nbsp&nbsp서울시 서초구 서초동에서 수령하세요</span>
+				<p></p>
+				 </div>
+				</div>
+				
 				<!-- // ////// 재고 및 배송 시작 /////////  -->
 				
 					<!-- //////수량 선택 /////////-->
@@ -198,7 +199,11 @@
 					
 					<!-- ////// 구매 버튼 목록 시작 /////// -->
 					<!-- //구매 버튼 링크들// -->
+					<c:url var="order_link" value="/order/orderDetail.do">
+					<c:param name="num" value="${dto.num }"/>
+					<c:param name="member_number" value="${member.member_number }"/>
 					
+					</c:url>
 					<c:url var="pickup_link" value="/order/pickup.do">
 					<c:param name="num" value="${dto.num }"/>
 					</c:url>
@@ -237,27 +242,25 @@
 					</c:choose>
 					</div>
 					
-					<!-- ////// 구매 버튼 목록 끝 /////// -->
+<!-- ////// 구매 버튼 목록 끝 /////// -->
 				</div>
-			</div>
+
 			
-					<!-- /////////// 구매 관련 끝 /////////////////// -->
-		</div>
-	</div>
-	<div class="container">
-	<div class="row">
-	<div class="col-md-3">
-	</div>
-	<div class="col-md-6" id="new_books">
-	<span style="font-size: 35px">다른 매력적인 책들을 만나보세요 </span>	
-	</div>
-	<div class="col-md-3">
-	</div>
-	</div>
+	<!-- /////////// 구매 관련 끝 /////////////////// -->
+
+	
+	
+</div><!-- end container -->
+	</div><!-- end wrap -->
+	<div id="new_books">
+	<span>다른 매력적인 책들을 만나보세요 </span>	
 	</div>
 	<!-- detail end -->
+	
 	<!-- 추가 도서 목록 (후에 이미지로 대체) 시작 -->
+	
 	<div class="row" id="row_area">
+	
 	<div class="slider">
 <div class="image-box">
 <div id="random_book_img">
@@ -268,6 +271,7 @@
   	</div>	
    </div>
 </div>
+
 	<!-- 추가 도서 목록 (후에 이미지로 대체) 끝-->
 	
 

@@ -156,6 +156,11 @@ pageEncoding="UTF-8"%>
   </body>
   
   <script>
+  
+  
+  
+  
+  
     window.addEventListener('load', () => {
       const forms = document.getElementsByClassName('validation-form');
 

@@ -72,8 +72,15 @@ alter table ezenorders rename column order_qty to order_cost;
 
 alter table ezenmembers add member_name VARCHAR2(30);
 
-select*from EZENORDERS; 
+alter table ezenorders add book_qty number(38);
 
+select*from EZENORDERS
+order by order_number; 
+
+
+select order_number
+from ezenorders
+order by order_number;
 
 
  select o.num, o.order_number, o.order_qty, o.member_number, o.book_id, o.order_status, 
