@@ -457,10 +457,9 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 			
 			oservice.newOrderSaveProcess(alist);
 		}
-		
 
 		couponservice.usedCouponProcess(coupon_number);
-		
+		cservice.alldeleteCartProcess(member_number);
 		return "redirect:/";
 	}
 	
@@ -529,7 +528,8 @@ cservice.modifyCountProcess(dto);
 @RequestMapping(value = "/order/orderCartDetail/delete" , method = RequestMethod.DELETE)
 public void deleteOrderCartDELETE(CartDTO dto, int num) {
 cservice.deleteCartProcess(num);
-}	
+}
+
 
 
 

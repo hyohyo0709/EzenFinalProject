@@ -109,10 +109,12 @@
 				$("#order_address").val("${member.member_address}");
 			}
 		})
-
+		const member_num = {
+			member_number : '${member.member_number}'}
+		
 	 	$("#btnOrder").click(function() {
 			$('#order_frm').attr("action", "/order/cartordersave.do").submit();
-
+			
 		}) 
 		
 	 	
