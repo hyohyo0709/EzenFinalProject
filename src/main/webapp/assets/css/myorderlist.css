@@ -8,6 +8,15 @@
 	cursor: pointer;
 	padding-bottom: 10px;
 }
+.inner>tr:hover{
+	border-radius: 5px;
+	background-color: #f5f5f5;
+	transition: all ease 2s 0s; 
+	transition-delay: 0.2s;
+}
+.inner>tr:active{
+	background-color: #f5f5f5;	
+}
 .inner>tr>td{
 		border-bottom: 1px solid #e5e5e5;
 	}

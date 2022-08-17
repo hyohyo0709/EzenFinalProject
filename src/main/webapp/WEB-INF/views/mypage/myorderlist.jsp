@@ -84,7 +84,7 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
 		<c:param name="member_number" value="${dto.member_number}" />
 	</c:url>
     	<tr onclick="orderstatus('${dto.order_status}','${path}')"> 
-	  <td><img alt="${dto.ezenbooks.book_img}" src="/assets/img/${dto.ezenbooks.book_img}" height="130px" width="85px"></td>
+	  <td><img alt="${dto.ezenbooks.book_img}" src="/assets/img/${dto.ezenbooks.book_img}" height="130px" width="85px" style="border-radius: 5px;"></td>
       <td>${dto.ezenbooks.book_title}</td>
      
       <td class="text_r">${dto.book_qty}권</td>
