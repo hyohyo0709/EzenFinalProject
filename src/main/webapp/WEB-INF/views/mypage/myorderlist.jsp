@@ -34,16 +34,17 @@ function orderstatus(status,path){
 }
 </script>
 <style >
-body {width:100%; height:100%; margin:0; padding:0; overflow-y:scroll; position:relative;} 
-html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+/* body {width:100%; height:100%; margin:0; padding:0; overflow-y:scroll; position:relative;} 
+html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;} */
+
  #ordertable{
     position:relative;
    	bottom:120px;
-    left:300px;
-    width:70%;
-    
+    left:250px; 
+    width:60%;
     }
 </style>
+
 </head>
 <body >
 
@@ -54,14 +55,14 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
     <!-- Header end -->
     
   <!-- mypage menu start -->
-  <div id='test'>
+<div id ="wrap">
+<div class ="container" style="min-width: 1000px;" >
 	<%@ include file = "mypagemenu.jsp"%>
   <!-- mypage menu end -->
     
   <!-- order detail start -->
 
-  
-<table id='ordertable' class="table table-hover border border-secondary" >
+<table id='ordertable' class="table table-hover border border-secondary">
   <thead>
     <tr >
       <th scope="col">주문번호</th>
@@ -109,6 +110,7 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
  </c:forEach>
 </tbody>
 </table>
+  </div>
   </div>
   <!-- order detail end -->
   

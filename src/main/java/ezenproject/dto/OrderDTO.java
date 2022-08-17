@@ -24,7 +24,6 @@ public class OrderDTO {
 	public MemberDTO getEzenmembers() {
 		return ezenmembers;
 	}
-
 	public void setEzenmembers(MemberDTO ezenmembers) {
 		this.ezenmembers = ezenmembers;
 	}

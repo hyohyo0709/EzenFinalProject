@@ -1,19 +1,46 @@
-section {
-  margin-top: 30px;
-  margin-bottom: 20px;
+ #wrap {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding-bottom: 3%;
+	overflow:hidden;
+	
 }
 
 a {
   text-decoration: none;
   color: black;
 }
-body{
-   font-family: 'Noto Sans KR', sans-serif;
-}
 
 .post-entry-1{
 	padding-bottom:20px;
 }
+
+/*카테고리 서브 메뉴 시작 */
+
+.dropdown-submenu{position:relative;}
+
+ 
+
+.dropdown-submenu>.dropdown-menu{top:0;left:100%;margin-top:-6px;margin-left:-1px;-webkit-border-radius:0 6px 6px 6px;-moz-border-radius:0 6px 6px 6px;border-radius:0 6px 6px 6px;}
+
+ 
+
+.dropdown-submenu:hover>.dropdown-menu{display:block;}
+
+ 
+
+.dropdown-submenu>a:after{display:block;content:" ";float:right;width:0;height:0;border-color:transparent;border-style:solid;border-width:5px 0 5px 5px;border-left-color:#cccccc;margin-top:5px;margin-right:-10px;}
+
+ 
+
+.dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
+
+ 
+
+.dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
+
+/* 카테고리 서브 메뉴 끝   */
 
 /* 베스트셀러 랭크 스타일 */
 .rank {
@@ -33,7 +60,7 @@ body{
 /* 베스트셀러 책 제목 */
 .title {
 	color: #212529;
-	font-size: 18px;
+	font-size: 15px;
 	text-align: center;
 }
 /* 베스트셀러 이미지 */
@@ -125,11 +152,12 @@ margin-right: 2rem;
 	}
 .quickmenu {
 	position:absolute;
-	width:66px;
-	top:50%;
+	width:70px;
+	top:600px;
 	margin-top:-50px;
-	right:3px;
+	margin-left:190px;
 	background:#fff;}
+	
 .quickmenu ul {
 	position:relative;
 	float:left;
@@ -202,6 +230,7 @@ color:#444444;
 }
 
 /*///////////////// book_detail에 삽입된 css 목록 시작 //////////////// */
+
 /* col-md-3 */
 .card-img-top{
 	border-radius: 15px 0px 0px 15px;
@@ -209,13 +238,17 @@ color:#444444;
 }
 .card_img{
 	border-radius: 30px 0px 0px 30px;
+	margin:0 20px 0 20px;
+	height:530px;
+	width:300px;
 }
 
 /* col-md-6 */
 #detail_main{
 	border-radius: 0px 0px 25px 25px;
-	padding: 10px;
 	box-sizing: border-box;	 
+	margin:0 30px 0 20px;
+	width:600px;
 }
 .book_title {
 	font-size: 25px;
@@ -226,6 +259,7 @@ color:#444444;
 	text-align:justify;
 	color: rgb(60,10,10);
 	border-bottom: 2px solid;
+	min-width:600px;
 }
 
 .book_sub {
@@ -252,13 +286,13 @@ text-align:right;
 /* col-md-3 */
 .buy_box{
 	border: rgb(210,202,186,0.01) 10px solid;
-	box-sizing: border-box;	 
 	position: sticky;
 	float: right;
-	width: 100%;
+	width: 280px;
 	height: 530px;
 	background:rgb(210,202,186,0.1);
 	border-radius: 0px 30px 30px 0px ;
+	min-width:270px; 
 }
 .vCenter {  display: flex;
     justify-content: center;
@@ -353,11 +387,18 @@ text-align:right;
 #row_area{
 	background-color: #fefefe;
 	border-radius: 15px; 
+	
+	
 }
 #new_books{
+	 width:500px;
+	 margin-left:450px;
 	 height: 80px; 
 	 text-align: center;
 	 animation : fadein 2s;
+	 font-size: 25px;
+
+	
 }
 
 .slider {
@@ -400,3 +441,251 @@ text-align:right;
 }
 
 /*///////////////// book_detail에 삽입된 css 목록 끝 //////////////// */
+
+/*///////////////// cart/list에 삽입된 css 목록 시작////////////////// */
+.cart{
+	width: 100%;
+
+}
+.white_space{
+	width: 100%;
+	overflow: auto;
+}
+.cart_div_container{
+	width: 60%;
+	margin-left:120px;
+	float: left;
+	padding-top: 5px;
+
+}
+.cart_img_area{
+	width: 15%;
+	margin-bottom: 10px;
+	border-radius: 0px 0px 0px 15px;
+	border: 1px 0px 0px 0px	;
+	border-top:black solid 3px;
+}
+.cart_product_area{
+	width: 35%;
+	background-color: #f5f5f5;
+	margin-bottom: 10px;
+	border-top:black solid 3px;
+}
+
+.cart_area1{
+	margin-top: 7px;
+	border-collapse: separate;
+	border-spacing: 0px 0px;
+
+}
+.cart_title{
+	font-size: 15px; 
+	color: black;
+}
+.cart_sub{
+	font-size: 10px;
+	color: gray;
+}
+.cart_quantity1{
+	width: 25%;
+	background-color: #f5f5f5;
+	margin-bottom: 10px;
+	border-top:black solid 3px;
+}
+.cart_quantity2{
+	width: 25%;
+	background-color: #f5f5f5;
+	margin-bottom: 10px;
+	border-radius: 0px 0px 15px 0px;
+	border-top:black solid 3px;
+}
+.sell_price{
+	font-size: 12px;
+}
+.list_price{
+	font-size: 14px;
+}
+.cart_info_amount{
+	margin-left: -5px;
+}
+.quantity_div{
+	float: left;
+}
+.quantity_div2{
+	position: relative; 
+}
+.quantity_input{
+	width: 30px;	
+	text-align:center;
+	margin: 0px -8px 0px -8px;
+	border: 2px solid black;
+}
+#cart_minus_btn{
+	width: 30px;
+	height:30px;
+	background-color: rgb(253,253,253);
+	border-radius: 3px 0px 0px 3px;
+}
+#cart_plus_btn{
+	width: 30px;
+	height:30px;
+	background-color:rgb(253,253,253);
+	margin-left: -9px;
+}
+#quantity_modify_btn{
+	float: left;
+	text-align: center;
+	width:70px;
+	height:30px;
+	background-color:rgb(253,253,253);
+	border: 2px solid black;
+	border-radius: 0px 3px 3px 0px;
+	cursor: pointer;
+}
+.delete_btn{
+	float: right;
+	border: 0px;
+	width: auto;
+	height: auto;
+	display: block;
+	background-color: inherit;
+	cursor: pointer;
+}
+.cart_count_btn1{
+	width: 30px;
+	border-right: 0px; 
+	border: 2px solid #bcbdbf;
+	background-color: #f5f5f5;
+}
+.cart_count_btn2{
+	border-radius: 0px 5px 5px 0px;
+	width: 30px;
+	margin-left:-50px;
+	border-left: 0px; 
+	border: 2px solid #bcbdbf;
+	background-color: #f5f5f5;
+}
+.cart_count_total{
+	background-color: white; 
+	width: 80%;
+	margin-left:-5px;
+	height: 30px; 
+	border: 2px solid #bcbdbf;
+	text-align: center;
+}
+.cart_count_total_price{
+	border-radius: 0px 5px 5px 0px;
+	font-weight:bold;
+	background-color: white; 
+	width: 100%;
+	border: 2px solid #bcbdbf;
+	text-align: center;
+	margin-top: 15px;
+}
+
+.cart_buy_area{
+	min-height: 400px;
+	}
+.cart_buy{
+	width: 70%;
+	height: 90%; 
+	margin-left: 30px;
+	border-radius: 0px 0px 15px 15px;
+	border-top:black solid 3px;
+	margin-top:5px;
+	float: left;
+	background-color: #f5f5f5;
+
+}
+.cart_table{
+	margin:10px;
+	padding: 10px;
+	min-height: 100px;
+	border-radius: 0px 0px 10px 10px;	
+
+}
+.cart_table2{
+	border: rgb(253,253,253) solid 7px;
+	min-height: 150px;
+	background-color: rgb(253,253,253);
+	width: 100%;
+}
+
+.cart_order{
+	font-weight:bold;
+	background-color:gray;
+	color:white;
+	border-radius: 8px;
+	margin:20px 10px 20px 10px;
+	width: 90%;
+	height: 40px;
+
+}
+ .dead_area{
+	width: 2%;
+	height: auto;
+	background-color: rgb(255,255,255,0.0);
+	float:inherit;
+	padding-top: 5px;
+} 
+/*///////////////// cart/list에 삽입된 css 목록 끝////////////////// */
+
+/* ////////////// 장바구니 전용 주문 상세 페이지입니다. //////////////*/
+.cart_order_area{
+	padding:10px; 
+	background-color:f9f8fa;
+	border-radius: 5px;
+	border:1px solid rgba(0,0,0,.125);
+	min-height: 500px;
+	overflow: auto;
+}
+.table_cart_order{
+	max-width: 299px;
+	min-width: 230px;
+	float: right;
+	text-align: right;
+}
+.cart_list{
+	margin-bottom: 10px;
+	border-bottom: #f0f0f0 1px solid;
+	background-color: white;
+	border-radius: 5px;
+	border: 5px white solid;
+}
+#order_minus_btn{
+	float: left;
+	width: 30px; 
+	height: 30px;
+	margin-right: 5px;
+	border: 0px;
+	background-color: white;
+}
+#order_plus_btn{
+	width: 30px; 
+	height: 30px;
+	float: right;
+	border: 0px;
+	background-color: white;
+}
+.quantity_div3{
+	float: left;
+	width: 100px;
+
+}
+#quantity_order_input{
+	width: 46px;
+	height:30px;
+	float: inherit;	
+	border: 0px;
+}
+#quantity_order_cart_btn{
+	font-size: 15px;
+	padding:2px;
+	margin-top:2px;
+	vertical-align:middle;;
+	border: black 1px solid;
+	border-radius: 3px;
+	cursor: pointer;
+}
+
+/* ////////////// 장바구니 전용 주문 상세 페이지 끝 //////////////*/
