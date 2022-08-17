@@ -42,7 +42,7 @@ CREATE TABLE ezenmembers (
 
 insert into ezenmembers(
 num, member_number, member_id, member_pass, member_address, member_phone, member_email, member_type, member_status
-)values(ezenmembers_num_seq.nextval, '임의 번호', 'hyhy', 'a1234', '대한민국', '010-****-****', 'ezen@ezen.com', 0, 1); 
+)values(ezenmembers_num_seq.nextval, '임의 번호', 'hyhy', 'a1234', '대한민국', '010-****-****', 'ezen@ezen.com', 0, 1);
 
 
 select*from EZENMEMBERS;
@@ -60,7 +60,7 @@ num, order_number, order_qty, member_number, book_id, order_status
 )values(ezenorders_num_seq.nextval, '임의 주문번호', 1, '임의 번호', 'AA220721163806', 1);
 
 
-update ezenmembers set 
+update ezenmembers set
 member_pass = 'a1234'
 where num=5;
 
@@ -72,18 +72,25 @@ alter table ezenorders rename column order_qty to order_cost;
 
 alter table ezenmembers add member_name VARCHAR2(30);
 
-select*from EZENORDERS; 
+alter table ezenorders add book_qty number(38);
+
+select*from EZENORDERS
+order by order_number;
 
 
+select order_number
+from ezenorders
+order by order_number;
 
- select o.num, o.order_number, o.order_qty, o.member_number, o.book_id, o.order_status, 
+
+ select o.num, o.order_number, o.order_qty, o.member_number, o.book_id, o.order_status,
     m.member_id, b.book_title, b.book_price
     from ezenbooks b, ezenmembers m, ezenorders o
     where o.member_number = m.member_number
     and o.book_id=b.book_id
     order by o.num;
-    
-    
+
+
     create table ezencoupons(
     num             NUMBER(38) NOT NULL,
     coupon_number VARCHAR2(30),
@@ -91,42 +98,65 @@ select*from EZENORDERS;
     coupon_type     number(1),
     coupon_value    number(20)
     );
-    
+
     commit;
-    
+
 select*from ezencoupons;
-    
-    
-    
+
+
+
+
+
+ create table ezencarts(
+num number not null primary key,
+member_number varchar2(20) not null,
+book_id varchar2(20) not null,
+cart_amount number default 1
+);
+
+ select*from ezencarts;
+
+
+
+
+
+
 create sequence ezenbooks_num_seq
-start with 1 
+start with 1
 increment by 1
 nocache
 nocycle;
 
 create sequence ezenmembers_num_seq
-start with 1 
+start with 1
 increment by 1
 nocache
 nocycle;
 
 create sequence ezenorders_num_seq
-start with 1 
+start with 1
 increment by 1
 nocache
 nocycle;
 
 
 create sequence ezencoupons_num_seq
-start with 1 
+start with 1
 increment by 1
 nocache
 nocycle;
 
+create sequence seq_cart
+start with 1
+increment by 1;
+
+
+
+
 commit;
 
--- Oracle SQL Developer Data Modeler 요약 보고서: 
--- 
+-- Oracle SQL Developer Data Modeler 요약 보고서:
+--
 -- CREATE TABLE                             3
 -- CREATE INDEX                             0
 -- ALTER TABLE                              0
@@ -154,15 +184,15 @@ commit;
 -- CREATE SYNONYM                           0
 -- CREATE TABLESPACE                        0
 -- CREATE USER                              0
--- 
+--
 -- DROP TABLESPACE                          0
 -- DROP DATABASE                            0
--- 
+--
 -- REDACTION POLICY                         0
--- 
+--
 -- ORDS DROP SCHEMA                         0
 -- ORDS ENABLE SCHEMA                       0
 -- ORDS ENABLE OBJECT                       0
--- 
+--
 -- ERRORS                                   0
 -- WARNINGS                                 0

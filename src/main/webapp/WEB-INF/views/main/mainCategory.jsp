@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" >
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
+
 <script>
 $(document).ready(function(){
 	  var currentPosition = parseInt($(".quickmenu").css("top"));
@@ -24,6 +25,7 @@ $(document).ready(function(){
 	  });
 	});
 </script>
+
 
 
 </head>
@@ -103,7 +105,7 @@ $(document).ready(function(){
   </ul>
 	</div>
 </div>
-	 
+	  
 	 
 	 	<!-- "col-lg-1" 퀵메뉴 끝 -->
 
