@@ -103,19 +103,19 @@ pageEncoding="UTF-8"%>
           </div>
           
            <div class="mb-3">
-              <label for="name">이름(한글 3~7자)</label>
+              <label for="name">이름</label>
               <input type="text" class="form-control" name="member_name" 
               pattern="[가-힣]{3,7}" placeholder="예) 홍길동 " required>
               <div class="invalid-feedback">
-                이름을 형식에 맞게 입력해주세요.
+                이름을 형식에 맞게 입력해주세요.(한글 3~7자)
               </div>
             </div>  
           
           
           <div class="mb-3">
-            <label for="pass">비밀번호(영문,숫자 8~15자)</label>
+            <label for="pass">비밀번호</label>
             <input type="password"  class="form-control" name="member_pass" 
-            pattern="[a-zA-Z0-9]{8,15}"  placeholder="" required>
+            pattern="[a-zA-Z0-9]{8,15}"  placeholder="영문,숫자 8~15자" required>
             <div class="invalid-feedback">
               비밀번호를 형식에 맞게 입력해주세요.
             </div>
@@ -133,7 +133,7 @@ pageEncoding="UTF-8"%>
                 
           <div class="mb-3">
             <label for="email">휴대폰 번호</label>
-            <input type="text" class="form-control" name="member_phone"  pattern="^010[0-9]{8}$" placeholder="" required>
+            <input type="text" class="form-control" name="member_phone"  pattern="^010[0-9]{8}$" placeholder="예)01012345678" required>
             <div class="invalid-feedback">
               휴대폰 번호를 형식에 맞게 입력해주세요.
             </div>
