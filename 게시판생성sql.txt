@@ -1,0 +1,45 @@
+1. 테이블생성 
+create table ezenboards(
+   	num number,
+   	member_id varchar2(20),     
+ 	member_email varchar2(30),
+	subject varchar2(50),
+	reg_date date,
+	readcount number default 0, 
+	ref number, 
+	re_step number, 
+	re_level number,
+	board_type number, 
+	content varchar2(100),
+    upload varchar2(300)
+);
+
+member_id, member_email = 로그인시에 받아올값
+
+2.게시판 번호 자동생성
+
+board_type  0:자유 게시판
+board_type  1:상품리뷰 게시판
+board_type  2:상품문의 게시판
+-----------------------------------------------------------------------
+2개 시퀀스 추가를 위해 기존의 시퀀스 이름 변경
+--자유게시판번호
+create sequence ezenfreeboards_num_seq
+start with 1 
+increment by 1
+nocache
+nocycle;
+
+--상품리뷰 게시판번호
+create sequence ezenreviewboards_num_seq
+start with 1 
+increment by 1
+nocache
+nocycle;
+
+--상품문의 게시판번호
+create sequence ezenqnaboards_num_seq
+start with 1 
+increment by 1
+nocache
+nocycle;

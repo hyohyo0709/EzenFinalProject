@@ -26,7 +26,7 @@
 	$(document).ready(function() {
 		$("#update").click(function(){
 			var result = confirm("회원 정보를 수정하시겠습니까?");
-			if(confirm){
+			if(result){
 				$("#frm").attr('action', '/mypage/update.do').submit();
 				alert("회원정보가 수정되었습니다.")
 			}
@@ -71,8 +71,8 @@
 <style>
    #frm{
    position:relative;
-     bottom:110px;
-    left:300px;
+     bottom:160px;
+    left:350px;
     width:70%;
     }
 </style>
@@ -93,7 +93,7 @@
   
   <!-- member detail start -->
 
-<form class="row g-3" id="frm" method="post" name="frm">
+<form class="row g-3" id="frm" method="post" name="frm" style="margin-left: -100px;">
   <div class="col-md-4">
     <label for="inputState" class="form-label">회원번호</label>
    <input type="text" class="form-control" readonly="readonly" name="member_number"value="${memberInfo.member_number}">
@@ -106,14 +106,20 @@
     <label for="inputEmail4" class="form-label">아이디</label>
     <input type="text" class="form-control" name="member_id" readonly="readonly" value="${memberInfo.member_id}">
   </div>
-  <div class="col-md-5">
-    <label for="inputPassword4" class="form-label">비밀번호</label>
-    <input type="password" class="form-control" name="member_pass" id="member_pass" value="${memberInfo.member_pass }" readonly="readonly">
+  <div class="col-md-1">
+  </div>
+  <div class="col-4">
+    <label for="inputAddress" class="form-label">이메일</label>
+    <input type="text" class="form-control" name="member_email" value="${memberInfo.member_email}">
+  </div>
+   <div class="col-md-7">
+    <label for="inputPassword4" class="form-label">비밀번호</label></br>
+    <input style=" width: 41%; float: left;" type="password" class="form-control" name="member_pass" id="member_pass" value="${memberInfo.member_pass }" readonly="readonly">
+      <button style="width:56%; float: right;" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#pass_change">
+  	비밀번호 변경하기
+	</button>
+      </div>
       <!-- 비밀번호 변경 버튼 -->
-<button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#pass_change">
-  비밀번호 변경하기
-</button>
-
 <!-- Modal -->
 <div class="modal fade" id="pass_change" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -144,24 +150,19 @@
     </div>
   </div>
 </div>
-  </div>
-  
-  
-  <div class="col-12">
-    <label for="inputAddress" class="form-label">이메일</label>
-    <input type="text" class="form-control" name="member_email" value="${memberInfo.member_email}">
-  </div>
-  <div class="col-12">
+  <div class="col-7">
     <label for="inputAddress2" class="form-label">주소</label>
     <input type="text" class="form-control" name="member_address" value="${memberInfo.member_address}">
   </div>
-  <div class="col-md-6">
+  <div class="col-md-4">
     <label for="inputCity" class="form-label">전화번호</label>
     <input type="tel" class="form-control" name="member_phone"value="${memberInfo.member_phone}">
   </div>
-  <div>
+  <div class="col-12"><br><br><br></div>
+  <div class="col-md-4"	></div>
+  <div class="col-md-4">
   <input type="hidden" name="num" value="${memberInfo.num}"/>
-  <input type="button" id="update" class="btn btn-dark" value="수정" />
+  <input style="" type="button" id="update" class="btn btn-dark" value="수정" />
   <input type="button" id="delete" class="btn btn-danger" value="회원 탈퇴" />
   </div>
 </form>

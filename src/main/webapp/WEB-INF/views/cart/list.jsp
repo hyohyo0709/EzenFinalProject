@@ -138,7 +138,7 @@
 			<div class="cart_quantity2">
 					<table>
 						<tbody>
-							<tr>
+							<tr style="vertical-align: top">
 								<td class="cart_info_td" colspan="2">
 									<input type="checkbox" class="individual_cart_checkbox input_size_20" style="width: 20px; height: 20px; vertical-align: bottom;" checked="checked">
 									<input type="hidden" class="individual_book_price_input" value="${cdto.book_price}">
