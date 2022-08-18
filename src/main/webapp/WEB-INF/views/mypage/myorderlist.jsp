@@ -36,8 +36,8 @@ function orderstatus(status,path){
 }
 </script>
 <style >
-/* body {width:100%; height:100%; margin:0; padding:0; overflow-y:scroll; position:relative;}  */
-/* html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;} */
+body {width:100%; height:100%; margin:0; padding:0; overflow-y:scroll; position:relative;} 
+html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
  #ordertable{
     position:relative;
     top:-193px;

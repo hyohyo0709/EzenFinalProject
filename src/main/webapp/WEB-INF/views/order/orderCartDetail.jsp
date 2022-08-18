@@ -318,7 +318,7 @@
 											<input type="hidden" class="individual_totalPrice_input" value="${cdto.saleprice * cdto.cart_amount}">
 											<input type="hidden" class="individual_point_input" value="${cdto.point}">
 											<input type="hidden" class="individual_totalPoint_input" value="${cdto.totalPoint}">
-											<input type="hidden" class="individual_book_id_input" id="book_id" name="orderDTO[${status.count-1}].book_id" value="${cdto.book_id}">								
+											<input type="hidden" class="individual_book_id_input" id="book_id" name="orderDTO[${status.index}].book_id" value="${cdto.book_id}">								
 											</td>
 											<td class="td_width_4 table_text_align_center" height="25px;">
 											<button class="delete_btn" data-num="${cdto.num}"><img alt="delete_btn" src="/assets/img/delete_btn.png" width="12px" height="12px" align="middle"></button>
@@ -336,7 +336,7 @@
 												<input type="button" class="quantity_btn minus_btn" id="order_minus_btn"
 									value="-" />
 												
-												<input id="quantity_order_input" type="text" value="${cdto.cart_amount}" class="quantity_input" readonly="readonly"/>
+												<input id="quantity_order_input" type="text" name="orderDTO[${status.index}].book_qty" value="${cdto.cart_amount}" class="quantity_input" readonly="readonly"/>
 												
 												
 												<input type="button" class="quantity_btn plus_btn" id="order_plus_btn"

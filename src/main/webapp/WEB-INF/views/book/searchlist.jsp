@@ -307,7 +307,7 @@
 			<c:when test="${isLogOn == true  && member!= null}">
 		
 		<a href="${contextPath}/order/orderDetail.do?num=${book.num }
-		&member_number=${member.member_number}"class="btn_medium btn_blue">바로 구매하기</a>
+		&member_number=${member.member_number}&book_qty=1"class="btn_medium btn_blue">바로 구매하기</a>
 		
 		<input id="cartInId" value="${book.book_id }" hidden="true">
 		<input class="list_cart_btn btn_blue2" id="cart_btn" type="button" value="장바구니에 담기">
