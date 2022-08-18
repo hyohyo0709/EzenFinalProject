@@ -64,5 +64,13 @@
 	</delete>	
 
 
+<delete id="allDelete" >
+		delete FROM ezencarts o
+		WHERE o.member_number = (
+        SELECT m.member_number
+        FROM ezenmembers m
+        WHERE m.member_number = #{member_number})
+	</delete>
+
     
     </mapper>

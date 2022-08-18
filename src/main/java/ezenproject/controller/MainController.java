@@ -1,9 +1,12 @@
 package ezenproject.controller;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Array;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,6 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import ezenproject.dto.BoardDTO;
 import ezenproject.dto.BookDTO;
 import ezenproject.dto.CartDTO;
 import ezenproject.dto.CouponDTO;
@@ -38,6 +42,7 @@ import ezenproject.dto.ListOrderDTO;
 import ezenproject.dto.MemberDTO;
 import ezenproject.dto.OrderDTO;
 import ezenproject.dto.PageDTO;
+import ezenproject.service.BoardService;
 import ezenproject.service.BookService;
 import ezenproject.service.CartService;
 import ezenproject.service.CouponService;
@@ -64,6 +69,9 @@ public class MainController {
 	
 	@Autowired
 	private CartService cservice;
+	
+	@Autowired
+	private BoardService boardservice;
 	
 	private BookDTO bdto;
 	private MemberDTO mdto;
@@ -273,6 +281,66 @@ public class MainController {
 					return mav;
 				} 
 		
+				
+				//본인 작성 게시글 리스트출력
+				@RequestMapping(value = "/mypage/myboardlist.do", method = RequestMethod.GET)
+				public ModelAndView myboardlistMethod(PageDTO pv, ModelAndView mav,String member_id,int board_type) {
+					Map<String,Object>map = new HashMap<String,Object>();
+					map.put("board_type", board_type);
+					map.put("member_id", member_id);
+					int totalRecord = boardservice.myCountProcess(map);
+					if (totalRecord >= 1) {
+						if(pv.getCurrentPage()==0)
+							currentPage = 1;
+						else
+							currentPage = pv.getCurrentPage();	
+					pdto = new PageDTO(currentPage, totalRecord);
+					List<BoardDTO> aList = boardservice.myBoardListProcess(pdto,board_type,member_id);
+					mav.addObject("aList", aList);
+					mav.addObject("pv", pdto);
+					}
+					mav.setViewName("mypage/myboardlist");
+					return mav;
+				}
+				
+				//본인 작성 게시글 뷰페이지
+				@RequestMapping("/mypage/boardview.do")
+				public ModelAndView myViewMethod(int currentPage,BoardDTO dto, ModelAndView mav) throws Exception {
+					mav.addObject("dto",boardservice.contentProcess(dto));
+					mav.addObject("currentPage", currentPage);
+					mav.setViewName("mypage/boardview");
+					return mav;
+				}
+				
+				// 본인 작성게시글 수정
+				@RequestMapping(value = "/mypage/boardupdate.do", method = RequestMethod.GET)
+				public ModelAndView myUpdateMethod(HttpServletRequest request, BoardDTO dto, int currentPage, ModelAndView mav) {
+					String viewName = (String) request.getAttribute("viewName");
+					mav.addObject("dto", boardservice.contentProcess(dto));
+					mav.addObject("currentPage", currentPage);
+					mav.setViewName(viewName);
+					return mav;
+				}
+				
+				//본인 작성 게시글 수정
+				@RequestMapping(value = "/mypage/boardupdate.do", method = RequestMethod.POST)
+				public String myUpdateProMethod(BoardDTO dto, int currentPage, HttpServletRequest request) {
+					MultipartFile file = dto.getFilename();
+					if(!file.isEmpty()) {
+						UUID random = saveCopyFile(file, request);
+						dto.setUpload(random + "_" + file.getOriginalFilename());
+					}
+					
+					boardservice.updateProcess(dto, urlPath(request));
+					return "redirect:/mypage/myboardlist.do?currentPage=" + currentPage+"&&board_type="+dto.getBoard_type()+"&&member_id="+dto.getMember_id();
+				}
+				
+				//본인 작성 게시글 삭제
+				@RequestMapping(value = "/mypage/boarddelete.do", method = RequestMethod.GET)
+				public String myDeleteMethod(BoardDTO dto, int currentPage, HttpServletRequest request) {
+					boardservice.deleteProcess(dto, urlPath(request));
+					return "redirect:/mypage/myboardlist.do?currentPage=" + currentPage+"&&board_type="+dto.getBoard_type()+"&&member_id="+dto.getMember_id();
+				}
 		
 	
 //	///////////////////////////여기까지 마이페이지//////////////////////////////////////////////
@@ -460,6 +528,7 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 		}
 		
 
+		cservice.alldeleteCartProcess(member_number);
 		couponservice.usedCouponProcess(coupon_number);
 		
 		return "redirect:/";
@@ -535,6 +604,182 @@ cservice.deleteCartProcess(num);
 
 
 ////////////////////장바구니 페이지 끝////////////////////////////////
+
+
+
+//////////////////////////////////여기서부터 게시판 메소등입니다////////////////////////////////////////////////
+
+//자유게시판 리스트
+@RequestMapping("/board/boardForm.do")
+public ModelAndView listMethod(PageDTO pv, ModelAndView mav) {
+int totalRecord = boardservice.countProcess(0);
+if (totalRecord >= 1) {
+if(pv.getCurrentPage()==0)
+currentPage = 1;
+else
+currentPage = pv.getCurrentPage();	
+pdto = new PageDTO(currentPage, totalRecord);
+List<BoardDTO> aList = boardservice.listProcess(pdto);
+mav.addObject("aList", aList);
+mav.addObject("pv", pdto);
+}
+mav.setViewName("board/boardForm");
+return mav;
+}
+
+//문의,리뷰게시판 리스트
+@RequestMapping("/board/*board.do")
+public ModelAndView otherListMethod(HttpServletRequest request,PageDTO pv, ModelAndView mav,int board_type) {
+int totalRecord = boardservice.countProcess(board_type);
+String viewName = (String) request.getAttribute("viewName");
+if (totalRecord >= 1) {
+if(pv.getCurrentPage()==0)
+currentPage = 1;
+else
+currentPage = pv.getCurrentPage();	
+pdto = new PageDTO(currentPage, totalRecord);
+List<BoardDTO> aList = boardservice.otherBoardListProcess(pdto,board_type);
+mav.addObject("aList", aList);
+mav.addObject("pv", pdto);
+}
+mav.setViewName(viewName);
+return mav;
+}
+
+//게시판 글쓰기
+@RequestMapping(value = "/board/write.do", method = RequestMethod.GET)
+public ModelAndView writeMethod(BoardDTO dto,PageDTO pv, ModelAndView mav,int board_type) throws Exception {
+mav.addObject("board_type", board_type);
+if(dto.getRef()!=0) { //답변글이면
+mav.addObject("currentPage", pv.getCurrentPage());
+mav.addObject("dto",dto);
+}
+mav.setViewName("board/write");
+return mav;
+}
+
+@RequestMapping(value = "/board/write.do", method = RequestMethod.POST)
+public String writeProMethod(BoardDTO dto,PageDTO pv, HttpServletRequest request) {
+MultipartFile file = dto.getFilename();
+if(!file.isEmpty()) {
+UUID random = saveCopyFile(file, request);
+dto.setUpload(random + "_" + file.getOriginalFilename());
+}
+boardservice.insertProcess(dto);
+String path ="";
+if(dto.getBoard_type()==0) {
+path="boardForm";
+}else if(dto.getBoard_type()==1) {
+path="reviewboard";
+}else {
+path="qnaboard";
+}
+
+//답변글이면
+if(dto.getRef()!=0) {
+return "redirect:/board/"+path+".do?currentPage=" + pv.getCurrentPage()+"&&board_type=" + dto.getBoard_type();
+}else {
+return "redirect:/board/"+path+".do?board_type=" + dto.getBoard_type();
+}
+
+
+}
+
+private String urlPath(HttpServletRequest request) {
+String root = request.getSession().getServletContext().getRealPath("/");
+//C:\smart_study\spring_workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\spring08_board\temp
+//System.out.println("root:" + root);
+String saveDirectory = root + "temp" + File.separator;
+return saveDirectory;
+}
+
+//업로드 첨부파일
+private UUID saveCopyFile(MultipartFile file, HttpServletRequest request) {
+String fileName = file.getOriginalFilename();
+
+UUID random = UUID.randomUUID();
+
+File fe = new File(urlPath(request));
+if(!fe.exists()) {
+fe.mkdir();
+}
+
+File ff = new File(urlPath(request), random+"_"+fileName);
+
+try {
+FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(ff));
+
+} catch (IOException e) {
+e.printStackTrace();
+}
+return random;
+}
+
+//뷰페이지
+@RequestMapping("/board/view.do")
+public ModelAndView viewMethod(int currentPage,BoardDTO dto, ModelAndView mav) throws Exception {
+mav.addObject("dto",boardservice.contentProcess(dto));
+mav.addObject("currentPage", currentPage);
+mav.setViewName("board/view");
+return mav;
+}
+
+//첨부파일 다운로드
+@RequestMapping("/*/contentdownload.do")
+public ModelAndView downMethod(BoardDTO dto, ModelAndView mav) {
+mav.addObject("dto", dto);
+mav.setViewName("download");
+return mav;
+}
+
+//게시글 수정
+@RequestMapping(value = "/board/update.do", method = RequestMethod.GET)
+public ModelAndView updateMethod(HttpServletRequest request, BoardDTO dto, int currentPage, ModelAndView mav) {
+String viewName = (String) request.getAttribute("viewName");
+mav.addObject("dto", boardservice.contentProcess(dto));
+mav.addObject("currentPage", currentPage);
+mav.setViewName(viewName);
+return mav;
+}
+
+//게시글 수정
+@RequestMapping(value = "/board/update.do", method = RequestMethod.POST)
+public String updateProMethod(BoardDTO dto, int currentPage, HttpServletRequest request) {
+MultipartFile file = dto.getFilename();
+if(!file.isEmpty()) {
+UUID random = saveCopyFile(file, request);
+dto.setUpload(random + "_" + file.getOriginalFilename());
+}
+
+boardservice.updateProcess(dto, urlPath(request));
+String path ="";
+if(dto.getBoard_type()==0) {
+path="boardForm";
+}else if(dto.getBoard_type()==1) {
+path="reviewboard";
+}else {
+path="qnaboard";
+}
+return "redirect:/board/"+ path +".do?currentPage=" + currentPage+"&&board_type="+dto.getBoard_type();
+}
+
+//게시글 삭제
+@RequestMapping(value = "/board/delete.do", method = RequestMethod.GET)
+public String deleteMethod(BoardDTO dto, int currentPage, HttpServletRequest request) {
+boardservice.deleteProcess(dto, urlPath(request));
+String path ="";
+if(dto.getBoard_type()==0) {
+path="boardForm";
+}else if(dto.getBoard_type()==1) {
+path="reviewboard";
+}else {
+path="qnaboard";
+}
+return "redirect:/board/"+ path +".do?currentPage=" + currentPage+"&&board_type="+dto.getBoard_type();
+}
+
+
+///////////////////////////////여기까지 게시판 메소드입니다/////////////////////////////
 	
 
 ////////////////////////////////////////////////////여기부터 관리자 페이지 메소드입니다.////////////////////
@@ -743,6 +988,77 @@ cservice.deleteCartProcess(num);
 	public void deleteCouponMethod(@PathVariable("num") int num) {
 		couponservice.deleteCouponProcess(num);
 	}
+	
+	
+	
+
+	// 관리자 페이지 게시판 리스트 출력
+		@ResponseBody
+		@RequestMapping(value = "/boards/list/{board_type}")
+		public Map<String, Object> listBoardMethod(@PathVariable("board_type") int board_type) {
+			Map<String, Object> map = new HashMap<String, Object>();
+			List<BoardDTO> alist = boardservice.listAllProcess(board_type);
+			map.put("alist", alist);
+			return map;
+		}
+
+	// 관리자 페이지 게시판 첨부파일 다운로드
+		@ResponseBody
+		@RequestMapping("/boards/contentdownload/{board_type}/{num}")
+		public void downloadMethod(@PathVariable("board_type") int board_type, @PathVariable("num") int num, HttpServletRequest request, HttpServletResponse response) throws FileNotFoundException, IOException {
+			BoardDTO dto = new BoardDTO();
+			dto.setBoard_type(board_type);
+			dto.setNum(num);
+			String root = request.getSession().getServletContext().getRealPath("/");
+			String saveDirectory = root + "temp" + File.separator;
+			
+			String upload = boardservice.fileSelectprocess(dto);
+			System.out.println(upload);
+			String fileName = upload.substring(upload.indexOf("_")+1);
+			
+			//파일명이 한글일때 인코딩 작업을 한다.
+			String str = URLEncoder.encode(fileName, "UTF-8");
+			
+			//원본파일명에 공백이 있을 때, +로 표시가 되므로 공백으로 처리해줌
+			str = str.replaceAll("\\+", "%20");
+			
+			//컨텐츠 타입
+			response.setContentType("application/octet-stream");
+			
+			//다운로드창에 보여 줄 파일명을 지정한다
+			response.setHeader("Content-Disposition", "attachment;filename="+str+";");
+			
+			//서버에 저장된 파일을 읽어와 클라이언트에 출력해 준다.
+			FileCopyUtils.copy(new FileInputStream(new File(saveDirectory, upload)), response.getOutputStream());
+		}
+		
+
+//		관리자페이지에서 게시글 삭제
+		@ResponseBody
+		@RequestMapping(value = "/boards/delete/{num}/{board_type}", method = RequestMethod.DELETE)
+		public void delete(@PathVariable("num") int num, @PathVariable("board_type")int board_type, HttpServletRequest request) {
+			BoardDTO dto = new BoardDTO();
+			dto.setBoard_type(board_type);
+			dto.setNum(num);
+			boardservice.deleteProcess(dto, urlPath(request));
+		}
+		
+//		관리자 답글
+		@ResponseBody
+		@RequestMapping(value = "/boards/reply/{re_step}/{re_level}", method = RequestMethod.POST)
+		public void writeProMethod(@PathVariable("re_step") int re_step ,@PathVariable("re_level") int re_level , BoardDTO dto,HttpServletRequest request ) {
+			dto.setRe_step(re_step);
+			dto.setRe_level(re_level);
+			dto.setMember_id("admin");
+			dto.setMember_email("admin@ezenbook.com");
+			System.out.println(dto.getRe_step());
+			MultipartFile file = dto.getFilename();
+			if(file != null && !file.isEmpty()) {
+				UUID random = saveCopyFile(file, request);
+				dto.setUpload(random + "_" + file.getOriginalFilename());
+			}
+			boardservice.insertProcess(dto);
+		}
 
 //////////////////////////////////////////////////////여기까지 관리자 페이지 메소드입니다.///////////////	
 

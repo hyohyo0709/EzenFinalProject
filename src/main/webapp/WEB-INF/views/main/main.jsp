@@ -16,16 +16,15 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" >
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-
-
 </head>
 
 <body>
-	<main id="main">
-	
-		
+	<!-- <main id="main" > -->
+<div id ="wrap">
+<div class ="container" style="min-width: 1300px;">
 	<!-- Banner Start-->
-	<div class="container">
+	
+	<div class="container"  style="min-width: 1300px;" >
 		<div id="carouselExampleIndicators" class="carousel slide"
 			data-bs-ride="carousel" style="margin-bottom: 50px">
 			<div class="carousel-indicators">
@@ -42,8 +41,8 @@
 		<div class="carousel-inner"  >
 		<div class="carousel-item active">
 		
-	<div class ="first_slide">
-	 	<div class="event_banner" >
+	<div class ="first_slide" >
+	 	<div class="event_banner"  >
 
 		<img src="/assets/img/요즘이책.jpg" class="first_img" alt="요즘이책 이미지">
 		
@@ -77,7 +76,7 @@
 	</div>
 	
 	
-</div> <!-- end event banner -->
+</div> <!-- end first slide -->
 
 </div> 
 			<div class="carousel-item">
@@ -101,20 +100,17 @@
 		</button>
 	
 </div>
+
+</div><!-- slide container End -->
+
 	
-</div> <!-- Banner End -->
 
-
-<!-- ======= Post Grid Section ======= -->
-<!-- 이달의 추천 편집장의 선택  -->
- <section id="posts" class="posts">
-	<div class="container" data-aos="fade-up">
-		<div class="row g-5">
-			<div class="col-lg-4">
-	<div class="post-entry-1 lg">
-		<a href="single-post.html"><img
-			src="../../assets/img/recommended-book1.jpg" alt=""
-			class="img-fluid"></a>
+<div class="container" style="min-width:1300px;">
+		<div class="row g-5" style="flex-wrap:nowrap; ">
+		<div class="col-lg-4" style="width:400px;">
+	<div class="post-entry-1 lg" >
+		<a href="/book/allBooklist.do">
+		<img src="../../assets/img/recommended-book1.jpg" alt="" class="img-fluid"></a>
 		<div class="post-meta">
 			<span class="date">이 달의 MD 추천</span> <span class="mx-1">&bullet;</span>
 			<span>2022.08</span>
@@ -122,7 +118,7 @@
 		<h4>
 			<a href="single-post.html">매일을 헤엄치는 법 </a>
 		</h4>
-		<p class="mb-4 d-block">80여만 구독자에게 주체적인 삶의 태도와 자세를 전해온 독보적인
+		<p class="mb-4">80여만 구독자에게 주체적인 삶의 태도와 자세를 전해온 독보적인
 			미술 크리에이터 이연의 그림 에세이 《매일을 헤엄치는 법》이 도서출판 푸른숲에서 출간되었다. 2018년, 제 삶을
 			되찾기 위해 퇴사를 감행한 스물일곱 살 이연의 자전적인 이야기로, 이연의 오리지널 캐릭터로 그려낸 첫 번째
 			책이다. 지금의 이연을 만들어준 인생에서 가장 어둡고 찬란했던 1년을 담아낸, 그 어디서도 공개된 적 없는
@@ -131,10 +127,9 @@
 			삶의 태도와 성찰이 서서히 드러난다. 그리고 못 다한 이야기를 보다 긴 에세이들로 자세히 풀어냈다.</p>
 
 	</div>
-	<div class="post-entry-1 lg">
-		<a href="single-post.html"><img
-			src="../../assets/img/recommended-book2.jpg" alt=""
-			class="img-fluid"></a>
+	<div class="post-entry-1 lg" >
+		<a href="/book/allBooklist.do">
+		<img src="../../assets/img/recommended-book2.jpg" alt="" class="img-fluid"></a>
 		<div class="post-meta">
 			<span class="date">이 달의 출판사 추천</span> <span class="mx-1">&bullet;</span>
 			<span>2022.08</span>
@@ -142,7 +137,7 @@
 		<h4>
 			<a href="single-post.html">세상의 마지막 기차역</a>
 		</h4>
-		<p class="mb-4 d-block">봄이 시작되는 3월, 급행열차 한 대가 탈선해 절벽 아래로
+		<p class="mb-4">봄이 시작되는 3월, 급행열차 한 대가 탈선해 절벽 아래로
 			떨어졌다. 수많은 중상자를 낸 이 대형 사고 때문에 유가족은 순식간에 사랑하는 가족, 연인을 잃었다. 그렇게 두
 			달이 흘렀을까. 사람들 사이에서 이상한 소문이 돌기 시작하는데…. 역에서 가장 가까운 역인 ‘니시유이가하마 역’에
 			가면 유령이 나타나 사고가 일어난 그날의 열차에 오르도록 도와준다는 것. 단 유령이 제시한 네 가지 규칙을 반드시
@@ -150,18 +145,17 @@
 			과연 유령 열차가 완전히 하늘로 올라가 사라지기 전, 사람들은 무사히 열차에 올라 사랑하는 이의 마지막을 함께할
 			수 있을까</p>
 	</div>
-</div>
-	
+</div><!-- col-lg-4"의 끝 -->
 <%@ include file = "mainCategory.jsp"%>
-			
-	
-			
-	</div><!--	"col-g-5"의 끝 -->
-		
-		
-		</div><!--  -->
-		<!-- End Trending Section --> 
-	
-	</main>
+
+
+</div><!--	"row-g-5"의 끝 -->	
+
+
+</div><!-- end container -->	
+</div><!-- end wrap -->
+
+	<!-- </main> -->
+	</div>
 	</body>
 	</html>	

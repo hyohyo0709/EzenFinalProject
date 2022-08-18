@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!-- <hr> -->
 <div class="foot text-center">
@@ -26,7 +27,15 @@ pageEncoding="UTF-8"%>
   </c:otherwise>
   </c:choose>
 </div>
-
+<script>
+$(document).ready(function(){
+	  var currentPosition = parseInt($(".quickmenu").css("top"));
+	  $(window).scroll(function() {
+	    var position = $(window).scrollTop(); 
+	    $(".quickmenu").stop().animate({"top":position+currentPosition+"px"},1000);
+	  });
+	});
+</script>
 
    <a class="footertoTop" href="#" title="top">
    <button type="button" class="btn btn-light" style="border: 50px;">TOP</button></a>

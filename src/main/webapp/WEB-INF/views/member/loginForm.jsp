@@ -56,8 +56,11 @@ $(document).ready(function() {
      $("#myModal").modal("show");
      $(".close").click(function(){
          $("#myModal").modal("hide");
-         window.location.replace("http://localhost:8090/");
+         /* window.location.replace("http://localhost:8090/"); */
+         history.go(-1);
       });
+     
+     
 });
 </script>
   </head>
