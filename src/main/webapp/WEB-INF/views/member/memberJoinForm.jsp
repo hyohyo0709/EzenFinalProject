@@ -114,7 +114,7 @@ pageEncoding="UTF-8"%>
           
           <div class="mb-3">
             <label for="pass">비밀번호(영문,숫자 8~15자)</label>
-            <input type="text"  class="form-control" name="member_pass" 
+            <input type="password"  class="form-control" name="member_pass" 
             pattern="[a-zA-Z0-9]{8,15}"  placeholder="" required>
             <div class="invalid-feedback">
               비밀번호를 형식에 맞게 입력해주세요.
