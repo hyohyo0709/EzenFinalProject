@@ -16,26 +16,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
 
-<script>
-$(document).ready(function(){
-	  var currentPosition = parseInt($(".quickmenu").css("top"));
-	  $(window).scroll(function() {
-	    var position = $(window).scrollTop(); 
-	    $(".quickmenu").stop().animate({"top":position+currentPosition+"px"},1000);
-	  });
-	});
-</script>
-
 
 
 </head>
 <body>
 
 <!-- 분야별 -->
-<div class="col-lg-8" >
-	<div class="row g-5"   style="width: 900px;" >
+<div class="col-lg-8">
+	<div class="row g-5">
 	
-	<div class="col-lg-4 border-start custom-border" style="width:300px;">
+	<div class="col-lg-4 border-start custom-border">
 	<strong>시</strong>
 	<c:forEach items="${alist}" var="book" varStatus="status" begin="0" end="4">
 	<c:if test="${book.book_category==1 && book.book_status==1}">
@@ -50,7 +40,7 @@ $(document).ready(function(){
 	</div><!-- 소설 끝  -->
 
 
-	<div class="col-lg-4 border-start custom-border" style="width:300px;">
+	<div class="col-lg-4 border-start custom-border">
     <strong>역사소설</strong>
     <c:forEach items="${alist}" var="book" varStatus="status" begin="0" end="4">
 	<c:if test="${book.book_category==2 && book.book_status==1}">
@@ -66,7 +56,7 @@ $(document).ready(function(){
 
 	<!-- 베스트 셀러 -->
 	
-	<div class="col-lg-3" style="width:230px;">
+	<div class="col-lg-3">
 		<p class="title">
 			종합 주간 베스트셀러 <span style="color: red"> Top 5 </span></p>
 
@@ -105,7 +95,7 @@ $(document).ready(function(){
   </ul>
 	</div>
 </div>
-	  
+	 
 	 
 	 	<!-- "col-lg-1" 퀵메뉴 끝 -->
 

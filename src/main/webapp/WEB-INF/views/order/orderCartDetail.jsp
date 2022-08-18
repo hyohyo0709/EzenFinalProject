@@ -287,7 +287,7 @@
  	<form class="needs-validation" novalidate name="order_frm"
 		id="order_frm" method="post">
 	 
-		<div class="container">
+		<div class="container" style="min-width:1000px; margin-top:10px;">
 			<main>
 				<div class="py-5 text-center">
 					<!--    <img class="d-block mx-auto mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
@@ -405,10 +405,11 @@
 								<li class="list-group-item d-flex justify-content-between">
 								<span>결제금액</span> 
 								
-								
+								<span style="float: right;">
 								<input  type="number" name="order_cost" id="order_cost" value="${totalPrice}" 
 								style="font-weight:bold; border:none; background: transparent;text-align:right;" readonly="readonly"/> 
 								<strong>원</strong>
+								</span>
 
 							</li>
 								

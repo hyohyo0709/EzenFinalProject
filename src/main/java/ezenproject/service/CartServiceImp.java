@@ -59,7 +59,10 @@ public class CartServiceImp implements CartService{
 		return dao.cartlist(member_number);
 	}
 
-
+	@Override
+	public void alldeleteCartProcess(String member_number) {
+		dao.allDelete(member_number);
+	}
 
 	
 	

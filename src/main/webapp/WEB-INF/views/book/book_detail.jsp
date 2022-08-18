@@ -184,7 +184,7 @@
 								<td colspan="3">	
 									<input type="hidden" value="-" id="minus_btn">
 									
-									<input  name="total_price" value="${dto.sellprice}">
+									<%-- <input  name="total_price" value="${dto.sellprice}"> --%>
 									<p class="cart_count_total_price"><span class="totalPrice_span">
 									<fmt:formatNumber value="5000" pattern="#,###원" /></span> 원</p>
 									<input type="hidden" value="+" id="plus_btn">
@@ -225,7 +225,7 @@
 					<input class="cart_btn" id="cart_btn" type="button" value="장바구니 추가">
 					<input class="buy_button1" type="button" value="장바구니 확인" onclick="window.open('/cart/list/${member.member_number}')"/>
 					<input class="buy_button2" type="button" value="매장구매" onclick="window.open('${pickup_link}')">
-					<input class="buy_button3" type="button" value="바로구매" onclick="window.open('${order_link}')">
+					<input class="buy_button3" type="button" value="바로구매" onclick="order_link()">
 					</c:when>
 					<c:when test="${dto.book_stock==0 && isLogOn == true && member!= null}">
 					<input class="buy_button1" type="button" value="장바구니 추가" onclick="noStock()">
@@ -250,15 +250,11 @@
 
 	
 	
-	</div><!-- end container -->
-
-	<div id="new_books">
-	<span>다른 매력적인 책들을 만나보세요</span>
-	</div>
-	
+</div><!-- end container -->
 	</div><!-- end wrap -->
-	
-	
+	<div id="new_books">
+	<span>다른 매력적인 책들을 만나보세요 </span>	
+	</div>
 	<!-- detail end -->
 	
 	<!-- 추가 도서 목록 (후에 이미지로 대체) 시작 -->
@@ -319,8 +315,18 @@
 	
 	
 	});
+		
+			
 	
 	//서버 전송용 데이터
+	
+	function order_link(){
+		var link="/order/orderDetail.do?num="+${dto.num }+"&member_number="+'${member.member_number }'+"&book_qty="+$("#quantity_input").val();
+
+
+window.open(link);
+	}
+	
 	const form = {
 		member_number : '${member.member_number}',
 		book_id : '${dto.book_id}',

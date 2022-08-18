@@ -30,4 +30,8 @@ public interface CartDAO {
 	/* 카트 확인 */
     public CartDTO checkCart(CartDTO dto);
     
+    /* 카트 전부 삭제 */
+	public void allDelete(String member_number);
+
+    
 }

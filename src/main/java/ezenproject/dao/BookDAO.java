@@ -24,8 +24,7 @@ public interface BookDAO {
 	public int countSearch(String searchWord);
 	public BookDTO content(int num);
 	public List<BookDTO> newBookList(PageDTO pv);
-
-
+	
 	
 	public List<BookDTO> list();
 	public BookDTO selectOne(int num);

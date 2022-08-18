@@ -48,7 +48,7 @@ pageEncoding="UTF-8"%>
     </script>
     
     
- 
+    
     
   </head>
   <body>
@@ -65,7 +65,7 @@ pageEncoding="UTF-8"%>
   <div class="container" style="margin-bottom: 5%;">
   <div class="row justify-content-md-center">
   <div class="col col-lg-3" >
-<div class="list-group" id="quickmenu" align="center" >
+<div class="list-group" id="quickmenu-main" align='center' >
   <input type="text" id="mymenu" readonly="readonly"  class="list-group-item list-group-item-action active list-group-item-dark"
     value="사용자 My Menu" style="border-left-color: black; border-right-color: black; border-top-color: black;"/>
   
@@ -74,7 +74,9 @@ pageEncoding="UTF-8"%>
   <button id="order" onclick="location.href='http://localhost:8090/mypage/myorderlist.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action"
   style="border-left-color: black; border-right-color: black;">주문확인 / 취소</button>
  <button id="coupon" onclick="location.href='http://localhost:8090/mypage/mycoupon.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action"
- style="border-left-color: black; border-right-color: black; border-bottom-color: black;">쿠폰조회</button>
+ style="border-left-color: black; border-right-color: black; ">쿠폰조회</button>
+  <button id="board" onclick="location.href='http://localhost:8090/mypage/myboardlist.do?member_number=${member.member_number}&&member_id=${member.member_id}&&board_type=0'" class="list-group-item list-group-item-action"
+ style="border-left-color: black; border-right-color: black; border-bottom-color: black;">본인작성 게시글</button>
 </div>
   </div>
   </div>

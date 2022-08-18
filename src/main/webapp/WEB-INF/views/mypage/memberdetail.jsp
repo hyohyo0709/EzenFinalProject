@@ -21,7 +21,7 @@
     />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script defer type="text/javascript" src="./mypage.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#update").click(function(){
@@ -69,14 +69,12 @@
 </script>
 
 <style>
-
    #frm{
    position:relative;
-    bottom:110px;
-    left:250px;
-    width:60%;
+     bottom:110px;
+    left:300px;
+    width:70%;
     }
-
 </style>
 
 </head>
@@ -88,18 +86,14 @@
    
 
   <!-- mypage menu start -->
-
-
-
-	
+<div class="container">
+	<%@ include file = "mypagemenu.jsp"%>
   <!-- mypage menu end -->
   
   
   <!-- member detail start -->
-<div id ="wrap" >
-<div class ="container" style="min-width: 1000px;" >
-<%@ include file = "mypagemenu.jsp"%>
-<form class="row g-3" id="frm" method="post" name="frm" >
+
+<form class="row g-3" id="frm" method="post" name="frm">
   <div class="col-md-4">
     <label for="inputState" class="form-label">회원번호</label>
    <input type="text" class="form-control" readonly="readonly" name="member_number"value="${memberInfo.member_number}">
@@ -116,7 +110,6 @@
     <label for="inputPassword4" class="form-label">비밀번호</label>
     <input type="password" class="form-control" name="member_pass" id="member_pass" value="${memberInfo.member_pass }" readonly="readonly">
       <!-- 비밀번호 변경 버튼 -->
-      <br>
 <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#pass_change">
   비밀번호 변경하기
 </button>
@@ -173,7 +166,7 @@
   </div>
 </form>
 </div>
-</div>
+
   <!-- member detail end -->
   
    <!-- Footer Start -->
