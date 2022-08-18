@@ -88,9 +88,10 @@ a {
 	<table class='table table-dark table-striped'>
 	<tr  style="text-align: center;">
 	<th width="5%" >번호</th>
-	<th width="25%">제목</th>
-	<th width="20%">아이디</th>
-	<th width="15%">조회수</th>
+	<th width="20%">제목</th>
+	<th width="15%">아이디</th>
+	<th width="10%">조회수</th>
+	<th width="15%">작성일</th>
 	</tr>
 	<c:forEach items="${aList}" var="dto">
 	<tr>
@@ -108,6 +109,7 @@ a {
 	</td>
 	<td  style="text-align: center;">${dto.member_id}</td>
 	<td  style="text-align: center;">${dto.readcount}</td>
+	<td  style="text-align: center;">${dto.reg_date}</td>
 	</tr>
 	</c:forEach>
 	</table>
