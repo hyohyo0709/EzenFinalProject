@@ -63,7 +63,7 @@ public class MainController {
 	private CouponService couponservice;
 	
 	@Autowired
-	private BoardService service;
+	private BoardService boardservice;
 	
 	private BookDTO bdto;
 	private MemberDTO mdto;
@@ -251,14 +251,14 @@ public class MainController {
 				Map<String,Object>map = new HashMap<String,Object>();
 				map.put("board_type", board_type);
 				map.put("member_id", member_id);
-				int totalRecord = service.myCountProcess(map);
+				int totalRecord = boardservice.myCountProcess(map);
 				if (totalRecord >= 1) {
 					if(pv.getCurrentPage()==0)
 						currentPage = 1;
 					else
 						currentPage = pv.getCurrentPage();	
 				pdto = new PageDTO(currentPage, totalRecord);
-				List<BoardDTO> aList = service.myBoardListProcess(pdto,board_type,member_id);
+				List<BoardDTO> aList = boardservice.myBoardListProcess(pdto,board_type,member_id);
 				mav.addObject("aList", aList);
 				mav.addObject("pv", pdto);
 				}
@@ -269,7 +269,7 @@ public class MainController {
 			//본인 작성 게시글 뷰페이지
 			@RequestMapping("/mypage/boardview.do")
 			public ModelAndView myViewMethod(int currentPage,BoardDTO dto, ModelAndView mav) throws Exception {
-				mav.addObject("dto",service.contentProcess(dto));
+				mav.addObject("dto",boardservice.contentProcess(dto));
 				mav.addObject("currentPage", currentPage);
 				mav.setViewName("mypage/boardview");
 				return mav;
@@ -279,7 +279,7 @@ public class MainController {
 			@RequestMapping(value = "/mypage/boardupdate.do", method = RequestMethod.GET)
 			public ModelAndView myUpdateMethod(HttpServletRequest request, BoardDTO dto, int currentPage, ModelAndView mav) {
 				String viewName = (String) request.getAttribute("viewName");
-				mav.addObject("dto", service.contentProcess(dto));
+				mav.addObject("dto", boardservice.contentProcess(dto));
 				mav.addObject("currentPage", currentPage);
 				mav.setViewName(viewName);
 				return mav;
@@ -294,14 +294,14 @@ public class MainController {
 					dto.setUpload(random + "_" + file.getOriginalFilename());
 				}
 				
-				service.updateProcess(dto, urlPath(request));
+				boardservice.updateProcess(dto, urlPath(request));
 				return "redirect:/mypage/myboardlist.do?currentPage=" + currentPage+"&&board_type="+dto.getBoard_type()+"&&member_id="+dto.getMember_id();
 			}
 			
 			//본인 작성 게시글 삭제
 			@RequestMapping(value = "/mypage/boarddelete.do", method = RequestMethod.GET)
 			public String myDeleteMethod(BoardDTO dto, int currentPage, HttpServletRequest request) {
-				service.deleteProcess(dto, urlPath(request));
+				boardservice.deleteProcess(dto, urlPath(request));
 				return "redirect:/mypage/myboardlist.do?currentPage=" + currentPage+"&&board_type="+dto.getBoard_type()+"&&member_id="+dto.getMember_id();
 			}
 	
@@ -660,7 +660,7 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 	@RequestMapping(value = "/boards/list/{board_type}")
 	public Map<String, Object> listBoardMethod(@PathVariable("board_type") int board_type) {
 		Map<String, Object> map = new HashMap<String, Object>();
-		List<BoardDTO> alist = service.listAllProcess(board_type);
+		List<BoardDTO> alist = boardservice.listAllProcess(board_type);
 		map.put("alist", alist);
 		return map;
 	}
@@ -675,7 +675,7 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 		String root = request.getSession().getServletContext().getRealPath("/");
 		String saveDirectory = root + "temp" + File.separator;
 		
-		String upload = service.fileSelectprocess(dto);
+		String upload = boardservice.fileSelectprocess(dto);
 		System.out.println(upload);
 		String fileName = upload.substring(upload.indexOf("_")+1);
 		
@@ -703,7 +703,7 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 		BoardDTO dto = new BoardDTO();
 		dto.setBoard_type(board_type);
 		dto.setNum(num);
-		service.deleteProcess(dto, urlPath(request));
+		boardservice.deleteProcess(dto, urlPath(request));
 	}
 	
 //	관리자 답글
@@ -720,7 +720,7 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 			UUID random = saveCopyFile(file, request);
 			dto.setUpload(random + "_" + file.getOriginalFilename());
 		}
-		service.insertProcess(dto);
+		boardservice.insertProcess(dto);
 	}
 	
 //////////////////////////////////////////////////////여기까지 관리자 페이지 메소드입니다.///////////////	
@@ -731,14 +731,14 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 	//자유게시판 리스트
 	@RequestMapping("/board/boardForm.do")
 	public ModelAndView listMethod(PageDTO pv, ModelAndView mav) {
-		int totalRecord = service.countProcess(0);
+		int totalRecord = boardservice.countProcess(0);
 		if (totalRecord >= 1) {
 			if(pv.getCurrentPage()==0)
 				currentPage = 1;
 			else
 				currentPage = pv.getCurrentPage();	
 		pdto = new PageDTO(currentPage, totalRecord);
-		List<BoardDTO> aList = service.listProcess(pdto);
+		List<BoardDTO> aList = boardservice.listProcess(pdto);
 		mav.addObject("aList", aList);
 		mav.addObject("pv", pdto);
 		}
@@ -749,7 +749,7 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 	//문의,리뷰게시판 리스트
 	@RequestMapping("/board/*board.do")
 	public ModelAndView otherListMethod(HttpServletRequest request,PageDTO pv, ModelAndView mav,int board_type) {
-		int totalRecord = service.countProcess(board_type);
+		int totalRecord = boardservice.countProcess(board_type);
 		String viewName = (String) request.getAttribute("viewName");
 		if (totalRecord >= 1) {
 			if(pv.getCurrentPage()==0)
@@ -757,7 +757,7 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 			else
 				currentPage = pv.getCurrentPage();	
 		pdto = new PageDTO(currentPage, totalRecord);
-		List<BoardDTO> aList = service.otherBoardListProcess(pdto,board_type);
+		List<BoardDTO> aList = boardservice.otherBoardListProcess(pdto,board_type);
 		mav.addObject("aList", aList);
 		mav.addObject("pv", pdto);
 		}
@@ -784,7 +784,7 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 			UUID random = saveCopyFile(file, request);
 			dto.setUpload(random + "_" + file.getOriginalFilename());
 		}
-		service.insertProcess(dto);
+		boardservice.insertProcess(dto);
 		String path ="";
 		if(dto.getBoard_type()==0) {
 			path="boardForm";
@@ -837,7 +837,7 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 	//뷰페이지
 	@RequestMapping("/board/view.do")
 	public ModelAndView viewMethod(int currentPage,BoardDTO dto, ModelAndView mav) throws Exception {
-		mav.addObject("dto",service.contentProcess(dto));
+		mav.addObject("dto",boardservice.contentProcess(dto));
 		mav.addObject("currentPage", currentPage);
 		mav.setViewName("board/view");
 		return mav;
@@ -855,7 +855,7 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 	@RequestMapping(value = "/board/update.do", method = RequestMethod.GET)
 	public ModelAndView updateMethod(HttpServletRequest request, BoardDTO dto, int currentPage, ModelAndView mav) {
 		String viewName = (String) request.getAttribute("viewName");
-		mav.addObject("dto", service.contentProcess(dto));
+		mav.addObject("dto", boardservice.contentProcess(dto));
 		mav.addObject("currentPage", currentPage);
 		mav.setViewName(viewName);
 		return mav;
@@ -870,7 +870,7 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 			dto.setUpload(random + "_" + file.getOriginalFilename());
 		}
 		
-		service.updateProcess(dto, urlPath(request));
+		boardservice.updateProcess(dto, urlPath(request));
 		String path ="";
 		if(dto.getBoard_type()==0) {
 			path="boardForm";
@@ -885,7 +885,7 @@ List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 	//게시글 삭제
 	@RequestMapping(value = "/board/delete.do", method = RequestMethod.GET)
 	public String deleteMethod(BoardDTO dto, int currentPage, HttpServletRequest request) {
-		service.deleteProcess(dto, urlPath(request));
+		boardservice.deleteProcess(dto, urlPath(request));
 		String path ="";
 		if(dto.getBoard_type()==0) {
 			path="boardForm";
