@@ -127,6 +127,8 @@ public class MainController {
 		return mav;
 	}
 
+	
+	
 //	/////////////////////////////// 여기서부터 로그인& 로그아웃 & 회원가입/////////////////////////////////////////////////
 //	로그인 하는 행위
 	@RequestMapping(value = "/member/login.do", method = RequestMethod.POST)
@@ -144,15 +146,31 @@ public class MainController {
 			if (action != null) {
 				mav.setViewName("redirect:" + action);
 			} else {
-				mav.setViewName("redirect:/");
+				mav.setViewName("redirect:"+request.getHeader("Referer"));
 			}
 		} else {
 			rAttr.addAttribute("result", "loginFailed");
-			mav.setViewName("redirect:/member/loginForm.do");
+			mav.setViewName("redirect:../common/loginalert.do");
 		}
 
 		return mav;
 	}
+	
+//	로그인 처리
+	@RequestMapping(value = "/*/*alert.do", method = RequestMethod.GET)
+	private ModelAndView loginDODO(@RequestParam(value = "result", required = false) String result,
+			@RequestParam(value = "action", required = false) String action, HttpServletRequest request,
+			HttpServletResponse response) {
+		String viewName = (String) request.getAttribute("viewName");
+		HttpSession session = request.getSession();
+		session.setAttribute("action", action);
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("result", result);
+		mav.setViewName(viewName);
+		return mav;
+	}
+	
 
 //	로그아웃 하는 행위
 	@RequestMapping(value = "/member/logout.do", method = RequestMethod.GET)

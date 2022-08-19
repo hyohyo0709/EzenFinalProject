@@ -113,6 +113,7 @@
 	 	$("#btnOrder").click(function() {
 	 		
 	 		if($("#order_name").val()!=0 && $("#order_phone").val()!=0 && $("#order_address").val()!=0){
+	 			alert("주문이 완료됐습니다.");
 	 			$('#order_frm').attr("action", "/order/cartordersave.do").submit();
 			}else{
 				alert("배송 정보를 확인해주세요.");
