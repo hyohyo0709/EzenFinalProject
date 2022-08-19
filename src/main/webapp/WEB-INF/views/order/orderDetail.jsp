@@ -415,7 +415,7 @@
 								</select>
 
 							</div>
-							<div class="col-md-4">
+							<div class="col-md-4" style="margin-top: 2px;">
 								<input type="button" class="btn btn-primary btn-sm" id="btnCoupon"
 									value="할인권 적용" />
 							</div>
