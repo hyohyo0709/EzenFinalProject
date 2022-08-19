@@ -119,6 +119,23 @@ cart_amount number default 1
 
 
 
+ create table ezenboards(
+   	num number,
+   	member_id varchar2(20),
+ 	member_email varchar2(30),
+	subject varchar2(50),
+	reg_date date,
+	readcount number default 0,
+	ref number,
+	re_step number,
+	re_level number,
+	board_type number,
+	content varchar2(100),
+    upload varchar2(300)
+);
+
+ select*from ezenboards;
+
 
 
 create sequence ezenbooks_num_seq
@@ -150,8 +167,23 @@ create sequence seq_cart
 start with 1
 increment by 1;
 
+create sequence ezenfreeboards_num_seq
+start with 1
+increment by 1
+nocache
+nocycle;
 
+create sequence ezenreviewboards_num_seq
+start with 1
+increment by 1
+nocache
+nocycle;
 
+create sequence ezenqnaboards_num_seq
+start with 1
+increment by 1
+nocache
+nocycle;
 
 commit;
 

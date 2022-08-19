@@ -21,56 +21,24 @@
 
 
     <link href="/assets/css/style.css" rel="stylesheet" />
+    <link href="/assets/css/board.css" rel="stylesheet" />
 <script type="text/javascript">
 
 function btnWrite() {
+	if(${isLogOn == true  && member!= null}){
+		  frm.target = "_self";
+			 
+		  frm.action = "/board/write.do";
 
-	  frm.target = "_self";
-	 
-	  frm.action = "/board/write.do";
 
-
-	  frm.submit();
-
+		  frm.submit();
+	}else{
+	alert("게시판글 작성은 로그인후 가능합니다.");
+	location.href="http://localhost:8090/member/loginForm.do";
+	}
 	}
 
 </script>      
-<style type="text/css">
-
-
-#bodywrap{
-  position:relative;
-  width:70%;
-  margin-left:300px;
-  bottom: 155px;
-  
-}
-
-table,tr,th,td{
-	border:1px solid black;
-	border-collapse: collapse;	
-}
-
-.pagelist a{
-	color:white;
-	bottom:40px;
-}
-
-.pagelist a:hover, .pagelist .pagecolor{
-	text-decoration: underline;
-}
-#frm{
-	padding-left: 900px;
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
-
-
-</style>
 </head>
 <body>
 	<!-- Header start -->
@@ -78,6 +46,7 @@ a {
     <%@ include file = "../common/header.jsp"%>
     <!-- Header end -->
     
+    <div class="container">
     <!-- BoardMenu start -->
   <%@ include file = "boardmenu.jsp"%>
   	<!-- BoardMenu End -->
@@ -156,7 +125,7 @@ a {
 
 </div>
 
-
+</div>
 
     <!-- Footer Start -->
  <%@ include file = "../common/footer.jsp"%>

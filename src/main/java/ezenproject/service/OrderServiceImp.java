@@ -102,9 +102,9 @@ public class OrderServiceImp implements OrderService{
 	}
 	 
 	 @Override
-	public OrderDTO orderStatusProcess(String order_number) {
+	public OrderDTO orderStatusProcess(int num) {
 		
-		return dao.checkOrderStatus(order_number);
+		return dao.checkOrderStatus(num);
 	}
 	 
 	 

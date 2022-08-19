@@ -36,7 +36,7 @@
 		<div class="container">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb">
-					<li class="breadcrumb-item"><a href="../index.do">메인페이지</a></li>
+					<li class="breadcrumb-item"><a href="../../index.do">메인페이지</a></li>
 					<li class="breadcrumb-item active" aria-current="page">장바구니</li>
 				</ol>
 			</nav>
@@ -50,11 +50,14 @@
 		<c:param name="currentPage" value="${pv.currentPage }" />
 		<c:param name="num" value="${dto.num }" />
 	</c:url>
+				<c:choose>
+				<c:when test="${clist[0].book_title == null }"><div class="cart_null">장바구니가 비어있습니다.</div></c:when>
+				<c:otherwise>
 			<h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;장바구니</h4>
-			<div class="all_check_input_div" style="margin-left:110px " >
-			<input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
-			</div>	
 				<div class="white_space">
+			<div class="all_check_input_div" style="margin-left:110px " >
+			<input type="checkbox" class="all_check_input input_size_20" checked="checked" style="width: 20px; height: 20px; vertical-align: middle;"><span class="all_chcek_span" style="vertical-align:top; font-size: 18px; padding-top: 0px">&nbsp;모두선택</span>
+			</div>	
 				<div class="cart_div_container">
 				<div class="row" id="product_bezel">
 				<c:forEach items="${clist}" var="cdto">
@@ -135,9 +138,9 @@
 			<div class="cart_quantity2">
 					<table>
 						<tbody>
-							<tr>
+							<tr style="vertical-align: top">
 								<td class="cart_info_td" colspan="2">
-									<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
+									<input type="checkbox" class="individual_cart_checkbox input_size_20" style="width: 20px; height: 20px; vertical-align: bottom;" checked="checked">
 									<input type="hidden" class="individual_book_price_input" value="${cdto.book_price}">
 									<input type="hidden" class="individual_saleprice_input" value="${cdto.saleprice}">
 									<input type="hidden" class="individual_cart_amount_input" value="${cdto.cart_amount}">
@@ -237,7 +240,8 @@
 		</div>
 		</div>
 		</div>	
-	
+	</c:otherwise>
+			</c:choose>
 	<!-- ///////////장바구니 리스트 페이지 끝////////////////////////////// -->
 	<!-- Footer Start -->
 	

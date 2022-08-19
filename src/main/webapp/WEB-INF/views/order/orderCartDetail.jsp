@@ -111,7 +111,14 @@
 		})
 
 	 	$("#btnOrder").click(function() {
-			$('#order_frm').attr("action", "/order/cartordersave.do").submit();
+	 		
+	 		if($("#order_name").val()!=0 && $("#order_phone").val()!=0 && $("#order_address").val()!=0){
+	 			$('#order_frm').attr("action", "/order/cartordersave.do").submit();
+			}else{
+				alert("배송 정보를 확인해주세요.");
+				return false;
+			}
+			
 
 		}) 
 		
@@ -363,8 +370,7 @@
 									
 									
 							<ul class="list-group mb-3">
-							<li class="list-group-item d-flex justify-content-between lh-sm">
-							</li>
+							
 							<li class="list-group-item d-flex justify-content-between lh-sm">
 								<div>
 									<h6 class="my-0">배송비</h6>
