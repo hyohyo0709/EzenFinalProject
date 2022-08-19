@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>주문 목록</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   <link
@@ -23,6 +23,7 @@
     ></script>
 <link href="/assets/css/style.css" rel="stylesheet" />
 <link href="/assets/css/myorderlist.css" rel="stylesheet" />
+<link rel="short icon" href="../assets/img/favicon.png" type="image/x-icon"/>
 <script type="text/javascript">
 
 function orderstatus(status,path){
@@ -61,7 +62,11 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;} */
     
   <!-- order detail start -->
 
-  
+ <c:choose>
+ <c:when test="${aList[0].order_number == null }">
+ <div id="ordertable" style="font-size: 30px; text-align: center; margin-left:-80px;">주문 내역이 없습니다.</div>
+ </c:when>
+ <c:otherwise>
 <table id='ordertable' class="body" >
     <c:forEach items="${orderNumbers}" var="orderNumbers">
   
@@ -116,10 +121,9 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;} */
  <tr style="height: 30px;"></tr>
 </tbody>
   </c:forEach>
-  
-  
- 
 </table>
+</c:otherwise>
+ </c:choose>
   </div>
   <!-- order detail end -->
   

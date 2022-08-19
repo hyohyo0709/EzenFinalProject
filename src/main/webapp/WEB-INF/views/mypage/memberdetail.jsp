@@ -5,8 +5,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 정보</title>
 <link href="../assets/css/style.css" rel="stylesheet" />
+<link  rel="short icon" href="../assets/img/favicon.png" type="image/x-icon" />
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

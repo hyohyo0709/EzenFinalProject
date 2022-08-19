@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>주문 상세</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 
@@ -25,7 +25,7 @@
       crossorigin="anonymous"
     ></script>
     <link href="../assets/css/style.css" rel="stylesheet" />
-    
+    <link rel="short icon"  href="../assets/img/favicon.png" type="image/x-icon" />
     
 <script type="text/javascript">
 function ordercancel(url){

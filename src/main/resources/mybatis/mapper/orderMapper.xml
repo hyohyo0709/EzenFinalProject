@@ -119,6 +119,7 @@
     WHERE  m.member_number = o.member_number 
     AND o.book_id = b.book_id
     AND o.order_number = #{order_number} 
+
     </select>
     
     
