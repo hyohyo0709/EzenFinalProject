@@ -87,7 +87,7 @@ pageEncoding="UTF-8"%>
   </ul>
 </li>
 <li class="dropdown-submenu">
-  <button type="button" class="btn ">예술/대중문호</button>  
+  <button type="button" class="btn ">예술/대중문화</button>  
   <ul class="dropdown-menu" >
     <!-- Dropdown menu links -->
     <li><a class="dropdown-item" href="/book/Categorylist.do?book_category=25&categoryName=컬러링북">컬러링북</a></li>
@@ -238,6 +238,10 @@ pageEncoding="UTF-8"%>
    
     </div>
   </div>
+  
+  
+  
+  
 </nav>
 <br />
 
