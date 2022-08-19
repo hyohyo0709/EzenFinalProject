@@ -250,6 +250,7 @@ const BoardTool = () => {
           </Toolbar>
         </AppBar>
       </Box>
+      <br />
       <div align='center'>
         <Button variant='contained' color='primary' onClick={handleFreeBoard}>
           자유 게시판
@@ -261,6 +262,7 @@ const BoardTool = () => {
           상품문의 게시판
         </Button>
       </div>
+      <br />
       <Paper sx={{ width: '100%' }}>
         <TableContainer sx={{ maxHeight: 800 }}>
           <Table stickyHeader aria-label='sticky table'>
