@@ -14,10 +14,9 @@ public interface CartService {
 		public int modifyCountProcess(CartDTO dto);
 		//카트 삭제
 		public int deleteCartProcess(int num);
-		//카트 전부 삭제
-		public void alldeleteCartProcess(String member_number);
 		
 		public CartDTO cartListProcess(String member_number);
-		;
 		
+		//카트 전부 삭제
+				public void alldeleteCartProcess(String member_number);
 }

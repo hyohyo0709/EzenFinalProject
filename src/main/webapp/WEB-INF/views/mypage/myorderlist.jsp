@@ -21,8 +21,8 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
-<link href="../assets/css/style.css" rel="stylesheet" />
-<link href="../assets/css/myorderlist.css" rel="stylesheet" />
+<link href="/assets/css/style.css" rel="stylesheet" />
+<link href="/assets/css/myorderlist.css" rel="stylesheet" />
 <script type="text/javascript">
 
 function orderstatus(status,path){
@@ -36,8 +36,8 @@ function orderstatus(status,path){
 }
 </script>
 <style >
-body {width:100%; height:100%; margin:0; padding:0; overflow-y:scroll; position:relative;} 
-html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+/* body {width:100%; height:100%; margin:0; padding:0; overflow-y:scroll; position:relative;} 
+html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;} */
  #ordertable{
     position:relative;
     top:-193px;

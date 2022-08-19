@@ -123,7 +123,7 @@
 							</th>
 						</tr>
 						<tr>
-						<th><p style="margin-top: 10px;">줄거리</p></th>
+						<th><p style="margin-top: 10px">줄거리</p></th>
 						</tr>
 						<tr>
 							<td colspan="2" class="book_story">${dto.book_content}</td>

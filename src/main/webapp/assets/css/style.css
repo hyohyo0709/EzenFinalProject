@@ -16,6 +16,10 @@ a {
 	padding-bottom:20px;
 }
 
+
+
+
+
 /*카테고리 서브 메뉴 시작 */
 
 .dropdown-submenu{position:relative;}
@@ -87,13 +91,13 @@ overflow:hidden;
 }  
 
 
-/* 요즘 이 책 이미지 margin-left: 3rem까지가 반응형에 적합  */
+/* 요즘 이 책 이미지 */
 .first_img {
 width:150px;
 height:auto;
 float:left;
-margin-left: 3.2rem;
-margin-right: 2rem;
+margin-left: 130px;
+/* margin-right: 2rem; */
 
 }
 
@@ -153,9 +157,9 @@ margin-right: 2rem;
 .quickmenu {
 	position:absolute;
 	width:70px;
-	top:600px;
+	top:540px;
 	margin-top:-50px;
-	margin-left:190px;
+	margin-left:200px;
 	background:#fff;}
 	
 .quickmenu ul {
@@ -232,6 +236,7 @@ color:#444444;
 /*///////////////// book_detail에 삽입된 css 목록 시작 //////////////// */
 
 
+
 .cart_null{ /* 장바구니 아무것도 없을때 */
 	text-align: center;
 	font-size: 30px;
@@ -257,8 +262,7 @@ color:#444444;
 	box-sizing: border-box;	 
 	margin:0 30px 0 20px;
 	width:600px;
-	word-break:break-all;
-	}
+}
 .book_title {
 	font-size: 25px;
 	text-align: right;
@@ -368,6 +372,7 @@ text-align:right;
 	height: 40px;
 	transition-duration: 0.3s;
 }
+
 .buy_button1:hover {
   color: white;
 }
@@ -380,12 +385,12 @@ text-align:right;
 	margin:0px 0px 10px 15px;
 	width: 90%;
 	height: 40px;
- 	transition-duration: 0.3s;
+	transition-duration: 0.3s;
 }
+
 .cart_btn:hover {
   color: white;
 }
-
 .buy_button2{
 	font-weight:bold;
 	background-color:white;
@@ -397,12 +402,15 @@ text-align:right;
 	height: 40px;
 	transition-duration: 0.3s;
 }
+
 .buy_button2:hover {
   color: black;
 }
+
 .buy_button3{
 	font-weight:bold;
 	background-color:#dc3545;
+	
 	color:#fff;
 	border: solid 0px;
 	border-radius: 8px;
@@ -411,6 +419,7 @@ text-align:right;
 	height: 40px;
 	transition-duration: 0.3s;
 }
+
 .buy_button3:hover {
   color: black;
   background-color: rgb(255,0,0);
@@ -424,12 +433,12 @@ text-align:right;
 	
 }
 #new_books{
-	 margin-left: 30px;
-	 height: 80px;
+	 margin-left:30px;
+	 height: 80px; 
 	 text-align: center;
 	 animation : fadein 2s;
 	 font-size: 25px;
-	 min-width: 1300px;
+	 min-width:1300px;
 
 	
 }
@@ -560,18 +569,20 @@ text-align:right;
 	border-radius: 3px 0px 0px 3px;
 	transition-duration: 0.3s;
 }
+
 #cart_minus_btn:hover{
 	background-color: rgb(230,230,230);
+transition-duration: 0.3s;
 }
+#cart_plus_btn:hover{
+	background-color: rgb(230,230,230);
+}
+
 #cart_plus_btn{
 	width: 30px;
 	height:30px;
 	background-color:rgb(253,253,253);
 	margin-left: -9px;
-	transition-duration: 0.3s;
-}
-#cart_plus_btn:hover{
-	background-color: rgb(230,230,230);
 }
 #quantity_modify_btn{
 	float: left;
@@ -582,7 +593,7 @@ text-align:right;
 	border: 2px solid black;
 	border-radius: 0px 3px 3px 0px;
 	cursor: pointer;
-	font-weight: bold;
+font-weight: bold;
 	transition-duration: 0.3s;
 	vertical-align: middle;
 }
@@ -596,7 +607,6 @@ text-align:right;
 	margin: 0px auto;
 	background-color: inherit;
 	cursor: pointer;
-	
 }
 .delete_btn>img{
 	transform-origin: 50% 50%;
@@ -663,7 +673,6 @@ text-align:right;
 	min-height: 150px;
 	background-color: rgb(253,253,253);
 	width: 100%;
-	
 }
 
 .cart_order{
@@ -674,7 +683,7 @@ text-align:right;
 	margin:20px 10px 20px 10px;
 	width: 90%;
 	height: 40px;
-	transition-duration: 0.3s;
+transition-duration: 0.3s;
 	border: 2px solid rgb(215,215,215);
 }
 .cart_order:hover{
@@ -682,6 +691,7 @@ text-align:right;
 	border-color: black;
 	color:white;
 }
+
  .dead_area{
 	width: 2%;
 	height: auto;

@@ -15,15 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" >
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
-<script>
-$(document).ready(function(){
-	  var currentPosition = parseInt($(".quickmenu").css("top"));
-	  $(window).scroll(function() {
-	    var position = $(window).scrollTop(); 
-	    $(".quickmenu").stop().animate({"top":position+currentPosition+"px"},1000);
-	  });
-	});
-</script>
+
 
 
 </head>

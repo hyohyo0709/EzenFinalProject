@@ -55,18 +55,14 @@ public class CartServiceImp implements CartService{
 	}
 
 	@Override
-	public void alldeleteCartProcess(String member_number) {
-		dao.allDelete(member_number);
-	}
-
-		
-	@Override
 	public CartDTO cartListProcess(String member_number) {
 		return dao.cartlist(member_number);
 	}
 
-	
-
+	@Override
+	public void alldeleteCartProcess(String member_number) {
+		dao.allDelete(member_number);
+	}
 
 	
 	

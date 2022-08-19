@@ -287,7 +287,7 @@
  	<form class="needs-validation" novalidate name="order_frm"
 		id="order_frm" method="post">
 	 
-		<div class="container">
+		<div class="container" style="min-width:1000px; margin-top:10px;">
 			<main>
 				<div class="py-5 text-center">
 					<!--    <img class="d-block mx-auto mb-4" src="/docs/5.0/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> -->
@@ -321,7 +321,7 @@
 											<input type="hidden" class="individual_book_id_input" id="book_id" name="orderDTO[${status.index}].book_id" value="${cdto.book_id}">								
 											</td>
 											<td class="td_width_4 table_text_align_center" height="25px;">
-											<button class="delete_btn" data-num="${cdto.num}"><img alt="delete_btn" src="/assets/img/delete_btn.png" width="12xp" height="12px" align="middle"></button>
+											<button class="delete_btn" data-num="${cdto.num}"><img alt="delete_btn" src="/assets/img/delete_btn.png" width="12px" height="12px" align="middle"></button>
 											</td>
 										</tr>
 										<tr  >
@@ -402,12 +402,15 @@
 							
 								
 								
-								<li class="list-group-item">
+								<li class="list-group-item d-flex justify-content-between">
 								<span>결제금액</span> 
+								
 								<span style="float: right;">
-								<input type="number" name="order_cost" id="order_cost" value="${totalPrice}" 
-								style="font-weight:bold; border:none; margin-right:-20px; background: transparent; text-align:right; padding-right:0px; " readonly="readonly"/> 
-								<strong>원</strong></span>
+								<input  type="number" name="order_cost" id="order_cost" value="${totalPrice}" 
+								style="font-weight:bold; border:none; background: transparent;text-align:right;" readonly="readonly"/> 
+								<strong>원</strong>
+								</span>
+
 							</li>
 								
 								

@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ezenproject.dao.CouponDAO;
 import ezenproject.dto.CouponDTO;
-import ezenproject.dto.MemberDTO;
 
 
 @Service

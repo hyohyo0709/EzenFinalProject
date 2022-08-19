@@ -71,8 +71,8 @@
 <style>
    #frm{
    position:relative;
-     bottom:160px;
-    left:350px;
+     bottom:210px;
+    left:380px;
     width:70%;
     }
 </style>
@@ -92,8 +92,12 @@
   
   
   <!-- member detail start -->
-
+	
 <form class="row g-3" id="frm" method="post" name="frm" style="margin-left: -100px;">
+  <div class="col-md-11" style="text-align: center; font-size: 30px; font-weight: bold;" >
+	회원 정보
+  </div>
+  <div class="col-mde-12"></div>
   <div class="col-md-4">
     <label for="inputState" class="form-label">회원번호</label>
    <input type="text" class="form-control" readonly="readonly" name="member_number"value="${memberInfo.member_number}">
@@ -158,9 +162,9 @@
     <label for="inputCity" class="form-label">전화번호</label>
     <input type="tel" class="form-control" name="member_phone"value="${memberInfo.member_phone}">
   </div>
-  <div class="col-12"><br><br><br></div>
+  <div class="col-12"><br><br></div>
   <div class="col-md-4"	></div>
-  <div class="col-md-4">
+  <div class="col-md-4" style="margin-left: 20px; ">
   <input type="hidden" name="num" value="${memberInfo.num}"/>
   <input style="" type="button" id="update" class="btn btn-dark" value="수정" />
   <input type="button" id="delete" class="btn btn-danger" value="회원 탈퇴" />
