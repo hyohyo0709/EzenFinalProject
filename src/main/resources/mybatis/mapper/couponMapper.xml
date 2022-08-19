@@ -45,6 +45,7 @@
     <!-- /////////////여기까지 관리자 페이지 매퍼 ////////////////  -->
     
     
+    <!--쿠폰 사용할 때 없어지는것  -->
     <delete id="usedCoupon" parameterType="String">
     
     delete from ezencoupons

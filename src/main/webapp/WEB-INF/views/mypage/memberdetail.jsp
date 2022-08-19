@@ -21,7 +21,7 @@
     />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script defer type="text/javascript" src="./mypage.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#update").click(function(){
@@ -86,7 +86,7 @@
    
 
   <!-- mypage menu start -->
-
+<div class="container">
 	<%@ include file = "mypagemenu.jsp"%>
   <!-- mypage menu end -->
   
@@ -165,6 +165,7 @@
   <input type="button" id="delete" class="btn btn-danger" value="회원 탈퇴" />
   </div>
 </form>
+</div>
 
   <!-- member detail end -->
   

@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script  src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="./mypage.js"></script>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></link>
 <link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"></link>
     <link
@@ -137,7 +137,7 @@ small{
 	
 	
 	  <!-- mypage menu start -->
-
+<div class="container">
 	<%@ include file = "mypagemenu.jsp"%>
   <!-- mypage menu end -->
   
@@ -155,6 +155,7 @@ small{
             <div class="media flex-column flex-sm-row">
                 <div class="media-body ">
                     <h5 class="bold">${orderInfo.ezenbooks.book_title}</h5>
+                    
                     <p class="text-muted">주문수량 : ${orderInfo.book_qty}권</p>
                     <h4 class="mt-3 mb-4 bold">계산금액:<span class="mt-5"></span> ${orderInfo.order_cost}원 <span class="small text-muted"> (&#8361;) </span></h4>
                     <p class=" text-dark">작가명 : <span class=" text-muted"> ${orderInfo.ezenbooks.book_author}</span> </p>
@@ -183,7 +184,7 @@ small{
         </div>
     </div>
 </div>
-
+</div>
   <!-- order detail end -->
     <!-- Footer Start -->
  <%@ include file = "../common/footer.jsp"%>

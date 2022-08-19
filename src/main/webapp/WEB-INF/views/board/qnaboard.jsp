@@ -20,7 +20,8 @@
     />
 
 
-    <link href="../assets/css/style.css" rel="stylesheet" />
+    <link href="/assets/css/style.css" rel="stylesheet" />
+    <link href="/assets/css/board.css" rel="stylesheet" />
 <script type="text/javascript">
 
 function btnWrite() {
@@ -35,42 +36,6 @@ function btnWrite() {
 	}
 
 </script>      
-<style type="text/css">
-
-
-#bodywrap{
-  position:relative;
-  width:70%;
-  margin-left:300px;
-  bottom: 155px;
-  
-}
-
-table,tr,th,td{
-	border:1px solid black;
-	border-collapse: collapse;	
-}
-
-.pagelist a{
-	color:white;
-	bottom:40px;
-}
-
-.pagelist a:hover, .pagelist .pagecolor{
-	text-decoration: underline;
-}
-#frm{
-	padding-left: 900px;
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
-
-
-</style>
 </head>
 <body>
 	<!-- Header start -->

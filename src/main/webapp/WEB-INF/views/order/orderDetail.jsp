@@ -20,7 +20,7 @@
 	integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
 	crossorigin="anonymous"></script>
 
-<link href="../assets/css/style.css" rel="stylesheet" />
+<link href="/assets/css/style.css" rel="stylesheet" />
 <title>주문 상세</title>
 
 <!-- 파비콘 -->
@@ -119,28 +119,28 @@
 		$("#btnCoupon").click(function(){			
 				
 			
-			 var nn=$("#couponSelect").val(); // 
+			 var couponValue=$("#couponSelect").val(); // 
 				var cnum = $("#couponSelect").find("option:selected").data("sub");
 			 
-			 if(nn<1 && nn>0){
+			 if(couponValue<1 && couponValue>0){
 				 $('#coupon_number').val(cnum);
 				 $('#couponpricedirfrm').hide();
 				 $('#couponpriceperfrm').show();
-				  $('#couponpriceper').val(100-nn*100);
-				  $('#order_cost').val("${bdto.sellprice}"*nn);
+				  $('#couponpriceper').val(100-couponValue*100);
+				  $('#order_cost').val(Math.round("${bdto.sellprice* book_qty}"*couponValue));
 			 }
-			 if(nn>=1){
+			 if(couponValue>=1){
 				 $('#coupon_number').val(cnum);
 				 $('#couponpriceperfrm').hide();
 				 $('#couponpricedirfrm').show();
-				 $('#couponpricedir').val(nn);
-				 $('#order_cost').val("${bdto.sellprice}"-nn);
+				 $('#couponpricedir').val(couponValue);
+				 $('#order_cost').val("${bdto.sellprice * book_qty}"-couponValue);
 			 }
-			 if(nn==0){
+			 if(couponValue==0){
 				 $('#coupon_number').val(null);
 				 $('#couponpricedirfrm').hide();
 				 $('#couponpriceperfrm').hide();
-				 $('#order_cost').val("${bdto.sellprice}");
+				 $('#order_cost').val("${bdto.sellprice * book_qty}");
 			 }
 			 
 			 
@@ -207,7 +207,16 @@
 											width="100%" class="img-responsive img-thumbnail"
 											alt="${bdto.book_img}">
 									</div>
+									
+									
 								</div> <span class="text-muted"></span>
+							</li>
+							<li class="list-group-item d-flex justify-content-between lh-sm">
+								<div>
+									<h6 class="my-0">수량</h6>
+									<small class="text-muted"></small>
+									<input name="book_qty" value="${book_qty }" hidden="true">
+								</div> <span class="text-muted">${book_qty }권</span>
 							</li>
 							<li class="list-group-item d-flex justify-content-between lh-sm">
 								<div>
@@ -250,7 +259,7 @@
 								<span>결제금액</span> 
 								
 								
-								<input type="number" name="order_cost" id="order_cost" value="${bdto.sellprice}" 
+								<input type="number" name="order_cost" id="order_cost" value="${bdto.sellprice * book_qty}" 
 								style="font-weight:bold; border:none; background: transparent;text-align:right;" readonly="readonly"/> 
 								<strong>원</strong>
 

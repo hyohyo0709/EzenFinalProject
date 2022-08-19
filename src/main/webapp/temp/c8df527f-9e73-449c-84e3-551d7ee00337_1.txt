@@ -1,8 +1,0 @@
-https://docs.google.com/spreadsheets/d/1x--fLk-6F1wHNgKi9Sr449IIuboUE1oJQlLGOuuaWb4/edit#gid=0
-https://docs.google.com/drawings/d/11_A-Sq6ymud0fU15p3BHZs7tqPJknqFtcxeXntfd2WE/edit
-https://docs.google.com/spreadsheets/d/1j37GvcmP-B420lUq6S2WtXPeVfWe361o9o_uXVDqvNU/edit#gid=0
-
-
-
-SELECT r.recipe_name,r.recipe_content,i.ingredient_name,ri.amount FROM recipes r, ingredients i,recipe_ingredients ri
-WHERE recipe_id = ?

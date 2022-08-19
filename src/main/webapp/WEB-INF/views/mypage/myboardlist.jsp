@@ -18,52 +18,8 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-
-
+    <link href="../assets/css/board.css" rel="stylesheet" />
     <link href="../assets/css/style.css" rel="stylesheet" />
-<script type="text/javascript">
-
-
-</script>      
-<style type="text/css">
-body {width:100%; height:100%; margin:0; padding:0; overflow-y:scroll; position:relative;} 
-html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
-#bodywrap{
-    position:relative;
-    bottom:180px;
-    left:300px;
-    width:70%;
-}
-
-table,tr,th,td{
-	border:1px solid black;
-	border-collapse: collapse;	
-}
-
-.pagelist a{
-	color:white;
-	
-}
-
-.pagelist a:hover, .pagelist .pagecolor{
-	text-decoration: underline;
-}
-#frm{
-	padding-left: 900px;
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
-
-#boardBtn{
-	position:relative;
-	padding-left:600px;
-	bottom:50px;
-}
-</style>
 </head>
 <body>
 	<!-- Header start -->
@@ -72,7 +28,7 @@ a {
     <!-- Header end -->
     
   <!-- mypage menu start -->
-  
+<div class="container">  
 	<%@ include file = "mypagemenu.jsp"%>
   <!-- mypage menu end -->
   	
@@ -93,11 +49,10 @@ a {
 	<table class='table table-dark table-striped'>
 	<tr  style="text-align: center;">
 	<th width="5%" >번호</th>
-	<th width="15%">제목</th>
-	<th width="10%">아이디</th>
-	<th width="10%">조회수</th>
+	<th width="20%">제목</th>
+	<th width="15%">아이디</th>
+	<th width="15%">조회수</th>
 	<th width="10%">글종류</th>
-	<th width="15%">작성일</th>
 	</tr>
 	<c:forEach items="${aList}" var="dto">
 	<tr>
@@ -120,12 +75,11 @@ a {
 	<td  style="text-align: center;">답글</td>
 	</c:otherwise>
 	</c:choose>
-	<td  style="text-align: center;">${dto.reg_date}</td>
 	</tr>
 	</c:forEach>
 	</table>
 	<hr />
-	<div class="pagelist">
+	<div class="mypagelist">
 	<!-- 이전 출력 시작 -->
 	<ul class="pagination">
 	<c:if test="${pv.startPage>1}">
@@ -163,7 +117,7 @@ a {
 	</div>
 
 </div>
-
+</div>
 
 
     <!-- Footer Start -->

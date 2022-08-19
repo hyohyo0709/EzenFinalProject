@@ -223,8 +223,48 @@ const BookAdd = () => {
                 label='장르'
                 onChange={handleCategoryChange}
               >
-                <MenuItem value={1}>소설</MenuItem>
-                <MenuItem value={2}>인문/사회</MenuItem>
+                <MenuItem value={1}>시</MenuItem>
+                <MenuItem value={2}>역사소설</MenuItem>
+                <MenuItem value={3}>과학소설(SF)</MenuItem>
+                <MenuItem value={4}>추리/미스터리 소설</MenuItem>
+                <MenuItem value={5}>판타지/환상문학</MenuItem>
+                <MenuItem value={6}>희곡</MenuItem>
+                <MenuItem value={7}>교양인문학</MenuItem>
+                <MenuItem value={8}>인문에세이</MenuItem>
+                <MenuItem value={9}>철학</MenuItem>
+                <MenuItem value={10}>심리/정식분석학</MenuItem>
+                <MenuItem value={11}>신화/종교학</MenuItem>
+                <MenuItem value={12}>문화/문화이론</MenuItem>
+                <MenuItem value={13}>비평/칼럼</MenuItem>
+                <MenuItem value={14}>사회문제</MenuItem>
+                <MenuItem value={15}>환경/생태문제</MenuItem>
+                <MenuItem value={16}>사회운동</MenuItem>
+                <MenuItem value={17}>언론/미디어</MenuItem>
+                <MenuItem value={18}>법과 생활</MenuItem>
+                <MenuItem value={19}>동양사일반</MenuItem>
+                <MenuItem value={20}>역사학</MenuItem>
+                <MenuItem value={21}>한국고대~고려시대</MenuItem>
+                <MenuItem value={22}>조선사</MenuItem>
+                <MenuItem value={23}>서양사</MenuItem>
+                <MenuItem value={24}>전쟁/분쟁사</MenuItem>
+                <MenuItem value={25}>컬러링북</MenuItem>
+                <MenuItem value={26}>예술/대중문화의 이해</MenuItem>
+                <MenuItem value={27}>미술</MenuItem>
+                <MenuItem value={28}>음악</MenuItem>
+                <MenuItem value={29}>건축</MenuItem>
+                <MenuItem value={30}>무용</MenuItem>
+                <MenuItem value={31}>기초과학/교양과학</MenuItem>
+                <MenuItem value={32}>과학사회학</MenuItem>
+                <MenuItem value={33}>생명과학</MenuItem>
+                <MenuItem value={34}>의학</MenuItem>
+                <MenuItem value={35}>천문학</MenuItem>
+                <MenuItem value={36}>화학</MenuItem>
+                <MenuItem value={37}>경제학/경제일반</MenuItem>
+                <MenuItem value={38}>역사소설</MenuItem>
+                <MenuItem value={39}>마케팅/세일즈</MenuItem>
+                <MenuItem value={40}>트렌드/미래전망</MenuItem>
+                <MenuItem value={41}>재테크/투자</MenuItem>
+                <MenuItem value={42}>창업/취업/은퇴</MenuItem>
               </Select>
             </FormControl>
           </Box>
