@@ -188,9 +188,26 @@ margin-left: 130px;
 	color:#999;
 	font-size:9.5pt;
 	}
+	
+	.quickmenu ul li #btnLoginMain {
+	position:relative;
+	float:left;
+	width:100%;
+	height:30px;
+	line-height:30px;
+	text-align:center;
+	color:#999;
+	font-size:9.5pt;
+	}
+	
 .quickmenu ul li a:hover {
 	color:#000;
 	}
+	
+	.quickmenu ul li #btnLoginMain:hover {
+	color:#000;
+	}
+	
 .quickmenu ul li:last-child {
 	border-bottom:0;
 	}

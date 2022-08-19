@@ -8,13 +8,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" >
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
+ 
 
 
 
@@ -88,8 +92,12 @@
     <li><a href="/cart/list/${member.member_number}">장바구니 </a></li>
   </c:when>
   <c:otherwise>
-	       <li><a href="/member/loginForm.do">마이페이지</a></li>
-	       <li><a href="/member/loginForm.do">장바구니 </a></li>
+	       <li><a id="btnLoginMain" type="button">마이페이지</a></li>
+	       
+	       <li><a id="btnLoginMain" type="button">장바구니 </a></li>
+	       
+	      
+
 	       </c:otherwise>
 	       </c:choose>
   </ul>
@@ -100,6 +108,8 @@
 	 	<!-- "col-lg-1" 퀵메뉴 끝 -->
 
 
+
+
 		</div>
 	 <!--	베스트셀러 "col-lg-4"의 끝 -->
 
@@ -108,4 +118,22 @@
 		</div><!--col-lg-8의 끝  -->
 	
 </body>
+
+  <script type="text/javascript">
+  
+  $("#btnLogin, #btnLoginMain").click(function(){
+	   $("#myModal").modal("show");
+	     $(".close").click(function(){
+	         $("#myModal").modal("hide");
+	         
+	        
+	      }); 
+	
+	     
+  })
+   
+  </script>
+  
+
+
 </html>

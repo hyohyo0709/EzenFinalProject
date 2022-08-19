@@ -234,10 +234,10 @@
 					<input class="buy_button3" type="button" value="바로구매" onclick="noStock()">
 					</c:when>
 					<c:otherwise>
-					<input class="buy_button1" type="button" value="장바구니 추가" onclick="nologin()">
-					<input class="buy_button1" type="button" value="장바구니 확인" onclick="nologin()" >
-					<input class="buy_button2" type="button" value="매장구매" onclick="nologin()">
-					<input class="buy_button3" type="button" value="바로구매" onclick="nologin()">
+					<input class="buy_button1" type="button" value="장바구니 추가" id="btnLoginBookDetail" onclick="nologin()">
+					<input class="buy_button1" type="button" value="장바구니 확인" id="btnLoginBookDetail" onclick="nologin()" >
+					<input class="buy_button2" type="button" value="매장구매" id="btnLoginBookDetail" onclick="nologin()">
+					<input class="buy_button3" type="button" value="바로구매" id="btnLoginBookDetail" onclick="nologin()">
 					</c:otherwise>
 					</c:choose>
 					</div>
@@ -371,5 +371,21 @@ window.open(link);
 		alert('로그인이 필요한 서비스입니다.')
 	};
 	</script>
+	
+	<script type="text/javascript">
+  
+  $("#btnLogin, #btnLoginBookDetail").click(function(){
+	   $("#myModal").modal("show");
+	     $(".close").click(function(){
+	         $("#myModal").modal("hide");
+	         
+	        
+	      }); 
+	
+	     
+  })
+  
+  </script>
+	
 	
 </html>

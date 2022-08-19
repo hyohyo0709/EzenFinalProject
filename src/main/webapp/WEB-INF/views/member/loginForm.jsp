@@ -53,7 +53,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
 
 <script>
 <!--로그인창 띄우자마자 모달 등장 -->
-$(document).ready(function() {
+ $(document).ready(function() {
      $("#myModal").modal("show");
      $(".close").click(function(){
          $("#myModal").modal("hide");
@@ -62,13 +62,13 @@ $(document).ready(function() {
       });
      
      
-});
+}); 
 </script>
   </head>
   <body>
    <!-- Nabar start -->
 
-    <%@ include file = "../common/header.jsp"%>
+   <%--  <%@ include file = "../common/header.jsp"%> --%>
     <!-- Header end -->
 
   <!-- breadclumb end -->
@@ -76,10 +76,10 @@ $(document).ready(function() {
 
   <!-- detail start -->
 <!-- Modal HTML -->
-<div id="myModal" class="modal fade">
+<!-- <div id="myModal" class="modal show">
 	<div class="modal-dialog modal-login">
-		<div class="modal-content">
-			<div class="modal-header">
+		<div class="modal-content"> -->
+			<div class="modal-header" id="myModal">
 				<div class="avatar">
 					<img src="../assets/img/avatar.png" alt="Avatar">
 				</div>				
@@ -102,13 +102,13 @@ $(document).ready(function() {
 			<div class="modal-footer">
 				<a href="/member/memberJoinForm.do">회원가입</a>
 			</div>
-		</div>
+		<!-- </div>
 	</div>
-</div>     
+</div>      -->
   
   <!-- detail end -->
 
   <!-- Footer Start -->
- <%@ include file = "../common/footer.jsp"%>
+<%--  <%@ include file = "../common/footer.jsp"%> --%>
   <!-- Footer end -->
 </html>

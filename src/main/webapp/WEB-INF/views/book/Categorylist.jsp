@@ -158,8 +158,8 @@
 			</c:when>
 	
 	<c:otherwise>
-		<a href="${contextPath}/member/loginForm.do"class="btn_medium btn_blue"> 바로 구매하기 </a>
-		<a href="${contextPath}/member/loginForm.do" class="btn_medium  btn_blue2">
+		<a id="btnLoginList" type="button" class="btn_medium btn_blue"> 바로 구매하기 </a>
+		<a id="btnLoginList" type="button" class="btn_medium  btn_blue2">
 		장바구니에 담기
 		
 		</a>
@@ -287,5 +287,22 @@
 	}
 	
 	</script> 
+	<script type="text/javascript">
+  
+  $("#btnLogin, #btnLoginList").click(function(){
+	   $("#myModal").modal("show");
+	     $(".close").click(function(){
+	         $("#myModal").modal("hide");
+	         
+	        
+	      }); 
+	
+	     
+  })
+  
+ 
+ 
+  
+  </script>
 	 
 </html>
