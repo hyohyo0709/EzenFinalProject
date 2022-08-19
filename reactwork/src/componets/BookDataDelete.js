@@ -22,7 +22,7 @@ const BookDataDelete = (props) => {
 
   const submitDataDelete = async (num) => {
     await axios
-      .delete(`http://localhost:8090/books/deletdata/${num}`)
+      .delete(`http://localhost:8090/books/deletedata/${num}`)
       .then((response) => {})
       .catch((err) => console.error(err.message));
 

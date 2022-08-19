@@ -45,6 +45,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
 	  <script type="text/javascript">
 	    window.onload=function(){
 	      alert("아이디나 비밀번호가 유효하지 않습니다.\n 다시 로그인하세요!");
+	      return false;
 	    }
 	  </script>
 	</c:when>
@@ -56,8 +57,8 @@ $(document).ready(function() {
      $("#myModal").modal("show");
      $(".close").click(function(){
          $("#myModal").modal("hide");
-         /* window.location.replace("http://localhost:8090/"); */
-         history.go(-1);
+         window.location.replace("http://localhost:8090/");
+        
       });
      
      

@@ -112,7 +112,13 @@
 
 		$("#btnOrder").click(function() {
 
-			$('#order_frm').attr("action", "/order/ordersave.do").submit();
+			if($("#order_name").val()!=0 && $("#order_phone").val()!=0 && $("#order_address").val()!=0){
+				$('#order_frm').attr("action", "/order/ordersave.do").submit();
+			}else{
+				alert("배송 정보를 확인해주세요.");
+				return false;
+			}
+			
 
 		})
 		

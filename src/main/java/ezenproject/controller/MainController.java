@@ -250,8 +250,8 @@ public class MainController {
 		
 		//배송 확인
 		@RequestMapping(value="/mypage/myorderstatus.do", method = RequestMethod.GET)
-		public ModelAndView orderStatusMethod(String order_number, ModelAndView mav) throws Exception {
-			odto = oservice.orderStatusProcess(order_number);
+		public ModelAndView orderStatusMethod(int onum, ModelAndView mav) throws Exception {
+			odto = oservice.orderStatusProcess(onum);
 			mav.addObject("orderstatus", odto);
 			mav.setViewName("/mypage/myorderstatus");
 			

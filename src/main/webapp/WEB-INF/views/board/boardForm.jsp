@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -44,6 +45,7 @@ function btnWrite() {
     <%@ include file = "../common/header.jsp"%>
     <!-- Header end -->
     
+    <div class="container">
     <!-- BoardMenu start -->
   <%@ include file = "boardmenu.jsp"%>
   	<!-- BoardMenu End -->
@@ -83,10 +85,10 @@ function btnWrite() {
 	<hr />
 	<!-- 글쓰기 -->
 	<form id="frm" method="get" action="write.do">
-	<input type="button"  onclick="btnWrite()" class="btn btn-secondary" value="글쓰기">
+	<input type="button" id="writeBtn" onclick="btnWrite()" class="btn btn-secondary" value="글쓰기">
 	<input type="hidden" name="board_type" value="0" />
 	</form>
-	<div class="pagelist">
+	<div class="mypagelist">
 	<!-- 이전 출력 시작 -->
 	<ul class="pagination">
 	<c:if test="${pv.startPage>1}">
@@ -121,7 +123,7 @@ function btnWrite() {
 
 </div>
 
-
+</div>
 
     <!-- Footer Start -->
  <%@ include file = "../common/footer.jsp"%>

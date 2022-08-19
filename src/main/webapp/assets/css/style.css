@@ -273,7 +273,7 @@ color:#444444;
 	color: rgb(60,10,10);
 	border-bottom: 2px solid;
 	min-width:600px;
-	word-break:break-all;
+	word-break : break-all;
 }
 
 .book_sub {
@@ -482,7 +482,6 @@ text-align:right;
 #random_book_img{
 	margin-left: 40px;
 }
-
 
 /*///////////////// book_detail에 삽입된 css 목록 끝 //////////////// */
 

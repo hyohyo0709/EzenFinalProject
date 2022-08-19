@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript" src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+
 <!-- <hr> -->
 <div class="foot text-center">
   
@@ -12,7 +12,7 @@ pageEncoding="UTF-8"%>
   <span>메인페이지</span></a>
   
   <span class ="copy_line">|</span>  
-  <a class="copy_btn" href="/board/boardForm.do">
+  <a class="copy_btn" href="/">
   <span>게시판</span></a>
   
   <span class ="copy_line">|</span>

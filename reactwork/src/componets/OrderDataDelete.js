@@ -22,7 +22,7 @@ const OrderDataDelete = (props) => {
 
   const submitDataDelete = async (num) => {
     await axios
-      .delete(`http://localhost:8090/orders/deletdata/${num}`)
+      .delete(`http://localhost:8090/orders/deletedata/${num}`)
       .then((response) => {})
       .catch((err) => console.error(err.message));
 
