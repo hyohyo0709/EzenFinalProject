@@ -16,6 +16,7 @@
   <id property="member_phone" column="member_phone"/>
   </resultMap>
   <resultMap type="BookDTO" id="BookDTO">
+  <id property="num" column="num"/>
   <id property="book_title" column="book_title"/>
   <id property="book_price" column="book_price"/>
    <id property="book_author" column="book_author" />
@@ -91,8 +92,8 @@
      <select id="selectOrderInformation"
    		parameterType="OrderDTO"
 		resultMap="OrderResult">
-	SELECT b.num, b.book_title, b.book_publisher,b.book_author, b.book_price,b.book_content,b.book_img, b.book_isbn,
-	o.num, o.order_number, o.order_cost, o.member_number, o.book_id, o.order_status, o.book_qty
+	SELECT o.num, b.num, b.book_title, b.book_publisher,b.book_author, b.book_price,b.book_content,b.book_img, b.book_isbn,
+	 o.order_number, o.order_cost, o.member_number, o.book_id, o.order_status, o.book_qty
 	FROM ezenorders o, ezenbooks b, ezenmembers m 
 	WHERE 
 	o.book_id = b.book_id 
@@ -118,7 +119,7 @@
     FROM ezenorders o, ezenbooks b, ezenmembers m 
     WHERE  m.member_number = o.member_number 
     AND o.book_id = b.book_id
-    AND o.order_number = #{order_number} 
+    AND o.num = #{num} 
     </select>
     
     

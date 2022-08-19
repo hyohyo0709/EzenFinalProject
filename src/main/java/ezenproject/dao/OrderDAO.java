@@ -23,7 +23,7 @@ public interface OrderDAO {
 	public void orderSave(OrderDTO dto);
 	public List<OrderDTO> myOrderList(String memnumber);
 	public OrderDTO selectOrderInformation(int num);
-	public OrderDTO checkOrderStatus(String order_number);
+	public OrderDTO checkOrderStatus(int num);
 	
 	public void updateOrderInformation(OrderDTO dto);
 }

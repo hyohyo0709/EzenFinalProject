@@ -121,7 +121,7 @@ small{
 	
 	<!-- orderstatus로 이동하기 위한 path2 변수 -->
 	 <c:url var="path2" value="/mypage/myorderstatus.do">
-		<c:param name="order_number" value="${orderInfo.order_number}" />
+		<c:param name="onum" value="${orderInfo.num}" />
 	</c:url>
 	
 	<!-- orderstatus 값 변경을위한 path3 변수 -->
@@ -166,9 +166,10 @@ small{
                 <c:url var="detail_path" value="/book/book_detail.do">
 										
 										<c:param name="num" value="${orderInfo.ezenbooks.num }" />
+										<c:param name="currentPage" value="1" />
 										
 									</c:url>
-                <a href="detail_path"> 
+                <a href="${detail_path }"> 
                 <img class="align-self-center img-fluid" src="../assets/img/${orderInfo.ezenbooks.book_img}" width="180 " height="180">
                 </a>
             </div>

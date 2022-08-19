@@ -123,7 +123,7 @@
 							</th>
 						</tr>
 						<tr>
-						<th><p style="margin-top: 10px">줄거리</p></th>
+						<th><p style="margin-top: 10px">책 소개</p></th>
 						</tr>
 						<tr>
 							<td colspan="2" class="book_story">${dto.book_content}</td>
@@ -265,7 +265,12 @@
 <div class="image-box">
 <div id="random_book_img">
 <c:forEach items="${alist}" var="list">
-	<img src="../assets/img/${list.book_img }" width="140" height="210" >
+<c:url var="detail_path" value="book_detail.do">
+										<c:param name="currentPage" value="1" />
+										<c:param name="num" value="${list.num }" />
+									</c:url>
+	<a href="${detail_path }">								
+	<img src="../assets/img/${list.book_img }" width="140" height="210" ></a>
 </c:forEach>
   	</div>
   	</div>	

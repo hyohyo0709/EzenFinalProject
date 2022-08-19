@@ -273,6 +273,7 @@ color:#444444;
 	color: rgb(60,10,10);
 	border-bottom: 2px solid;
 	min-width:600px;
+	word-break : break-all;
 }
 
 .book_sub {
