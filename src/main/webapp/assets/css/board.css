@@ -35,12 +35,17 @@ table,tr,th,td{
 
 .pagelist a{
 	color:white;
-	bottom:40px;
+	top:10px;
 }
 
 .mypagelist a{
 	color:white;
-	top:10px;
+	bottom:40px;
+}
+
+#writeBtn {
+	position: relative;
+	right: 70px;
 }
 
 #boardquickmenu{
