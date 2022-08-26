@@ -73,6 +73,8 @@ pageEncoding="UTF-8"%>
   style="border-left-color: black; border-right-color: black;">회원정보 수정</button>
   <button id="order" onclick="location.href='http://localhost:8090/mypage/myorderlist.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action"
   style="border-left-color: black; border-right-color: black;">주문확인 / 취소</button>
+  <button id="order" onclick="location.href='http://localhost:8090/cart/list/${member.member_number}'" class="list-group-item list-group-item-action"
+  style="border-left-color: black; border-right-color: black;">장바구니</button>
  <button id="coupon" onclick="location.href='http://localhost:8090/mypage/mycoupon.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action"
  style="border-left-color: black; border-right-color: black; ">쿠폰조회</button>
   <button id="board" onclick="location.href='http://localhost:8090/mypage/myboardlist.do?member_number=${member.member_number}&&member_id=${member.member_id}&&board_type=0'" class="list-group-item list-group-item-action"
