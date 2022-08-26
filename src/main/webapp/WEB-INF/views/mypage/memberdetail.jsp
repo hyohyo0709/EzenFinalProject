@@ -5,7 +5,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>회원 정보</title>
+    <link
+      rel="short icon"
+      href="../assets/img/favicon.png"
+      type="image/x-icon"
+    />
 <link href="../assets/css/style.css" rel="stylesheet" />
     <script
       defer

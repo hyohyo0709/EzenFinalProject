@@ -76,7 +76,7 @@ pageEncoding="UTF-8" isELIgnored="false"%>
 
   <!-- detail start -->
 <!-- Modal HTML -->
-<!-- <div id="myModal" class="modal show">
+ <div id="myModal" class="modal show">
 	<div class="modal-dialog modal-login">
 		<div class="modal-content"> -->
 			<div class="modal-header" id="myModal">
@@ -102,9 +102,9 @@ pageEncoding="UTF-8" isELIgnored="false"%>
 			<div class="modal-footer">
 				<a href="/member/memberJoinForm.do">회원가입</a>
 			</div>
-		<!-- </div>
+		 </div>
 	</div>
-</div>      -->
+</div>     
   
   <!-- detail end -->
 

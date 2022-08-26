@@ -369,7 +369,7 @@ public class MainController {
 	
 //////////////////////////////여기서부터 도서 리스트/////////////////////////////////////////////////////	
 	
-	
+//	http://localhost:8090/book/allBooklist.do
 //	모든 종류 도서 리스트(신작 도서리스트)
 	@RequestMapping(value = "/book/*Booklist.do")
 	public ModelAndView listAllBookMethod(HttpServletRequest request, PageDTO pv, ModelAndView mav) {

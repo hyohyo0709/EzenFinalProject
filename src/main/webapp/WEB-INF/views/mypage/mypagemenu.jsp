@@ -17,7 +17,7 @@
  <button id="coupon" onclick="location.href='http://localhost:8090/mypage/mycoupon.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action"
  style="border-left-color: black; border-right-color: black; ">쿠폰조회</button>
  <button id="board" onclick="location.href='http://localhost:8090/mypage/myboardlist.do?member_number=${member.member_number}&&member_id=${member.member_id}&&board_type=0'" class="list-group-item list-group-item-action"
- style="border-left-color: black; border-right-color: black; border-bottom-color: black;">본인작성 게시글</button>
+ style="border-left-color: black; border-right-color: black; border-bottom-color: black;">내가 쓴 글</button>
 </div>
 </div>
 </div>

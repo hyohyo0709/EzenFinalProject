@@ -21,7 +21,7 @@ pageEncoding="UTF-8"%>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
   <div class="container">
-    <a class="navbar-brand" href="/">배너 들어 갈 자리</a>
+    <a class="navbar-brand" href="/"> <img src="../assets/img/로고.png" alt="로고이미지" class="img-fluid"></a>
     <button
       class="navbar-toggler"
       type="button"
@@ -277,11 +277,11 @@ pageEncoding="UTF-8"%>
 					<img src="../assets/img/avatar.png" alt="Avatar">
 				</div>				
 				<h4 class="modal-title">Member Login</h4>	
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <button type="button" class="close" >&times;</button>
 			</div>
 			<div class="modal-body">
 				<form name="login" method="post"  action="/member/login.do">
-					<div class="form-group">
+					<div class="form-group" style="text-align:center; margin-top:20px; margin-bottom:0px;">
 						<input type="text" class="form-control" name="member_id" placeholder="ID" required="required">		
 					</div>
 					<div class="form-group">

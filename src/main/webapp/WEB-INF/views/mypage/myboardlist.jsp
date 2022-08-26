@@ -5,7 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>게시판</title>
+<title>작성글 조회</title>
+    <link
+      rel="short icon"
+      href="../assets/img/favicon.png"
+      type="image/x-icon"
+    />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -21,49 +27,16 @@
 
 
     <link href="../assets/css/style.css" rel="stylesheet" />
+    <link href="../assets/css/board.css" rel="stylesheet" />
 <script type="text/javascript">
+$(document).ready(function(){
+	if(${aList[0].board_type == null}){
+		alert('작성한 게시판글이 없습니다.');
+		history.go(-1);
+	}	
 
-
+});
 </script>      
-<style type="text/css">
-body {width:100%; height:100%; margin:0; padding:0; overflow-y:scroll; position:relative;} 
-html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
-#bodywrap{
-    position:relative;
-    bottom:180px;
-    left:300px;
-    width:70%;
-}
-
-table,tr,th,td{
-	border:1px solid black;
-	border-collapse: collapse;	
-}
-
-.pagelist a{
-	color:white;
-	
-}
-
-.pagelist a:hover, .pagelist .pagecolor{
-	text-decoration: underline;
-}
-#frm{
-	padding-left: 900px;
-}
-
-a {
-  text-decoration: none;
-  color: white;
-}
-
-
-#boardBtn{
-	position:relative;
-	padding-left:600px;
-	bottom:50px;
-}
-</style>
 </head>
 <body>
 	<!-- Header start -->
