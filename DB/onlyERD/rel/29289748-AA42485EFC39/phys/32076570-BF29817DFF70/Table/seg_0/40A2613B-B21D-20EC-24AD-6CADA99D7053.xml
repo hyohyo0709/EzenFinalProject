@@ -1,0 +1,55 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="EZENCOUPONS" directorySegmentName="seg_0" id="40A2613B-B21D-20EC-24AD-6CADA99D7053">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:12 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>427C9742-AB14-86EA-391B-47E1EAC7F821</segment>
+<tableSpace>F2A946D4-F641-47EE-FDE6-8809530B633A</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="MEMBER_NUMBER" id="B3716C2D-0BB3-EA12-184A-61656F385CD4">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:12 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="COUPON_TYPE" id="DEB89909-2A62-8F49-AF44-8F7A3F4A51A9">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:12 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="COUPON_NUMBER" id="F4E692DC-BA0A-5427-ECEF-0F34BBEB265A">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:12 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="NUM" id="F91848B5-4211-D409-E292-E124BE471CA3">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:12 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="COUPON_VALUE" id="FC3816EA-CDAF-F6D3-FF08-904ACDEF3F00">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:12 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<foreignKeys>
+<ForeignKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.FKProxyOraclev10g" name="EZENCOUPONS_EZENMEMBERS_FK" id="456BF6B9-AE83-EFF8-07E4-25812E416E82">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:36:36 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ForeignKey>
+</foreignKeys>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="EZENCOUPONS_PK" id="76EDFCF3-17CF-135C-32B8-F3E0D63D8C90">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:36:32 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

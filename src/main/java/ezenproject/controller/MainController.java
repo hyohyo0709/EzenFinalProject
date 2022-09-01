@@ -484,7 +484,8 @@ public class MainController {
 
 //	주문 페이지 들어가기
 	@RequestMapping(value = "/order/orderDetail.do")
-	public ModelAndView viewMethod(HttpServletRequest request, int num, ModelAndView mav, String member_number, int book_qty) {
+	public ModelAndView viewMethod(HttpServletRequest request, int num, ModelAndView mav,
+			String member_number, int book_qty) {
  bdto= bservice.contentProcess(num);
 List<CouponDTO> couponlist = couponservice.listProcess(member_number);
 		String viewName = (String) request.getAttribute("viewName");

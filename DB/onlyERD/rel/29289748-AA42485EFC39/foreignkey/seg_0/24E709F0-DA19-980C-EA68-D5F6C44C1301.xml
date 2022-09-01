@@ -1,0 +1,17 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="24E709F0-DA19-980C-EA68-D5F6C44C1301" containerWithKeyObject="F4FB8D58-EC1C-99E7-8B5A-ADC39682C333" localFKIndex="89043C01-BB36-A7C1-9CB7-958F0C559441" name="EZENCARTS_EZENBOOKS_FK">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:35:44 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<referredTableLongName>HR.EZENBOOKS</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>A74E03AA-2CC9-F6C9-FC42-97A53C8F19BD</referredTableID>
+<keyObject>3563988D-08A4-0B4D-2151-1C217D2E36A8</keyObject>
+<referredKeyID>3563988D-08A4-0B4D-2151-1C217D2E36A8</referredKeyID>
+<mandatory>false</mandatory>
+<refColNames>BOOK_ID</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<discriminatorColumn>233DD0CF-811B-B818-3588-6AF7D4B14DB1</discriminatorColumn>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

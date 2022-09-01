@@ -1,0 +1,115 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="40A2613B-B21D-20EC-24AD-6CADA99D7053" name="EZENCOUPONS">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>HR</sourceObjSchema>
+<sourceObjName>EZENCOUPONS</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:12 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NUM" id="F91848B5-4211-D409-E292-E124BE471CA3">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENCOUPONS</sourceObjSchema>
+<sourceObjName>NUM</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:12 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<ownDataTypeParameters>,38,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COUPON_NUMBER" id="F4E692DC-BA0A-5427-ECEF-0F34BBEB265A">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENCOUPONS</sourceObjSchema>
+<sourceObjName>COUPON_NUMBER</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:12 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MEMBER_NUMBER" id="B3716C2D-0BB3-EA12-184A-61656F385CD4">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENCOUPONS</sourceObjSchema>
+<sourceObjName>MEMBER_NUMBER</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:12 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="95918F85-A1D2-6239-E0F4-9F282F78FA00" referredColumn="6ED73DB6-23F7-28D9-FB87-9C7AC3C93EE8"/>
+</associations>
+</Column>
+<Column name="COUPON_TYPE" id="DEB89909-2A62-8F49-AF44-8F7A3F4A51A9">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENCOUPONS</sourceObjSchema>
+<sourceObjName>COUPON_TYPE</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:12 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="COUPON_VALUE" id="FC3816EA-CDAF-F6D3-FF08-904ACDEF3F00">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENCOUPONS</sourceObjSchema>
+<sourceObjName>COUPON_VALUE</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:12 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>20</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,20,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="76EDFCF3-17CF-135C-32B8-F3E0D63D8C90" name="EZENCOUPONS_PK">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:36:32 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F4E692DC-BA0A-5427-ECEF-0F34BBEB265A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="456BF6B9-AE83-EFF8-07E4-25812E416E82" name="EZENCOUPONS_EZENMEMBERS_FK">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:36:36 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B3716C2D-0BB3-EA12-184A-61656F385CD4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

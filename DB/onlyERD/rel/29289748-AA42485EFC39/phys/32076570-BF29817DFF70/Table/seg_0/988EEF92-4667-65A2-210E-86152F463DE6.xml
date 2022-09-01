@@ -1,0 +1,73 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="EZENMEMBERS" directorySegmentName="seg_0" id="988EEF92-4667-65A2-210E-86152F463DE6">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:19 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>427C9742-AB14-86EA-391B-47E1EAC7F821</segment>
+<tableSpace>F2A946D4-F641-47EE-FDE6-8809530B633A</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="MEMBER_STATUS" id="01D5B5F9-5C02-FE8F-F0C1-C44D7ACB58E5">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:19 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MEMBER_PASS" id="04811DC2-5947-E8C8-4D4E-7156934C0BD6">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:19 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MEMBER_ADDRESS" id="1CAE94E0-4B65-431B-DEED-DCE063F69C22">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:19 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MEMBER_TYPE" id="25866076-01D8-1D95-9628-8F87576941BA">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:19 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MEMBER_ID" id="4EC5C9EF-F74D-D4E5-E599-611A8402057F">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:19 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MEMBER_NUMBER" id="6ED73DB6-23F7-28D9-FB87-9C7AC3C93EE8">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:19 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MEMBER_NAME" id="9C7BCCE4-72F7-87DA-8CFB-1364EC29B232">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:19 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="NUM" id="9D15E125-76FA-C469-0938-5F827A40EDC1">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:19 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MEMBER_EMAIL" id="A54B6F9A-3A0C-BA72-AB1C-E7CE065A97D9">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:19 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MEMBER_PHONE" id="C6469F31-140F-2B6C-6680-FCFAEEFB49E3">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:19 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="EZENMEMBERS_PK" id="AE28463C-C495-CDCE-DD46-06E887E525E2">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:36 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>
