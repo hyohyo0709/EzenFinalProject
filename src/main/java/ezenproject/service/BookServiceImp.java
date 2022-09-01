@@ -181,20 +181,9 @@ public class BookServiceImp implements BookService{
 		Date now = new Date();
 		SimpleDateFormat date = new SimpleDateFormat("yyMMddHHmmss");
 		
-		/*
-		 * type은 책의 종류에 따라 코드를 부여해주는것
-		 * book_category = 1 = 소설 =booktype=AA
-		 * 				 = 2 = 인문/사회 
-		 * */
-		
-		
-		if(dto.getBook_category()==1) {
-			type="AA";
+		type="BNUM";
 			bookcode= type+date.format(now);
-		}else if(dto.getBook_category()==2) {
-			type="BB";
-			bookcode= type+date.format(now);
-		}
+		
 		
 		
 		
