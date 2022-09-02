@@ -408,6 +408,7 @@ public class MainController {
 			}
 			pdto = new PageDTO(currentPage, totalRecord);
 			List<BookDTO> alist = bservice.categoryBookListProcess(pdto, book_category);
+			mav.addObject("book_category", book_category);
 			mav.addObject("categoryName", categoryName);
 			mav.addObject("alist", alist);
 			mav.addObject("pv", pdto);
