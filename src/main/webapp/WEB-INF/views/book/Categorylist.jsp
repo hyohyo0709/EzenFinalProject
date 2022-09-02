@@ -199,7 +199,7 @@
 <!-- 이전 시작 -->
 	<li class="page-item"><c:if test="${pv.startPage>1}">
 		<a class="page-link"
-			href="/book/novelCategorylist.do?book_category=1&currentPage=${pv.startPage-pv.blockPage}"
+			href="/book/novelCategorylist.do?book_category=${book_category }&currentPage=${pv.startPage-pv.blockPage}"
 			aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 		</a>
 		</c:if></li>
@@ -207,9 +207,9 @@
 
 <!-- 게시판 목록 이동 시작 -->
 	<c:forEach var="i" begin="${pv.startPage }" end="${pv.endPage }">
-		<c:url var="currPage" value="novelCategorylist.do">
+		<c:url var="currPage" value="Categorylist.do">
 			<c:param name="currentPage" value="${i}" />
-			<c:param name="book_category" value="1" />
+			<c:param name="book_category" value="${book_category }" />
 		</c:url>
 	<c:choose>
 		<c:when test="${i==pv.currentPage }">
@@ -237,7 +237,7 @@
 	<li class="page-item">
 	<c:if test="${pv.endPage<pv.totalPage}">
 			<a class="page-link" 
-				href="/book/novelCategorylist.do?book_category=1&currentPage=${pv.startPage+pv.blockPage}"
+				href="/book/Categorylist.do?book_category=${book_category }&currentPage=${pv.startPage+pv.blockPage}"
 				aria-label="Next"> 
 				<span aria-hidden="true">&raquo;</span>
 			</a>

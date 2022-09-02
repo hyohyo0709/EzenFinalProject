@@ -111,13 +111,154 @@
 	</div>
 	
 	<div class="author">${book.book_author}
+   <!--장르구분 시작  -->
     <c:if test="${book.book_category==1}">
-		<small class="text-muted">[소설]</small>
+		<small class="text-muted">[시]</small>
 	</c:if>
 	
 	<c:if test="${book.book_category==2}">
-		<small class="text-muted">[인문/사회]</small>
+		<small class="text-muted">[역사소설]</small>
 	</c:if> 
+	 <c:if test="${book.book_category==3}">
+		<small class="text-muted">[과학소설(SF)]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==4}">
+		<small class="text-muted">[추리/미스터리 소설]</small>
+	</c:if> 
+	 <c:if test="${book.book_category==5}">
+		<small class="text-muted">[판타지/환상문학]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==6}">
+		<small class="text-muted">[희곡]</small>
+	</c:if> 
+	 <c:if test="${book.book_category==7}">
+		<small class="text-muted">[교양인문학]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==8}">
+		<small class="text-muted">[인문에세이]</small>
+	</c:if> 
+	 <c:if test="${book.book_category==9}">
+		<small class="text-muted">[철학]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==10}">
+		<small class="text-muted">[심리/정식분석학]</small>
+	</c:if> 
+	 <c:if test="${book.book_category==11}">
+		<small class="text-muted">[신화/종교학]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==12}">
+		<small class="text-muted">[문화/문화이론]</small>
+	</c:if> 
+	 <c:if test="${book.book_category==13}">
+		<small class="text-muted">[비평/칼럼]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==14}">
+		<small class="text-muted">[사회문제]</small>
+	</c:if> 
+	 <c:if test="${book.book_category==15}">
+		<small class="text-muted">[환경/생태문제]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==16}">
+		<small class="text-muted">[사회운동]</small>
+	</c:if> 
+	 <c:if test="${book.book_category==17}">
+		<small class="text-muted">[언론/미디어]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==18}">
+		<small class="text-muted">[법과 생활]</small>
+	</c:if> 
+	 <c:if test="${book.book_category==19}">
+		<small class="text-muted">[동양사일반]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==20}">
+		<small class="text-muted">[역사학]</small>
+	</c:if> 
+	 <c:if test="${book.book_category==21}">
+		<small class="text-muted">[한국고대~고려시대]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==22}">
+		<small class="text-muted">[조선사]</small>
+	</c:if> 
+	<c:if test="${book.book_category==23}">
+		<small class="text-muted">[서양사]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==24}">
+		<small class="text-muted">[전쟁/분쟁사]</small>
+	</c:if> 
+	 <c:if test="${book.book_category==25}">
+		<small class="text-muted">[컬러링북]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==26}">
+		<small class="text-muted">[예술/대중문화의 이해]</small>
+	</c:if> 
+	 <c:if test="${book.book_category==27}">
+		<small class="text-muted">[미술]]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==28}">
+		<small class="text-muted">[음악]</small>
+	</c:if> 
+	<c:if test="${book.book_category==29}">
+		<small class="text-muted">[건측]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==30}">
+		<small class="text-muted">[무용]</small>
+	</c:if> 
+	 <c:if test="${book.book_category==31}">
+		<small class="text-muted">[기초과학/교양과학]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==32}">
+		<small class="text-muted">[과학사회학]</small>
+	</c:if> 
+	 <c:if test="${book.book_category==33}">
+		<small class="text-muted">[생명과학]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==34}">
+		<small class="text-muted">[의학]</small>
+	</c:if> 
+	<c:if test="${book.book_category==35}">
+		<small class="text-muted">[천문학]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==36}">
+		<small class="text-muted">[화학]</small>
+	</c:if> 
+	 <c:if test="${book.book_category==37}">
+		<small class="text-muted">[경제학/경제일반]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==38}">
+		<small class="text-muted">[기업 경영]</small>
+	</c:if> 
+	 <c:if test="${book.book_category==39}">
+		<small class="text-muted">[마케팅/세일즈]</small>
+	</c:if>
+	
+	<c:if test="${book.book_category==40}">
+		<small class="text-muted">[트렌드/미래전망]</small>
+	</c:if> 
+	<c:if test="${book.book_category==41}">
+		<small class="text-muted">[재테크/투자]</small>
+	</c:if> 
+	<c:if test="${book.book_category==42}">
+		<small class="text-muted">[창업/취업/은퇴]</small>
+	</c:if> 
+    <!--장르구분 끝  -->
     
     <span class="line">|</span> ${book.book_publisher}
     <span class="line">|</span> 2022년 05월 30일
@@ -202,7 +343,7 @@
 <!-- 이전 시작 -->
 	<li class="page-item"><c:if test="${pv.startPage>1}">
 		<a class="page-link"
-			href="/book/allBooklist.do?currentPage=${pv.startPage-pv.blockPage}"
+			href="/book/newBooklist.do?currentPage=${pv.startPage-pv.blockPage}"
 			aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
 		</a>
 		</c:if></li>
@@ -210,7 +351,7 @@
 
 <!-- 게시판 목록 이동 시작 -->
 	<c:forEach var="i" begin="${pv.startPage }" end="${pv.endPage }">
-		<c:url var="currPage" value="allBooklist.do">
+		<c:url var="currPage" value="newBooklist.do">
 			<c:param name="currentPage" value="${i}" />
 		</c:url>
 	<c:choose>
@@ -239,7 +380,7 @@
 	<li class="page-item">
 	<c:if test="${pv.endPage<pv.totalPage}">
 			<a class="page-link" 
-				href="/book/allBooklist.do?currentPage=${pv.startPage+pv.blockPage}"
+				href="/book/newBooklist.do?currentPage=${pv.startPage+pv.blockPage}"
 				aria-label="Next"> 
 				<span aria-hidden="true">&raquo;</span>
 			</a>
