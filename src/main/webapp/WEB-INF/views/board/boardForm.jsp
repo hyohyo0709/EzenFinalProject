@@ -34,7 +34,12 @@ function btnWrite() {
 		  frm.submit();
 	}else{
 	alert("게시판글 작성은 로그인후 가능합니다.");
-	location.href="http://localhost:8090/member/loginForm.do";
+	 $("#myModal").modal("show");
+     $(".close").click(function(){
+         $("#myModal").modal("hide");
+         
+        
+      }); 
 	}
 	}
 </script>    

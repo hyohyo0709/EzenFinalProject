@@ -260,7 +260,7 @@ const BookAdd = () => {
                 <MenuItem value={35}>천문학</MenuItem>
                 <MenuItem value={36}>화학</MenuItem>
                 <MenuItem value={37}>경제학/경제일반</MenuItem>
-                <MenuItem value={38}>역사소설</MenuItem>
+                <MenuItem value={38}>기업 경영</MenuItem>
                 <MenuItem value={39}>마케팅/세일즈</MenuItem>
                 <MenuItem value={40}>트렌드/미래전망</MenuItem>
                 <MenuItem value={41}>재테크/투자</MenuItem>

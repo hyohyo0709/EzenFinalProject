@@ -207,7 +207,7 @@ const BookTool = () => {
     } else if (book_category === 32) {
       return '과학사회학';
     } else if (book_category === 33) {
-      return '생면과학';
+      return '생명과학';
     } else if (book_category === 34) {
       return '의학';
     } else if (book_category === 35) {
