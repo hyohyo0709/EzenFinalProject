@@ -26,6 +26,13 @@ public class CouponServiceImp implements CouponService{
 	}
 
 	
+	@Override
+	public void usedCouponProcess(String coupon_number) {
+		dao.usedCoupon(coupon_number);
+		
+	}
+	
+	
 //	/////////////////////여기부터 관리자 서비스/////////////////////////////
 	@Override
 	public void saveNewCouponProcess(CouponDTO dto) {
@@ -56,7 +63,7 @@ public class CouponServiceImp implements CouponService{
 		
 	}
 	
-	
+//	[공용] 결제 페이지
 	@Override
 	public List<CouponDTO> listProcess(String member_number) {
 		
@@ -70,12 +77,5 @@ public class CouponServiceImp implements CouponService{
 	}
 	
 //	///////////////////여기까지 관리자 서비스///////////////////////////////////////
-
-@Override
-public List<CouponDTO> myCouponlistProcess(String member_number) {
-	
-	
-	return dao.myCouponlist(member_number);
-}
 	
 }

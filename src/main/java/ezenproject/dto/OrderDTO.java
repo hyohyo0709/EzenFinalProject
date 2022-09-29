@@ -15,6 +15,7 @@ public class OrderDTO {
 	private String order_phone;
 	private String order_name;
 	private String order_address;
+	private int book_qty;
 	
 	private MemberDTO ezenmembers;
 	private BookDTO ezenbooks;
@@ -90,6 +91,13 @@ public class OrderDTO {
 	public void setOrder_address(String order_address) {
 		this.order_address = order_address;
 	}
+	public int getBook_qty() {
+		return book_qty;
+	}
+	public void setBook_qty(int book_qty) {
+		this.book_qty = book_qty;
+	}
+	
 	
 	
 	

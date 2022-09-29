@@ -5,12 +5,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원정보 수정</title>
-	    <link
+<title>회원 정보</title>
+    <link
       rel="short icon"
       href="../assets/img/favicon.png"
       type="image/x-icon"
     />
+<link href="../assets/css/style.css" rel="stylesheet" />
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -25,14 +26,12 @@
     />
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script defer type="text/javascript" src="mypage.js"></script>
-<link href="../assets/css/style.css" rel="stylesheet" />
 
 <script type="text/javascript">
 	$(document).ready(function() {
 		$("#update").click(function(){
 			var result = confirm("회원 정보를 수정하시겠습니까?");
-			if(confirm){
+			if(result){
 				$("#frm").attr('action', '/mypage/update.do').submit();
 				alert("회원정보가 수정되었습니다.")
 			}
@@ -75,12 +74,10 @@
 </script>
 
 <style>
-
-   
    #frm{
    position:relative;
-     bottom:110px;
-    left:300px;
+     bottom:210px;
+    left:380px;
     width:70%;
     }
 </style>
@@ -94,28 +91,18 @@
    
 
   <!-- mypage menu start -->
-  <!--mypage menu를 왼쪽으로  -->
-  <div class="container">
-  <div class="row">
-  <div class="col-md-2">
-	<div class="list-group" id="quickmenu" align='left' > 
-	  <input type="text" id="mymenu" readonly="readonly"  class="list-group-item list-group-item-action active list-group-item-secondary"
-	    value="사용자 My Menu" />
-	  
-	  <button id="member" onclick="location.href='http://localhost:8090/mypage/memberdetail.do?num=${member.num}'" class="list-group-item list-group-item-action">회원정보 수정</button>
-	  <button id="order" onclick="location.href='http://localhost:8090/mypage/myorderlist.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action">주문확인 / 취소</button>
-  		<button id="coupon" onclick="location.href='http://localhost:8090/mypage/mycoupon.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action">쿠폰조회</button>
-	
-	</div> 
-	</div>
-	</div>
-
- <!-- mypage menu end -->
+<div class="container">
+	<%@ include file = "mypagemenu.jsp"%>
+  <!-- mypage menu end -->
   
   
   <!-- member detail start -->
-
-<form class="row g-3" id="frm" method="post" name="frm">
+	
+<form class="row g-3" id="frm" method="post" name="frm" style="margin-left: -100px;">
+  <div class="col-md-11" style="text-align: center; font-size: 30px; font-weight: bold;" >
+	회원 정보
+  </div>
+  <div class="col-mde-12"></div>
   <div class="col-md-4">
     <label for="inputState" class="form-label">회원번호</label>
    <input type="text" class="form-control" readonly="readonly" name="member_number"value="${memberInfo.member_number}">
@@ -128,14 +115,20 @@
     <label for="inputEmail4" class="form-label">아이디</label>
     <input type="text" class="form-control" name="member_id" readonly="readonly" value="${memberInfo.member_id}">
   </div>
-  <div class="col-md-4">
-    <label for="inputPassword4" class="form-label">비밀번호</label>
-    <input type="password" class="form-control" name="member_pass" id="member_pass" value="${memberInfo.member_pass }" readonly="readonly">
-      <!-- 비밀번호 변경 버튼 -->
-	<button type="button" class="btn btn-white" data-bs-toggle="modal" data-bs-target="#pass_change">
- 	 비밀번호 변경하기
+  <div class="col-md-1">
+  </div>
+  <div class="col-4">
+    <label for="inputAddress" class="form-label">이메일</label>
+    <input type="text" class="form-control" name="member_email" value="${memberInfo.member_email}">
+  </div>
+   <div class="col-md-7">
+    <label for="inputPassword4" class="form-label">비밀번호</label></br>
+    <input style=" width: 41%; float: left;" type="password" class="form-control" name="member_pass" id="member_pass" value="${memberInfo.member_pass }" readonly="readonly">
+      <button style="width:56%; float: right;" type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#pass_change">
+  	비밀번호 변경하기
 	</button>
-
+      </div>
+      <!-- 비밀번호 변경 버튼 -->
 <!-- Modal -->
 <div class="modal fade" id="pass_change" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -166,29 +159,24 @@
     </div>
   </div>
 </div>
-  </div>
-  
-  
-  <div class="col-12">
-    <label for="inputAddress" class="form-label">이메일</label>
-    <input type="text" class="form-control" name="member_email" value="${memberInfo.member_email}">
-  </div>
-  <div class="col-12">
+  <div class="col-7">
     <label for="inputAddress2" class="form-label">주소</label>
     <input type="text" class="form-control" name="member_address" value="${memberInfo.member_address}">
   </div>
-  <div class="col-md-6">
+  <div class="col-md-4">
     <label for="inputCity" class="form-label">전화번호</label>
     <input type="tel" class="form-control" name="member_phone"value="${memberInfo.member_phone}">
   </div>
-  <div>
+  <div class="col-12"><br><br></div>
+  <div class="col-md-4"	></div>
+  <div class="col-md-4" style="margin-left: 20px; ">
   <input type="hidden" name="num" value="${memberInfo.num}"/>
-  <input type="button" id="update" class="btn btn-dark" value="수정" />
+  <input style="" type="button" id="update" class="btn btn-dark" value="수정" />
   <input type="button" id="delete" class="btn btn-danger" value="회원 탈퇴" />
   </div>
 </form>
-
 </div>
+
   <!-- member detail end -->
   
    <!-- Footer Start -->

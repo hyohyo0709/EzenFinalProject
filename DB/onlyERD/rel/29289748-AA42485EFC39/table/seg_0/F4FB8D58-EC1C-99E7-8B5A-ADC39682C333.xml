@@ -1,0 +1,114 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F4FB8D58-EC1C-99E7-8B5A-ADC39682C333" name="EZENCARTS">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>HR</sourceObjSchema>
+<sourceObjName>EZENCARTS</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:09 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NUM" id="8F64C350-85A5-CFAF-3C55-622377E4C83D">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENCARTS</sourceObjSchema>
+<sourceObjName>NUM</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:09 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MEMBER_NUMBER" id="D6E009DE-366F-2D64-FF25-A1F44C1EB3BD">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENCARTS</sourceObjSchema>
+<sourceObjName>MEMBER_NUMBER</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:09 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A0401E92-52B6-FB20-9DAB-C258D480ABDE" referredColumn="6ED73DB6-23F7-28D9-FB87-9C7AC3C93EE8"/>
+</associations>
+</Column>
+<Column name="BOOK_ID" id="F33BDBC5-E39A-CDB0-D732-6F6AC75AC2E5">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENCARTS</sourceObjSchema>
+<sourceObjName>BOOK_ID</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:09 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="24E709F0-DA19-980C-EA68-D5F6C44C1301" referredColumn="233DD0CF-811B-B818-3588-6AF7D4B14DB1"/>
+</associations>
+</Column>
+<Column name="CART_AMOUNT" id="4CB36EAB-1B6D-EEA4-ABB1-0ECCCD266892">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENCARTS</sourceObjSchema>
+<sourceObjName>CART_AMOUNT</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:09 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<defaultValue>1</defaultValue>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="F30A5AA3-A292-C322-512D-12EFDDACD979" schemaObject="052A7EB4-FA2C-52AD-4301-3823A221AB62" name="EZENCARTS_PK">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>HR</sourceObjSchema>
+<sourceObjName>SYS_C007605</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:09 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="8F64C350-85A5-CFAF-3C55-622377E4C83D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7B7C7A1E-4436-74E3-2FD6-C60752261A7D" name="EZENCARTS_EZENMEMBERS_FK">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:35:00 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D6E009DE-366F-2D64-FF25-A1F44C1EB3BD"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="89043C01-BB36-A7C1-9CB7-958F0C559441" name="EZENCARTS_EZENBOOKS_FK">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:35:44 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F33BDBC5-E39A-CDB0-D732-6F6AC75AC2E5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

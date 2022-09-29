@@ -33,10 +33,10 @@
 
 <style >
 body {width:100%; height:100%; margin:0; padding:0; overflow-y:scroll; position:relative;} 
-html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
+/* html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;} */
  #coupontable{
     position:relative;
-   	bottom:120px;
+   	bottom:120px;	
     left:300px;
     width:70%;
     
@@ -49,25 +49,13 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
     <!-- Header end -->
 
   <!-- mypage menu start -->
-  <!--mypage menu를 왼쪽으로  -->
-  <div class="container">
-  <div class="row">
-  <div class="col-2">
-	<div class="list-group" id="quickmenu" align='left' > 
-	  <input type="text" id="mymenu" readonly="readonly"  class="list-group-item list-group-item-action active list-group-item-secondary"
-	    value="사용자 My Menu" />
-	  
- 		 <button id="member" onclick="location.href='http://localhost:8090/mypage/memberdetail.do?num=${member.num}'" class="list-group-item list-group-item-action">회원정보 수정</button>
- 		 <button id="order" onclick="location.href='http://localhost:8090/mypage/myorderlist.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action">주문확인 / 취소</button>
-  		<button id="coupon" onclick="location.href='http://localhost:8090/mypage/mycoupon.do?member_number=${member.member_number}'" class="list-group-item list-group-item-action">쿠폰조회</button>
-
-	</div> 
-	</div>
-	</div>
- <!-- mypage menu end --> 
+  
+ <div class="container"> 
+  <%@ include file = "mypagemenu.jsp"%>
+  <!-- mypage menu end --> 
  
    <!-- mycoupon detail start -->
- <table id='coupontable' class="table caption-top table-secondary">
+ <table id='coupontable' class="table caption-top " style="border-color: gray;">
  	<caption>쿠폰확인</caption>
    <thead>
     <tr >
@@ -92,11 +80,13 @@ html {width:100%; height:100%; margin:0; padding:0; overflow:hidden;}
 </tbody>
 </table>
 </div>
+
  <!-- coupon detail end -->
 
   
-</body>
+
   <!-- Footer Start -->
  <%@ include file = "../common/footer.jsp"%>
   <!-- Footer end -->
+  </body>
 </html>

@@ -4,7 +4,6 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
 
 import React, { useEffect, useState } from 'react';
 
@@ -31,6 +30,10 @@ import OrderDataDelete from './componets/OrderDataDelete';
 import CouponAdd from './componets/CouponAdd';
 import MemberDataDelete from './componets/MemberDataDelete';
 import CouponList from './componets/CouponList';
+import BoardTool from './componets/BoardTool';
+import BoardDataDelete from './componets/BoardDataDelete';
+import BoardReply from './componets/BoardReply';
+import BoardFileDownload from './componets/BoardFileDownload';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -69,6 +72,19 @@ const App = () => {
           <Route path='list' element={<OrderTool />} />
           <Route path='statuschange' element={<OrderStatusChange />} />
           <Route path='deletedata/:num' element={<OrderDataDelete />} />
+        </Route>
+
+        <Route path='boards' element={<BoardTool />}>
+          <Route path='list/:board_type' element={<BoardTool />} />
+          <Route path='delete/:num/:board_type' element={<BoardDataDelete />} />
+          <Route
+            path='reply/:board_type/:ref/:re_step/re_level'
+            element={<BoardReply />}
+          />
+          <Route
+            path='contentdownload/:num/:board_type/:upload'
+            element={<BoardFileDownload />}
+          />
         </Route>
       </Routes>
     </div>
@@ -122,7 +138,13 @@ function Layout() {
                 </Button>
               </Link>
             </Item>
-
+            <Item>
+              <Link to='/boards'>
+                <Button variant='contained' size='large'>
+                  게시판 관리
+                </Button>
+              </Link>
+            </Item>
             <Item>
               <Button
                 variant='contained'

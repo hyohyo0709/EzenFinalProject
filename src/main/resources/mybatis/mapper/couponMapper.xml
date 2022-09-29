@@ -27,6 +27,11 @@
     
     
     
+    
+    
+    
+    
+    
     <!--//////////// 여기부터 관리자 페이지 매퍼////////////  -->
     
     
@@ -40,11 +45,12 @@
     </insert>
     
     
+    <!-- [공용] 해당 회원의 쿠폰 리스트 출력  -->
     <select id="list" parameterType="String" resultType="CouponDTO">
     <![CDATA[
     select*from ezencoupons 
     where member_number=#{member_number}
-    order by num
+    order by coupon_type, coupon_value, num
     ]]>
     </select>
     
@@ -71,6 +77,12 @@
      
     
     
+    <!--쿠폰 사용할 때 없어지는것  -->
+    <delete id="usedCoupon" parameterType="String">
+    
+    delete from ezencoupons
+    where coupon_number=#{coupon_number}
+    </delete>
     
     
     </mapper>

@@ -16,7 +16,7 @@ public interface BookService {
 	public int countSearchProcess(String searchWord);
 	public BookDTO contentProcess(int num);
 	public void makeSellprice(BookDTO dto, int book_price);
-	
+	public List<BookDTO> newBookListProcess(PageDTO pv);
 	
 ///////////////////여기부터 관리자 페이지 서비스입니다.//////////////////
 	public List<BookDTO> listProcess();

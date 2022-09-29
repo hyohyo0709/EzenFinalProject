@@ -1,0 +1,209 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="A74E03AA-2CC9-F6C9-FC42-97A53C8F19BD" name="EZENBOOKS">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>HR</sourceObjSchema>
+<sourceObjName>EZENBOOKS</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:58 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NUM" id="071AEFC7-3F35-6B32-6AE6-A0AB04B76C37">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENBOOKS</sourceObjSchema>
+<sourceObjName>NUM</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:58 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>5</dataTypePrecision>
+<ownDataTypeParameters>,5,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BOOK_ID" id="233DD0CF-811B-B818-3588-6AF7D4B14DB1">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENBOOKS</sourceObjSchema>
+<sourceObjName>BOOK_ID</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:58 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BOOK_TITLE" id="9051558C-96BE-2269-A94B-AF3693E68E57">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENBOOKS</sourceObjSchema>
+<sourceObjName>BOOK_TITLE</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:58 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BOOK_AUTHOR" id="8AEF78BB-9FA1-E5F6-D9E7-FA920AE4759A">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENBOOKS</sourceObjSchema>
+<sourceObjName>BOOK_AUTHOR</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:58 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BOOK_PUBLISHER" id="D9ADEAB8-0DDD-2F92-8094-0BA1E618E46C">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENBOOKS</sourceObjSchema>
+<sourceObjName>BOOK_PUBLISHER</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:58 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BOOK_PRICE" id="825D8453-67CF-DF40-0746-8666E80D1C7D">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENBOOKS</sourceObjSchema>
+<sourceObjName>BOOK_PRICE</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:58 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>20</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,20,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BOOK_CONTENT" id="440879A6-0D50-D854-1465-3750124D85F0">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENBOOKS</sourceObjSchema>
+<sourceObjName>BOOK_CONTENT</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:58 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BOOK_CATEGORY" id="234672D5-62C8-217E-98D7-EB90767F170B">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENBOOKS</sourceObjSchema>
+<sourceObjName>BOOK_CATEGORY</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:58 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>3</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,3,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BOOK_ISBN" id="4743D68C-9278-6F4D-3B4F-87F6415C11CE">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENBOOKS</sourceObjSchema>
+<sourceObjName>BOOK_ISBN</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:58 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>20 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BOOK_IMG" id="F2485116-5FC9-7015-11D7-8C90AAFDE5FC">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENBOOKS</sourceObjSchema>
+<sourceObjName>BOOK_IMG</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:58 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BOOK_STOCK" id="A322DB59-ADD6-C4F6-FB75-EE8501E7F5C7">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENBOOKS</sourceObjSchema>
+<sourceObjName>BOOK_STOCK</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:58 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BOOK_STATUS" id="150AF109-465F-4C13-B976-5BCFEE9ABF93">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENBOOKS</sourceObjSchema>
+<sourceObjName>BOOK_STATUS</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:58 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="3563988D-08A4-0B4D-2151-1C217D2E36A8" name="EZENBOOKS_PK">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:42 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="233DD0CF-811B-B818-3588-6AF7D4B14DB1"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

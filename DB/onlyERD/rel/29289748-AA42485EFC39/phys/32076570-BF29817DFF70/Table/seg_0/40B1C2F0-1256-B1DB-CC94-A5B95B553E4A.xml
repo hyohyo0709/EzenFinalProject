@@ -1,0 +1,84 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TableProxyOraclev11g class="oracle.dbtools.crest.model.design.storage.oracle.v11g.TableProxyOraclev11g" name="EZENBOARDS" directorySegmentName="seg_0" id="40B1C2F0-1256-B1DB-CC94-A5B95B553E4A">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:38:14 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<logging>YES</logging>
+<partitionedRowMovement>DISABLE</partitionedRowMovement>
+<segment>427C9742-AB14-86EA-391B-47E1EAC7F821</segment>
+<tableSpace>F2A946D4-F641-47EE-FDE6-8809530B633A</tableSpace>
+<temporaryChanged>false</temporaryChanged>
+<accessDriverType>oracle_loader</accessDriverType>
+<rejectLimit></rejectLimit>
+<columnProxies itemClass="oracle.dbtools.crest.model.design.storage.oracle.v12c.ColumnProxyOraclev12c">
+<ColumnProxy name="BOARD_TYPE" id="40118E99-8D79-00E3-4A55-8EFDE2E619AC">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:38:14 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RE_LEVEL" id="45E434B1-F635-DA34-048D-9AC57EF8254E">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:38:14 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="SUBJECT" id="71743CB4-BE3A-A669-603C-9054709D1DB0">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:38:14 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="NUM" id="9E4815C7-31EF-B24A-747E-1BD70544DD22">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:38:14 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="UPLOAD" id="B814F082-5018-C0CD-BE92-BF592BBB8110">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:38:14 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="READCOUNT" id="B911EC34-FBBC-3433-34D9-499925BACF32">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:38:14 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<defaultValue>0</defaultValue>
+</ColumnProxy>
+<ColumnProxy name="MEMBER_ID" id="BF25B7B8-B5E2-7F40-C6ED-3D14633B6E6E">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:38:14 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="REG_DATE" id="BF95C279-0E79-2EBD-8AAB-21527ED1EAE9">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:38:14 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="CONTENT" id="D47DCBAB-16AF-BC25-91B0-41C662E2D757">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:38:14 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="MEMBER_EMAIL" id="E9BF5D73-908B-C915-54B1-0AB19991A1A0">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:38:14 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="RE_STEP" id="EB4F2A1D-0619-F6BA-DE22-1FB76B19EC42">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:38:14 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+<ColumnProxy name="REF" id="F05072F3-612F-2AE5-FBBC-517A33801C38">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:38:14 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+</ColumnProxy>
+</columnProxies>
+<primaryKeys>
+<PrimaryKey class="oracle.dbtools.crest.model.design.storage.oracle.v10g.PKProxyOraclev10g" name="EZENBOARDS_PK" id="1530188C-1734-461E-F880-1A600B2B88C1">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:38:41 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<indexSort>SORTED</indexSort>
+</PrimaryKey>
+</primaryKeys>
+</TableProxyOraclev11g>

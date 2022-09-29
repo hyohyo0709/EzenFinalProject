@@ -72,8 +72,15 @@ alter table ezenorders rename column order_qty to order_cost;
 
 alter table ezenmembers add member_name VARCHAR2(30);
 
-select*from EZENORDERS; 
+alter table ezenorders add book_qty number(38);
 
+select*from EZENORDERS
+order by order_number; 
+
+
+select order_number
+from ezenorders
+order by order_number;
 
 
  select o.num, o.order_number, o.order_qty, o.member_number, o.book_id, o.order_status, 
@@ -94,7 +101,40 @@ select*from EZENORDERS;
     
     commit;
     
-    
+select*from ezencoupons;
+ 
+ 
+ 
+ 
+ 
+ create table ezencarts(
+num number not null primary key,
+member_number varchar2(20) not null,
+book_id varchar2(20) not null, 
+cart_amount number default 1
+); 
+ 
+ select*from ezencarts;
+ 
+ 
+ 
+ 
+ create table ezenboards(
+   	num number,
+   	member_id varchar2(20),     
+ 	member_email varchar2(30),
+	subject varchar2(50),
+	reg_date date,
+	readcount number default 0, 
+	ref number, 
+	re_step number, 
+	re_level number,
+	board_type number, 
+	content varchar2(100),
+    upload varchar2(300)
+);
+ 
+ select*from ezenboards;
     
     
     
@@ -118,6 +158,28 @@ nocycle;
 
 
 create sequence ezencoupons_num_seq
+start with 1 
+increment by 1
+nocache
+nocycle;
+
+create sequence seq_cart
+start with 1
+increment by 1;
+
+create sequence ezenfreeboards_num_seq
+start with 1 
+increment by 1
+nocache
+nocycle;
+
+create sequence ezenreviewboards_num_seq
+start with 1 
+increment by 1
+nocache
+nocycle;
+
+create sequence ezenqnaboards_num_seq
 start with 1 
 increment by 1
 nocache

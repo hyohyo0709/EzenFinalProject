@@ -1,0 +1,204 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="F81EC733-D525-EC0F-BF65-2ABA0ADBF096" name="EZENORDERS">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>HR</sourceObjSchema>
+<sourceObjName>EZENORDERS</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:30 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="NUM" id="962BAEF8-8AAF-BF84-A9CE-FB21061FBB47">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENORDERS</sourceObjSchema>
+<sourceObjName>NUM</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:30 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<ownDataTypeParameters>,38,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORDER_NUMBER" id="B1ED5FA9-DA6F-FE50-8E01-F30EC60DB920">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENORDERS</sourceObjSchema>
+<sourceObjName>ORDER_NUMBER</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:30 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORDER_COST" id="F4F220B0-C2BE-2B89-8B9A-DC0E4219FD15">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENORDERS</sourceObjSchema>
+<sourceObjName>ORDER_COST</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:30 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>20</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,20,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="MEMBER_NUMBER" id="F13F9934-DF7B-92B3-E5FC-2A3686A5D572">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENORDERS</sourceObjSchema>
+<sourceObjName>MEMBER_NUMBER</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:30 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="CB5AF688-3662-E1F8-7B96-99B4949CDECF" referredColumn="6ED73DB6-23F7-28D9-FB87-9C7AC3C93EE8"/>
+</associations>
+</Column>
+<Column name="BOOK_ID" id="BD7C177E-01BE-D05B-8B13-75CDEF9D16AA">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENORDERS</sourceObjSchema>
+<sourceObjName>BOOK_ID</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:30 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>20 BYTE</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="661FE525-291D-8E0F-2B5A-5D992AB4D44C" referredColumn="233DD0CF-811B-B818-3588-6AF7D4B14DB1"/>
+</associations>
+</Column>
+<Column name="ORDER_STATUS" id="0C824118-AD33-41DE-7D40-35BEE1EE0E1A">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENORDERS</sourceObjSchema>
+<sourceObjName>ORDER_STATUS</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:30 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>1</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,1,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORDER_PHONE" id="C2E6AEE3-5FAC-A860-E5CE-1DA3D7260328">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENORDERS</sourceObjSchema>
+<sourceObjName>ORDER_PHONE</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:30 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORDER_NAME" id="B2F6A836-7AF3-E8C0-2B83-15260B76808D">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENORDERS</sourceObjSchema>
+<sourceObjName>ORDER_NAME</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:30 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="ORDER_ADDRESS" id="225D2E91-718B-CE07-9209-33DB6DBE757D">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENORDERS</sourceObjSchema>
+<sourceObjName>ORDER_ADDRESS</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:30 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>4000 BYTE</dataTypeSize>
+<ownDataTypeParameters>4000 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="BOOK_QTY" id="36958F0B-3E26-3BD9-9D26-927F9452D5C0">
+<sourceConnName>hyo</sourceConnName>
+<sourceObjSchema>EZENORDERS</sourceObjSchema>
+<sourceObjName>BOOK_QTY</sourceObjName>
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:09:30 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<dataTypePrecision>38</dataTypePrecision>
+<dataTypeScale>0</dataTypeScale>
+<ownDataTypeParameters>,38,0</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="51192501-00B7-2507-8206-99DB04FA71AD" name="EZENORDERS_PK">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:10:49 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="962BAEF8-8AAF-BF84-A9CE-FB21061FBB47"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="52B41104-E5C8-0994-5139-C8D3F15D2E03" name="EZENORDERS_EZENMEMBERS_FK">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:11:00 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F13F9934-DF7B-92B3-E5FC-2A3686A5D572"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FDC98B13-7FFF-EFF4-DF67-7AA7A13477B5" name="EZENORDERS_EZENBOOKS_FK">
+<createdBy>user</createdBy>
+<createdTime>2022-08-31 03:34:29 UTC</createdTime>
+<ownerDesignName>onlyERD</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="BD7C177E-01BE-D05B-8B13-75CDEF9D16AA"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
